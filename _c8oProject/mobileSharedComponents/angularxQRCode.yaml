@@ -1,0 +1,103 @@
+↓PageEvent [ngx.components.UIPageEvent-1600099079873]: 
+  ↓initQRCode [ngx.components.UICustomAction-1600099089483]: 
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+              - java.lang.String: 
+                - ↑value: 2.3.5
+    page_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+↓Tag [ngx.components.UIElement-1600100138075]: 
+  identifier: QRCode
+  tagName: qrcode
+  ↓Attr [ngx.components.UIAttribute-1600100797889]: 
+    attrName: '[qrdata]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.qrdata
+  ↓Attr1 [ngx.components.UIAttribute-1600100947491]: 
+    attrName: '[size]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.size
+  ↓Attr11 [ngx.components.UIAttribute-1600100973747]: 
+    attrName: '[level]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.level
+  ↓Attr111 [ngx.components.UIAttribute-1600101056778]: 
+    attrName: '[usesvg]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.usesvg
+  ↓Attr1111 [ngx.components.UIAttribute-1600101331555]: 
+    attrName: '[colordark]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.colordark
+  ↓Attr11111 [ngx.components.UIAttribute-1600101345575]: 
+    attrName: '[colorlight]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.colorlight
+  ↓Attr1112 [ngx.components.UIAttribute-1600101413489]: 
+    attrName: '[allowEmptyString]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1600099015160.allowEmptyString
+  ↓Style [ngx.components.UIStyle-1604013519909]: 
+↓qrdata [ngx.components.UICompVariable-1600101469599]: 
+↓size [ngx.components.UICompVariable-1600101477141]: 
+  value: 256
+↓level [ngx.components.UICompVariable-1600101483760]: 
+  value: '''M'''
+↓usesvg [ngx.components.UICompVariable-1600101489516]: 
+  value: false
+↓colordark [ngx.components.UICompVariable-1600101489519]: 
+  value: '''#000000'''
+↓colorlight [ngx.components.UICompVariable-1600101489522]: 
+  value: '''#FFFFFF'''
+↓allowEmptyString [ngx.components.UICompVariable-1600101495280]: 
+  value: false

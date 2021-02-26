@@ -1,0 +1,193 @@
+comment: CardIO SharedAction
+↓initCardIO [ngx.components.UICustomAction-1595431416103]: 
+  actionValue: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '    		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		let cardIO = page.getInstance(CardIO);
+              		cardIO.version()
+              		.then(
+          		        resp => {
+                              page.c8o.log.debug(''cardIO version: '' + resp);
+                          }
+              		)
+              		.catch(
+              	        error => {
+                              page.c8o.log.warn(''Can not get cardIO version: '' + error);
+                              resolve({"error": error});
+                          } 
+              		);
+              		cardIO.canScan()
+              		.then(
+              	        (res: boolean) => {
+              	            if(res){
+              	                let options = {
+          	                        requireExpiry: true,
+          	                        requireCVV: true,
+          	                        suppressManual: true,
+          	                        scanExpiry: true,
+          	                        guideColor: 3702517,
+          	                        keepApplicationTheme: true,
+          	                        supressConfirmation: true,
+          	                        hideCardIOLogo: true
+              	                };
+              	                if(vars.options && vars.options != {}){
+              	                    options = vars.options;
+              	                }
+              	                cardIO.scan(options)
+              	                .then(
+          	                        resp => {
+          	                            page.c8o.log.debug(''Response: '' + JSON.stringify(resp));
+          	                            page.local["ccard_result" + vars.local_ccard_suffix] = resp;
+          	                            page.local["local_ccard_suffix"] = vars.local_ccard_suffix;
+          	                            if(resp.expiryMonth !== undefined && resp.expiryMonth != 0){
+          	                                resp["expiryDate"] = page.local["ccard_result" + vars.local_ccard_suffix].expiryDate = (''0''+resp.expiryMonth).substr(-2) + ''/'' + resp.expiryYear.toString().substr(-2);
+          	                            }
+          	                            if(vars.ccn && resp["cardNumber"]){
+          	                                vars.ccn.value = resp["cardNumber"];
+          	                            }
+          	                            if(vars.cexp && resp["expiryDate"]){
+          	                                vars.cexp.value = resp["expiryDate"];
+          	                            }
+          	                            if(vars.cvv && resp["cvv"] && options["requireCVV"]){
+          	                                vars.cvv.value = resp["cvv"];
+          	                            }
+          	                            resolve(resp);
+          	                        }
+              	                )
+              	                .catch(
+          	                        error => {
+          	                            page.c8o.log.warn(''Can not scan: '' + error);
+          	                            resolve({"error": error});
+          	                        }
+              	                );
+              	            } else {
+              	                resolve({"error": "can not scan"});
+              	            }
+              	        }
+                      )
+                      .catch(
+                          error => {
+                              page.c8o.log.warn(''Can not scan: '' + error);
+                              resolve({"error": error});
+                          }
+                      );
+          '
+  cordova_plugins: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: card.io.cordova.mobilesdk
+            - java.lang.String: 
+              - ↑value: 2.1.0
+            - java.lang.String: 
+              - ↑value: '{}'
+  module_ng_providers: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: CardIO
+  module_ts_imports: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: CardIO
+            - java.lang.String: 
+              - ↑value: '@ionic-native/card-io/ngx'
+  package_dependencies: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: '@ionic-native/card-io'
+            - java.lang.String: 
+              - ↑value: 5
+  page_ts_imports: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: CardIO
+            - java.lang.String: 
+              - ↑value: '@ionic-native/card-io/ngx'
+  ↓ccn [ngx.components.UIControlVariable-1595431416106]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params.ccn
+  ↓cvv [ngx.components.UIControlVariable-1595431416109]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params.cvv
+  ↓cexp [ngx.components.UIControlVariable-1595431416112]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params.cexp
+  ↓options [ngx.components.UIControlVariable-1595431416115]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params.options
+  ↓local_ccard_suffix [ngx.components.UIControlVariable-1595431416118]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params.local_ccard_suffix
+  ↓If [ngx.components.UIDynamicAction-1595431416121]: 
+    beanData: '{"ionBean":"IfAction","condition":"script:params.ccard_topic && params.ccard_topic != '''' && parent.out.cardNumber"}'
+    ↓PublishEvent [ngx.components.UIDynamicAction-1595431416124]: 
+      beanData: |
+        '{
+         "ionBean": "PublishEventAction",
+         "topic": "script:params.ccard_topic",
+         "data": "script:stack[''initCardIO''].out"
+        }'
+    ↓addResolveOutput [ngx.components.UICustomAction-1595431416127]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		resolve(vars.output);
+              '
+      ↓output [ngx.components.UIControlVariable-1595431416130]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:stack['initCardIO'].out
+↓ccn [ngx.components.UIStackVariable-1595431416133]: 
+  comment: Input tag identifier to set Card Number value to. Optional
+↓cvv [ngx.components.UIStackVariable-1595431416136]: 
+  comment: Input tag identifier to set cryptogram value (123) to. Optional
+↓cexp [ngx.components.UIStackVariable-1595431416139]: 
+  comment: Input tag identifier to set Expiry date value (MM/YY) to. Optional
+↓options [ngx.components.UIStackVariable-1595431416142]: 
+  comment: CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin
+  value: '{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressConfirmation: true, hideCardIOLogo: true}'
+↓local_ccard_suffix [ngx.components.UIStackVariable-1595431416145]: 
+  comment: 'Suffix for local page variable in case of multiple CardIO plugin instances. Default: ''''. Optional'
+↓ccard_topic [ngx.components.UIStackVariable-1595431416148]: 
+  comment: Publish Topic name to use with a Subscribe component. Optional

@@ -1,0 +1,326 @@
+comment: ZXing package usage page
+segment: path-to-zxing
+title: ZXing
+↓Header [ngx.components.UIDynamicElement-1595431440489]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Page header
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1595431440492]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1614249558160]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1595431440501]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        comment: A button to toggle the menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1595431440495]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1595431440498]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:ZXing_plugin
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1595431440507]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1595431440510]: 
+        beanData: '{"ionBean":"Button"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1595431440513]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          tagName: ion-icon
+↓Content [ngx.components.UIDynamicElement-1595431440516]: 
+  beanData: '{"ionBean":"Content"}'
+  comment: Page content
+  tagName: ion-content
+  ↓GenericItem [ngx.components.UIDynamicElement-1595431403994]: 
+    beanData: '{"ionBean":"GenericItem"}'
+    tagName: ion-item
+    ↓Label [ngx.components.UIDynamicElement-1595431403997]: 
+      beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
+      tagName: ion-label
+      ↓Text [ngx.components.UIText-1595431404000]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:QRC_BarC
+    ↓TextInput [ngx.components.UIDynamicElement-1595431404003]: 
+      beanData: '{"ionBean":"Input","Debounce":"plain:0"}'
+      identifier: codeResult
+      tagName: ion-input
+      ↓id [ngx.components.UIAttribute-1606127068331]: 
+        attrName: id
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:idInputResult
+    ↓Button [ngx.components.UIDynamicElement-1595431404006]: 
+      beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+      tagName: ion-button
+      ↓Icon [ngx.components.UIDynamicElement-1595431404009]: 
+        beanData: '{"ionBean":"Icon","IconName":"plain:camera"}'
+        tagName: ion-icon
+      ↓Attr [ngx.components.UIAttribute-1595431404012]: 
+        attrName: 
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:item-right
+      ↓Event [ngx.components.UIControlEvent-1595431404015]: 
+        ↓cameraSource [ngx.components.UICustomAction-1595431404018]: 
+          actionValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                  		page.local["zxing:source"] = ''video'';
+                  		resolve();
+                  '
+          ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404021]: 
+            beanData: '{"ionBean":"InvokeAction"}'
+            stack: lib_ExtendedComponents_Ngx.MobileApplication.Application.ZXing_sa
+            ↓type [ngx.components.UIControlVariable-1595431404024]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'video'
+            ↓resultId [ngx.components.UIControlVariable-1595431404027]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.codeResult
+            ↓videoId [ngx.components.UIControlVariable-1595431404030]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'videoSource'
+            ↓Log [ngx.components.UIDynamicAction-1595431404033]: 
+              beanData: |
+                '{
+                 "ionBean": "LogAction",
+                 "message": "script:''Resolve: '' + JSON.stringify(parent.out[1] || parent.out[0] || {error: ''unknown''})",
+                 "level": "plain:warn"
+                }'
+            ↓topic [ngx.components.UIControlVariable-1605717005289]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'zxing_result'
+            ↓isOutputEvent [ngx.components.UIControlVariable-1605717005291]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:true
+            ↓isOutputLocal [ngx.components.UIControlVariable-1605717005293]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:true
+            ↓ref [ngx.components.UIControlVariable-1605717005297]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'_myVideo'
+      ↓Style [ngx.components.UIStyle-1595431404036]: 
+        styleContent: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '	margin-top: 27px !important;
+                '
+    ↓Button1 [ngx.components.UIDynamicElement-1595431404039]: 
+      beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+      tagName: ion-button
+      ↓Icon [ngx.components.UIDynamicElement-1595431404042]: 
+        beanData: '{"ionBean":"Icon","IconName":"plain:document"}'
+        tagName: ion-icon
+      ↓Attr [ngx.components.UIAttribute-1595431404045]: 
+        attrName: 
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:item-right
+      ↓Event [ngx.components.UIControlEvent-1595431404048]: 
+        ↓fileSource [ngx.components.UICustomAction-1595431404051]: 
+          actionValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                  		page.local["zxing:source"] = ''file'';
+                  		if(page.global[''zxing:codeReader''])
+                  		    page.global[''zxing:codeReader''].reset();
+                  		resolve();
+                  '
+      ↓Style [ngx.components.UIStyle-1595431404054]: 
+        styleContent: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '	margin-top: 27px !important;
+                '
+  ↓Directive [ngx.components.UIControlDirective-1595431404057]: 
+    directiveName: Switch
+    directiveSource: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.local["zxing:source"]
+    ↓Directive [ngx.components.UIControlDirective-1595431404060]: 
+      directiveName: SwitchCase
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:'file'
+      ↓Break [ngx.components.UIDynamicElement-1595431404063]: 
+        beanData: '{"ionBean":"Break"}'
+        selfClose: true
+        tagName: br
+      ↓Tag [ngx.components.UIElement-1595431404066]: 
+        selfClose: true
+        tagName: input
+        ↓Attr [ngx.components.UIAttribute-1595431404069]: 
+          attrName: type
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:file
+        ↓Event [ngx.components.UIControlEvent-1595431404072]: 
+          attrName: (change)
+          eventName: (change)
+          ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404075]: 
+            beanData: '{"ionBean":"InvokeAction"}'
+            stack: lib_ExtendedComponents_Ngx.MobileApplication.Application.ZXing_sa
+            ↓type [ngx.components.UIControlVariable-1595431404078]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'file'
+            ↓resultId [ngx.components.UIControlVariable-1595431404081]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'idInputResult'
+            ↓imgId [ngx.components.UIControlVariable-1595431404084]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.zxing_image_id
+            ↓topic [ngx.components.UIControlVariable-1595431404087]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'zxing_result'
+            ↓ref [ngx.components.UIControlVariable-1605717194192]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'_myImage'
+      ↓Break1 [ngx.components.UIDynamicElement-1595431404090]: 
+        beanData: '{"ionBean":"Break"}'
+        selfClose: true
+        tagName: br
+      ↓Image [ngx.components.UIDynamicElement-1595431404093]: 
+        beanData: '{"ionBean":"Image","url":"plain"}'
+        identifier: zxing_image_id
+        selfClose: true
+        tagName: img
+    ↓Directive1 [ngx.components.UIControlDirective-1595431404096]: 
+      directiveName: SwitchCase
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:'video'
+      ↓Break1 [ngx.components.UIDynamicElement-1595431404099]: 
+        beanData: '{"ionBean":"Break"}'
+        selfClose: true
+        tagName: br
+      ↓Tag1 [ngx.components.UIElement-1595431404102]: 
+        tagName: video
+        ↓Attr [ngx.components.UIAttribute-1595431404105]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:videoSource
+        ↓Style [ngx.components.UIStyle-1595431404108]: 
+          styleContent: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '	border: 1px solid gray;
+                  	width: 100%;
+                  '
+    ↓Directive2 [ngx.components.UIControlDirective-1605715457041]: 
+      directiveName: SwitchDefault
+↓Footer [ngx.components.UIDynamicElement-1595431440522]: 
+  beanData: '{"ionBean":"Footer"}'
+  comment: Page footer
+  tagName: ion-footer
+  ↓ToolBar [ngx.components.UIDynamicElement-1595431440525]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1595431440528]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1595431440531]: 
+        beanData: '{"ionBean":"Button"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1595431440534]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 1
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1595431440537]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1595431440540]: 
+        beanData: '{"ionBean":"Button"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1595431440543]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 2
+↓Subscribe_Handler [ngx.components.UIEventSubscriber-1595431440546]: 
+  comment: Subscribe event for scanned result
+  topic: zxing_result
+  ↓Log_video [ngx.components.UIDynamicAction-1595431440549]: 
+    beanData: |
+      '{
+       "ionBean": "LogAction",
+       "message": "script:\"Log scan video: \" + JSON.stringify(this.global[\"zxing:zxing_result_myVideo\"])",
+       "level": "plain:warn"
+      }'
+  ↓Log_image [ngx.components.UIDynamicAction-1605725360085]: 
+    beanData: |
+      '{
+       "ionBean": "LogAction",
+       "message": "script:\"Log scan Image: \" + JSON.stringify(this.global[\"zxing:zxing_result_myImage\"])",
+       "level": "plain:warn"
+      }'
+  ↓close_zxing [ngx.components.UICustomAction-1605715146600]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		let out = props.out;
+            		if(out.ref == vars.ref){
+            		    page.local["zxing:source"] = undefined;
+            		}
+            		resolve();
+            '
+    ↓ref [ngx.components.UIControlVariable-1605725514293]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:_myVideo

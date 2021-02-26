@@ -1,0 +1,153 @@
+comment: Page with standard input to add tags
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	public JSON : JSON = JSON;
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        '
+segment: path-to-testngxinput1
+title: testNgxInput1
+↓Header [ngx.components.UIDynamicElement-1578671960848]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Page header
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1578671960851]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1614249515640]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1578671960860]: 
+        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        comment: A button to toggle the menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1578671960854]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1578671960857]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:My First App
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1578671960866]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1578671960869]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1578671960872]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          tagName: ion-icon
+↓Content [ngx.components.UIDynamicElement-1578565231494]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓Form [ngx.components.UIForm-1578565592895]: 
+    identifier: myForm
+    ↓Div [ngx.components.UIDynamicElement-1578498389567]: 
+      beanData: '{"ionBean":"DivTag"}'
+      tagName: div
+      ↓TextInput [ngx.components.UIDynamicElement-1578497327831]: 
+        beanData: |
+          '{
+           "ionBean": "Input",
+           "ControlName": "plain:myInput",
+           "Debounce": "plain:0",
+           "Placeholder": "plain:standard input: please enter text, then click Enter"
+          }'
+        identifier: myInput
+        tagName: ion-input
+        ↓Event [ngx.components.UIControlEvent-1578578502842]: 
+          attrName: (keyup)
+          eventName: (keyup)
+          ↓CustomAction [ngx.components.UICustomAction-1578578734547]: 
+            actionValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '		//page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                    		if (event.keyCode == 13) {
+                    	        console.log(event);
+                    		    //console.log(page["ngxTag"]);
+                    	        var tag = page["myInput"].value;
+                    		    page["ngxTag"]["items"].push({value:tag, display:tag});
+                    		    page["myInput"].value = "";
+                    		}
+                    		resolve();
+                    '
+      ↓UseSharedComponent3 [ngx.components.UIUseShared-1578497311688]: 
+        sharedcomponent: lib_ExtendedComponents_Ngx.MobileApplication.Application.ngxTagInput
+        ↓items [ngx.components.UIControlVariable-1578497311691]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:[{value: 0, display: ''Angular''}, {value: 1, display: ''React''}]'
+        ↓inputtext [ngx.components.UIControlVariable-1578501330307]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.myInput.value
+        ↓theme [ngx.components.UIControlVariable-1578497311694]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'bootstrap3-info'
+  ↓Div [ngx.components.UIDynamicElement-1578566024502]: 
+    beanData: '{"ionBean":"DivTag"}'
+    isEnabled: false
+    tagName: div
+    ↓Text [ngx.components.UIText-1578566038206]: 
+      i18n: false
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'plain:form value : '
+    ↓Break [ngx.components.UIDynamicElement-1578653033275]: 
+      beanData: '{"ionBean":"Break"}'
+      selfClose: true
+      tagName: br
+    ↓Text1 [ngx.components.UIText-1578566055951]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:JSON.stringify(myForm.value)
+↓Footer [ngx.components.UIDynamicElement-1578565223758]: 
+  beanData: '{"ionBean":"Footer"}'
+  tagName: ion-footer
+↓Subscribe_Handler1 [ngx.components.UIEventSubscriber-1578560380979]: 
+  topic: ngxTagInputFocused
+  ↓CustomAction [ngx.components.UICustomAction-1578567530143]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		console.log("form value: ", page["myForm"].value);
+            		resolve();
+            '
+↓Subscribe_Handler2 [ngx.components.UIEventSubscriber-1578562617852]: 
+  topic: ngxTagInputAdded
+  ↓CustomAction [ngx.components.UICustomAction-1578562642089]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		console.log("added: ", event);
+            		console.log("all: ", page["all_ngxTag"]);
+            		console.log("results: ", page["all_ngxTag"]["_results"]);
+            		var last = page["all_ngxTag"]["_results"].length - 1;
+            		console.log("input items: ", page["all_ngxTag"]["_results"][last]["_items"]);
+            		resolve();
+            '

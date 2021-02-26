@@ -1,0 +1,299 @@
+↓PageEvent [ngx.components.UIEventSubscriber-1614180719814]: 
+  comment: Old implementation of onCanEnter. Prefer using AppGuard now.
+  isEnabled: false
+  topic: CanEnter
+  ↓initialization [ngx.components.UICustomAction-1584094766592]: 
+    comment: Do not delete or disable !!
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: EditorModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: EditorModule 
+              - java.lang.String: 
+                - ↑value: '@tinymce/tinymce-angular'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@tinymce/tinymce-angular'
+              - java.lang.String: 
+                - ↑value: 3.5.0
+↓ngModel [ngx.components.UICompVariable-1584094766604]: 
+  value: null
+↓init [ngx.components.UICompVariable-1584112503370]: 
+  value: '{}'
+↓disabled [ngx.components.UICompVariable-1584112464251]: 
+↓apiKey [ngx.components.UICompVariable-1584112464252]: 
+↓cloudChannel [ngx.components.UICompVariable-1584112464253]: 
+↓disabled1 [ngx.components.UICompVariable-1584112464254]: 
+↓id [ngx.components.UICompVariable-1584112500988]: 
+↓initialValue [ngx.components.UICompVariable-1584112507501]: 
+↓inline [ngx.components.UICompVariable-1584112510197]: 
+  value: false
+↓tagName [ngx.components.UICompVariable-1584112510198]: 
+  value: '''div'''
+↓plugins [ngx.components.UICompVariable-1584112512654]: 
+  value: '[''advlist autolink lists link image charmap print preview anchor'',''searchreplace visualblocks code fullscreen'',''insertdatetime media table paste code imagetools help wordcount'']'
+↓toolbar [ngx.components.UICompVariable-1584112515048]: 
+  value: '''undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'''
+↓ref [ngx.components.UICompVariable-1584547637414]: 
+↓Directive [ngx.components.UIControlDirective-1610985343772]: 
+  directiveName: If
+  directiveSource: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+      - MobileSmartSourceType: script:params1584094766586.ngModel != null else ElseBlock_1610985402974
+  ↓Tag [ngx.components.UIElement-1584094766595]: 
+    tagName: editor
+    ↓Attr [ngx.components.UIAttribute-1584094766598]: 
+      attrName: '[(ngModel)]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:params1584094766586.ngModel
+    ↓Attr1 [ngx.components.UIAttribute-1584107509437]: 
+      attrName: '[init]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:params1584094766586.init
+    ↓Attr2 [ngx.components.UIAttribute-1584115468148]: 
+      attrName: apiKey
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.apiKey
+      isEnabled: false
+    ↓Attr11 [ngx.components.UIAttribute-1584115468151]: 
+      attrName: cloudChannel
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.cloudChannel
+      isEnabled: false
+    ↓Attr3 [ngx.components.UIAttribute-1584115479179]: 
+      attrName: '[disabled]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:params1584094766586.disabled
+      isEnabled: false
+    ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
+      attrName: id
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.id
+      isEnabled: false
+    ↓Attr13 [ngx.components.UIAttribute-1584115481411]: 
+      attrName: '[inline]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:params1584094766586.inline != undefined && params1584094766586.inline != '''' ? params1584094766586.inline : false'
+    ↓Attr5 [ngx.components.UIAttribute-1584115486506]: 
+      attrName: plugins
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.plugins
+      isEnabled: false
+    ↓Attr14 [ngx.components.UIAttribute-1584115486509]: 
+      attrName: tagName
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.tagName
+      isEnabled: false
+    ↓Attr6 [ngx.components.UIAttribute-1584115486510]: 
+      attrName: toolbar
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.toolbar
+      isEnabled: false
+    ↓Event [ngx.components.UIControlEvent-1584548207346]: 
+      attrName: (ngModelChange)
+      eventName: (ngModelChange)
+      ↓PublishEvent [ngx.components.UIDynamicAction-1584548700881]: 
+        beanData: |
+          '{
+           "ionBean": "PublishEventAction",
+           "topic": "script:''tinyMceNgModelChange''",
+           "data": "script:{event: event, ref:  params1584094766586.ref}"
+          }'
+    ↓Attr4 [ngx.components.UIAttribute-1610987611370]: 
+      attrName: initialValue
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:params1584094766586.initialValue != undefined ?params1584094766586.initialValue : '''''
+    ↓Event1 [ngx.components.UIControlEvent-1611068127001]: 
+      attrName: (onBlur)
+      eventName: (onBlur)
+      ↓PublishEvent [ngx.components.UIDynamicAction-1611068127004]: 
+        beanData: |
+          '{
+           "ionBean": "PublishEventAction",
+           "topic": "script:''tinyMceBlur''",
+           "data": "script:{event: event, ref:  params1584094766586.ref}"
+          }'
+↓Tag2 [ngx.components.UIElement-1610985402974]: 
+  identifier: ElseBlock_1610985402974
+  tagName: ng-template
+  ↓Tag1 [ngx.components.UIElement-1610985320371]: 
+    identifier: editor
+    tagName: editor
+    ↓Attr1 [ngx.components.UIAttribute-1610985320377]: 
+      attrName: '[init]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:params1584094766586.init
+    ↓Attr2 [ngx.components.UIAttribute-1610985320380]: 
+      attrName: apiKey
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.apiKey
+      isEnabled: false
+    ↓Attr11 [ngx.components.UIAttribute-1610985320383]: 
+      attrName: cloudChannel
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.cloudChannel
+      isEnabled: false
+    ↓Attr3 [ngx.components.UIAttribute-1610985320386]: 
+      attrName: '[disabled]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:params1584094766586.disabled
+      isEnabled: false
+    ↓Attr12 [ngx.components.UIAttribute-1610985320389]: 
+      attrName: id
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.id
+      isEnabled: false
+    ↓Attr4 [ngx.components.UIAttribute-1610985320392]: 
+      attrName: initialValue
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:params1584094766586.initialValue != undefined ?params1584094766586.initialValue : '''''
+    ↓Attr13 [ngx.components.UIAttribute-1610985320395]: 
+      attrName: '[inline]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:params1584094766586.inline != undefined && params1584094766586.inline != '''' ? params1584094766586.inline : false'
+    ↓Attr5 [ngx.components.UIAttribute-1610985320398]: 
+      attrName: plugins
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.plugins
+      isEnabled: false
+    ↓Attr14 [ngx.components.UIAttribute-1610985320401]: 
+      attrName: tagName
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.tagName
+      isEnabled: false
+    ↓Attr6 [ngx.components.UIAttribute-1610985320404]: 
+      attrName: toolbar
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:params1584094766586.toolbar
+      isEnabled: false
+    ↓Event [ngx.components.UIControlEvent-1610985320407]: 
+      attrName: (ngModelChange)
+      eventName: (ngModelChange)
+      ↓PublishEvent [ngx.components.UIDynamicAction-1610985320410]: 
+        beanData: |
+          '{
+           "ionBean": "PublishEventAction",
+           "topic": "script:''tinyMceNgModelChange''",
+           "data": "script:{event: event, ref:  params1584094766586.ref}"
+          }'
+    ↓Event1 [ngx.components.UIControlEvent-1610986431860]: 
+      attrName: (onBlur)
+      eventName: (onBlur)
+      ↓PublishEvent [ngx.components.UIDynamicAction-1610986457846]: 
+        beanData: |
+          '{
+           "ionBean": "PublishEventAction",
+           "topic": "script:''tinyMceBlur''",
+           "data": "script:{event: event, ref:  params1584094766586.ref}"
+          }'
+↓PageEvent1 [ngx.components.UIPageEvent-1614258719034]: 
+  viewEvent: onWillEnter
+  ↓initialization [ngx.components.UICustomAction-1614258791347]: 
+    comment: Do not delete or disable !!
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: EditorModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: EditorModule 
+              - java.lang.String: 
+                - ↑value: '@tinymce/tinymce-angular'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@tinymce/tinymce-angular'
+              - java.lang.String: 
+                - ↑value: 4.2.0

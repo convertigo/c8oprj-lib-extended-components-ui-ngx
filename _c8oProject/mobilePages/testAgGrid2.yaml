@@ -1,0 +1,180 @@
+↑isRoot: true
+comment: Page with a grid having images, checkboxes in columns
+preloadPriority: high
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        
+segment: path-to-testaggrid2
+title: testAgGrid2
+↓Header [ngx.components.UIDynamicElement-1491634212350]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Page header
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1491634231108]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1614249250937]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1491634442029]: 
+        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        comment: A button to toggle the menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1491634265317]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1491634275121]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:My First App
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1491634611427]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1491634621907]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1491634637555]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          tagName: ion-icon
+↓Content [ngx.components.UIDynamicElement-1489674805352]: 
+  beanData: '{"ionBean":"Content"}'
+  comment: Page content
+  tagName: ion-content
+  ↓UseSharedComponent1 [ngx.components.UIUseShared-1576667583952]: 
+    sharedcomponent: lib_ExtendedComponents_Ngx.MobileApplication.Application.agGrid
+    ↓pagination [ngx.components.UIControlVariable-1576667594456]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓paginationPageSize [ngx.components.UIControlVariable-1576667594458]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:10
+    ↓rowSelection [ngx.components.UIControlVariable-1576675290436]: 
+      comment: '''single'' or ''multiple'''
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'multiple'
+    ↓rowDeselection [ngx.components.UIControlVariable-1576681975602]: 
+      comment: '''single'' or ''multiple'''
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓defaultColDef [ngx.components.UIControlVariable-1576667594460]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: false, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false, minWidth: 40}'
+    ↓columnDefs [ngx.components.UIControlVariable-1576667594462]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: |
+              'script:[
+              	{headerName: ''Make'',  field: ''make''},
+              	{headerName: ''Model'', field: ''model''},
+              	{headerName: ''Price'',  field: ''price'', filter: ''agNumberColumnFilter''},
+              	{headerName: '''', field: ''src'', headerClass: ''custom-header-weel'', cellRenderer: this.global[''agGridDisplayImage''], filter: false, sortable: true, maxWidth: 50},
+              	{headerName: '''', field: ''valid'', checkboxSelection: true, headerCheckboxSelection: true, filter: false, sortable: false, maxWidth:40}
+              ]
+              '
+    ↓rowData [ngx.components.UIControlVariable-1576667594464]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:[{ make: ''Toyota'', model: ''Celica'', price: 35000, src: ''./assets/twitter_32x32.png''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''}]'
+    ↓width [ngx.components.UIControlVariable-1578910115317]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'100%'
+    ↓height [ngx.components.UIControlVariable-1578910115319]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'auto'
+↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
+  beanData: '{"ionBean":"Footer"}'
+  comment: Page footer
+  tagName: ion-footer
+  ↓ToolBar [ngx.components.UIDynamicElement-1491634317538]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1491634325595]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1491634332730]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1491634340354]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 1
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1491634373539]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1491634376874]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1491634383107]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 2
+↓Subscribe_Handler [ngx.components.UIEventSubscriber-1576856996038]: 
+  topic: agGridCellClicked
+  ↓handleCellClicked [ngx.components.UICustomAction-1576857263388]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		console.log("event: ",event);
+            		console.log("selectedNodes: ", page["agGrid"].api.getSelectedNodes())
+            		console.log("cell "+ event.event.rowIndex +":"+ event.event.column.colId + " clicked")
+            		resolve();
+            '
+↓Subscribe_Handler2 [ngx.components.UIEventSubscriber-1576859454081]: 
+  topic: agGridRowSelected
+  ↓handleRowSelected [ngx.components.UICustomAction-1576859550832]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		console.log("event: ",event);
+            		console.log("selectedRows: ", page["agGrid"].api.getSelectedRows())
+            		resolve();
+            '
+↓Subscribe_Handler3 [ngx.components.UIEventSubscriber-1577092071179]: 
+  topic: agGridColumnSortChanged
+  ↓handleColumnSorted [ngx.components.UICustomAction-1577092105459]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		console.log("event: ",event);
+            		console.log("columns: ", page["agGrid"].columnApi.getAllGridColumns())
+            		resolve();
+            '

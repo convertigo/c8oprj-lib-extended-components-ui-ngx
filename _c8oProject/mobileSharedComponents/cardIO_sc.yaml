@@ -1,0 +1,192 @@
+comment: CardIO SharedComponent
+↓GridRow [ngx.components.UIDynamicElement-1595431403880]: 
+  beanData: '{"ionBean":"GridRow","FlexJustifyContent":"plain:ion-justify-content-end"}'
+  tagName: ion-row
+  ↓GridCol [ngx.components.UIDynamicElement-1595431403883]: 
+    beanData: |
+      '{
+       "ionBean": "GridCol",
+       "SizeLg": "plain:6",
+       "SizeMd": "plain:12",
+       "SizeSm": "plain:12",
+       "SizeXl": "plain:6",
+       "SizeXs": "plain:12"
+      }'
+    tagName: ion-col
+    ↓GenericItem [ngx.components.UIDynamicElement-1595431403886]: 
+      beanData: '{"ionBean":"GenericItem"}'
+      tagName: ion-item
+      ↓Label [ngx.components.UIDynamicElement-1595431403889]: 
+        beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
+        tagName: ion-label
+        ↓Text [ngx.components.UIText-1595431403892]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Credit Card Number
+      ↓TextInput [ngx.components.UIDynamicElement-1595431403895]: 
+        beanData: '{"ionBean":"Input","Debounce":"plain:0"}'
+        identifier: field_cardNumber
+        tagName: ion-input
+  ↓GridCol1 [ngx.components.UIDynamicElement-1595431403898]: 
+    beanData: |
+      '{
+       "ionBean": "GridCol",
+       "SizeLg": "plain:3",
+       "SizeMd": "plain:6",
+       "SizeSm": "plain:12",
+       "SizeXl": "plain:3",
+       "SizeXs": "plain:12"
+      }'
+    tagName: ion-col
+    ↓GenericItem1 [ngx.components.UIDynamicElement-1595431403901]: 
+      beanData: '{"ionBean":"GenericItem"}'
+      tagName: ion-item
+      ↓Label [ngx.components.UIDynamicElement-1595431403904]: 
+        beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
+        tagName: ion-label
+        ↓Text [ngx.components.UIText-1595431403907]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Expiry Date
+      ↓TextInput [ngx.components.UIDynamicElement-1595431403910]: 
+        beanData: |
+          '{
+           "ionBean": "Input",
+           "Debounce": "plain:0",
+           "Placeholder": "script:this.translate.instant(''MM_YY'')"
+          }'
+        identifier: field_cardExpiry
+        tagName: ion-input
+  ↓GridCol2 [ngx.components.UIDynamicElement-1595431403913]: 
+    beanData: |
+      '{
+       "ionBean": "GridCol",
+       "SizeLg": "plain:2",
+       "SizeMd": "plain:5",
+       "SizeSm": "plain:11",
+       "SizeXl": "plain:2",
+       "SizeXs": "plain:12"
+      }'
+    tagName: ion-col
+    ↓GenericItem2 [ngx.components.UIDynamicElement-1595431403916]: 
+      beanData: '{"ionBean":"GenericItem"}'
+      tagName: ion-item
+      ↓Label [ngx.components.UIDynamicElement-1595431403919]: 
+        beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
+        tagName: ion-label
+        ↓Text [ngx.components.UIText-1595431403922]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Cryptogramme
+      ↓TextInput [ngx.components.UIDynamicElement-1595431403925]: 
+        beanData: |
+          '{
+           "ionBean": "Input",
+           "Debounce": "plain:0",
+           "Placeholder": "plain:123"
+          }'
+        identifier: field_cardVV
+        tagName: ion-input
+  ↓Directive [ngx.components.UIControlDirective-1595431403928]: 
+    directiveName: If
+    directiveSource: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:window['cordova'] else webScanner
+    ↓GridCol [ngx.components.UIDynamicElement-1595431403931]: 
+      beanData: |
+        '{
+         "ionBean": "GridCol",
+         "FlexAlignement": "plain:ion-align-self-end",
+         "SizeLg": "plain:1",
+         "SizeMd": "plain:1",
+         "SizeSm": "plain:12",
+         "SizeXl": "plain:1",
+         "SizeXs": "plain:12"
+        }'
+      tagName: ion-col
+      ↓Button [ngx.components.UIDynamicElement-1595431403934]: 
+        beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1595431403937]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
+          tagName: ion-icon
+        ↓Event [ngx.components.UIControlEvent-1595431403940]: 
+          ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431403943]: 
+            beanData: '{"ionBean":"InvokeAction"}'
+            stack: lib_ExtendedComponents_Ngx.MobileApplication.Application.cardIO_sa
+            ↓ccn [ngx.components.UIControlVariable-1595431403946]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.field_cardNumber
+            ↓cexp [ngx.components.UIControlVariable-1595431403949]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.field_cardExpiry
+            ↓cvv [ngx.components.UIControlVariable-1595431403952]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.field_cardVV
+            ↓local_ccard_suffix [ngx.components.UIControlVariable-1595431403955]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'_1'
+            ↓options [ngx.components.UIControlVariable-1595431403958]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: 'script:{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressConfirmation: true, hideCardIOLogo: true}'
+            ↓ccard_topic [ngx.components.UIControlVariable-1595431403961]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:'my_ccard_result'
+            ↓Log [ngx.components.UIDynamicAction-1595431403964]: 
+              beanData: |
+                '{
+                 "ionBean": "LogAction",
+                 "message": "script:JSON.stringify(parent.out[1] || parent.out[0] || {error: ''unknown''})",
+                 "level": "plain:debug"
+                }'
+      ↓Attr [ngx.components.UIAttribute-1595431403967]: 
+        attrName: 
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:text-right
+  ↓Tag [ngx.components.UIElement-1595431403970]: 
+    identifier: webScanner
+    tagName: ng-template
+    ↓GridCol [ngx.components.UIDynamicElement-1595431403973]: 
+      beanData: |
+        '{
+         "ionBean": "GridCol",
+         "FlexAlignement": "plain:ion-align-self-end",
+         "SizeLg": "plain:1",
+         "SizeMd": "plain:1",
+         "SizeSm": "plain:12",
+         "SizeXl": "plain:1",
+         "SizeXs": "plain:12"
+        }'
+      tagName: ion-col
+      ↓Button [ngx.components.UIDynamicElement-1595431403976]: 
+        beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1595431403979]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
+          tagName: ion-icon
+        ↓Event [ngx.components.UIControlEvent-1595431403982]: 
+          ↓CustomAction [ngx.components.UICustomAction-1595431403985]: 
+      ↓Attr [ngx.components.UIAttribute-1595431403988]: 
+        attrName: 
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:text-right
