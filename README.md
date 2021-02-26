@@ -7,6 +7,7 @@ Set of shared components you can use in your projects:
 * [angularxQRCode](angularxqrcode) : QR Code component/module library to generate QR Codes (Quick Response)
 * [CardIO](#cardio) : Cordova plugin to scan Credit Card
 * [ZXing](#zxing) : Library to scan barcodes
+* [tinyMCE](#tinymce) : Rich text editor
 
 SharedComponent can be dropped (CTRL + mouse drag) in Mobile Builder page components to make use of it.
 
@@ -28,8 +29,8 @@ See it in action in **testNgxInput** and **testNgxInput1** Mobile Builder pages.
 
 ## angularxQRCode
 
-**angularxQRCode** shared component is base on **angularx-qrcode** package version 1.6.4\
-**angularx-qrcode** is a Ionic 3 and Angular4+ QR Code component/module library to generate QR Codes (Quick Response) in your Ionic and Angular 4+ app with support for AOT. It is a drop-in replacement for the no-longer-maintained angular2 component ng2-qrcode and based on qrcodejs.
+**angularxQRCode** shared component is base on **angularx-qrcode** package version 2.3.5\
+**angularx-qrcode** is a Ionic 5 and Angular9+ QR Code component/module library to generate QR Codes (Quick Response) in your Ionic and Angular 9+ app with support for AOT. It is a drop-in replacement for the no-longer-maintained angular2 component ng2-qrcode and based on qrcodejs.
 
 ### Parameters
 
@@ -93,3 +94,10 @@ The Mobile Builder **ZXing** page demonstrates the use of this library.
     - `parent.out` directly under the **invoke ZXing_sa**
     - **PublishEvent** to a topic if one was provided and if **isOuputEvent** is set to *true*.
     - `page.global["zxing:<topic><ref>"]` global page variable if **isOuputGlobal** is set to *true*.
+
+## tinyMCE
+
+The **tinyMCE** SharedComponent is based on **tinymce-angular** package version 4.2.0 for Angular 9+.\
+Visit [TinyMCE Angular Component](https://github.com/tinymce/tinymce-angular) and [TinyMCE](https://github.com/tinymce/tinymce) for documentation and usage.\
+See it in action in **testTinyMCE** Mobile Builder pages.
+
