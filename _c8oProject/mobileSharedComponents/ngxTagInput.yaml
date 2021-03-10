@@ -230,6 +230,12 @@
          "topic": "plain:ngxTagInputNgModelChange",
          "data": "script:{event: event, ref:  params1577113184271.ref}"
         }'
+  ↓Attr61 [ngx.components.UIAttribute-1615220739245]: 
+    attrName: '[addOnBlur]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:params1577113184271.addOnBlur
 ↓items [ngx.components.UICompVariable-1577113952387]: 
   value: '[]'
 ↓inputtext [ngx.components.UICompVariable-1578501199371]: 
@@ -300,3 +306,5 @@
                 - ↑value: ngx-chips
               - java.lang.String: 
                 - ↑value: 2.2.2
+↓addOnBlur [ngx.components.UICompVariable-1615220713391]: 
+  value: true
