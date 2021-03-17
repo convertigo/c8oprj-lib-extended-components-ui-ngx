@@ -82,7 +82,7 @@ title: ZXing
                   '
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404021]: 
             beanData: '{"ionBean":"InvokeAction"}'
-            stack: lib_ExtendedComponents_Ngx.MobileApplication.Application.ZXing_sa
+            stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ZXing_sa
             ↓type [ngx.components.UIControlVariable-1595431404024]: 
               varValue: 
                 - xmlizable: 
@@ -196,7 +196,7 @@ title: ZXing
           eventName: (change)
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404075]: 
             beanData: '{"ionBean":"InvokeAction"}'
-            stack: lib_ExtendedComponents_Ngx.MobileApplication.Application.ZXing_sa
+            stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ZXing_sa
             ↓type [ngx.components.UIControlVariable-1595431404078]: 
               varValue: 
                 - xmlizable: 

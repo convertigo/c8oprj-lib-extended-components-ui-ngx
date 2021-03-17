@@ -44,7 +44,7 @@ title: testAngularxQRCode
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:http://www.convertigo.com
   ↓UseSharedComponent [ngx.components.UIUseShared-1614267464226]: 
-    sharedcomponent: lib_ExtendedComponents_Ngx.MobileApplication.Application.angularxQRCode
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.angularxQRCode
     ↓qrdata [ngx.components.UIControlVariable-1614267470840]: 
       varValue: 
         - xmlizable: 

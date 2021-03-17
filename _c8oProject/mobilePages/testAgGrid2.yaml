@@ -53,7 +53,7 @@ title: testAgGrid2
   comment: Page content
   tagName: ion-content
   ↓UseSharedComponent1 [ngx.components.UIUseShared-1576667583952]: 
-    sharedcomponent: lib_ExtendedComponents_Ngx.MobileApplication.Application.agGrid
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
     ↓pagination [ngx.components.UIControlVariable-1576667594456]: 
       varValue: 
         - xmlizable: 

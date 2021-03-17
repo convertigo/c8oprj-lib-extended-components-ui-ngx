@@ -76,13 +76,13 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.columnDefs","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.columnDefs","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr4 [ngx.components.UIAttribute-1576595735474]: 
     attrName: '[rowData]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.rowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.rowData","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Event [ngx.components.UIControlEvent-1576763247788]: 
     attrName: (gridReady)
     eventName: (gridReady)
@@ -183,7 +183,7 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Event6 [ngx.components.UIControlEvent-1610038161550]: 
     attrName: (rowDataChanged)
     eventName: (rowDataChanged)
@@ -217,25 +217,25 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressCellSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressCellSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr101 [ngx.components.UIAttribute-1610103017057]: 
     attrName: '[suppressRowClickSelection]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressRowClickSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressRowClickSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr11 [ngx.components.UIAttribute-1610135838582]: 
     attrName: '[overlayNoRowsTemplate]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayNoRowsTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayNoRowsTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr12 [ngx.components.UIAttribute-1610136432111]: 
     attrName: '[overlayLoadingTemplate]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_Ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓PageEvent [ngx.components.UIEventSubscriber-1614180719786]: 
   comment: Old implementation of onCanEnter. Prefer using AppGuard now.
   isEnabled: false

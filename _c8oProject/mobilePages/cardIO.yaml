@@ -52,7 +52,7 @@ title: cardIO
   comment: Page content
   tagName: ion-content
   ↓UseSharedComponent [ngx.components.UIUseShared-1595431440453]: 
-    sharedcomponent: lib_ExtendedComponents_Ngx.MobileApplication.Application.cardIO_sc
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cardIO_sc
 ↓Footer [ngx.components.UIDynamicElement-1595431440456]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

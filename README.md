@@ -1,4 +1,4 @@
-# lib_ExtendedComponents_Ngx
+# lib_ExtendedComponents_ui_ngx
 
 Set of shared components you can use in your projects:
     
