@@ -1,3 +1,6 @@
+comment: |
+  This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
+  
 ↓pagination [ngx.components.UICompVariable-1576586851223]: 
   comment: 'boolean: true (default) or false'
   value: true
@@ -419,13 +422,16 @@
                 - ↑value: 22.1.1
 ↓CellClicked [ngx.components.UICompEvent-1628071584261]: 
   attrName: CellClicked
-↓GridReady [ngx.components.UICompEvent-1628071709181]: 
-  attrName: GridReady
+  comment: Fired when a cell is clicked. Data will be the agGrid event
 ↓RowClicked [ngx.components.UICompEvent-1628071715004]: 
   attrName: RowClicked
+  comment: Fired when a row is clicked. Data will be the agGrid event
 ↓RowSelected [ngx.components.UICompEvent-1628071718717]: 
   attrName: RowSelected
+  comment: Fired when a row is selected. Data will be the agGrid event
 ↓SortChanged [ngx.components.UICompEvent-1628071720685]: 
   attrName: SortChanged
+  comment: Fired when a a column is sorted. Data will be the agGrid event
 ↓RowDataChanged [ngx.components.UICompEvent-1628071723902]: 
   attrName: RowDataChanged
+  comment: Fired when Row data changed. Data will be the agGrid event
