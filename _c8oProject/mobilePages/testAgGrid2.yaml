@@ -109,6 +109,24 @@ title: testAgGrid2
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'auto'
+    ↓Event [ngx.components.UIControlEvent-1628072535083]: 
+      attrName: (CellClicked)
+      eventName: CellClicked
+    ↓Event1 [ngx.components.UIControlEvent-1628072535085]: 
+      attrName: (GridReady)
+      eventName: GridReady
+    ↓Event2 [ngx.components.UIControlEvent-1628072535087]: 
+      attrName: (RowClicked)
+      eventName: RowClicked
+    ↓Event3 [ngx.components.UIControlEvent-1628072535089]: 
+      attrName: (RowSelected)
+      eventName: RowSelected
+    ↓Event4 [ngx.components.UIControlEvent-1628072535091]: 
+      attrName: (SortChanged)
+      eventName: SortChanged
+    ↓Event5 [ngx.components.UIControlEvent-1628072535093]: 
+      attrName: (RowDataChanged)
+      eventName: RowDataChanged
 ↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

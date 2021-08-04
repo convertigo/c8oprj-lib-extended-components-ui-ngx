@@ -27,11 +27,11 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓Menu [ngx.components.UIDynamicMenu-1500890597895]: 🗏 mobileMenus/Menu.yaml
 ↓cardIO_sa [ngx.components.UIActionStack-1595431416100]: 🗏 mobileSharedActions/cardIO_sa.yaml
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
-↓agGrid [ngx.components.UISharedComponent-1576501532114]: 🗏 mobileSharedComponents/agGrid.yaml
-↓ngxTagInput [ngx.components.UISharedComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
-↓tinyMce [ngx.components.UISharedComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
-↓angularxQRCode [ngx.components.UISharedComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
-↓cardIO_sc [ngx.components.UISharedComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
+↓agGrid [ngx.components.UISharedRegularComponent-1576501532114]: 🗏 mobileSharedComponents/agGrid.yaml
+↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
+↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
+↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
+↓cardIO_sc [ngx.components.UISharedRegularComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml

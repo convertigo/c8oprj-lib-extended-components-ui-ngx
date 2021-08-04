@@ -22,18 +22,18 @@
 ↓Tag [ngx.components.UIElement-1576595265364]: 
   identifier: agGrid
   tagName: ag-grid-angular
-  ↓Attr [ngx.components.UIAttribute-1576595371290]: 
-    attrName: class
-    attrValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.class
   ↓Attr1 [ngx.components.UIAttribute-1576595487026]: 
     attrName: style
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: 'plain:width: 100%'
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.width","prefix":"'width:' +","suffix":"","custom":"","useCustom":false}}
+  ↓Attr [ngx.components.UIAttribute-1576595371290]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.class","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr8 [ngx.components.UIAttribute-1578673947226]: 
     attrName: domLayout
     attrValue: 
@@ -46,37 +46,37 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.pagination
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.pagination","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr3 [ngx.components.UIAttribute-1576595700062]: 
     attrName: '[paginationPageSize]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.paginationPageSize
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.paginationPageSize","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr7 [ngx.components.UIAttribute-1576675319255]: 
     attrName: '[rowSelection]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.rowSelection
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr71 [ngx.components.UIAttribute-1576684915739]: 
     attrName: '[rowDeselection]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.rowDeselection
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowDeselection","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr6 [ngx.components.UIAttribute-1576595795699]: 
     attrName: '[defaultColDef]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1576501532114.defaultColDef
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.defaultColDef","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr5 [ngx.components.UIAttribute-1576595764922]: 
     attrName: '[columnDefs]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.columnDefs","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.columnDefs","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr4 [ngx.components.UIAttribute-1576595735474]: 
     attrName: '[rowData]'
     attrValue: 
@@ -111,73 +111,52 @@
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:params1576501532114.width
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.width","prefix":"","suffix":"","custom":"","useCustom":false}}
         ↓height [ngx.components.UIControlVariable-1578909011438]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:params1576501532114.height
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.height","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Event1 [ngx.components.UIControlEvent-1576854126305]: 
     attrName: (cellClicked)
     eventName: (cellClicked)
-    ↓publishAgGridCellClicked [ngx.components.UIDynamicAction-1576856544149]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628071853705]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:agGridCellClicked",
-         "data": "script:{event :event, ref: params1576501532114.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked",
+         "data": "script:event"
         }'
   ↓Event2 [ngx.components.UIControlEvent-1576858211435]: 
     attrName: (rowClicked)
     eventName: (rowClicked)
-    ↓publishAgGridRowClicked [ngx.components.UIDynamicAction-1576858228077]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628071917022]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:agGridRowClicked",
-         "data": "script:{event :event, ref: params1576501532114.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked",
+         "data": "script:event"
         }'
   ↓Event3 [ngx.components.UIControlEvent-1576859282081]: 
     attrName: (rowSelected)
     eventName: (rowSelected)
-    ↓publishAgGridRowSelected [ngx.components.UIDynamicAction-1576859408081]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628071943429]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:agGridRowSelected",
-         "data": "script:{event :event, ref: params1576501532114.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowSelected",
+         "data": "script:event"
         }'
   ↓Event4 [ngx.components.UIControlEvent-1577091949093]: 
     attrName: (sortChanged)
     eventName: (sortChanged)
-    ↓publishAgGridColumnSortChanged [ngx.components.UIDynamicAction-1577091972684]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628071962288]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:agGridColumnSortChanged",
-         "data": "script:{event :event, ref: params1576501532114.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.SortChanged",
+         "data": "script:event"
         }'
-  ↓Event5 [ngx.components.UIControlEvent-1607858792110]: 
-    attrName: (paginationChanged)
-    eventName: (paginationChanged)
-    isEnabled: false
-    ↓handleResizeCols [ngx.components.UICustomAction-1607859231004]: 
-      actionValue: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-          - com.twinsoft.convertigo.beans.common.FormatedContent: 
-            →: |
-              			let grid = props.stack["root"].scope.agGrid; // page["agGrid"];
-              	        if (grid !== undefined) {
-              	            // sizeColumnsToFit
-              	            setTimeout(function() {
-              	                grid.api.sizeColumnsToFit();
-              					grid.api.resetRowHeights();
-              	                page.c8o.log.debug('[MB] gridApi.sizeColumnsToFit() done');
-              	            }, 0);
-              	        }
-              			resolve();
-              
   ↓Attr9 [ngx.components.UIAttribute-1610008946563]: 
     attrName: '[attr.id]'
     attrValue: 
@@ -205,12 +184,12 @@
               		}
               		resolve();
               
-    ↓publishAgGridCellClicked [ngx.components.UIDynamicAction-1610376824436]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628072040597]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:agGridRowDataChanged",
-         "data": "script:{event :event, ref: params1576501532114.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDataChanged",
+         "data": "script:event"
         }'
   ↓Attr10 [ngx.components.UIAttribute-1610102842417]: 
     attrName: '[suppressCellSelection]'
@@ -236,182 +215,6 @@
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
-↓PageEvent [ngx.components.UIEventSubscriber-1614180719786]: 
-  comment: Old implementation of onCanEnter. Prefer using AppGuard now.
-  isEnabled: false
-  topic: CanEnter
-  ↓initialization [ngx.components.UICustomAction-1576770512147]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		    
-            		    // Install packages :
-            		    // Please have a look at all expert properties for this custom action
-            		    // They define which packages/plugins are needed to use agGrid component
-            		    // They will be installed if not already
-            
-            	        // Define global functions
-            	        if (page.global["agGridDisplayImage"] == undefined) {
-            	            page.c8o.log.debug(''[MB] defining global function : agGridDisplayImage'');
-            	            page.global["agGridDisplayImage"] = function(params) {
-            	                //console.log("agGridDisplayImage params", params);
-            	                var resultElement = document.createElement("span");
-            	                var imageElement = document.createElement("img");
-            	                if (params.data.src !== undefined) {
-            	                    imageElement.src = params.data.src;
-                                    //imageElement.src = "./assets/twitter_32x32.png";
-                                    //imageElement.src = "https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/images/sun.png";
-                                    //imageElement.src = "data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
-            	                }
-            	                resultElement.appendChild(imageElement);
-            	                return resultElement;
-            	            }
-            	        }
-            	        
-            	        /*
-            	        // headerComponent: ''header-class-name''
-            	        if (page.global["agGridImageComponent"] == undefined) {
-            	            page.c8o.log.debug(''[MB] defining global header component : agGridImageComponent'');
-            	            let agGridImageComponent = (function () {
-            	                function agGridImageComponent() {
-            	                    
-            	                }
-            
-            	                agGridImageComponent.prototype.init = function (agParams) {
-            	                    this.agParams = agParams;
-            	                    this.eGui = document.createElement(''div'');
-            	                    this.eGui.innerHTML = '''' +
-            	                        ''<div class="agGridImageComponentMenuButton"><i class="fa '' + this.agParams.menuIcon + ''"></i></div>'' +
-            	                        ''<div class="agGridImageComponentLabel">'' + this.agParams.displayName + ''</div>'' +
-            	                        ''<div class="customSortDownLabel inactive"><i class="fa fa-long-arrow-alt-down"></i></div>'' +
-            	                        ''<div class="customSortUpLabel inactive"><i class="fa fa-long-arrow-alt-up"></i></div>'' +
-            	                        ''<div class="customSortRemoveLabel inactive"><i class="fa fa-times"></i></div>'';
-            
-            	                    this.eMenuButton = this.eGui.querySelector(".agGridImageComponentMenuButton");
-            	                    this.eSortDownButton = this.eGui.querySelector(".customSortDownLabel");
-            	                    this.eSortUpButton = this.eGui.querySelector(".customSortUpLabel");
-            	                    this.eSortRemoveButton = this.eGui.querySelector(".customSortRemoveLabel");
-            
-            	                    if (this.agParams.enableMenu) {
-            	                        this.onMenuClickListener = this.onMenuClick.bind(this);
-            	                        this.eMenuButton.addEventListener(''click'', this.onMenuClickListener);
-            	                    } else {
-            	                        this.eGui.removeChild(this.eMenuButton);
-            	                    }
-            
-            	                    if (this.agParams.enableSorting) {
-            	                        this.onSortAscRequestedListener = this.onSortRequested.bind(this, ''asc'');
-            	                        this.eSortDownButton.addEventListener(''click'', this.onSortAscRequestedListener);
-            	                        this.onSortDescRequestedListener = this.onSortRequested.bind(this, ''desc'');
-            	                        this.eSortUpButton.addEventListener(''click'', this.onSortDescRequestedListener);
-            	                        this.onRemoveSortListener = this.onSortRequested.bind(this, '''');
-            	                        this.eSortRemoveButton.addEventListener(''click'', this.onRemoveSortListener);
-            
-            
-            	                        this.onSortChangedListener = this.onSortChanged.bind(this);
-            	                        this.agParams.column.addEventListener(''sortChanged'', this.onSortChangedListener);
-            	                        this.onSortChanged();
-            	                    } else {
-            	                        this.eGui.removeChild(this.eSortDownButton);
-            	                        this.eGui.removeChild(this.eSortUpButton);
-            	                        this.eGui.removeChild(this.eSortRemoveButton);
-            	                    }
-            	                };
-            
-            	                agGridImageComponent.prototype.onSortChanged = function () {
-            	                    function deactivate(toDeactivateItems) {
-            	                        toDeactivateItems.forEach(function (toDeactivate) {
-            	                            toDeactivate.className = toDeactivate.className.split('' '')[0]
-            	                        });
-            	                    }
-            
-            	                    function activate(toActivate) {
-            	                        toActivate.className = toActivate.className + " active";
-            	                    }
-            
-            	                    if (this.agParams.column.isSortAscending()) {
-            	                        deactivate([this.eSortUpButton, this.eSortRemoveButton]);
-            	                        activate(this.eSortDownButton)
-            	                    } else if (this.agParams.column.isSortDescending()) {
-            	                        deactivate([this.eSortDownButton, this.eSortRemoveButton]);
-            	                        activate(this.eSortUpButton)
-            	                    } else {
-            	                        deactivate([this.eSortUpButton, this.eSortDownButton]);
-            	                        activate(this.eSortRemoveButton)
-            	                    }
-            	                };
-            
-            	                agGridImageComponent.prototype.getGui = function () {
-            	                    return this.eGui;
-            	                };
-            
-            	                agGridImageComponent.prototype.onMenuClick = function () {
-            	                    this.agParams.showColumnMenu(this.eMenuButton);
-            	                };
-            
-            	                agGridImageComponent.prototype.onSortRequested = function (order, event) {
-            	                    this.agParams.setSort(order, event.shiftKey);
-            	                };
-            
-            	                agGridImageComponent.prototype.destroy = function () {
-            	                    if (this.onMenuClickListener) {
-            	                        this.eMenuButton.removeEventListener(''click'', this.onMenuClickListener)
-            	                    }
-            	                    this.eSortDownButton.removeEventListener(''click'', this.onSortRequestedListener);
-            	                    this.eSortUpButton.removeEventListener(''click'', this.onSortRequestedListener);
-            	                    this.eSortRemoveButton.removeEventListener(''click'', this.onSortRequestedListener);
-            	                    this.agParams.column.removeEventListener(''sortChanged'', this.onSortChangedListener);
-            	                };
-            	                
-            	                return agGridImageComponent;
-            	            })();
-            	            page.global["agGridImageComponent"] = agGridImageComponent;
-            	        }*/
-            	        
-            		    resolve();
-            		    
-            '
-    comment: Do not delete or disable !!
-    module_ng_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: AgGridModule.withComponents([])
-    module_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: AgGridModule
-              - java.lang.String: 
-                - ↑value: ag-grid-angular
-    package_dependencies: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: ag-grid-community
-              - java.lang.String: 
-                - ↑value: 22.1.1
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: ag-grid-angular
-              - java.lang.String: 
-                - ↑value: 22.1.1
 ↓width [ngx.components.UICompVariable-1578908462766]: 
   comment: width value in % or px
   value: '''100%'''
@@ -433,11 +236,11 @@
     '
   value: '''ag-theme-balham'''
 ↓id [ngx.components.UICompVariable-1610007757895]: 
+  comment: An Optional ID
 ↓suppressCellSelection [ngx.components.UICompVariable-1610102914464]: 
   value: false
 ↓suppressRowClickSelection [ngx.components.UICompVariable-1610103034912]: 
   value: false
-↓ref [ngx.components.UICompVariable-1610105859105]: 
 ↓overlayLoadingTemplate [ngx.components.UICompVariable-1610136408428]: 
 ↓overlayNoRowsTemplate [ngx.components.UICompVariable-1610136139893]: 
 ↓PageEvent1 [ngx.components.UIPageEvent-1614258192273]: 
@@ -614,3 +417,15 @@
                 - ↑value: ag-grid-angular
               - java.lang.String: 
                 - ↑value: 22.1.1
+↓CellClicked [ngx.components.UICompEvent-1628071584261]: 
+  attrName: CellClicked
+↓GridReady [ngx.components.UICompEvent-1628071709181]: 
+  attrName: GridReady
+↓RowClicked [ngx.components.UICompEvent-1628071715004]: 
+  attrName: RowClicked
+↓RowSelected [ngx.components.UICompEvent-1628071718717]: 
+  attrName: RowSelected
+↓SortChanged [ngx.components.UICompEvent-1628071720685]: 
+  attrName: SortChanged
+↓RowDataChanged [ngx.components.UICompEvent-1628071723902]: 
+  attrName: RowDataChanged
