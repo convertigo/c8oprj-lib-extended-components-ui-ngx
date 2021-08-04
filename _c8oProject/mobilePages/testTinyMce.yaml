@@ -37,7 +37,7 @@ title: testTinyMce
   tagName: ion-content
   ↓UseSharedComponent [ngx.components.UIUseShared-1614265515737]: 
     sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce
-    ↓init [ngx.components.UIControlVariable-1614266598819]: 
+    ↓init [ngx.components.UIUseVariable-1614266598819]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

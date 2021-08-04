@@ -118,32 +118,32 @@ comment: CardIO SharedComponent
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431403943]: 
             beanData: '{"ionBean":"InvokeAction"}'
             stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cardIO_sa
-            ↓ccn [ngx.components.UIControlVariable-1595431403946]: 
+            ↓ccn [ngx.components.UIUseVariable-1595431403946]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.field_cardNumber
-            ↓cexp [ngx.components.UIControlVariable-1595431403949]: 
+            ↓cexp [ngx.components.UIUseVariable-1595431403949]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.field_cardExpiry
-            ↓cvv [ngx.components.UIControlVariable-1595431403952]: 
+            ↓cvv [ngx.components.UIUseVariable-1595431403952]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.field_cardVV
-            ↓local_ccard_suffix [ngx.components.UIControlVariable-1595431403955]: 
+            ↓local_ccard_suffix [ngx.components.UIUseVariable-1595431403955]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'_1'
-            ↓options [ngx.components.UIControlVariable-1595431403958]: 
+            ↓options [ngx.components.UIUseVariable-1595431403958]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: 'script:{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressConfirmation: true, hideCardIOLogo: true}'
-            ↓ccard_topic [ngx.components.UIControlVariable-1595431403961]: 
+            ↓ccard_topic [ngx.components.UIUseVariable-1595431403961]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

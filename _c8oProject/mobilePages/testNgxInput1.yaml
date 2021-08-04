@@ -86,17 +86,17 @@ title: testNgxInput1
                     '
       ↓UseSharedComponent3 [ngx.components.UIUseShared-1578497311688]: 
         sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput
-        ↓items [ngx.components.UIControlVariable-1578497311691]: 
+        ↓items [ngx.components.UIUseVariable-1578497311691]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: 'script:[{value: 0, display: ''Angular''}, {value: 1, display: ''React''}]'
-        ↓inputtext [ngx.components.UIControlVariable-1578501330307]: 
+        ↓inputtext [ngx.components.UIUseVariable-1578501330307]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:this.myInput.value
-        ↓theme [ngx.components.UIControlVariable-1578497311694]: 
+        ↓theme [ngx.components.UIUseVariable-1578497311694]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

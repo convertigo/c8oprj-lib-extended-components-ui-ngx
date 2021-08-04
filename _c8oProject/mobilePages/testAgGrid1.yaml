@@ -53,38 +53,38 @@ title: testAgGrid1
   tagName: ion-content
   ↓UseSharedComponent [ngx.components.UIUseShared-1577112296980]: 
     sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
-    ↓pagination [ngx.components.UIControlVariable-1577112296983]: 
+    ↓pagination [ngx.components.UIUseVariable-1577112296983]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:true
-    ↓paginationPageSize [ngx.components.UIControlVariable-1577112296986]: 
+    ↓paginationPageSize [ngx.components.UIUseVariable-1577112296986]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:10
-    ↓rowSelection [ngx.components.UIControlVariable-1577112296989]: 
+    ↓rowSelection [ngx.components.UIUseVariable-1577112296989]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'single'
-    ↓rowDeselection [ngx.components.UIControlVariable-1577112296992]: 
+    ↓rowDeselection [ngx.components.UIUseVariable-1577112296992]: 
       comment: '''single'' or ''multiple'''
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:true
-    ↓defaultColDef [ngx.components.UIControlVariable-1577112296995]: 
+    ↓defaultColDef [ngx.components.UIUseVariable-1577112296995]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
-    ↓columnDefs [ngx.components.UIControlVariable-1577112296998]: 
+    ↓columnDefs [ngx.components.UIUseVariable-1577112296998]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:[{headerName: ''Make'', field: ''make'', cellEditor: ''agSelectCellEditor'', cellEditorParams: {values: [''Toyota'',''Ford'',''Porshe'',''BMW'',''Renault'',''VW'']}}, {headerName: ''Model'', field: ''model'', filter: ''agTextColumnFilter'', filterParams: {resetButton: true,applyButton: true,debounceMs: 200}}, {headerName: ''Price'', field: ''price'', cellEditor: ''agPopupTextCellEditor''}]'
-    ↓rowData [ngx.components.UIControlVariable-1577112297001]: 
+    ↓rowData [ngx.components.UIUseVariable-1577112297001]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

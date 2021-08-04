@@ -54,34 +54,34 @@ title: testAgGrid2
   tagName: ion-content
   ↓UseSharedComponent1 [ngx.components.UIUseShared-1576667583952]: 
     sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
-    ↓pagination [ngx.components.UIControlVariable-1576667594456]: 
+    ↓pagination [ngx.components.UIUseVariable-1576667594456]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:false
-    ↓paginationPageSize [ngx.components.UIControlVariable-1576667594458]: 
+    ↓paginationPageSize [ngx.components.UIUseVariable-1576667594458]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:10
-    ↓rowSelection [ngx.components.UIControlVariable-1576675290436]: 
+    ↓rowSelection [ngx.components.UIUseVariable-1576675290436]: 
       comment: '''single'' or ''multiple'''
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'multiple'
-    ↓rowDeselection [ngx.components.UIControlVariable-1576681975602]: 
+    ↓rowDeselection [ngx.components.UIUseVariable-1576681975602]: 
       comment: '''single'' or ''multiple'''
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:true
-    ↓defaultColDef [ngx.components.UIControlVariable-1576667594460]: 
+    ↓defaultColDef [ngx.components.UIUseVariable-1576667594460]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:{hide: false, editable: false, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false, minWidth: 40}'
-    ↓columnDefs [ngx.components.UIControlVariable-1576667594462]: 
+    ↓columnDefs [ngx.components.UIUseVariable-1576667594462]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -94,17 +94,17 @@ title: testAgGrid2
               	{headerName: '''', field: ''valid'', checkboxSelection: true, headerCheckboxSelection: true, filter: false, sortable: false, maxWidth:40}
               ]
               '
-    ↓rowData [ngx.components.UIControlVariable-1576667594464]: 
+    ↓rowData [ngx.components.UIUseVariable-1576667594464]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:[{ make: ''Toyota'', model: ''Celica'', price: 35000, src: ''./assets/twitter_32x32.png''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''},{ make: ''Toyota'', model: ''Celica'', price: 35000, logo: ''''},{ make: ''Ford'', model: ''Mondeo'', price: 32000, logo: ''''},{ make: ''Porsche'', model: ''Boxter'', price: 72000, logo: ''''}]'
-    ↓width [ngx.components.UIControlVariable-1578910115317]: 
+    ↓width [ngx.components.UIUseVariable-1578910115317]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'100%'
-    ↓height [ngx.components.UIControlVariable-1578910115319]: 
+    ↓height [ngx.components.UIUseVariable-1578910115319]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

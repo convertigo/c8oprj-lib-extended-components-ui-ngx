@@ -42,27 +42,27 @@ title: testNgxInput
       tagName: div
       ↓UseSharedComponent [ngx.components.UIUseShared-1577114110541]: 
         sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput
-        ↓items [ngx.components.UIControlVariable-1577114114335]: 
+        ↓items [ngx.components.UIUseVariable-1577114114335]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: 'script:[{value: 0, display: ''Angular''}, {value: 1, display: ''React''}]'
-        ↓theme [ngx.components.UIControlVariable-1578496634632]: 
+        ↓theme [ngx.components.UIUseVariable-1578496634632]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'bootstrap'
-        ↓editableTag [ngx.components.UIControlVariable-1577118756345]: 
+        ↓editableTag [ngx.components.UIUseVariable-1577118756345]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:true
-        ↓removableTag [ngx.components.UIControlVariable-1577118756347]: 
+        ↓removableTag [ngx.components.UIUseVariable-1577118756347]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:true
-        ↓placeholder [ngx.components.UIControlVariable-1578495955363]: 
+        ↓placeholder [ngx.components.UIUseVariable-1578495955363]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -72,17 +72,17 @@ title: testNgxInput
       tagName: div
       ↓UseSharedComponent2 [ngx.components.UIUseShared-1577118252945]: 
         sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput
-        ↓items [ngx.components.UIControlVariable-1577118252948]: 
+        ↓items [ngx.components.UIUseVariable-1577118252948]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: 'script:[{index: 0, name: ''Java''}, {index: 1, name: ''C++''}]'
-        ↓itemIdentifyBy [ngx.components.UIControlVariable-1577118285261]: 
+        ↓itemIdentifyBy [ngx.components.UIUseVariable-1577118285261]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'index'
-        ↓itemDisplayBy [ngx.components.UIControlVariable-1577118285263]: 
+        ↓itemDisplayBy [ngx.components.UIUseVariable-1577118285263]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -92,32 +92,32 @@ title: testNgxInput
       tagName: div
       ↓UseSharedComponent1 [ngx.components.UIUseShared-1577116175478]: 
         sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput
-        ↓items [ngx.components.UIControlVariable-1577116175481]: 
+        ↓items [ngx.components.UIUseVariable-1577116175481]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:[]
-        ↓placeholder [ngx.components.UIControlVariable-1578496041201]: 
+        ↓placeholder [ngx.components.UIUseVariable-1578496041201]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'+enter a value or select it'
-        ↓secondaryPlaceholder [ngx.components.UIControlVariable-1578498752776]: 
+        ↓secondaryPlaceholder [ngx.components.UIUseVariable-1578498752776]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'+enter a value or select it'
-        ↓onlyFromAutocomplete [ngx.components.UIControlVariable-1577117845658]: 
+        ↓onlyFromAutocomplete [ngx.components.UIUseVariable-1577117845658]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:false
-        ↓autocompleteItems [ngx.components.UIControlVariable-1577116796771]: 
+        ↓autocompleteItems [ngx.components.UIUseVariable-1577116796771]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:['item1', 'item2', 'item3']
-        ↓showAutoCompleteDropdownIfEmpty [ngx.components.UIControlVariable-1577117845660]: 
+        ↓showAutoCompleteDropdownIfEmpty [ngx.components.UIUseVariable-1577117845660]: 
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

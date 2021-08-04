@@ -83,17 +83,17 @@ title: ZXing
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404021]: 
             beanData: '{"ionBean":"InvokeAction"}'
             stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ZXing_sa
-            ↓type [ngx.components.UIControlVariable-1595431404024]: 
+            ↓type [ngx.components.UIUseVariable-1595431404024]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'video'
-            ↓resultId [ngx.components.UIControlVariable-1595431404027]: 
+            ↓resultId [ngx.components.UIUseVariable-1595431404027]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.codeResult
-            ↓videoId [ngx.components.UIControlVariable-1595431404030]: 
+            ↓videoId [ngx.components.UIUseVariable-1595431404030]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -105,22 +105,22 @@ title: ZXing
                  "message": "script:''Resolve: '' + JSON.stringify(parent.out[1] || parent.out[0] || {error: ''unknown''})",
                  "level": "plain:warn"
                 }'
-            ↓topic [ngx.components.UIControlVariable-1605717005289]: 
+            ↓topic [ngx.components.UIUseVariable-1605717005289]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'zxing_result'
-            ↓isOutputEvent [ngx.components.UIControlVariable-1605717005291]: 
+            ↓isOutputEvent [ngx.components.UIUseVariable-1605717005291]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:true
-            ↓isOutputLocal [ngx.components.UIControlVariable-1605717005293]: 
+            ↓isOutputLocal [ngx.components.UIUseVariable-1605717005293]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:true
-            ↓ref [ngx.components.UIControlVariable-1605717005297]: 
+            ↓ref [ngx.components.UIUseVariable-1605717005297]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -197,27 +197,27 @@ title: ZXing
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431404075]: 
             beanData: '{"ionBean":"InvokeAction"}'
             stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ZXing_sa
-            ↓type [ngx.components.UIControlVariable-1595431404078]: 
+            ↓type [ngx.components.UIUseVariable-1595431404078]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'file'
-            ↓resultId [ngx.components.UIControlVariable-1595431404081]: 
+            ↓resultId [ngx.components.UIUseVariable-1595431404081]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'idInputResult'
-            ↓imgId [ngx.components.UIControlVariable-1595431404084]: 
+            ↓imgId [ngx.components.UIUseVariable-1595431404084]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.zxing_image_id
-            ↓topic [ngx.components.UIControlVariable-1595431404087]: 
+            ↓topic [ngx.components.UIUseVariable-1595431404087]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'zxing_result'
-            ↓ref [ngx.components.UIControlVariable-1605717194192]: 
+            ↓ref [ngx.components.UIUseVariable-1605717194192]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -319,7 +319,7 @@ title: ZXing
             		}
             		resolve();
             '
-    ↓ref [ngx.components.UIControlVariable-1605725514293]: 
+    ↓ref [ngx.components.UIUseVariable-1605725514293]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
