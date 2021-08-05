@@ -1,52 +1,3 @@
-↓PageEvent [ngx.components.UIEventSubscriber-1614180719793]: 
-  comment: Old implementation of onCanEnter. Prefer using AppGuard now.
-  isEnabled: false
-  topic: CanEnter
-  ↓initialization [ngx.components.UICustomAction-1577113262452]: 
-    comment: Do not delete or disable !!
-    module_ng_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: TagInputModule
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: BrowserAnimationsModule 
-    module_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: TagInputModule
-              - java.lang.String: 
-                - ↑value: ngx-chips
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: BrowserAnimationsModule 
-              - java.lang.String: 
-                - ↑value: '@angular/platform-browser/animations'
-    package_dependencies: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: ngx-chips
-              - java.lang.String: 
-                - ↑value: 2.2.2
 ↓Tag [ngx.components.UIElement-1577113818292]: 
   identifier: ngxTag
   tagName: tag-input
@@ -55,13 +6,13 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.items
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.items","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr41 [ngx.components.UIAttribute-1578496519227]: 
     attrName: '[theme]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.theme
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.theme","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Tag [ngx.components.UIElement-1577116356016]: 
     tagName: tag-input-dropdown
     ↓Attr [ngx.components.UIAttribute-1577116460507]: 
@@ -69,173 +20,173 @@
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1577113184271.autocompleteItems
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.autocompleteItems","prefix":"","suffix":"","custom":"","useCustom":false}}
     ↓Attr11 [ngx.components.UIAttribute-1577117798571]: 
       attrName: '[showDropdownIfEmpty]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1577113184271.showAutoCompleteDropdownIfEmpty
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.showAutoCompleteDropdownIfEmpty","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr4 [ngx.components.UIAttribute-1577119218787]: 
     attrName: '[maxItems]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.maxItems
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.maxItems","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr5 [ngx.components.UIAttribute-1578495826379]: 
     attrName: '[placeholder]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.placeholder
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.placeholder","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr51 [ngx.components.UIAttribute-1578498644508]: 
     attrName: '[secondaryPlaceholder]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.secondaryPlaceholder
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.secondaryPlaceholder","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr3 [ngx.components.UIAttribute-1577118604031]: 
     attrName: '[editable]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.editableTag
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.editableTag","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr31 [ngx.components.UIAttribute-1577118698413]: 
     attrName: '[removable]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.removableTag
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.removableTag","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr2 [ngx.components.UIAttribute-1577118145925]: 
     attrName: '[identifyBy]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.itemIdentifyBy
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.itemIdentifyBy","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr21 [ngx.components.UIAttribute-1577118198805]: 
     attrName: '[displayBy]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.itemDisplayBy
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.itemDisplayBy","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1 [ngx.components.UIAttribute-1577117712733]: 
     attrName: '[onlyFromAutocomplete]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.onlyFromAutocomplete
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.onlyFromAutocomplete","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr6 [ngx.components.UIAttribute-1578500835863]: 
     attrName: '[inputText]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.inputtext
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.inputtext","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Event [ngx.components.UIControlEvent-1577118917916]: 
     attrName: (onTagEdited)
     eventName: (onTagEdited)
-    ↓publishNgxTagInputEdited [ngx.components.UIDynamicAction-1577118948164]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157024422]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputEdited",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.TagEdited",
+         "data": "script:event"
         }'
   ↓Event1 [ngx.components.UIControlEvent-1578476895320]: 
     attrName: (onAdd)
     eventName: (onAdd)
-    ↓publishNgxTagInputAdded [ngx.components.UIDynamicAction-1578476895323]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157051155]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputAdded",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Add",
+         "data": "script:event"
         }'
   ↓Event2 [ngx.components.UIControlEvent-1578476936409]: 
     attrName: (onRemove)
     eventName: (onRemove)
-    ↓publishNgxTagInputRemoved [ngx.components.UIDynamicAction-1578476936412]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157053111]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputRemoved",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Remove",
+         "data": "script:event"
         }'
   ↓Event3 [ngx.components.UIControlEvent-1578476969204]: 
     attrName: (onSelect)
     eventName: (onSelect)
-    ↓publishNgxTagInputSelected [ngx.components.UIDynamicAction-1578476969207]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157057515]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputSelected",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Select",
+         "data": "script:event"
         }'
   ↓Event4 [ngx.components.UIControlEvent-1578477001368]: 
     attrName: (onFocus)
     eventName: (onFocus)
-    ↓publishNgxTagInputFocused [ngx.components.UIDynamicAction-1578477001371]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157060132]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputFocused",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Focus",
+         "data": "script:event"
         }'
   ↓Event5 [ngx.components.UIControlEvent-1578477051957]: 
     attrName: (onBlur)
     eventName: (onBlur)
-    ↓publishNgxTagInputBlured [ngx.components.UIDynamicAction-1578477051960]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157062737]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputBlured",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Blur",
+         "data": "script:event"
         }'
   ↓Event6 [ngx.components.UIControlEvent-1578477155933]: 
     attrName: (onTextChange)
     eventName: (onTextChange)
-    ↓publishNgxTagInputChanged [ngx.components.UIDynamicAction-1578477155936]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157064916]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputChanged",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.TextChange",
+         "data": "script:event"
         }'
   ↓Event7 [ngx.components.UIControlEvent-1578477210656]: 
     attrName: (onPaste)
     eventName: (onPaste)
-    ↓publishNgxTagInputPasted [ngx.components.UIDynamicAction-1578477210659]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157066640]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputPasted",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.Paste",
+         "data": "script:event"
         }'
   ↓Event8 [ngx.components.UIControlEvent-1578477499388]: 
     attrName: (onValidationError)
     eventName: (onValidationError)
-    ↓publishNgxTagInputValidationError [ngx.components.UIDynamicAction-1578477499391]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157069975]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputValidationError",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.ValidationError",
+         "data": "script:event"
         }'
   ↓Event81 [ngx.components.UIControlEvent-1582202540760]: 
     attrName: (ngModelChange)
     eventName: (ngModelChange)
-    ↓publishNgxTagInputValidationError [ngx.components.UIDynamicAction-1582202540763]: 
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1628157073189]: 
       beanData: |
         '{
-         "ionBean": "PublishEventAction",
-         "topic": "plain:ngxTagInputNgModelChange",
-         "data": "script:{event: event, ref:  params1577113184271.ref}"
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.ModelChange",
+         "data": "script:event"
         }'
   ↓Attr61 [ngx.components.UIAttribute-1615220739245]: 
     attrName: '[addOnBlur]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1577113184271.addOnBlur
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.addOnBlur","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓items [ngx.components.UICompVariable-1577113952387]: 
   value: '[]'
 ↓inputtext [ngx.components.UICompVariable-1578501199371]: 
@@ -258,7 +209,6 @@
   value: false
 ↓showAutoCompleteDropdownIfEmpty [ngx.components.UICompVariable-1577117650178]: 
   value: false
-↓ref [ngx.components.UICompVariable-1581442248082]: 
 ↓PageEvent1 [ngx.components.UIPageEvent-1614258440009]: 
   viewEvent: onWillEnter
   ↓initialization [ngx.components.UICustomAction-1614258448915]: 
@@ -308,3 +258,23 @@
                 - ↑value: 2.2.2
 ↓addOnBlur [ngx.components.UICompVariable-1615220713391]: 
   value: true
+↓TagEdited [ngx.components.UICompEvent-1628156822807]: 
+  attrName: TagEdited
+↓Add [ngx.components.UICompEvent-1628156830843]: 
+  attrName: Add
+↓Remove [ngx.components.UICompEvent-1628156834037]: 
+  attrName: Remove
+↓Select [ngx.components.UICompEvent-1628156836373]: 
+  attrName: Select
+↓Focus [ngx.components.UICompEvent-1628156838074]: 
+  attrName: Focus
+↓Blur [ngx.components.UICompEvent-1628156839586]: 
+  attrName: Blur
+↓TextChange [ngx.components.UICompEvent-1628156841152]: 
+  attrName: TextChange
+↓Paste [ngx.components.UICompEvent-1628156842510]: 
+  attrName: Paste
+↓ValidationError [ngx.components.UICompEvent-1628156844244]: 
+  attrName: ValidationError
+↓ModelChange [ngx.components.UICompEvent-1628156939654]: 
+  attrName: ModelChange
