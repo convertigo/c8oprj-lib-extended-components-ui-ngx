@@ -1,12 +1,14 @@
+↓items [ngx.components.UICompVariable-1577113952387]: 
+  value: '[]'
 ↓Tag [ngx.components.UIElement-1577113818292]: 
   identifier: ngxTag
   tagName: tag-input
   ↓Attr [ngx.components.UIAttribute-1577113878283]: 
-    attrName: '[ngModel]'
+    attrName: '[(ngModel)]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.items","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: script:items
   ↓Attr41 [ngx.components.UIAttribute-1578496519227]: 
     attrName: '[theme]'
     attrValue: 
@@ -181,14 +183,14 @@
          "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.ModelChange",
          "data": "script:event"
         }'
+    ↓EmitValue [ngx.components.UIDynamicEmit-1631265119084]: 
+      beanData: '{"ionBean":"EmitValueAction","compvar":"plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput.items"}'
   ↓Attr61 [ngx.components.UIAttribute-1615220739245]: 
     attrName: '[addOnBlur]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.addOnBlur","prefix":"","suffix":"","custom":"","useCustom":false}}
-↓items [ngx.components.UICompVariable-1577113952387]: 
-  value: '[]'
 ↓inputtext [ngx.components.UICompVariable-1578501199371]: 
 ↓theme [ngx.components.UICompVariable-1578496464013]: 
 ↓maxItems [ngx.components.UICompVariable-1577119156324]: 

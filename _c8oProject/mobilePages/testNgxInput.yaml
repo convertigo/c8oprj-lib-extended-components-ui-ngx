@@ -1,4 +1,26 @@
 comment: Page with different inputs
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	
+        	public TagList = [
+        		{"value":"TEST1", "display":"XXTEST1"},
+        		{"value":"TEST2", "display":"XXTEST2"},
+        		{"value":"TEST3", "display":"XXTEST3"},
+        		{"value":"TEST4", "display":"XXTEST4"}
+        	]
+        	
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        
 segment: path-to-testngxinput
 title: testNgxInput
 ↓Header [ngx.components.UIDynamicElement-1578671875826]: 
@@ -43,10 +65,11 @@ title: testNgxInput
       ↓UseSharedComponent [ngx.components.UIUseShared-1577114110541]: 
         sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngxTagInput
         ↓items [ngx.components.UIUseVariable-1577114114335]: 
+          binding: twoWayBinding
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'script:[{value: 0, display: ''Angular''}, {value: 1, display: ''React''}]'
+              - MobileSmartSourceType: script:this.TagList
         ↓theme [ngx.components.UIUseVariable-1578496634632]: 
           varValue: 
             - xmlizable: 
