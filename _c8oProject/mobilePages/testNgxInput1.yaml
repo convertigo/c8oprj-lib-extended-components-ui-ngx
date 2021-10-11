@@ -77,9 +77,9 @@ title: testNgxInput1
                     '		//page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
                     		if (event.keyCode == 13) {
                     	        console.log(event);
-                    		    //console.log(page["ngxTag"]);
+                    		    console.log(page["comp1577113184271"]);
                     	        var tag = page["myInput"].value;
-                    		    page["ngxTag"]["items"].push({value:tag, display:tag});
+                    		    page["comp1577113184271"]["items"].push({value:tag, display:tag});
                     		    page["myInput"].value = "";
                     		}
                     		resolve();
@@ -101,6 +101,46 @@ title: testNgxInput1
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'bootstrap3-info'
+        ↓Event [ngx.components.UIControlEvent-1631723277336]: 
+          attrName: (TagEdited)
+          eventName: TagEdited
+        ↓Event1 [ngx.components.UIControlEvent-1631723277338]: 
+          attrName: (Add)
+          eventName: Add
+          ↓CustomAction [ngx.components.UICustomAction-1631723426661]: 
+            actionValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                    		console.log("added: ", event);
+                    		resolve();
+                    '
+        ↓Event2 [ngx.components.UIControlEvent-1631723277340]: 
+          attrName: (Remove)
+          eventName: Remove
+        ↓Event3 [ngx.components.UIControlEvent-1631723277342]: 
+          attrName: (Select)
+          eventName: Select
+        ↓Event4 [ngx.components.UIControlEvent-1631723277344]: 
+          attrName: (Focus)
+          eventName: Focus
+        ↓Event5 [ngx.components.UIControlEvent-1631723277346]: 
+          attrName: (Blur)
+          eventName: Blur
+        ↓Event6 [ngx.components.UIControlEvent-1631723277348]: 
+          attrName: (TextChange)
+          eventName: TextChange
+        ↓Event7 [ngx.components.UIControlEvent-1631723277350]: 
+          attrName: (Paste)
+          eventName: Paste
+        ↓Event8 [ngx.components.UIControlEvent-1631723277352]: 
+          attrName: (ValidationError)
+          eventName: ValidationError
+        ↓Event9 [ngx.components.UIControlEvent-1631723277354]: 
+          attrName: (ModelChange)
+          eventName: ModelChange
   ↓Div [ngx.components.UIDynamicElement-1578566024502]: 
     beanData: '{"ionBean":"DivTag"}'
     isEnabled: false
@@ -123,31 +163,3 @@ title: testNgxInput1
 ↓Footer [ngx.components.UIDynamicElement-1578565223758]: 
   beanData: '{"ionBean":"Footer"}'
   tagName: ion-footer
-↓Subscribe_Handler1 [ngx.components.UIEventSubscriber-1578560380979]: 
-  topic: ngxTagInputFocused
-  ↓CustomAction [ngx.components.UICustomAction-1578567530143]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		console.log("form value: ", page["myForm"].value);
-            		resolve();
-            '
-↓Subscribe_Handler2 [ngx.components.UIEventSubscriber-1578562617852]: 
-  topic: ngxTagInputAdded
-  ↓CustomAction [ngx.components.UICustomAction-1578562642089]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		console.log("added: ", event);
-            		console.log("all: ", page["all_ngxTag"]);
-            		console.log("results: ", page["all_ngxTag"]["_results"]);
-            		var last = page["all_ngxTag"]["_results"].length - 1;
-            		console.log("input items: ", page["all_ngxTag"]["_results"][last]["_items"]);
-            		resolve();
-            '

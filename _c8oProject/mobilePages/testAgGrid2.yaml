@@ -112,6 +112,18 @@ title: testAgGrid2
     ↓Event [ngx.components.UIControlEvent-1628072535083]: 
       attrName: (CellClicked)
       eventName: CellClicked
+      ↓handleCellClicked [ngx.components.UICustomAction-1631722176404]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		console.log("event: ",event);
+                		console.log("selectedNodes: ", event.api.getSelectedNodes())
+                		console.log("cell "+ event.rowIndex +":"+ event.column.colId + " clicked")
+                		resolve();
+                '
     ↓Event1 [ngx.components.UIControlEvent-1628072535085]: 
       attrName: (GridReady)
       eventName: GridReady
@@ -121,9 +133,31 @@ title: testAgGrid2
     ↓Event3 [ngx.components.UIControlEvent-1628072535089]: 
       attrName: (RowSelected)
       eventName: RowSelected
+      ↓handleRowSelected [ngx.components.UICustomAction-1631722676286]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		console.log("event: ",event);
+                		console.log("selectedRows: ", event.api.getSelectedRows())
+                		resolve();
+                '
     ↓Event4 [ngx.components.UIControlEvent-1628072535091]: 
       attrName: (SortChanged)
       eventName: SortChanged
+      ↓handleColumnSorted [ngx.components.UICustomAction-1631722751919]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		console.log("event: ",event);
+                		console.log("columns: ", event.columnApi.getAllGridColumns())
+                		resolve();
+                '
     ↓Event5 [ngx.components.UIControlEvent-1628072535093]: 
       attrName: (RowDataChanged)
       eventName: RowDataChanged
@@ -156,43 +190,3 @@ title: testAgGrid2
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Action 2
-↓Subscribe_Handler [ngx.components.UIEventSubscriber-1576856996038]: 
-  topic: agGridCellClicked
-  ↓handleCellClicked [ngx.components.UICustomAction-1576857263388]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		console.log("event: ",event);
-            		console.log("selectedNodes: ", page["agGrid"].api.getSelectedNodes())
-            		console.log("cell "+ event.event.rowIndex +":"+ event.event.column.colId + " clicked")
-            		resolve();
-            '
-↓Subscribe_Handler2 [ngx.components.UIEventSubscriber-1576859454081]: 
-  topic: agGridRowSelected
-  ↓handleRowSelected [ngx.components.UICustomAction-1576859550832]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		console.log("event: ",event);
-            		console.log("selectedRows: ", page["agGrid"].api.getSelectedRows())
-            		resolve();
-            '
-↓Subscribe_Handler3 [ngx.components.UIEventSubscriber-1577092071179]: 
-  topic: agGridColumnSortChanged
-  ↓handleColumnSorted [ngx.components.UICustomAction-1577092105459]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		console.log("event: ",event);
-            		console.log("columns: ", page["agGrid"].columnApi.getAllGridColumns())
-            		resolve();
-            '
