@@ -218,6 +218,18 @@ comment: |
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Event41 [ngx.components.UIControlEvent-1633946925750]: 
+    attrName: (cellValueChanged)
+    eventName: (cellValueChanged)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1633946925753]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged",
+         "data": "script:event"
+        }'
+    ↓Log [ngx.components.UIDynamicAction-1633956030591]: 
+      beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
 ↓width [ngx.components.UICompVariable-1578908462766]: 
   comment: width value in % or px
   value: '''100%'''
@@ -434,4 +446,7 @@ comment: |
   comment: Fired when a a column is sorted. Data will be the agGrid event
 ↓RowDataChanged [ngx.components.UICompEvent-1628071723902]: 
   attrName: RowDataChanged
+  comment: Fired when Row data changed. Data will be the agGrid event
+↓CellValueChanged [ngx.components.UICompEvent-1633946956434]: 
+  attrName: CellValueChanged
   comment: Fired when Row data changed. Data will be the agGrid event
