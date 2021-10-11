@@ -449,4 +449,4 @@ comment: |
   comment: Fired when Row data changed. Data will be the agGrid event
 ↓CellValueChanged [ngx.components.UICompEvent-1633946956434]: 
   attrName: CellValueChanged
-  comment: Fired when Row data changed. Data will be the agGrid event
+  comment: Fired when A Cell is edited changed. Data will be the agGrid event
