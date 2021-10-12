@@ -194,6 +194,12 @@ comment: |
          "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDataChanged",
          "data": "script:event"
         }'
+  ↓Attr41 [ngx.components.UIAttribute-1634053339234]: 
+    attrName: '[rowHeight]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowHeight","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr10 [ngx.components.UIAttribute-1610102842417]: 
     attrName: '[suppressCellSelection]'
     attrValue: 
@@ -450,3 +456,6 @@ comment: |
 ↓CellValueChanged [ngx.components.UICompEvent-1633946956434]: 
   attrName: CellValueChanged
   comment: Fired when A Cell is edited changed. Data will be the agGrid event
+↓rowHeight [ngx.components.UICompVariable-1634053419908]: 
+  comment: Height of the row in pixels as a string
+  value: '''25'''
