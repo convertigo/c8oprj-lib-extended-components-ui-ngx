@@ -236,6 +236,16 @@ comment: |
         }'
     ↓Log [ngx.components.UIDynamicAction-1633956030591]: 
       beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
+  ↓Event5 [ngx.components.UIControlEvent-1634570131717]: 
+    attrName: (rowDoubleClicked)
+    eventName: (rowDoubleClicked)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1634570195741]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked",
+         "data": "script:event"
+        }'
 ↓width [ngx.components.UICompVariable-1578908462766]: 
   comment: width value in % or px
   value: '''100%'''
@@ -459,3 +469,6 @@ comment: |
 ↓rowHeight [ngx.components.UICompVariable-1634053419908]: 
   comment: Height of the row in pixels as a string
   value: '''25'''
+↓RowDoubleClicked [ngx.components.UICompEvent-1634570150333]: 
+  attrName: RowDoubleClicked
+  comment: Fired when A Cell is edited changed. Data will be the agGrid event
