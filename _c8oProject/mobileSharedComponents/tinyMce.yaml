@@ -66,7 +66,7 @@
   directiveSource: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-      - MobileSmartSourceType: script:params1584094766586.ngModel != null else ElseBlock_1610985402974
+      - MobileSmartSourceType: script:this.ngModel != null else ElseBlock_1610985402974
   ↓Tag [ngx.components.UIElement-1584094766595]: 
     tagName: editor
     ↓Attr [ngx.components.UIAttribute-1584094766598]: 
@@ -74,67 +74,67 @@
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1584094766586.ngModel
+          - MobileSmartSourceType: script:this.ngModel
     ↓Attr1 [ngx.components.UIAttribute-1584107509437]: 
       attrName: '[init]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1584094766586.init
+          - MobileSmartSourceType: script:this.init
     ↓Attr2 [ngx.components.UIAttribute-1584115468148]: 
       attrName: apiKey
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.apiKey
+          - MobileSmartSourceType: plain:this.apiKey
       isEnabled: false
     ↓Attr11 [ngx.components.UIAttribute-1584115468151]: 
       attrName: cloudChannel
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.cloudChannel
+          - MobileSmartSourceType: plain:this.cloudChannel
       isEnabled: false
     ↓Attr3 [ngx.components.UIAttribute-1584115479179]: 
       attrName: '[disabled]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1584094766586.disabled
+          - MobileSmartSourceType: script:this.disabled
       isEnabled: false
     ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
       attrName: id
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.id
+          - MobileSmartSourceType: plain:this.id
       isEnabled: false
     ↓Attr13 [ngx.components.UIAttribute-1584115481411]: 
       attrName: '[inline]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:params1584094766586.inline != undefined && params1584094766586.inline != '''' ? params1584094766586.inline : false'
+          - MobileSmartSourceType: 'script:this.inline != undefined && this.inline != '''' ? this.inline : false'
     ↓Attr5 [ngx.components.UIAttribute-1584115486506]: 
       attrName: plugins
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.plugins
+          - MobileSmartSourceType: plain:this.plugins
       isEnabled: false
     ↓Attr14 [ngx.components.UIAttribute-1584115486509]: 
       attrName: tagName
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.tagName
+          - MobileSmartSourceType: plain:this.tagName
       isEnabled: false
     ↓Attr6 [ngx.components.UIAttribute-1584115486510]: 
       attrName: toolbar
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.toolbar
+          - MobileSmartSourceType: plain:this.toolbar
       isEnabled: false
     ↓Event [ngx.components.UIControlEvent-1584548207346]: 
       attrName: (ngModelChange)
@@ -151,7 +151,7 @@
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:params1584094766586.initialValue != undefined ?params1584094766586.initialValue : '''''
+          - MobileSmartSourceType: 'script:this.initialValue != undefined ?this.initialValue : '''''
     ↓Event1 [ngx.components.UIControlEvent-1611068127001]: 
       attrName: (onBlur)
       eventName: (onBlur)
@@ -173,67 +173,67 @@
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1584094766586.init
+          - MobileSmartSourceType: script:this.init
     ↓Attr2 [ngx.components.UIAttribute-1610985320380]: 
       attrName: apiKey
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.apiKey
+          - MobileSmartSourceType: plain:this.apiKey
       isEnabled: false
     ↓Attr11 [ngx.components.UIAttribute-1610985320383]: 
       attrName: cloudChannel
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.cloudChannel
+          - MobileSmartSourceType: plain:this.cloudChannel
       isEnabled: false
     ↓Attr3 [ngx.components.UIAttribute-1610985320386]: 
       attrName: '[disabled]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:params1584094766586.disabled
+          - MobileSmartSourceType: script:this.disabled
       isEnabled: false
     ↓Attr12 [ngx.components.UIAttribute-1610985320389]: 
       attrName: id
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.id
+          - MobileSmartSourceType: plain:this.id
       isEnabled: false
     ↓Attr4 [ngx.components.UIAttribute-1610985320392]: 
       attrName: initialValue
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:params1584094766586.initialValue != undefined ?params1584094766586.initialValue : '''''
+          - MobileSmartSourceType: 'script:this.initialValue != undefined ?this.initialValue : '''''
     ↓Attr13 [ngx.components.UIAttribute-1610985320395]: 
       attrName: '[inline]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:params1584094766586.inline != undefined && params1584094766586.inline != '''' ? params1584094766586.inline : false'
+          - MobileSmartSourceType: 'script:this.inline != undefined && this.inline != '''' ? this.inline : false'
     ↓Attr5 [ngx.components.UIAttribute-1610985320398]: 
       attrName: plugins
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.plugins
+          - MobileSmartSourceType: plain:this.plugins
       isEnabled: false
     ↓Attr14 [ngx.components.UIAttribute-1610985320401]: 
       attrName: tagName
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.tagName
+          - MobileSmartSourceType: plain:this.tagName
       isEnabled: false
     ↓Attr6 [ngx.components.UIAttribute-1610985320404]: 
       attrName: toolbar
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: plain:params1584094766586.toolbar
+          - MobileSmartSourceType: plain:this.toolbar
       isEnabled: false
     ↓Event [ngx.components.UIControlEvent-1610985320407]: 
       attrName: (ngModelChange)
@@ -243,7 +243,7 @@
           '{
            "ionBean": "PublishEventAction",
            "topic": "script:''tinyMceNgModelChange''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "data": "script:{event: event, ref:  this.ref}"
           }'
     ↓Event1 [ngx.components.UIControlEvent-1610986431860]: 
       attrName: (onBlur)
@@ -253,7 +253,7 @@
           '{
            "ionBean": "PublishEventAction",
            "topic": "script:''tinyMceBlur''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "data": "script:{event: event, ref:  this.ref}"
           }'
 ↓PageEvent1 [ngx.components.UIPageEvent-1614258719034]: 
   viewEvent: onWillEnter
