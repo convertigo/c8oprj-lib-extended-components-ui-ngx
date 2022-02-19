@@ -50,43 +50,43 @@
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.qrdata
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.qrdata","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1 [ngx.components.UIAttribute-1600100947491]: 
     attrName: '[size]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.size
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.size","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr11 [ngx.components.UIAttribute-1600100973747]: 
     attrName: '[level]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.level
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.level","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr111 [ngx.components.UIAttribute-1600101056778]: 
     attrName: '[usesvg]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.usesvg
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.usesvg","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1111 [ngx.components.UIAttribute-1600101331555]: 
     attrName: '[colordark]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.colordark
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.colordark","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr11111 [ngx.components.UIAttribute-1600101345575]: 
     attrName: '[colorlight]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.colorlight
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.colorlight","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1112 [ngx.components.UIAttribute-1600101413489]: 
     attrName: '[allowEmptyString]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:params1600099015160.allowEmptyString
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.allowEmptyString","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Style [ngx.components.UIStyle-1604013519909]: 
 ↓qrdata [ngx.components.UICompVariable-1600101469599]: 
 ↓size [ngx.components.UICompVariable-1600101477141]: 
