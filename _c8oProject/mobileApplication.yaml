@@ -292,7 +292,8 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
           	background-position: center;
           }
           @import "../../node_modules/ag-grid-community/dist/styles/ag-grid.scss";
-          @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+          @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham/sass/legacy/ag-theme-balham-v22-compat.scss";
+          
           
           .ag-cell-edit-input {
           	background-color: antiquewhite;
