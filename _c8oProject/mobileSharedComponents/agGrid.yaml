@@ -63,7 +63,7 @@ comment: |
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr71 [ngx.components.UIAttribute-1576684915739]: 
-    attrName: '[rowDeselection]'
+    attrName: '[suppressRowDeselection]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -440,14 +440,14 @@ comment: |
               - java.lang.String: 
                 - ↑value: ag-grid-community
               - java.lang.String: 
-                - ↑value: 22.1.1
+                - ↑value: 27.0.0
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: ag-grid-angular
               - java.lang.String: 
-                - ↑value: 22.1.1
+                - ↑value: 27.0.0
 ↓CellClicked [ngx.components.UICompEvent-1628071584261]: 
   attrName: CellClicked
   comment: Fired when a cell is clicked. Data will be the agGrid event
