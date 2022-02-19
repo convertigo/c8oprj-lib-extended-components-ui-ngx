@@ -1,3 +1,4 @@
+comment: A QR Code Reader  using Full JS Algorithm
 ↓PageEvent [ngx.components.UIPageEvent-1600099079873]: 
   ↓initQRCode [ngx.components.UICustomAction-1600099089483]: 
     module_ng_imports: 

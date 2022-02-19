@@ -1,3 +1,4 @@
+comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
 ↓PageEvent [ngx.components.UIEventSubscriber-1614180719814]: 
   comment: Old implementation of onCanEnter. Prefer using AppGuard now.
   isEnabled: false
