@@ -4,16 +4,15 @@ scriptContent:
     - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
     - com.twinsoft.convertigo.beans.common.FormatedContent: 
       →: |
-        '/*Begin_c8o_PageImport*/
+        /*Begin_c8o_PageImport*/
         /*End_c8o_PageImport*/
         /*Begin_c8o_PageDeclaration*/
-        	public JSON : JSON = JSON;
         	/*End_c8o_PageDeclaration*/
         /*Begin_c8o_PageConstructor*/
         		/*End_c8o_PageConstructor*/
         /*Begin_c8o_PageFunction*/
         	/*End_c8o_PageFunction*/
-        '
+        
 segment: path-to-testngxinput1
 title: testNgxInput1
 ↓Header [ngx.components.UIDynamicElement-1578671960848]: 
@@ -146,7 +145,6 @@ title: testNgxInput1
     isEnabled: false
     tagName: div
     ↓Text [ngx.components.UIText-1578566038206]: 
-      i18n: false
       textValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
