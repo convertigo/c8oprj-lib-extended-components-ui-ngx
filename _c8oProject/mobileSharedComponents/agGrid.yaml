@@ -440,7 +440,7 @@ comment: |
               - java.lang.String: 
                 - ↑value: ag-grid-community
               - java.lang.String: 
-                - ↑value: 27.0.0
+                - ↑value: 27.0.1
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
