@@ -38,7 +38,6 @@ title: testAngularxQRCode
   ↓Tag [ngx.components.UIElement-1614268158211]: 
     tagName: a
     ↓Text [ngx.components.UIText-1614268182667]: 
-      i18n: false
       textValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
