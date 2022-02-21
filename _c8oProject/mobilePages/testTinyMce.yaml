@@ -42,6 +42,14 @@ title: testTinyMce
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:{height: 500}'
+    ↓Event [ngx.components.UIControlEvent-1645465765590]: 
+      attrName: (onChange)
+      eventName: onChange
+      ↓Log [ngx.components.UIDynamicAction-1645465781708]: 
+        beanData: '{"ionBean":"LogAction","message":"script:out"}'
+    ↓Event1 [ngx.components.UIControlEvent-1645465765592]: 
+      attrName: (onBlur)
+      eventName: onBlur
 ↓Footer [ngx.components.UIDynamicElement-1614265212853]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

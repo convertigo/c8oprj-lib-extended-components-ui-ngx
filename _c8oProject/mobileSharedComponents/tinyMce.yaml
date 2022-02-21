@@ -52,7 +52,6 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
   value: 
 ↓cloudChannel [ngx.components.UICompVariable-1584112464253]: 
   value: '''5-dev'''
-↓disabled1 [ngx.components.UICompVariable-1584112464254]: 
 ↓id [ngx.components.UICompVariable-1584112500988]: 
 ↓initialValue [ngx.components.UICompVariable-1584112507501]: 
 ↓inline [ngx.components.UICompVariable-1584112510197]: 
@@ -63,7 +62,6 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
   value: '[''advlist autolink lists link image charmap print preview anchor'',''searchreplace visualblocks code fullscreen'',''insertdatetime media table paste code imagetools help wordcount'']'
 ↓toolbar [ngx.components.UICompVariable-1584112515048]: 
   value: '''undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'''
-↓ref [ngx.components.UICompVariable-1584547637414]: 
 ↓Directive [ngx.components.UIControlDirective-1610985343772]: 
   directiveName: If
   directiveSource: 
@@ -185,22 +183,22 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
     ↓Event [ngx.components.UIControlEvent-1610985320407]: 
       attrName: (ngModelChange)
       eventName: (ngModelChange)
-      ↓PublishEvent [ngx.components.UIDynamicAction-1610985320410]: 
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1645465562432]: 
         beanData: |
           '{
-           "ionBean": "PublishEventAction",
-           "topic": "script:''tinyMceNgModelChange''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onChange",
+           "data": "script:event"
           }'
     ↓Event1 [ngx.components.UIControlEvent-1610986431860]: 
       attrName: (onBlur)
       eventName: (onBlur)
-      ↓PublishEvent [ngx.components.UIDynamicAction-1610986457846]: 
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1645465632799]: 
         beanData: |
           '{
-           "ionBean": "PublishEventAction",
-           "topic": "script:''tinyMceBlur''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onBlur",
+           "data": "script:event"
           }'
     ↓Attr2 [ngx.components.UIAttribute-1645258496099]: 
       attrName: apiKey
@@ -286,3 +284,7 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
                 - ↑value: '@tinymce/tinymce-angular'
               - java.lang.String: 
                 - ↑value: 4.2.0
+↓onChange [ngx.components.UICompEvent-1645465463700]: 
+  attrName: onChange
+↓onBlur [ngx.components.UICompEvent-1645465531073]: 
+  attrName: onBlur
