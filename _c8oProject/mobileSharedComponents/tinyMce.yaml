@@ -1,50 +1,31 @@
 comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
-↓PageEvent [ngx.components.UIEventSubscriber-1614180719814]: 
-  comment: Old implementation of onCanEnter. Prefer using AppGuard now.
-  isEnabled: false
-  topic: CanEnter
-  ↓initialization [ngx.components.UICustomAction-1584094766592]: 
-    comment: Do not delete or disable !!
-    module_ng_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: EditorModule
-    module_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: EditorModule 
-              - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: FormsModule
-              - java.lang.String: 
-                - ↑value: '@angular/forms'
-    package_dependencies: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
-              - java.lang.String: 
-                - ↑value: 3.5.0
-↓ngModel [ngx.components.UICompVariable-1584094766604]: 
-  value: null
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	public initOffline: any =  {
+        	    base_url: ''/tinymce'', // Root for resources
+        	    suffix: ''.min''        // Suffix to use when loading resources
+          	}
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompFunction*/
+        	public mergeInitObject(init: any){
+        		return {...init, ...this.initOffline}
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓model [ngx.components.UICompVariable-1584094766604]: 
+  value: 
 ↓init [ngx.components.UICompVariable-1584112503370]: 
   value: '{}'
 ↓disabled [ngx.components.UICompVariable-1584112464251]: 
@@ -67,7 +48,7 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
   directiveSource: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-      - MobileSmartSourceType: script:this.ngModel != null else ElseBlock_1610985402974
+      - MobileSmartSourceType: script:this.model != null else ElseBlock_1610985402974
   ↓Tag [ngx.components.UIElement-1584094766595]: 
     tagName: editor
     ↓Attr [ngx.components.UIAttribute-1584094766598]: 
@@ -75,13 +56,13 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:this.ngModel
+          - MobileSmartSourceType: script:this.model
     ↓Attr1 [ngx.components.UIAttribute-1584107509437]: 
       attrName: '[init]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.init","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this.mergeInitObject(this.init)
     ↓Attr13 [ngx.components.UIAttribute-1584115481411]: 
       attrName: '[inline]'
       attrValue: 
@@ -139,23 +120,30 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
     ↓Event [ngx.components.UIControlEvent-1584548207346]: 
       attrName: (ngModelChange)
       eventName: (ngModelChange)
-      ↓PublishEvent [ngx.components.UIDynamicAction-1584548700881]: 
+      isEnabled: false
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1646055836444]: 
         beanData: |
           '{
-           "ionBean": "PublishEventAction",
-           "topic": "script:''tinyMceNgModelChange''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onChange",
+           "data": "script:event"
           }'
     ↓Event1 [ngx.components.UIControlEvent-1611068127001]: 
       attrName: (onBlur)
       eventName: (onBlur)
-      ↓PublishEvent [ngx.components.UIDynamicAction-1611068127004]: 
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1646055843786]: 
         beanData: |
           '{
-           "ionBean": "PublishEventAction",
-           "topic": "script:''tinyMceBlur''",
-           "data": "script:{event: event, ref:  params1584094766586.ref}"
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onBlur",
+           "data": "script:event"
           }'
+    ↓Attr7 [ngx.components.UIAttribute-1646127219808]: 
+      attrName: 
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:ngDefaultControl
 ↓Tag2 [ngx.components.UIElement-1610985402974]: 
   identifier: ElseBlock_1610985402974
   tagName: ng-template
@@ -167,7 +155,7 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.init","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this.mergeInitObject(this.init)
     ↓Attr4 [ngx.components.UIAttribute-1610985320392]: 
       attrName: initialValue
       attrValue: 
@@ -183,6 +171,7 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
     ↓Event [ngx.components.UIControlEvent-1610985320407]: 
       attrName: (ngModelChange)
       eventName: (ngModelChange)
+      isEnabled: false
       ↓EmitEvent [ngx.components.UIDynamicEmit-1645465562432]: 
         beanData: |
           '{
@@ -242,9 +231,33 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.toolbar","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓Attr7 [ngx.components.UIAttribute-1646127247461]: 
+      attrName: 
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:ngDefaultControl
 ↓PageEvent1 [ngx.components.UIPageEvent-1614258719034]: 
   viewEvent: onWillEnter
   ↓initialization [ngx.components.UICustomAction-1614258791347]: 
+    build_assets: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{ "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }'
+    build_scripts: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/tinymce/tinymce.min.js
     comment: Do not delete or disable !!
     module_ng_imports: 
       - xmlizable: 
@@ -255,6 +268,15 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: EditorModule
+    module_ng_providers: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{ provide: TINYMCE_SCRIPT_SRC, useValue: ''tinymce/tinymce.min.js'' }'
     module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -270,9 +292,9 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: FormsModule
+                - ↑value: TINYMCE_SCRIPT_SRC
               - java.lang.String: 
-                - ↑value: '@angular/forms'
+                - ↑value: '@tinymce/tinymce-angular'
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -283,8 +305,13 @@ comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich tex
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
               - java.lang.String: 
-                - ↑value: 4.2.0
-↓onChange [ngx.components.UICompEvent-1645465463700]: 
-  attrName: onChange
+                - ↑value: 5.0.1
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: tinymce
+              - java.lang.String: 
+                - ↑value: 5.8.2
 ↓onBlur [ngx.components.UICompEvent-1645465531073]: 
   attrName: onBlur
