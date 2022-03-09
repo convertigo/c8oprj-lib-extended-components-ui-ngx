@@ -50,6 +50,7 @@ scriptContent:
       - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
       - MobileSmartSourceType: script:this.model != null else ElseBlock_1610985402974
   ↓Tag [ngx.components.UIElement-1584094766595]: 
+    identifier: editor
     tagName: editor
     ↓Attr [ngx.components.UIAttribute-1584094766598]: 
       attrName: '[(ngModel)]'
