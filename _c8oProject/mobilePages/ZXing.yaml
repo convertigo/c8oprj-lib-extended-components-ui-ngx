@@ -70,6 +70,7 @@ title: ZXing
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:item-right
       ↓Event [ngx.components.UIControlEvent-1595431404015]: 
+        attrName: (click)
         ↓cameraSource [ngx.components.UICustomAction-1595431404018]: 
           actionValue: 
             - xmlizable: 
@@ -146,6 +147,7 @@ title: ZXing
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:item-right
       ↓Event [ngx.components.UIControlEvent-1595431404048]: 
+        attrName: (click)
         ↓fileSource [ngx.components.UICustomAction-1595431404051]: 
           actionValue: 
             - xmlizable: 

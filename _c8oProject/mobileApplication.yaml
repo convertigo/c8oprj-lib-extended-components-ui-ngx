@@ -281,6 +281,7 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
           }'
 ↓AgGridStyle [ngx.components.UIStyle-1607860511221]: 
   comment: You can add some global application styles here
+  isEnabled: false
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
