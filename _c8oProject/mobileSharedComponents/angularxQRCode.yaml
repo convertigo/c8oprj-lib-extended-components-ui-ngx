@@ -9,31 +9,37 @@ comment: A QR Code Reader  using Full JS Algorithm
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.qrdata","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1 [ngx.components.UIAttribute-1600100947491]: 
-    attrName: '[size]'
+    attrName: '[imageHeight]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.size","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.imageHeight","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr2 [ngx.components.UIAttribute-1649752760137]: 
+    attrName: '[imageWidth]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.imageWidth","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr11 [ngx.components.UIAttribute-1600100973747]: 
-    attrName: '[level]'
+    attrName: '[errorCorrectionLevel]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.level","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.errorCorrectionLevel","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr111 [ngx.components.UIAttribute-1600101056778]: 
-    attrName: '[usesvg]'
+    attrName: '[elementType]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.usesvg","prefix":"","suffix":"","custom":"","useCustom":false}}
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.elementType","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr1111 [ngx.components.UIAttribute-1600101331555]: 
-    attrName: '[colordark]'
+    attrName: '[colorDark]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.colordark","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr11111 [ngx.components.UIAttribute-1600101345575]: 
-    attrName: '[colorlight]'
+    attrName: '[colorLight]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -45,17 +51,158 @@ comment: A QR Code Reader  using Full JS Algorithm
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.allowEmptyString","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Style [ngx.components.UIStyle-1604013519909]: 
+  ↓Attr3 [ngx.components.UIAttribute-1649752964625]: 
+    attrName: '[alt]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.alt","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr4 [ngx.components.UIAttribute-1649752968902]: 
+    attrName: '[ariaLabel]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.ariaLabel","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr5 [ngx.components.UIAttribute-1649752970318]: 
+    attrName: '[cssClass]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.cssClass","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr6 [ngx.components.UIAttribute-1649752971366]: 
+    attrName: '[imageSrc]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.imageSrc","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr7 [ngx.components.UIAttribute-1649752972407]: 
+    attrName: '[margin]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.margin","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr8 [ngx.components.UIAttribute-1649752973446]: 
+    attrName: '[scale]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.scale","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr9 [ngx.components.UIAttribute-1649753236913]: 
+    attrName: '[title]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.title","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓version [ngx.components.UIAttribute-1649753238350]: 
+    attrName: '[version]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.version","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr12 [ngx.components.UIAttribute-1649753239435]: 
+    attrName: '[width]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1600099015160,"regular":true}],"path":"?.width","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓qrdata [ngx.components.UICompVariable-1600101469599]: 
-↓size [ngx.components.UICompVariable-1600101477141]: 
+  comment: String to encode
+↓imageHeight [ngx.components.UICompVariable-1600101477141]: 
+  comment: height of your image
   value: 256
-↓level [ngx.components.UICompVariable-1600101483760]: 
+↓imageWidth [ngx.components.UICompVariable-1649752540351]: 
+  comment: width of your image
+  value: 256
+↓errorCorrectionLevel [ngx.components.UICompVariable-1600101483760]: 
+  comment: QR Correction level ('L', 'M', 'Q', 'H')
   value: '''M'''
-↓usesvg [ngx.components.UICompVariable-1600101489516]: 
-  value: false
+↓elementType [ngx.components.UICompVariable-1600101489516]: 
+  comment: '''canvas'', ''svg'', ''img'', ''url'' (alias for ''img'')'
+  value: '''canvas'''
 ↓colordark [ngx.components.UICompVariable-1600101489519]: 
+  comment: RGBA color, color of dark module (foreground)
   value: '''#000000'''
 ↓colorlight [ngx.components.UICompVariable-1600101489522]: 
+  comment: RGBA color, color of light module (background)
   value: '''#FFFFFF'''
 ↓allowEmptyString [ngx.components.UICompVariable-1600101495280]: 
+  comment: Allow qrdata to be an empty string
   value: false
-↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414948455]: 🗏 mobileSharedComponents/SharedComponent_Event.yaml
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414948455]: 
+  ↓initQRCode [ngx.components.UICustomAction-1600099089483]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		resolve();
+            
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+              - java.lang.String: 
+                - ↑value: 13.0.14
+    page_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: QRCodeModule
+              - java.lang.String: 
+                - ↑value: angularx-qrcode
+↓alt [ngx.components.UICompVariable-1649752916516]: 
+  comment: HTML alt attribute (supported by img, url)
+  value: null
+↓ariaLabel [ngx.components.UICompVariable-1649752921278]: 
+  comment: HTML aria-label attribute (supported by canvas, img, url)
+  value: null
+↓cssClass [ngx.components.UICompVariable-1649752923099]: 
+  comment: CSS Class
+  value: '''qrcode'''
+↓imageSrc [ngx.components.UICompVariable-1649752924738]: 
+  comment: Link to your image
+  value: null
+↓margin [ngx.components.UICompVariable-1649752926050]: 
+  comment: Define how much wide the quiet zone should be.
+  value: 4
+↓scale [ngx.components.UICompVariable-1649752927698]: 
+  comment: Scale factor. A value of 1 means 1px per modules (black dots).
+  value: 4
+↓title [ngx.components.UICompVariable-1649753223964]: 
+  comment: HTML title attribute (supported by canvas, img, url)
+  value: null
+↓version [ngx.components.UICompVariable-1649753227933]: 
+  comment: 1-40
+  value: '''(auto)'''
+↓width [ngx.components.UICompVariable-1649753229130]: 
+  comment: Height/Width (any value)
+  value: 10

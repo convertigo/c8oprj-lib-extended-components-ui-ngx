@@ -235,8 +235,60 @@ comment: This component provides Chips management for your apps
   attrName: ValidationError
 ↓ModelChange [ngx.components.UICompEvent-1628156939654]: 
   attrName: ModelChange
-↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414789758]: 🗏 mobileSharedComponents/SharedComponent_Event.yaml
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414789758]: 
+  ↓ngxTagImports [ngx.components.UICustomAction-1649751447401]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		resolve();
+            
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: TagInputModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: BrowserAnimationsModule 
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: TagInputModule
+              - java.lang.String: 
+                - ↑value: ngx-chips
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: BrowserAnimationsModule
+              - java.lang.String: 
+                - ↑value: '@angular/platform-browser/animations'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ngx-chips
+              - java.lang.String: 
+                - ↑value: 2.2.2
 ↓PageEvent [ngx.components.UIPageEvent-1649433820686]: 
+  isEnabled: false
   ↓ngxTagImports [ngx.components.UICustomAction-1649434842465]: 
     actionValue: 
       - xmlizable: 
@@ -288,14 +340,3 @@ comment: This component provides Chips management for your apps
                 - ↑value: ngx-chips
               - java.lang.String: 
                 - ↑value: 2.2.2
-    page_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: QRCodeModule
-              - java.lang.String: 
-                - ↑value: angularx-qrcode

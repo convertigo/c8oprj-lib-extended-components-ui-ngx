@@ -279,25 +279,3 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
               --color: white;
             }
           }'
-↓AgGridStyle [ngx.components.UIStyle-1607860511221]: 
-  comment: You can add some global application styles here
-  isEnabled: false
-  styleContent: 
-    - xmlizable: 
-      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-      - com.twinsoft.convertigo.beans.common.FormatedContent: 
-        →: |
-          '.custom-header-weel {
-          	background-image: url(data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7);
-          	background-repeat: no-repeat;
-          	background-position: center;
-          }
-          @import "../../node_modules/ag-grid-community/dist/styles/ag-grid.scss";
-          @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham/sass/legacy/ag-theme-balham-v22-compat.scss";
-          
-          
-          .ag-cell-edit-input {
-          	background-color: antiquewhite;
-          }
-          
-          '

@@ -233,11 +233,11 @@ comment: |
                 		const grid = props.stack["root"].scope.agGrid
                 		if(grid != undefined){
                 			grid.api.sizeColumnsToFit();
-                				//grid.api.resetRowHeights();
+                				grid.api.resetRowHeights();
                 			setTimeout(()=>{
                 				grid.api.sizeColumnsToFit();
                 				
-                				//grid.api.resetRowHeights();
+                				grid.api.resetRowHeights();
                 				page.c8o.log.debug('[MB] gridApi.sizeColumnsToFit() and gridApi.resetRowHeights() done');
                 			}, 500)
                 		}
@@ -335,8 +335,178 @@ comment: |
 ↓SelectionChanged [ngx.components.UICompEvent-1649342772573]: 
   attrName: SelectionChanged
   comment: Fired when selectionChange. Data will be the agGrid event
-↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414742233]: 🗏 mobileSharedComponents/SharedComponent_Event.yaml
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414742233]: 
+  ↓AgGridImports [ngx.components.UICustomAction-1649751419714]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		// Install packages :
+                        		    // Please have a look at all expert properties for this custom action
+                        		    // They define which packages/plugins are needed to use agGrid component
+                        		    // They will be installed if not already
+                        
+                        	        // Define global functions
+                        	        if (page.global["agGridDisplayImage"] == undefined) {
+                        	            page.c8o.log.debug(''[MB] defining global function : agGridDisplayImage'');
+                        	            page.global["agGridDisplayImage"] = function(params) {
+                        	                //console.log("agGridDisplayImage params", params);
+                        	                var resultElement = document.createElement("span");
+                        	                var imageElement = document.createElement("img");
+                        	                if (params.data.src !== undefined) {
+                        	                    imageElement.src = params.data.src;
+                                                //imageElement.src = "./assets/twitter_32x32.png";
+                                                //imageElement.src = "https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/images/sun.png";
+                                                //imageElement.src = "data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+                        	                }
+                        	                resultElement.appendChild(imageElement);
+                        	                return resultElement;
+                        	            }
+                        	        }
+                        	        
+                        	        /*
+                        	        // headerComponent: ''''header-class-name''''
+                        	        if (page.global["agGridImageComponent"] == undefined) {
+                        	            page.c8o.log.debug(''''[MB] defining global header component : agGridImageComponent'''');
+                        	            let agGridImageComponent = (function () {
+                        	                function agGridImageComponent() {
+                        	                    
+                        	                }
+                        
+                        	                agGridImageComponent.prototype.init = function (agParams) {
+                        	                    this.agParams = agParams;
+                        	                    this.eGui = document.createElement(''''div'''');
+                        	                    this.eGui.innerHTML = '''''''' +
+                        	                        ''''<div class="agGridImageComponentMenuButton"><i class="fa '''' + this.agParams.menuIcon + ''''"></i></div>'''' +
+                        	                        ''''<div class="agGridImageComponentLabel">'''' + this.agParams.displayName + ''''</div>'''' +
+                        	                        ''''<div class="customSortDownLabel inactive"><i class="fa fa-long-arrow-alt-down"></i></div>'''' +
+                        	                        ''''<div class="customSortUpLabel inactive"><i class="fa fa-long-arrow-alt-up"></i></div>'''' +
+                        	                        ''''<div class="customSortRemoveLabel inactive"><i class="fa fa-times"></i></div>'''';
+                        
+                        	                    this.eMenuButton = this.eGui.querySelector(".agGridImageComponentMenuButton");
+                        	                    this.eSortDownButton = this.eGui.querySelector(".customSortDownLabel");
+                        	                    this.eSortUpButton = this.eGui.querySelector(".customSortUpLabel");
+                        	                    this.eSortRemoveButton = this.eGui.querySelector(".customSortRemoveLabel");
+                        
+                        	                    if (this.agParams.enableMenu) {
+                        	                        this.onMenuClickListener = this.onMenuClick.bind(this);
+                        	                        this.eMenuButton.addEventListener(''''click'''', this.onMenuClickListener);
+                        	                    } else {
+                        	                        this.eGui.removeChild(this.eMenuButton);
+                        	                    }
+                        
+                        	                    if (this.agParams.enableSorting) {
+                        	                        this.onSortAscRequestedListener = this.onSortRequested.bind(this, ''''asc'''');
+                        	                        this.eSortDownButton.addEventListener(''''click'''', this.onSortAscRequestedListener);
+                        	                        this.onSortDescRequestedListener = this.onSortRequested.bind(this, ''''desc'''');
+                        	                        this.eSortUpButton.addEventListener(''''click'''', this.onSortDescRequestedListener);
+                        	                        this.onRemoveSortListener = this.onSortRequested.bind(this, '''''''');
+                        	                        this.eSortRemoveButton.addEventListener(''''click'''', this.onRemoveSortListener);
+                        
+                        
+                        	                        this.onSortChangedListener = this.onSortChanged.bind(this);
+                        	                        this.agParams.column.addEventListener(''''sortChanged'''', this.onSortChangedListener);
+                        	                        this.onSortChanged();
+                        	                    } else {
+                        	                        this.eGui.removeChild(this.eSortDownButton);
+                        	                        this.eGui.removeChild(this.eSortUpButton);
+                        	                        this.eGui.removeChild(this.eSortRemoveButton);
+                        	                    }
+                        	                };
+                        
+                        	                agGridImageComponent.prototype.onSortChanged = function () {
+                        	                    function deactivate(toDeactivateItems) {
+                        	                        toDeactivateItems.forEach(function (toDeactivate) {
+                        	                            toDeactivate.className = toDeactivate.className.split('''' '''')[0]
+                        	                        });
+                        	                    }
+                        
+                        	                    function activate(toActivate) {
+                        	                        toActivate.className = toActivate.className + " active";
+                        	                    }
+                        
+                        	                    if (this.agParams.column.isSortAscending()) {
+                        	                        deactivate([this.eSortUpButton, this.eSortRemoveButton]);
+                        	                        activate(this.eSortDownButton)
+                        	                    } else if (this.agParams.column.isSortDescending()) {
+                        	                        deactivate([this.eSortDownButton, this.eSortRemoveButton]);
+                        	                        activate(this.eSortUpButton)
+                        	                    } else {
+                        	                        deactivate([this.eSortUpButton, this.eSortDownButton]);
+                        	                        activate(this.eSortRemoveButton)
+                        	                    }
+                        	                };
+                        
+                        	                agGridImageComponent.prototype.getGui = function () {
+                        	                    return this.eGui;
+                        	                };
+                        
+                        	                agGridImageComponent.prototype.onMenuClick = function () {
+                        	                    this.agParams.showColumnMenu(this.eMenuButton);
+                        	                };
+                        
+                        	                agGridImageComponent.prototype.onSortRequested = function (order, event) {
+                        	                    this.agParams.setSort(order, event.shiftKey);
+                        	                };
+                        
+                        	                agGridImageComponent.prototype.destroy = function () {
+                        	                    if (this.onMenuClickListener) {
+                        	                        this.eMenuButton.removeEventListener(''''click'''', this.onMenuClickListener)
+                        	                    }
+                        	                    this.eSortDownButton.removeEventListener(''''click'''', this.onSortRequestedListener);
+                        	                    this.eSortUpButton.removeEventListener(''''click'''', this.onSortRequestedListener);
+                        	                    this.eSortRemoveButton.removeEventListener(''''click'''', this.onSortRequestedListener);
+                        	                    this.agParams.column.removeEventListener(''''sortChanged'''', this.onSortChangedListener);
+                        	                };
+                        	                
+                        	                return agGridImageComponent;
+                        	            })();
+                        	            page.global["agGridImageComponent"] = agGridImageComponent;
+                        	        }*/
+                        	        
+                        		    resolve();
+            '
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: AgGridModule.withComponents([])
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: AgGridModule
+              - java.lang.String: 
+                - ↑value: ag-grid-angular
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ag-grid-community
+              - java.lang.String: 
+                - ↑value: 27.1.0
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ag-grid-angular
+              - java.lang.String: 
+                - ↑value: 27.1.1
 ↓PageEvent [ngx.components.UIPageEvent-1649433800378]: 
+  isEnabled: false
   ↓AgGridImports [ngx.components.UICustomAction-1649434546159]: 
     actionValue: 
       - xmlizable: 
@@ -506,14 +676,34 @@ comment: |
                 - ↑value: ag-grid-angular
               - java.lang.String: 
                 - ↑value: 27.1.1
-    page_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: QRCodeModule
-              - java.lang.String: 
-                - ↑value: angularx-qrcode
+↓AgGridStyle [ngx.components.UIStyle-1649755753761]: 
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '@import "~ag-grid-community/src/styles/ag-grid.scss";
+          @import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
+          @import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+          @import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham-mixin";
+          .ag-theme-material {
+              @include ag-theme-material((
+                  // use theme parameters where possible
+                  //row background color when selected
+                  //selected-row-background-color:rgba(0, 123, 255, 0.3)
+              ));
+          }
+          .ag-theme-alpine{
+              @include ag-theme-alpine((
+                  // use theme parameters where possible
+                  //row background color when selected
+                  //selected-row-background-color:rgba(0, 123, 255, 0.3)
+              ));
+          }
+          .ag-theme-balham {
+              @include ag-theme-balham((
+                  // use theme parameters where possible
+                  //row background color when selected
+                  //selected-row-background-color:rgba(0, 123, 255, 0.3)
+              ));
+          }'
