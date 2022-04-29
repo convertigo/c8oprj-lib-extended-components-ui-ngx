@@ -115,7 +115,6 @@ comment: CardIO SharedComponent
           beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
           tagName: ion-icon
         ↓Event [ngx.components.UIControlEvent-1595431403940]: 
-          attrName: (click)
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431403943]: 
             beanData: '{"ionBean":"InvokeAction"}'
             stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cardIO_sa
@@ -184,7 +183,6 @@ comment: CardIO SharedComponent
           beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
           tagName: ion-icon
         ↓Event [ngx.components.UIControlEvent-1595431403982]: 
-          attrName: (click)
           ↓CustomAction [ngx.components.UICustomAction-1595431403985]: 
       ↓Attr [ngx.components.UIAttribute-1595431403988]: 
         attrName: 
