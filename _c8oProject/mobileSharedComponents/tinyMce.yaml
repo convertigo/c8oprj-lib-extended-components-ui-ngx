@@ -8,7 +8,7 @@ scriptContent:
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
         	public initOffline: any =  {
-        	    base_url: ''/tinymce'', // Root for resources
+        	    base_url: document.head.baseURI + "tinymce", // Root for resources
         	    suffix: ''.min''        // Suffix to use when loading resources
           	}
         	/*End_c8o_CompDeclaration*/
@@ -18,6 +18,18 @@ scriptContent:
         		/*End_c8o_CompInitialization*/
         /*Begin_c8o_CompFinalization*/
         		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
         /*Begin_c8o_CompFunction*/
         	public mergeInitObject(init: any){
         		return {...init, ...this.initOffline}
@@ -247,88 +259,7 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            		resolve();
-            
-    build_assets: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '{ "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }'
-    build_scripts: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: node_modules/tinymce/tinymce.min.js
-    module_ng_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: EditorModule
-    module_ng_providers: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '{ provide: TINYMCE_SCRIPT_SRC, useValue: ''tinymce/tinymce.min.js'' }'
-    module_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: EditorModule
-              - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: TINYMCE_SCRIPT_SRC
-              - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
-    package_dependencies: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
-              - java.lang.String: 
-                - ↑value: 5.0.1
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: tinymce
-              - java.lang.String: 
-                - ↑value: 5.8.2
-↓PageEvent [ngx.components.UIPageEvent-1649433839311]: 
-  isEnabled: false
-  ↓tinyMceImports [ngx.components.UICustomAction-1649435281158]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
+            		
             		resolve();
             
     build_assets: 
