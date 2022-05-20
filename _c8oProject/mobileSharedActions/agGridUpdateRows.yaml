@@ -1,0 +1,27 @@
+comment: agGrid Update Rows, must be called in a GetRows Control
+↓data [ngx.components.UIStackVariable-1652954618888]: 
+  comment: data must receive a JSON with a RowData key and an optional ColDef key
+↓agGridEvent [ngx.components.UIStackVariable-1652954635246]: 
+  comment: map agGridEvent to the TS 'event' parameter from the GetRows Control
+↓agGridUpdateRows [ngx.components.UICustomAction-1652955181261]: 
+  actionValue: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '		try {
+          			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName + '' vars: ''  +vars + ''event : '' + event);
+          			let data = vars.data.RowData;
+          			if (''ColDef'' in vars.data && vars.agGridEvent.skip == 0) {
+          				vars.agGridEvent.object.agGrid.api.setColumnDefs(vars.data.ColDef);
+          			}
+          			vars.agGridEvent.successCallback(data, undefined);
+          			
+          			resolve();
+          		} catch (e) {
+          			try {
+          				vars.agGridEvent.successCallback([], 0);
+          			} catch (ee) {}
+          			reject(e);
+          		}
+          '

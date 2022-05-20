@@ -152,19 +152,43 @@ comment: |
               - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
               - com.twinsoft.convertigo.beans.common.FormatedContent: 
                 →: |
-                  '			let grid = props.stack["root"].scope.agGrid; // page["agGrid"];
-                  	        if (grid !== undefined) {
-                  	            // Set grid width & height
-                  	            var height = vars.height;
-                  	            var width = vars.width;
-                  	            var autoHeight = height == "" || height == "auto";
-                  	            grid.api.setDomLayout(autoHeight ? "autoHeight":"normal");
-                  	            grid._nativeElement.style.height = autoHeight ? "" : height;
-                  	            grid._nativeElement.style.width = width;
-                  	            page.c8o.log.debug(''[MB] gridApi sizing done'');
-                  	        }
+                  '			let grid: GridOptions = props.stack["root"].scope.agGrid; // page["agGrid"];
+                  			if (grid !== undefined) {
+                  				// Set grid width & height
+                  				var height = vars.height;
+                  				var width = vars.width;
+                  				var autoHeight = height == "" || height == "auto";
+                  				grid.api.setDomLayout(autoHeight ? "autoHeight":"normal");
+                  				(grid as any)._nativeElement.style.height = autoHeight ? "" : height;
+                  				(grid as any)._nativeElement.style.width = width;
+                  				page.c8o.log.debug(''[MB] gridApi sizing done'');
+                  				if (grid.rowModelType == "infinite") {
+                  					const datasource: IDatasource = {
+                  						rowCount: undefined,
+                  						getRows: (params: IGetRowsParams) => {
+                  							page.c8o.log.debug(''[MB] grid asking for '' + params.startRow + '' to '' + params.endRow);
+                  							params[''limit''] = params.endRow - params.startRow;
+                  							params[''skip''] = params.startRow;
+                  							params[''datasource''] = datasource;
+                  							page.actionBeans.EmitEventAction(page, {event: ''.GetRows'', data: params},null);
+                  						},
+                  					};
+                  					grid.api.setDatasource(datasource);
+                  				}
+                  			}
                   			resolve();
                   '
+          page_ts_imports: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+              - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+                  - com.twinsoft.convertigo.beans.common.XMLVector: 
+                    - java.lang.String: 
+                      - ↑value: IDatasource, IGetRowsParams,GridOptions
+                    - java.lang.String: 
+                      - ↑value: ag-grid-community
           ↓width [ngx.components.UIControlVariable-1578908950357]: 
             varValue: 
               - xmlizable: 
@@ -175,6 +199,13 @@ comment: |
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.height","prefix":"","suffix":"","custom":"","useCustom":false}}
+          ↓EmitEvent [ngx.components.UIDynamicEmit-1652883620677]: 
+            beanData: |
+              '{
+               "ionBean": "EmitEventAction",
+               "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.GridReady",
+               "data": "script:event"
+              }'
     ↓Event1 [ngx.components.UIControlEvent-1576854126305]: 
       attrName: (cellClicked)
       eventName: (cellClicked)
@@ -312,6 +343,18 @@ comment: |
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.SelectionChanged",
            "data": "script:event"
           }'
+    ↓Attr13 [ngx.components.UIAttribute-1652883263783]: 
+      attrName: '[rowModelType]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowModelType","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓Attr72 [ngx.components.UIAttribute-1652968639798]: 
+      attrName: '[maxBlocksInCache]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.maxBlocksInCache","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Attr [ngx.components.UIAttribute-1649334036721]: 
     attrName: id
     attrValue: 
@@ -364,107 +407,6 @@ comment: |
                         	                return resultElement;
                         	            }
                         	        }
-                        	        
-                        	        /*
-                        	        // headerComponent: ''''header-class-name''''
-                        	        if (page.global["agGridImageComponent"] == undefined) {
-                        	            page.c8o.log.debug(''''[MB] defining global header component : agGridImageComponent'''');
-                        	            let agGridImageComponent = (function () {
-                        	                function agGridImageComponent() {
-                        	                    
-                        	                }
-                        
-                        	                agGridImageComponent.prototype.init = function (agParams) {
-                        	                    this.agParams = agParams;
-                        	                    this.eGui = document.createElement(''''div'''');
-                        	                    this.eGui.innerHTML = '''''''' +
-                        	                        ''''<div class="agGridImageComponentMenuButton"><i class="fa '''' + this.agParams.menuIcon + ''''"></i></div>'''' +
-                        	                        ''''<div class="agGridImageComponentLabel">'''' + this.agParams.displayName + ''''</div>'''' +
-                        	                        ''''<div class="customSortDownLabel inactive"><i class="fa fa-long-arrow-alt-down"></i></div>'''' +
-                        	                        ''''<div class="customSortUpLabel inactive"><i class="fa fa-long-arrow-alt-up"></i></div>'''' +
-                        	                        ''''<div class="customSortRemoveLabel inactive"><i class="fa fa-times"></i></div>'''';
-                        
-                        	                    this.eMenuButton = this.eGui.querySelector(".agGridImageComponentMenuButton");
-                        	                    this.eSortDownButton = this.eGui.querySelector(".customSortDownLabel");
-                        	                    this.eSortUpButton = this.eGui.querySelector(".customSortUpLabel");
-                        	                    this.eSortRemoveButton = this.eGui.querySelector(".customSortRemoveLabel");
-                        
-                        	                    if (this.agParams.enableMenu) {
-                        	                        this.onMenuClickListener = this.onMenuClick.bind(this);
-                        	                        this.eMenuButton.addEventListener(''''click'''', this.onMenuClickListener);
-                        	                    } else {
-                        	                        this.eGui.removeChild(this.eMenuButton);
-                        	                    }
-                        
-                        	                    if (this.agParams.enableSorting) {
-                        	                        this.onSortAscRequestedListener = this.onSortRequested.bind(this, ''''asc'''');
-                        	                        this.eSortDownButton.addEventListener(''''click'''', this.onSortAscRequestedListener);
-                        	                        this.onSortDescRequestedListener = this.onSortRequested.bind(this, ''''desc'''');
-                        	                        this.eSortUpButton.addEventListener(''''click'''', this.onSortDescRequestedListener);
-                        	                        this.onRemoveSortListener = this.onSortRequested.bind(this, '''''''');
-                        	                        this.eSortRemoveButton.addEventListener(''''click'''', this.onRemoveSortListener);
-                        
-                        
-                        	                        this.onSortChangedListener = this.onSortChanged.bind(this);
-                        	                        this.agParams.column.addEventListener(''''sortChanged'''', this.onSortChangedListener);
-                        	                        this.onSortChanged();
-                        	                    } else {
-                        	                        this.eGui.removeChild(this.eSortDownButton);
-                        	                        this.eGui.removeChild(this.eSortUpButton);
-                        	                        this.eGui.removeChild(this.eSortRemoveButton);
-                        	                    }
-                        	                };
-                        
-                        	                agGridImageComponent.prototype.onSortChanged = function () {
-                        	                    function deactivate(toDeactivateItems) {
-                        	                        toDeactivateItems.forEach(function (toDeactivate) {
-                        	                            toDeactivate.className = toDeactivate.className.split('''' '''')[0]
-                        	                        });
-                        	                    }
-                        
-                        	                    function activate(toActivate) {
-                        	                        toActivate.className = toActivate.className + " active";
-                        	                    }
-                        
-                        	                    if (this.agParams.column.isSortAscending()) {
-                        	                        deactivate([this.eSortUpButton, this.eSortRemoveButton]);
-                        	                        activate(this.eSortDownButton)
-                        	                    } else if (this.agParams.column.isSortDescending()) {
-                        	                        deactivate([this.eSortDownButton, this.eSortRemoveButton]);
-                        	                        activate(this.eSortUpButton)
-                        	                    } else {
-                        	                        deactivate([this.eSortUpButton, this.eSortDownButton]);
-                        	                        activate(this.eSortRemoveButton)
-                        	                    }
-                        	                };
-                        
-                        	                agGridImageComponent.prototype.getGui = function () {
-                        	                    return this.eGui;
-                        	                };
-                        
-                        	                agGridImageComponent.prototype.onMenuClick = function () {
-                        	                    this.agParams.showColumnMenu(this.eMenuButton);
-                        	                };
-                        
-                        	                agGridImageComponent.prototype.onSortRequested = function (order, event) {
-                        	                    this.agParams.setSort(order, event.shiftKey);
-                        	                };
-                        
-                        	                agGridImageComponent.prototype.destroy = function () {
-                        	                    if (this.onMenuClickListener) {
-                        	                        this.eMenuButton.removeEventListener(''''click'''', this.onMenuClickListener)
-                        	                    }
-                        	                    this.eSortDownButton.removeEventListener(''''click'''', this.onSortRequestedListener);
-                        	                    this.eSortUpButton.removeEventListener(''''click'''', this.onSortRequestedListener);
-                        	                    this.eSortRemoveButton.removeEventListener(''''click'''', this.onSortRequestedListener);
-                        	                    this.agParams.column.removeEventListener(''''sortChanged'''', this.onSortChangedListener);
-                        	                };
-                        	                
-                        	                return agGridImageComponent;
-                        	            })();
-                        	            page.global["agGridImageComponent"] = agGridImageComponent;
-                        	        }*/
-                        	        
                         		    resolve();
             '
     module_ng_imports: 
@@ -707,3 +649,14 @@ comment: |
                   //selected-row-background-color:rgba(0, 123, 255, 0.3)
               ));
           }'
+↓rowModelType [ngx.components.UICompVariable-1652883404496]: 
+  comment: Row model type
+  value: '''clientSide'''
+↓GridReady [ngx.components.UICompEvent-1652883522441]: 
+  attrName: GridReady
+  comment: Fired when the Grid is ready. Data will be the agGrid event
+↓GetRows [ngx.components.UICompEvent-1652950418675]: 
+  attrName: GetRows
+  comment: Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action
+↓maxBlocksInCache [ngx.components.UICompVariable-1652968674584]: 
+  comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept

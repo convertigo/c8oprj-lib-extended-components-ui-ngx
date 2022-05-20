@@ -27,6 +27,7 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓Menu [ngx.components.UIDynamicMenu-1500890597895]: 🗏 mobileMenus/Menu.yaml
 ↓cardIO_sa [ngx.components.UIActionStack-1595431416100]: 🗏 mobileSharedActions/cardIO_sa.yaml
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
+↓agGridUpdateRows [ngx.components.UIActionStack-1652954574813]: 🗏 mobileSharedActions/agGridUpdateRows.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1576501532114]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
