@@ -33,6 +33,7 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
 ↓cardIO_sc [ngx.components.UISharedRegularComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
+↓DropZoneComponent [ngx.components.UISharedRegularComponent-1653988043625]: 🗏 mobileSharedComponents/DropZoneComponent.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml

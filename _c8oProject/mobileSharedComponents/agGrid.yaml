@@ -163,6 +163,17 @@ comment: |
                   				(grid as any)._nativeElement.style.width = width;
                   				page.c8o.log.debug(''[MB] gridApi sizing done'');
                   				if (grid.rowModelType == "infinite") {
+                  					if (typeof grid.context != "object") {
+                  						grid.context = {};
+                  					}
+                  					grid.context.bookmark = '''';
+                  					
+                  					const emptyds: IDatasource = {
+                  						rowCount: undefined,
+                  						getRows: (params: IGetRowsParams) => {
+                  							params.successCallback([],0);
+                  						},
+                  					};
                   					const datasource: IDatasource = {
                   						rowCount: undefined,
                   						getRows: (params: IGetRowsParams) => {
@@ -170,8 +181,13 @@ comment: |
                   							params[''limit''] = params.endRow - params.startRow;
                   							params[''skip''] = params.startRow;
                   							params[''datasource''] = datasource;
+                  							params[''bookmark''] = grid.context.bookmark;
                   							page.actionBeans.EmitEventAction(page, {event: ''.GetRows'', data: params},null);
                   						},
+                  					};
+                  					grid.context.reset = () => {
+                  						grid.api.setDatasource(emptyds);
+                  						grid.api.setDatasource(datasource);
                   					};
                   					grid.api.setDatasource(datasource);
                   				}

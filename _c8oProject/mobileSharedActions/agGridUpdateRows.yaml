@@ -11,11 +11,15 @@ comment: agGrid Update Rows, must be called in a GetRows Control
         →: |
           '		try {
           			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName + '' vars: ''  +vars + ''event : '' + event);
-          			let data = vars.data.RowData;
+          			let data = ''RowData'' in vars.data ? vars.data.RowData : [];
           			if (''ColDef'' in vars.data && vars.agGridEvent.skip == 0) {
           				vars.agGridEvent.object.agGrid.api.setColumnDefs(vars.data.ColDef);
           			}
-          			vars.agGridEvent.successCallback(data, undefined);
+          			if (''bookmark'' in vars.data) {
+          				vars.agGridEvent.object.agGrid.context.bookmark = vars.data.bookmark; 
+          			}
+          			let lastRow = ''lastRow'' in vars.data ? vars.data.lastRow : undefined;
+          			vars.agGridEvent.successCallback(data, lastRow);
           			
           			resolve();
           		} catch (e) {

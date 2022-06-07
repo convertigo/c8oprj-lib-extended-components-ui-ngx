@@ -1,0 +1,247 @@
+comment: This component handles file trop an a Zone. It will fire a  FileDropped event with a Files object as data. The File dropped will be in the out[0]
+↓Div [ngx.components.UIDynamicElement-1653988043851]: 
+  beanData: '{"ionBean":"DivTag"}'
+  identifier: DropZone
+  tagName: div
+  ↓Grid [ngx.components.UIDynamicElement-1653988043854]: 
+    beanData: '{"ionBean":"Grid"}'
+    tagName: ion-grid
+    ↓GridRow [ngx.components.UIDynamicElement-1653988043857]: 
+      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      tagName: ion-row
+      ↓GridCol [ngx.components.UIDynamicElement-1653988043860]: 
+        beanData: '{"ionBean":"GridCol"}'
+        tagName: ion-col
+        ↓Text [ngx.components.UIText-1653988043863]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1653988043625,"regular":true}],"path":"?.Information","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓FormatLayout [ngx.components.UIDynamicAttr-1653988043866]: 
+          beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
+          selfClose: false
+    ↓GridRow1 [ngx.components.UIDynamicElement-1653988043869]: 
+      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      tagName: ion-row
+      ↓GridCol1 [ngx.components.UIDynamicElement-1653988043872]: 
+        beanData: '{"ionBean":"GridCol"}'
+        tagName: ion-col
+        ↓Style [ngx.components.UIStyle-1653988379060]: 
+          styleContent: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '/**
+                   * Custom properties (sometimes referred to as CSS variables or cascading variables)
+                   * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+                   * They are set using custom property notation, e.g.: --main-color: black;
+                   * and are accessed using the var() function, e.g.: color: var(--main-color);
+                   * You can find below your component''s properties you can customize within the page.
+                   * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+                   * For more informations see https://ionicframework.com/docs/theming.
+                  **/
+                  //--ion-grid-column-padding	//Padding for the Column
+                  //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
+                  //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
+                  //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
+                  //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
+                  //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
+                  //--ion-grid-columns	//The number of total Columns in the Grid
+                  '
+      ↓GridCol [ngx.components.UIDynamicElement-1653988043875]: 
+        beanData: '{"ionBean":"GridCol","FlexAlignement":"plain:ion-align-self-center"}'
+        tagName: ion-col
+        ↓Tag [ngx.components.UIElement-1653988043878]: 
+          identifier: FileBrowser
+          selfClose: true
+          tagName: input
+          ↓Attr [ngx.components.UIAttribute-1653988043881]: 
+            attrName: type
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:file
+          ↓Attr1 [ngx.components.UIAttribute-1653988043884]: 
+            attrName: accept
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:application/csv
+          ↓Style [ngx.components.UIStyle-1653988043887]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	display: none
+                    '
+          ↓Event [ngx.components.UIControlEvent-1653988043890]: 
+            attrName: (change)
+            eventName: onChange
+            ↓SetFileName [ngx.components.UICustomAction-1653988043893]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                      		this["Files"] = event.target.files;
+                      		resolve(this["Files"]);
+                      '
+              ↓EmitEvent [ngx.components.UIDynamicEmit-1653988043896]: 
+                beanData: |
+                  '{
+                   "ionBean": "EmitEventAction",
+                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.DropZoneComponent.FilesDropped",
+                   "data": "script:out"
+                  }'
+        ↓Button [ngx.components.UIDynamicElement-1653988043899]: 
+          beanData: '{"ionBean":"Button"}'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1653988043902]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Browse file
+          ↓Event [ngx.components.UIControlEvent-1653988043905]: 
+            ↓CustomAction [ngx.components.UICustomAction-1653988043908]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                      		page["FileBrowser"].nativeElement.click();
+                      		resolve();
+                      '
+      ↓GridCol2 [ngx.components.UIDynamicElement-1653988043911]: 
+        beanData: '{"ionBean":"GridCol"}'
+        tagName: ion-col
+    ↓GridRow2 [ngx.components.UIDynamicElement-1653988043914]: 
+      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      tagName: ion-row
+      ↓GridCol [ngx.components.UIDynamicElement-1653988043917]: 
+        beanData: '{"ionBean":"GridCol","FlexAlignement":"plain:ion-align-self-end"}'
+        tagName: ion-col
+        ↓Text [ngx.components.UIText-1653988043920]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:$any(this).Files ? $any(this).Files[0].name : '''''
+        ↓Style [ngx.components.UIStyle-1653988043923]: 
+          styleContent: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '/**
+                   * Custom properties (sometimes referred to as CSS variables or cascading variables)
+                   * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+                   * They are set using custom property notation, e.g.: --main-color: black;
+                   * and are accessed using the var() function, e.g.: color: var(--main-color);
+                   * You can find below your component''s properties you can customize within the page.
+                   * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+                   * For more informations see https://ionicframework.com/docs/theming.
+                  **/
+                  //--ion-grid-column-padding	//Padding for the Column
+                  //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
+                  //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
+                  //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
+                  //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
+                  //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
+                  //--ion-grid-columns	//The number of total Columns in the Grid
+                  	text-overflow: ellipsis;
+                  '
+    ↓FormatLayout [ngx.components.UIDynamicAttr-1653988043926]: 
+      beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
+      selfClose: false
+  ↓Attr [ngx.components.UIAttribute-1653988043929]: 
+    attrName: droppable
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:true
+  ↓Event [ngx.components.UIControlEvent-1653988043932]: 
+    attrName: (drop)
+    eventName: (drop)
+    ↓HandleFileDropped [ngx.components.UICustomAction-1653988043935]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		
+              		page["DropZone"].nativeElement.style.border = "dashed grey 1px";
+              		event.preventDefault();
+              		page["Files"] = event.dataTransfer.files;
+              		
+              		resolve(event.dataTransfer.files);
+              		
+              '
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1653988043938]: 
+        beanData: |
+          '{
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.DropZoneComponent.FilesDropped",
+           "data": "source:{\"filter\":\"Action\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"priority\":1653988043935}],\"path\":\"?.out\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}"
+          }'
+  ↓Event1 [ngx.components.UIControlEvent-1653988043941]: 
+    attrName: (dragover)
+    eventName: (dragover)
+    ↓DragEnter [ngx.components.UICustomAction-1653988043944]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		page["DropZone"].nativeElement.style.border = "dashed red 3px";
+              		
+              		event.preventDefault();
+              		resolve();
+              '
+  ↓Event11 [ngx.components.UIControlEvent-1653988043947]: 
+    attrName: (dragleave)
+    eventName: (dragleave)
+    ↓DragLeave [ngx.components.UICustomAction-1653988043950]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		page["DropZone"].nativeElement.style.border = "dashed grey 1px";
+              		
+              		event.preventDefault();
+              		resolve();
+              '
+  ↓Style [ngx.components.UIStyle-1653988043953]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '/**
+             * Custom properties (sometimes referred to as CSS variables or cascading variables)
+             * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+             * They are set using custom property notation, e.g.: --main-color: black;
+             * and are accessed using the var() function, e.g.: color: var(--main-color);
+             * You can find below your component''s properties you can customize within the page.
+             * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+             * For more informations see https://ionicframework.com/docs/theming.
+            **/
+            //--ion-grid-column-padding	//Padding for the Column
+            //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
+            //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
+            //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
+            //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
+            //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
+            //--ion-grid-columns	//The number of total Columns in the Grid
+            	border: 1px dashed grey;
+            	height: 100%;
+            '
+↓Information [ngx.components.UICompVariable-1653988043956]: 
+↓FilesDropped [ngx.components.UICompEvent-1653988043959]: 
+  attrName: FilesDropped
