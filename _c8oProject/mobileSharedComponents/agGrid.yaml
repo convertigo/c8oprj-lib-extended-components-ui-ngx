@@ -279,11 +279,20 @@ comment: |
               →: |
                 		const grid = props.stack["root"].scope.agGrid
                 		if(grid != undefined){
-                			grid.api.sizeColumnsToFit();
+                			if(page.autoSizeColumns){
+                					grid.api.autoSizeAllColumns();
+                			}
+                			else{
+                				grid.api.sizeColumnsToFit();
+                			}
                 				grid.api.resetRowHeights();
                 			setTimeout(()=>{
-                				grid.api.sizeColumnsToFit();
-                				
+                				if(page.autoSizeColumns){
+                					grid.api.autoSizeAllColumns();
+                				}
+                				else{
+                					grid.api.sizeColumnsToFit();
+                				}
                 				grid.api.resetRowHeights();
                 				page.c8o.log.debug('[MB] gridApi.sizeColumnsToFit() and gridApi.resetRowHeights() done');
                 			}, 500)
@@ -676,3 +685,5 @@ comment: |
   comment: Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action
 ↓maxBlocksInCache [ngx.components.UICompVariable-1652968674584]: 
   comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
+↓autoSizeColumns [ngx.components.UICompVariable-1656519895250]: 
+  value: true
