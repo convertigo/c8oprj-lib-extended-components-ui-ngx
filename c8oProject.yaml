@@ -1,4 +1,4 @@
-↑convertigo: 8.0.0.m006
+↑convertigo: 8.1.0.m006
 ↓lib_ExtendedComponents_ui_ngx [core.Project]: 
   comment: |
     'Set of shared components you can use in your projects :
@@ -12,6 +12,8 @@
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓Project_reference [references.ProjectSchemaReference]: 
     projectName: mobilebuilder_tpl_8_0_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_0_0_ngx.zip
+  ↓Project_reference1 [references.ProjectSchemaReference]: 
+    projectName: C8Oforms
   ↓MobileApplication [core.MobileApplication]: 
     comment: Describes the mobile application global properties
     splashRemoveMode: beforeUpdate

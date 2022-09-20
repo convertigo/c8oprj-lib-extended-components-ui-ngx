@@ -1,0 +1,98 @@
+↓Tag [ngx.components.UIElement-1662984415570]: 
+  tagName: mat-slider
+  ↓Attr [ngx.components.UIAttribute-1662984433444]: 
+    attrName: '[min]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.min
+  ↓Attr1 [ngx.components.UIAttribute-1662984441358]: 
+    attrName: '[max]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.max
+  ↓Attr2 [ngx.components.UIAttribute-1662984444661]: 
+    attrName: '[step]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.step
+  ↓Attr3 [ngx.components.UIAttribute-1662984476980]: 
+    attrName: 
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:thumbLabel
+  ↓Style [ngx.components.UIStyle-1662989706787]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '	.mat-slider-track-fill{ //line filled
+            		background-color: var(--ion-color-primary) !important;
+            	}
+            	
+            	.mat-slider-track-background { // line not filled
+            	    background-color: rgba(var(--ion-color-primary-rgb), 0.26);// rgba(12, 187, 231, 0.26) !important;
+            	}
+            	    
+            	.mat-slider-thumb { // circle
+            		background-color: var(--ion-color-primary) !important;
+            	}
+            	
+            	.mat-slider-thumb-label { // up circle
+            		background-color: var(--ion-color-primary) !important;
+            	}
+            	width:100%;
+            '
+  ↓Attr4 [ngx.components.UIAttribute-1662991630400]: 
+    attrName: '[tickInterval]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.step
+  ↓Attr5 [ngx.components.UIAttribute-1662993944337]: 
+    attrName: '[(ngModel)]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.model
+  ↓Attr6 [ngx.components.UIAttribute-1662994378521]: 
+    attrName: '[attr.aria-label]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.ariaLabel
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662984526639]: 
+  ↓Imports [ngx.components.UICustomAction-1662984537097]: 
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatSliderModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatSliderModule
+              - java.lang.String: 
+                - ↑value: '@angular/material/slider'
+↓min [ngx.components.UICompVariable-1662984662329]: 
+  value: 0
+↓max [ngx.components.UICompVariable-1662984674914]: 
+  value: 10
+↓step [ngx.components.UICompVariable-1662984698727]: 
+  value: 1
+↓model [ngx.components.UICompVariable-1662993959976]: 
+  autoEmit: true
+↓ariaLabel [ngx.components.UICompVariable-1662994395684]: 

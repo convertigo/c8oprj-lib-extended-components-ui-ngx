@@ -1,0 +1,95 @@
+↑isRoot: true
+segment: path-to-testmaterialdatepicker
+title: Title for testMaterialDatePicker
+↓Header [ngx.components.UIDynamicElement-1662715349295]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Page header
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1662715349298]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1662715349301]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1662715349304]: 
+        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        comment: A button to toggle the menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1662715349307]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1662715349310]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:AngularxQRCode
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1662715349313]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1662715349316]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1662715349319]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          tagName: ion-icon
+↓Content [ngx.components.UIDynamicElement-1662715357957]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓UseSharedComponent [ngx.components.UIUseShared-1662715386296]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.materialDatePicker
+  ↓Style [ngx.components.UIStyle-1662727634956]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '/**
+             * Custom properties (sometimes referred to as CSS variables or cascading variables)
+             * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+             * They are set using custom property notation, e.g.: --main-color: black;
+             * and are accessed using the var() function, e.g.: color: var(--main-color);
+             * You can find below your component''s properties you can customize within the page.
+             * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+             * For more informations see https://ionicframework.com/docs/theming.
+            **/
+            --background: white;	//Background of the content
+            //--color	//Color of the content
+            //--keyboard-offset	//Keyboard offset of the content
+            //--offset-bottom	//Offset bottom of the content
+            //--offset-top	//Offset top of the content
+            //--padding-bottom	//Bottom padding of the content
+            //--padding-end	//Right padding if direction is left-to-right, and left padding if direction is right-to-left of the content
+            //--padding-start	//Left padding if direction is left-to-right, and right padding if direction is right-to-left of the content
+            //--padding-top	//Top padding of the content
+            '
+  ↓UseSharedComponent1 [ngx.components.UIUseShared-1662984612030]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.materialSlider
+↓Footer [ngx.components.UIDynamicElement-1662715352743]: 
+  beanData: '{"ionBean":"Footer"}'
+  comment: Page footer
+  tagName: ion-footer
+  ↓ToolBar [ngx.components.UIDynamicElement-1662715352746]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1662715352749]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1662715352752]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1662715352755]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 1
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1662715352758]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1662715352761]: 
+        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1662715352764]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 2

@@ -34,6 +34,8 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
 ↓cardIO_sc [ngx.components.UISharedRegularComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
 ↓DropZoneComponent [ngx.components.UISharedRegularComponent-1653988043625]: 🗏 mobileSharedComponents/DropZoneComponent.yaml
+↓materialDatePicker [ngx.components.UISharedRegularComponent-1662652067972]: 🗏 mobileSharedComponents/materialDatePicker.yaml
+↓materialSlider [ngx.components.UISharedRegularComponent-1662984391613]: 🗏 mobileSharedComponents/materialSlider.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml
@@ -42,6 +44,7 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓ZXing [ngx.components.PageComponent-1595431440486]: 🗏 mobilePages/ZXing.yaml
 ↓testTinyMce [ngx.components.PageComponent-1614265132496]: 🗏 mobilePages/testTinyMce.yaml
 ↓testAngularxQRCode [ngx.components.PageComponent-1614267429193]: 🗏 mobilePages/testAngularxQRCode.yaml
+↓testMaterialDatePicker [ngx.components.PageComponent-1662715336337]: 🗏 mobilePages/testMaterialDatePicker.yaml
 ↓Theme [ngx.components.UITheme-1491635018260]: 
   comment: Global color themes can be customized here
   styleContent: 

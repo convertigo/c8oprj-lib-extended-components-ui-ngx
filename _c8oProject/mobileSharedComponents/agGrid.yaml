@@ -380,6 +380,30 @@ comment: |
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.maxBlocksInCache","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓Attr14 [ngx.components.UIAttribute-1662998901295]: 
+      attrName: '[ensureDomOrder]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.accessibility
+    ↓Attr15 [ngx.components.UIAttribute-1662998909404]: 
+      attrName: '[suppressColumnVirtualisation]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.accessibility
+    ↓Attr16 [ngx.components.UIAttribute-1662998914159]: 
+      attrName: '[suppressRowVirtualisation]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.accessibility
+    ↓Attr17 [ngx.components.UIAttribute-1663165650569]: 
+      attrName: '[attr.aria-label]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.ariaLabel
   ↓Attr [ngx.components.UIAttribute-1649334036721]: 
     attrName: id
     attrValue: 
@@ -687,3 +711,7 @@ comment: |
   comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
 ↓autoSizeColumns [ngx.components.UICompVariable-1656519895250]: 
   value: true
+↓accessibility [ngx.components.UICompVariable-1662998946260]: 
+  comment: 'boolean: true (default) or false'
+  value: false
+↓ariaLabel [ngx.components.UICompVariable-1663165702189]: 

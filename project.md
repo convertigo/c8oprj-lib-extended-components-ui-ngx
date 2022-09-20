@@ -8,6 +8,15 @@ Set of shared components you can use in your projects :
 
 
 
+<details><summary><span style="color:DarkGoldenRod"><i>References</i></span></summary><blockquote><p>
+
+
+## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/references/images/ProjectSchemaReference_16x16.png?raw=true "ProjectSchemaReference") C8Oforms
+
+
+see [readme](https://github.com/convertigo/C8oForms/tree/NGX#readme)
+</p></blockquote></details>
+
 <details><summary><span style="color:DarkGoldenRod"><i>Connectors</i></span></summary><blockquote><p>
 
 
@@ -64,6 +73,14 @@ Page with a grid having images, checkboxes in columns
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testAngularxQRCode
 
 Page with an angularx QRCode generator
+</p></blockquote></details>
+
+<details><summary><b>testMaterialDatePicker</b></summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testMaterialDatePicker
+
+
 </p></blockquote></details>
 
 <details><summary><b>testNgxInput</b> : Page with different inputs</summary><blockquote><p>
@@ -326,6 +343,22 @@ name
 <th>
 comment
 </th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;accessibility
+</td>
+<td>
+boolean: true (default) or false
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
+</td>
+<td>
+
+</td>
 </tr>
 <tr>
 <td>
@@ -804,6 +837,114 @@ comment
 <tr>
 <td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;FilesDropped
+</td>
+<td>
+
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>materialDatePicker</b></summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") materialDatePicker
+
+
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;buttonAriaLabel
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inputAriaLabel
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
+</td>
+<td>
+
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>materialSlider</b></summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") materialSlider
+
+
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;max
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;min
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;step
 </td>
 <td>
 

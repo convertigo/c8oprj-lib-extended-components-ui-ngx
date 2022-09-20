@@ -1,0 +1,336 @@
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        import ''moment/locale/fr'';
+        import ''moment/locale/es-us'';
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	public _adapter: DateAdapter<any>;
+        	@Inject(MAT_DATE_LOCALE) public _locale: any;
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		this._adapter = this.getInstance(DateAdapter as any)
+        		this._locale = this.getInstance(MAT_DATE_LOCALE);
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	getDateFormatString(): string {
+        	    if (this._locale === ''en-us'') {
+        	      return ''D/M/YYYY'';
+        	    } else if (this._locale === ''fr'') {
+        	      return ''JJ/MM/AAAA'';
+        	    }
+        	    return '''';
+        	  }
+        	/*End_c8o_CompFunction*/
+        '
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662652118763]: 
+  ↓Imports [ngx.components.UICustomAction-1662652126469]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		page._locale = 'fr';
+                	page._adapter.setLocale(page._locale);
+                	const matTogglerChild = document.querySelector(
+            	      'mat-datepicker-toggle'
+            	    )?.firstElementChild;
+            	    //const ariaLabelText = 'Selected Date is ' + moment(this.date.value).format('MM/DD/YYYY');
+            	    matTogglerChild?.setAttribute('aria-label', page.buttonAriaLabel);
+            		resolve();
+            
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatDatepickerModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatNativeDateModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatFormFieldModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatInputModule
+    module_ng_providers: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{ provide: MAT_DATE_FORMATS, useValue:  { parse: { dateInput: ''YYYY-MM-DD'' }, display: { dateInput: ''DD/MM/YYYY'', monthYearLabel: ''MM YYYY'', dateA11yLabel: ''DD.MM.YYYY'', monthYearA11yLabel: ''MM YYYY'' } }}'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{provide: MAT_DATE_LOCALE, useValue: ''en-us''}'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '{provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]}'
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE
+              - java.lang.String: 
+                - ↑value: '@angular/material/core'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatDatepickerModule
+              - java.lang.String: 
+                - ↑value: '@angular/material/datepicker'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatFormFieldModule
+              - java.lang.String: 
+                - ↑value: '@angular/material/form-field'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatInputModule
+              - java.lang.String: 
+                - ↑value: '@angular/material/input'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS
+              - java.lang.String: 
+                - ↑value: '@angular/material-moment-adapter'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@angular/material'
+              - java.lang.String: 
+                - ↑value: 14.2.1
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@angular/material-moment-adapter'
+              - java.lang.String: 
+                - ↑value: 14.2.1
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@angular/cdk'
+              - java.lang.String: 
+                - ↑value: 14.2.1
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: moment
+              - java.lang.String: 
+                - ↑value: 2.29.4
+    page_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatDatepickerModule
+              - java.lang.String: 
+                - ↑value: '@angular/material/datepicker'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MatCalendar
+              - java.lang.String: 
+                - ↑value: '@angular/material/datepicker'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE 
+              - java.lang.String: 
+                - ↑value: '@angular/material/core'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: Inject
+              - java.lang.String: 
+                - ↑value: '@angular/core'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS
+              - java.lang.String: 
+                - ↑value: '@angular/material-moment-adapter'
+↓Style [ngx.components.UIStyle-1662716938918]: 
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '@use ''@angular/material'' as mat;
+          // Plus imports for other components in your app.
+          
+          // Include the common styles for Angular Material. We include this here so that you only
+          // have to load a single css file for Angular Material in your app.
+          // Be sure that you only ever include this mixin once!
+          @include mat.core();
+          
+          // Define the palettes for your theme using the Material Design palettes available in palette.scss
+          // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+          // hue. Available color palettes: https://material.io/design/color/
+          $theme-primary: mat.define-palette(mat.$indigo-palette);
+          $theme-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+          
+          // The warn palette is optional (defaults to red).
+          $theme-warn: mat.define-palette(mat.$red-palette);
+          
+          // Create the theme object. A theme consists of configurations for individual
+          // theming systems such as "color" or "typography".
+          $theme: mat.define-light-theme((
+            color: (
+              primary: $theme-primary,
+              accent: $theme-accent,
+              warn: $theme-warn,
+            )
+          ));
+          
+          // Include theme styles for core and each component used in your app.
+          // Alternatively, you can import and @include the theme mixins for each component
+          // that you are using.
+          @include mat.all-component-themes($theme);'
+↓Tag4 [ngx.components.UIElement-1662717042434]: 
+  tagName: mat-form-field
+  ↓Tag [ngx.components.UIElement-1662653194652]: 
+    selfClose: true
+    tagName: input
+    ↓Attr [ngx.components.UIAttribute-1662713366389]: 
+      attrName: 
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:matInput
+    ↓Attr1 [ngx.components.UIAttribute-1662713378830]: 
+      attrName: '[matDatepicker]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:picker
+    ↓Attr2 [ngx.components.UIAttribute-1662976091071]: 
+      attrName: '[(ngModel)]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.model
+    ↓Attr3 [ngx.components.UIAttribute-1662983248515]: 
+      attrName: '[attr.aria-label]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.inputAriaLabel
+  ↓Tag1 [ngx.components.UIElement-1662713421500]: 
+    tagName: mat-hint
+    ↓Text [ngx.components.UIText-1662714042521]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:getDateFormatString()
+  ↓Tag3 [ngx.components.UIElement-1662714142022]: 
+    tagName: mat-datepicker-toggle
+    ↓Attr [ngx.components.UIAttribute-1662714153048]: 
+      attrName: 
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:matSuffix
+    ↓Attr1 [ngx.components.UIAttribute-1662714161889]: 
+      attrName: '[for]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:picker
+    ↓Attr3 [ngx.components.UIAttribute-1662983269768]: 
+      attrName: '[attr.aria-label]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.buttonAriaLabel
+  ↓Tag2 [ngx.components.UIElement-1662714059179]: 
+    identifier: picker
+    tagName: mat-datepicker
+  ↓Attr [ngx.components.UIAttribute-1662717195717]: 
+    attrName: appearance
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:fill
+  ↓Style [ngx.components.UIStyle-1662717258677]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            	button{
+              		color:var(--ion-color-primary);
+            	}
+            	color:black;
+            
+            
+↓model [ngx.components.UICompVariable-1662976119000]: 
+  autoEmit: true
+↓inputAriaLabel [ngx.components.UICompVariable-1662983194985]: 
+↓buttonAriaLabel [ngx.components.UICompVariable-1662983201078]: 
