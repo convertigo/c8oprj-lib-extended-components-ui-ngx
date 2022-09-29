@@ -8,15 +8,6 @@ Set of shared components you can use in your projects :
 
 
 
-<details><summary><span style="color:DarkGoldenRod"><i>References</i></span></summary><blockquote><p>
-
-
-## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/references/images/ProjectSchemaReference_16x16.png?raw=true "ProjectSchemaReference") C8Oforms
-
-
-see [readme](https://github.com/convertigo/C8oForms/tree/NGX#readme)
-</p></blockquote></details>
-
 <details><summary><span style="color:DarkGoldenRod"><i>Connectors</i></span></summary><blockquote><p>
 
 
@@ -139,7 +130,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;agGridEvent
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;agGridEvent
 </td>
 <td>
 map agGridEvent to the TS 'event' parameter from the GetRows Control
@@ -147,7 +138,7 @@ map agGridEvent to the TS 'event' parameter from the GetRows Control
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;data
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;data
 </td>
 <td>
 data must receive a JSON with a RowData key and an optional ColDef key
@@ -177,7 +168,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ccard_topic
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ccard_topic
 </td>
 <td>
 Publish Topic name to use with a Subscribe component. Optional
@@ -185,7 +176,7 @@ Publish Topic name to use with a Subscribe component. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ccn
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ccn
 </td>
 <td>
 Input tag identifier to set Card Number value to. Optional
@@ -193,7 +184,7 @@ Input tag identifier to set Card Number value to. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;cexp
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;cexp
 </td>
 <td>
 Input tag identifier to set Expiry date value (MM/YY) to. Optional
@@ -201,7 +192,7 @@ Input tag identifier to set Expiry date value (MM/YY) to. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;cvv
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;cvv
 </td>
 <td>
 Input tag identifier to set cryptogram value (123) to. Optional
@@ -209,7 +200,7 @@ Input tag identifier to set cryptogram value (123) to. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;local_ccard_suffix
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;local_ccard_suffix
 </td>
 <td>
 Suffix for local page variable in case of multiple CardIO plugin instances. Default: ''. Optional
@@ -217,7 +208,7 @@ Suffix for local page variable in case of multiple CardIO plugin instances. Defa
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;options
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;options
 </td>
 <td>
 CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin
@@ -247,7 +238,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;file
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;file
 </td>
 <td>
 File object as Array (if not provided from an input type file).
@@ -255,7 +246,7 @@ File object as Array (if not provided from an input type file).
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;imgId
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;imgId
 </td>
 <td>
 Img tag identifier to output image file. Optional
@@ -263,7 +254,7 @@ Img tag identifier to output image file. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;isOutputEvent
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;isOutputEvent
 </td>
 <td>
 Publish scan result or not to the topic event. Default: true.
@@ -271,7 +262,7 @@ Publish scan result or not to the topic event. Default: true.
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;isOutputGlobal
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;isOutputGlobal
 </td>
 <td>
 Insert or not the scan result in a global page variable. The variable is composed of 'zxing:' + topic + ref variables. Default: true.
@@ -279,7 +270,7 @@ Insert or not the scan result in a global page variable. The variable is compose
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ref
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;ref
 </td>
 <td>
 In case of multiple ZXing package instances, set the variable to different values to distinguish the Publish data event and/or the local page variable. Default: ''. Optional
@@ -287,7 +278,7 @@ In case of multiple ZXing package instances, set the variable to different value
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;resultId
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;resultId
 </td>
 <td>
 Input tag identifier to set value to. Optional
@@ -295,7 +286,7 @@ Input tag identifier to set value to. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;topic
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;topic
 </td>
 <td>
 Publish Topic name to use with a Subscribe component. Optional
@@ -303,7 +294,7 @@ Publish Topic name to use with a Subscribe component. Optional
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;type
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;type
 </td>
 <td>
 Scan from file or video. Default: 'file'
@@ -311,7 +302,7 @@ Scan from file or video. Default: 'file'
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_color_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;videoId
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uistackvariable_16x16.png?raw=true "  alt="UIStackVariable" >&nbsp;videoId
 </td>
 <td>
 Video tag identifier to output video camera. Default: 'video'. Optional
@@ -328,7 +319,7 @@ Video tag identifier to output video camera. Default: 'video'. Optional
 <details><summary><b>agGrid</b> : This Shared component wraps the ag-grid component</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") agGrid
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid
 
 This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
 
@@ -346,7 +337,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;accessibility
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;accessibility
 </td>
 <td>
 boolean: true (default) or false
@@ -354,7 +345,7 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
 </td>
 <td>
 
@@ -362,7 +353,7 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;autoSizeColumns
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;autoSizeColumns
 </td>
 <td>
 
@@ -370,7 +361,7 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;class
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;class
 </td>
 <td>
 One of the themes provided here :
@@ -388,7 +379,7 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnDefs
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnDefs
 </td>
 <td>
 Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects
@@ -396,7 +387,7 @@ Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;defaultColDef
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;defaultColDef
 </td>
 <td>
 default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}
@@ -404,7 +395,7 @@ default is {hide: false, editable: true, sortable: true, resizable: true, filter
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
 </td>
 <td>
 height is 'auto' or value in % or px
@@ -412,7 +403,7 @@ height is 'auto' or value in % or px
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
 </td>
 <td>
 An Optional ID
@@ -420,7 +411,7 @@ An Optional ID
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;maxBlocksInCache
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;maxBlocksInCache
 </td>
 <td>
 How many blocks to keep in the store. Default is no limit, so every requested block is kept
@@ -428,7 +419,7 @@ How many blocks to keep in the store. Default is no limit, so every requested bl
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;overlayLoadingTemplate
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;overlayLoadingTemplate
 </td>
 <td>
 
@@ -436,7 +427,7 @@ How many blocks to keep in the store. Default is no limit, so every requested bl
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;overlayNoRowsTemplate
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;overlayNoRowsTemplate
 </td>
 <td>
 
@@ -444,7 +435,7 @@ How many blocks to keep in the store. Default is no limit, so every requested bl
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;pagination
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;pagination
 </td>
 <td>
 boolean: true (default) or false
@@ -452,7 +443,7 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paginationPageSize
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paginationPageSize
 </td>
 <td>
 integer: 10 by default
@@ -460,7 +451,7 @@ integer: 10 by default
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowData
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowData
 </td>
 <td>
 Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...} objects
@@ -468,7 +459,7 @@ Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowDeselection
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowDeselection
 </td>
 <td>
 boolean: true (default) or false
@@ -476,7 +467,7 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowHeight
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowHeight
 </td>
 <td>
 Height of the row in pixels as a string
@@ -484,7 +475,7 @@ Height of the row in pixels as a string
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowModelType
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowModelType
 </td>
 <td>
 Row model type
@@ -492,7 +483,7 @@ Row model type
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowSelection
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;rowSelection
 </td>
 <td>
 string: 'single' (default) or 'multiple'
@@ -500,7 +491,7 @@ string: 'single' (default) or 'multiple'
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressCellSelection
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressCellSelection
 </td>
 <td>
 
@@ -508,7 +499,7 @@ string: 'single' (default) or 'multiple'
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressRowClickSelection
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressRowClickSelection
 </td>
 <td>
 
@@ -516,7 +507,7 @@ string: 'single' (default) or 'multiple'
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
 </td>
 <td>
 width value in % or px
@@ -524,7 +515,7 @@ width value in % or px
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;wrapperClass
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;wrapperClass
 </td>
 <td>
 Height of the row in pixels as a string
@@ -546,7 +537,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CellClicked
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CellClicked
 </td>
 <td>
 Fired when a cell is clicked. Data will be the agGrid event
@@ -554,7 +545,7 @@ Fired when a cell is clicked. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CellValueChanged
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CellValueChanged
 </td>
 <td>
 Fired when A Cell is edited changed. Data will be the agGrid event
@@ -562,7 +553,7 @@ Fired when A Cell is edited changed. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;GetRows
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;GetRows
 </td>
 <td>
 Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action
@@ -570,7 +561,7 @@ Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUp
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;GridReady
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;GridReady
 </td>
 <td>
 Fired when the Grid is ready. Data will be the agGrid event
@@ -578,7 +569,7 @@ Fired when the Grid is ready. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowClicked
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowClicked
 </td>
 <td>
 Fired when a row is clicked. Data will be the agGrid event
@@ -586,7 +577,7 @@ Fired when a row is clicked. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowDataChanged
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowDataChanged
 </td>
 <td>
 Fired when Row data changed. Data will be the agGrid event
@@ -594,7 +585,7 @@ Fired when Row data changed. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowDoubleClicked
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowDoubleClicked
 </td>
 <td>
 Fired when A Cell is edited changed. Data will be the agGrid event
@@ -602,7 +593,7 @@ Fired when A Cell is edited changed. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowSelected
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;RowSelected
 </td>
 <td>
 Fired when a row is selected. Data will be the agGrid event
@@ -610,7 +601,7 @@ Fired when a row is selected. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;SelectionChanged
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;SelectionChanged
 </td>
 <td>
 Fired when selectionChange. Data will be the agGrid event
@@ -618,7 +609,7 @@ Fired when selectionChange. Data will be the agGrid event
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;SortChanged
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;SortChanged
 </td>
 <td>
 Fired when a a column is sorted. Data will be the agGrid event
@@ -631,7 +622,7 @@ Fired when a a column is sorted. Data will be the agGrid event
 <details><summary><b>angularxQRCode</b> : A QR Code Reader  using Full JS Algorithm</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") angularxQRCode
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") angularxQRCode
 
 A QR Code Reader  using Full JS Algorithm
 
@@ -648,7 +639,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;allowEmptyString
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;allowEmptyString
 </td>
 <td>
 Allow qrdata to be an empty string
@@ -656,7 +647,7 @@ Allow qrdata to be an empty string
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;alt
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;alt
 </td>
 <td>
 HTML alt attribute (supported by img, url)
@@ -664,7 +655,7 @@ HTML alt attribute (supported by img, url)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
 </td>
 <td>
 HTML aria-label attribute (supported by canvas, img, url)
@@ -672,7 +663,7 @@ HTML aria-label attribute (supported by canvas, img, url)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;colordark
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;colordark
 </td>
 <td>
 RGBA color, color of dark module (foreground)
@@ -680,7 +671,7 @@ RGBA color, color of dark module (foreground)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;colorlight
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;colorlight
 </td>
 <td>
 RGBA color, color of light module (background)
@@ -688,7 +679,7 @@ RGBA color, color of light module (background)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cssClass
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cssClass
 </td>
 <td>
 CSS Class
@@ -696,7 +687,7 @@ CSS Class
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;elementType
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;elementType
 </td>
 <td>
 'canvas', 'svg', 'img', 'url' (alias for 'img')
@@ -704,7 +695,7 @@ CSS Class
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;errorCorrectionLevel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;errorCorrectionLevel
 </td>
 <td>
 QR Correction level ('L', 'M', 'Q', 'H')
@@ -712,7 +703,7 @@ QR Correction level ('L', 'M', 'Q', 'H')
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageHeight
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageHeight
 </td>
 <td>
 height of your image
@@ -720,7 +711,7 @@ height of your image
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageSrc
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageSrc
 </td>
 <td>
 Link to your image
@@ -728,7 +719,7 @@ Link to your image
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageWidth
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;imageWidth
 </td>
 <td>
 width of your image
@@ -736,7 +727,7 @@ width of your image
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;margin
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;margin
 </td>
 <td>
 Define how much wide the quiet zone should be.
@@ -744,7 +735,7 @@ Define how much wide the quiet zone should be.
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;qrdata
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;qrdata
 </td>
 <td>
 String to encode
@@ -752,7 +743,7 @@ String to encode
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;scale
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;scale
 </td>
 <td>
 Scale factor. A value of 1 means 1px per modules (black dots).
@@ -760,7 +751,7 @@ Scale factor. A value of 1 means 1px per modules (black dots).
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;title
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;title
 </td>
 <td>
 HTML title attribute (supported by canvas, img, url)
@@ -768,7 +759,7 @@ HTML title attribute (supported by canvas, img, url)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;version
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;version
 </td>
 <td>
 1-40
@@ -776,7 +767,7 @@ HTML title attribute (supported by canvas, img, url)
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
 </td>
 <td>
 Height/Width (any value)
@@ -789,7 +780,7 @@ Height/Width (any value)
 <details><summary><b>cardIO_sc</b> : CardIO SharedComponent</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") cardIO_sc
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") cardIO_sc
 
 CardIO SharedComponent
 </p></blockquote></details>
@@ -797,7 +788,7 @@ CardIO SharedComponent
 <details><summary><b>DropZoneComponent</b> : This component handles file trop an a Zone</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") DropZoneComponent
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") DropZoneComponent
 
 This component handles file trop an a Zone. It will fire a  FileDropped event with a Files object as data. The File dropped will be in the out[0]
 
@@ -814,7 +805,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;Information
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;Information
 </td>
 <td>
 
@@ -836,7 +827,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;FilesDropped
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;FilesDropped
 </td>
 <td>
 
@@ -849,7 +840,7 @@ comment
 <details><summary><b>materialDatePicker</b></summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") materialDatePicker
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") materialDatePicker
 
 
 
@@ -866,7 +857,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;buttonAriaLabel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;buttonAriaLabel
 </td>
 <td>
 
@@ -874,7 +865,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inputAriaLabel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inputAriaLabel
 </td>
 <td>
 
@@ -882,7 +873,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
 </td>
 <td>
 
@@ -895,7 +886,7 @@ comment
 <details><summary><b>materialSlider</b></summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") materialSlider
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") materialSlider
 
 
 
@@ -912,7 +903,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ariaLabel
 </td>
 <td>
 
@@ -920,7 +911,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
 </td>
 <td>
 
@@ -928,7 +919,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;max
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;max
 </td>
 <td>
 
@@ -936,7 +927,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;min
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;min
 </td>
 <td>
 
@@ -944,7 +935,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
 </td>
 <td>
 
@@ -952,7 +943,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;step
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;step
 </td>
 <td>
 
@@ -965,7 +956,7 @@ comment
 <details><summary><b>ngxTagInput</b> : This component provides Chips management for your apps</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") ngxTagInput
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") ngxTagInput
 
 This component provides Chips management for your apps
 
@@ -982,7 +973,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;addOnBlur
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;addOnBlur
 </td>
 <td>
 
@@ -990,7 +981,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;autocompleteItems
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;autocompleteItems
 </td>
 <td>
 
@@ -998,7 +989,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;editableTag
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;editableTag
 </td>
 <td>
 
@@ -1006,7 +997,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inputtext
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inputtext
 </td>
 <td>
 
@@ -1014,7 +1005,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;itemDisplayBy
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;itemDisplayBy
 </td>
 <td>
 
@@ -1022,7 +1013,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;itemIdentifyBy
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;itemIdentifyBy
 </td>
 <td>
 
@@ -1030,7 +1021,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;items
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;items
 </td>
 <td>
 
@@ -1038,7 +1029,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;maxItems
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;maxItems
 </td>
 <td>
 
@@ -1046,7 +1037,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;onlyFromAutocomplete
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;onlyFromAutocomplete
 </td>
 <td>
 
@@ -1054,7 +1045,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;placeholder
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;placeholder
 </td>
 <td>
 
@@ -1062,7 +1053,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;removableTag
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;removableTag
 </td>
 <td>
 
@@ -1070,7 +1061,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;secondaryPlaceholder
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;secondaryPlaceholder
 </td>
 <td>
 
@@ -1078,7 +1069,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showAutoCompleteDropdownIfEmpty
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showAutoCompleteDropdownIfEmpty
 </td>
 <td>
 
@@ -1086,7 +1077,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;theme
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;theme
 </td>
 <td>
 
@@ -1108,7 +1099,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Add
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Add
 </td>
 <td>
 
@@ -1116,7 +1107,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Blur
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Blur
 </td>
 <td>
 
@@ -1124,7 +1115,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Focus
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Focus
 </td>
 <td>
 
@@ -1132,7 +1123,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ModelChange
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ModelChange
 </td>
 <td>
 
@@ -1140,7 +1131,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Paste
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Paste
 </td>
 <td>
 
@@ -1148,7 +1139,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Remove
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Remove
 </td>
 <td>
 
@@ -1156,7 +1147,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Select
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;Select
 </td>
 <td>
 
@@ -1164,7 +1155,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;TagEdited
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;TagEdited
 </td>
 <td>
 
@@ -1172,7 +1163,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;TextChange
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;TextChange
 </td>
 <td>
 
@@ -1180,7 +1171,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ValidationError
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ValidationError
 </td>
 <td>
 
@@ -1193,7 +1184,7 @@ comment
 <details><summary><b>tinyMce</b> : This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedregular_color_16x16.png?raw=true "UISharedRegularComponent") tinyMce
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") tinyMce
 
 This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
 
@@ -1210,7 +1201,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;apiKey
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;apiKey
 </td>
 <td>
 
@@ -1218,7 +1209,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cloudChannel
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cloudChannel
 </td>
 <td>
 
@@ -1226,7 +1217,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;disabled
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;disabled
 </td>
 <td>
 
@@ -1234,7 +1225,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
 </td>
 <td>
 
@@ -1242,7 +1233,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;init
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;init
 </td>
 <td>
 
@@ -1250,7 +1241,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;initialValue
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;initialValue
 </td>
 <td>
 
@@ -1258,7 +1249,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inline
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;inline
 </td>
 <td>
 
@@ -1266,7 +1257,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;model
 </td>
 <td>
 
@@ -1274,7 +1265,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;plugins
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;plugins
 </td>
 <td>
 
@@ -1282,7 +1273,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;tagName
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;tagName
 </td>
 <td>
 
@@ -1290,7 +1281,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_color_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;toolbar
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;toolbar
 </td>
 <td>
 
@@ -1312,7 +1303,7 @@ comment
 </tr>
 <tr>
 <td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_color_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onBlur
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onBlur
 </td>
 <td>
 

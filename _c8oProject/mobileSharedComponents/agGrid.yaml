@@ -380,6 +380,16 @@ comment: |
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.maxBlocksInCache","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓Event8 [ngx.components.UIControlEvent-1658828921080]: 
+      attrName: (gridColumnsChanged)
+      eventName: (gridColumnsChanged)
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1658828952371]: 
+        beanData: |
+          '{
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.ColDefChanged",
+           "data": "script:event"
+          }'
     ↓Attr14 [ngx.components.UIAttribute-1662998901295]: 
       attrName: '[ensureDomOrder]'
       attrValue: 

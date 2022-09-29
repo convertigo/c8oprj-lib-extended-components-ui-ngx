@@ -23,7 +23,7 @@ componentScriptContent:
         /*Begin_c8o_AppFunction*/
         	/*End_c8o_AppFunction*/
         
-tplProjectName: mobilebuilder_tpl_8_0_0_ngx
+tplProjectName: mobilebuilder_tpl_8_1_0_ngx
 ↓Menu [ngx.components.UIDynamicMenu-1500890597895]: 🗏 mobileMenus/Menu.yaml
 ↓cardIO_sa [ngx.components.UIActionStack-1595431416100]: 🗏 mobileSharedActions/cardIO_sa.yaml
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
