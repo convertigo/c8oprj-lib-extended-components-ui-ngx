@@ -347,7 +347,7 @@ comment: |
            "data": "script:event"
           }'
       ↓Log [ngx.components.UIDynamicAction-1633956030591]: 
-        beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
+        beanData: '{"ionBean":"LogAction","message":"plain:cellChanged"}'
     ↓Event5 [ngx.components.UIControlEvent-1634570131717]: 
       attrName: (rowDoubleClicked)
       eventName: (rowDoubleClicked)
