@@ -107,7 +107,7 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
     ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
-      attrName: id
+      attrName: '[attr.id]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -221,7 +221,7 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
     ↓Attr12 [ngx.components.UIAttribute-1645258496108]: 
-      attrName: id
+      attrName: '[attr.id]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
