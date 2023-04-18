@@ -280,7 +280,8 @@ comment: |
                 		const grid = props.stack["root"].scope.agGrid
                 		if(grid != undefined){
                 			if(page.autoSizeColumns){
-                					grid.api.autoSizeAllColumns();
+                					grid.columnApi.autoSizeAllColumns();
+                					//grid.api.autoSizeAllColumns();
                 			}
                 			else{
                 				grid.api.sizeColumnsToFit();
@@ -288,7 +289,8 @@ comment: |
                 				grid.api.resetRowHeights();
                 			setTimeout(()=>{
                 				if(page.autoSizeColumns){
-                					grid.api.autoSizeAllColumns();
+                					grid.columnApi.autoSizeAllColumns();
+                					//grid.api.autoSizeAllColumns();
                 				}
                 				else{
                 					grid.api.sizeColumnsToFit();
@@ -673,10 +675,10 @@ comment: |
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
       - com.twinsoft.convertigo.beans.common.FormatedContent: 
         →: |
-          '@import "~ag-grid-community/src/styles/ag-grid.scss";
-          @import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
-          @import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
-          @import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham-mixin";
+          '@import "ag-grid-community/src/styles/ag-grid.scss";
+          @import "ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
+          @import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+          @import "ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham-mixin";
           .ag-theme-material {
               @include ag-theme-material((
                   // use theme parameters where possible
