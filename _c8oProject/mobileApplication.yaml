@@ -36,6 +36,7 @@ tplProjectName: mobilebuilder_tpl_8_0_0_ngx
 ↓DropZoneComponent [ngx.components.UISharedRegularComponent-1653988043625]: 🗏 mobileSharedComponents/DropZoneComponent.yaml
 ↓materialDatePicker [ngx.components.UISharedRegularComponent-1662652067972]: 🗏 mobileSharedComponents/materialDatePicker.yaml
 ↓materialSlider [ngx.components.UISharedRegularComponent-1662984391613]: 🗏 mobileSharedComponents/materialSlider.yaml
+↓BaseRowGrid [ngx.components.UISharedRegularComponent-1681812168270]: 🗏 mobileSharedComponents/BaseRowGrid.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml
