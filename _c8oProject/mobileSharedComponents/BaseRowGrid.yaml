@@ -138,60 +138,69 @@
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:''
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1681812349288]: 
-  ↓CallSequence [ngx.components.UIDynamicAction-1681812374463]: 
-    beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:Hotels.Hotel_BookingsRoomsList"}'
-    tagName: CallSequence
-    ↓BuildDataDefs [ngx.components.UICustomAction-1681812522421]: 
-      actionValue: 
+  ↓BuildDataDefs [ngx.components.UICustomAction-1681812522421]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		
+            		page.c8o.callJsonObject(vars.Requestable, {
+            			
+            		})
+            		.async()
+            		.then((response : any)=> {
+            			// page.c8o.log.warn(''OUtput'' +  JSON.stringify(response));
+            			
+            			let colDefs = [];
+            			let rowData = [];
+            			let keys = Object.keys(response.object.results[0])
+            			for (let i=0; i < keys.length ; i++) {
+            				if (keys[i] != ''order'')
+            					colDefs.push({
+            						headerName: keys[i],
+            						field: keys[i]
+            					})
+            			}
+            			
+            			for (let i = 0; i < response.object.results.length; i ++) {
+            				let row = {};
+            				for (let j = 0; j < keys.length; j++) {
+            					if (keys[j] != ''order'')
+            						row[keys[j]] = response.object.results[i][keys[j]]
+            				}
+            				rowData.push(row);
+            			}
+            	
+            			let output = {
+            				columnDefs: colDefs,
+            				rowData : rowData
+            			}
+            			
+            			// page.c8o.log.warn(''OUtput'' +  JSON.stringify(output));
+            			
+            			resolve(output);
+            
+            			});		
+            '
+    ↓Data [ngx.components.UIControlVariable-1681812568670]: 
+      varValue: 
         - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-          - com.twinsoft.convertigo.beans.common.FormatedContent: 
-            →: |
-              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-              		
-              		
-              		// page.c8o.log.warn(''OUtput'' +  JSON.stringify(vars.Data));
-              		
-              		let colDefs = [];
-              		let rowData = [];
-              		let keys = Object.keys(vars.Data.object.results[0])
-              		for (let i=0; i < keys.length ; i++) {
-              			if (keys[i] != ''order'')
-              				colDefs.push({
-              					headerName: keys[i],
-              					field: keys[i]
-              				})
-              		}
-              		
-              		for (let i = 0; i < vars.Data.object.results.length; i ++) {
-              			let row = {};
-              			for (let j = 0; j < keys.length; j++) {
-              				if (keys[j] != ''order'')
-              					row[keys[j]] = vars.Data.object.results[i][keys[j]]
-              			}
-              			rowData.push(row);
-              		}
-              
-              		let output = {
-              			columnDefs: colDefs,
-              			rowData : rowData
-              		}
-              		
-              		// page.c8o.log.warn(''OUtput'' +  JSON.stringify(output));
-              		
-              		resolve(output);
-              		
-              '
-      ↓Data [ngx.components.UIControlVariable-1681812568670]: 
-        varValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: script:out
-      ↓SetLocal [ngx.components.UIDynamicAction-1681813410182]: 
-        beanData: |
-          '{
-           "ionBean": "SetLocalAction",
-           "Property": "plain:dataDef",
-           "Value": "script:out"
-          }'
-        tagName: SetLocal
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:out
+    ↓SetLocal [ngx.components.UIDynamicAction-1681813410182]: 
+      beanData: |
+        '{
+         "ionBean": "SetLocalAction",
+         "Property": "plain:dataDef",
+         "Value": "script:out"
+        }'
+      tagName: SetLocal
+    ↓Requestable [ngx.components.UIControlVariable-1681818103935]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1681812168270,"regular":true}],"path":"?.Requestable","prefix":"","suffix":"","custom":"","useCustom":false}}
+↓Requestable [ngx.components.UICompVariable-1681818063366]: 
+  value: '''.Hotel_BookingsRoomsList'''

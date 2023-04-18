@@ -344,6 +344,17 @@ A QR Code Reader  using Full JS Algorithm
 
 #### BaseRowGrid
 
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>Requestable</td><td></td>
+</tr>
+</table>
+
 #### cardIO_sc
 
 CardIO SharedComponent
