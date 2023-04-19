@@ -808,6 +808,8 @@ comment
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;Requestable
 </td>
 <td>
+The BaseRow CRUD "List" sequence imported from the NoCode View. For example :
+<pre>.Hotel_BookingsRoomsList</pre>
 
 </td>
 </tr>

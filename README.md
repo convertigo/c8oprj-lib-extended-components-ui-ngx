@@ -353,7 +353,9 @@ Provides a Grid that can be fed by data from a Baserow No Code database.
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>Requestable</td><td></td>
+<td>Requestable</td><td>The BaseRow CRUD "List" sequence imported from the NoCode View. For example :
+<pre>.Hotel_BookingsRoomsList</pre>
+</td>
 </tr>
 </table>
 

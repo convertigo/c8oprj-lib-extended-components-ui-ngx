@@ -221,3 +221,7 @@ comment: Provides a Grid that can be fed by data from a Baserow No Code database
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1681812168270,"regular":true}],"path":"?.Requestable","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓Requestable [ngx.components.UICompVariable-1681818063366]: 
+  comment: |
+    The BaseRow CRUD "List" sequence imported from the NoCode View. For example :
+    <pre>.Hotel_BookingsRoomsList</pre>
+    
