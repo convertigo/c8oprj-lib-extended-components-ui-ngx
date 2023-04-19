@@ -167,8 +167,25 @@
             			for (let i = 0; i < response.object.results.length; i ++) {
             				let row = {};
             				for (let j = 0; j < keys.length; j++) {
-            					if (keys[j] != ''order'')
-            						row[keys[j]] = response.object.results[i][keys[j]]
+            					if (keys[j] != ''order'') {
+            						console.log(keys[j] + '' is : '' + typeof response.object.results[i][keys[j]]);
+            						
+            						if (typeof response.object.results[i][keys[j]] == ''object'') {
+            							if (Array.isArray(response.object.results[i][keys[j]])) {
+            								let text = ""
+            								for (let k=0; k < response.object.results[i][keys[j]].length; k++) {
+            									if (response.object.results[i][keys[j]][k])
+            										text += response.object.results[i][keys[j]][k].value + '', '' 
+            								}
+            								row[keys[j]] = text;
+            							} else {
+            								if (response.object.results[i][keys[j]])
+            									row[keys[j]] = response.object.results[i][keys[j]].value
+            							}
+            						} else {
+            							row[keys[j]] = response.object.results[i][keys[j]]
+            						}
+            					}
             				}
             				rowData.push(row);
             			}
