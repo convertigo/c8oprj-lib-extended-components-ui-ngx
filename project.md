@@ -785,12 +785,12 @@ Height/Width (any value)
 
 </p></blockquote></details>
 
-<details><summary><b>BaseRowGrid</b></summary><blockquote><p>
+<details><summary><b>BaseRowGrid</b> : Provides a Grid that can be fed by data from a Baserow No Code database</summary><blockquote><p>
 
 
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") BaseRowGrid
 
-
+Provides a Grid that can be fed by data from a Baserow No Code database.
 
 <span style="color:DarkGoldenRod">Variables</span>
 

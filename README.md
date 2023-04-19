@@ -344,6 +344,8 @@ A QR Code Reader  using Full JS Algorithm
 
 #### BaseRowGrid
 
+Provides a Grid that can be fed by data from a Baserow No Code database.
+
 **variables**
 
 <table>
