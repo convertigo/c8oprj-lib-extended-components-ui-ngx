@@ -785,38 +785,6 @@ Height/Width (any value)
 
 </p></blockquote></details>
 
-<details><summary><b>BaseRowGrid</b> : Provides a Grid that can be fed by data from a Baserow No Code database</summary><blockquote><p>
-
-
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") BaseRowGrid
-
-Provides a Grid that can be fed by data from a Baserow No Code database.
-
-<span style="color:DarkGoldenRod">Variables</span>
-
-<table>
-<tr>
-<th>
-name
-</th>
-<th>
-comment
-</th>
-</tr>
-<tr>
-<td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;Requestable
-</td>
-<td>
-The BaseRow CRUD "List" sequence imported from the NoCode View. For example :
-<pre>.Hotel_BookingsRoomsList</pre>
-
-</td>
-</tr>
-</table>
-
-</p></blockquote></details>
-
 <details><summary><b>cardIO_sc</b> : CardIO SharedComponent</summary><blockquote><p>
 
 

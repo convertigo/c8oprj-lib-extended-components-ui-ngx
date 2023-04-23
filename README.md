@@ -22,7 +22,6 @@ For more technical informations : [documentation](./project.md)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
         - [angularxQRCode](#angularxqrcode)
-        - [BaseRowGrid](#baserowgrid)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
         - [materialDatePicker](#materialdatepicker)
@@ -339,23 +338,6 @@ A QR Code Reader  using Full JS Algorithm
 </tr>
 <tr>
 <td>width</td><td>Height/Width (any value)</td>
-</tr>
-</table>
-
-#### BaseRowGrid
-
-Provides a Grid that can be fed by data from a Baserow No Code database.
-
-**variables**
-
-<table>
-<tr>
-<th>name</th><th>comment</th>
-</tr>
-<tr>
-<td>Requestable</td><td>The BaseRow CRUD "List" sequence imported from the NoCode View. For example :
-<pre>.Hotel_BookingsRoomsList</pre>
-</td>
 </tr>
 </table>
 
