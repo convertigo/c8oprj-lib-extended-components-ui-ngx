@@ -4,7 +4,7 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
   identifier: DropZone
   tagName: div
   ↓Grid [ngx.components.UIDynamicElement-1653988043854]: 
-    beanData: '{"ionBean":"Grid"}'
+    beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
     tagName: ion-grid
     ↓GridRow [ngx.components.UIDynamicElement-1653988043857]: 
       beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'

@@ -33,9 +33,11 @@ comment: CardIO SharedAction
           	                        supressConfirmation: true,
           	                        hideCardIOLogo: true
               	                };
-              	                if(vars.options && vars.options != {}){
+              	                
+              	                if(vars.options){
               	                    options = vars.options;
               	                }
+              	                
               	                cardIO.scan(options)
               	                .then(
           	                        resp => {
@@ -119,6 +121,13 @@ comment: CardIO SharedAction
               - ↑value: '@ionic-native/card-io'
             - java.lang.String: 
               - ↑value: 5
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: '@ionic-native/core'
+            - java.lang.String: 
+              - ↑value: 5.36.0
   page_ts_imports: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector

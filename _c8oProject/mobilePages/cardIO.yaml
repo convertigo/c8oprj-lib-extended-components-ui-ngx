@@ -85,4 +85,9 @@ title: cardIO
 ↓Subscribe_Handler [ngx.components.UIEventSubscriber-1595431440480]: 
   topic: my_ccard_result
   ↓Toast [ngx.components.UIDynamicAction-1595431440483]: 
-    beanData: '{"ionBean":"ToastAction","message":"script:JSON.stringify(stack[''root''].out)"}'
+    beanData: |
+      '{
+       "ionBean": "ToastAction",
+       "message": "script:JSON.stringify(stack[''root''].out)",
+       "cssClass": "plain:"
+      }'
