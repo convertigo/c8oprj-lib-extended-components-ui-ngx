@@ -12,7 +12,12 @@ title: testAngularxQRCode
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614267444291]: 
-        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         comment: A button to toggle the menu
         tagName: ion-menu-button
     ↓BarTitle [ngx.components.UIDynamicElement-1614267444294]: 
@@ -27,7 +32,12 @@ title: testAngularxQRCode
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614267444303]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1614267444306]: 
           beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
@@ -60,7 +70,12 @@ title: testAngularxQRCode
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614267444318]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1614267444321]: 
           textValue: 
@@ -71,7 +86,12 @@ title: testAngularxQRCode
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614267444327]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1614267444330]: 
           textValue: 

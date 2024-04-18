@@ -7,10 +7,24 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
     beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
     tagName: ion-grid
     ↓GridRow [ngx.components.UIDynamicElement-1653988043857]: 
-      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      beanData: |
+        '{
+         "ionBean": "GridRow",
+         "Height": "plain:33%",
+         "FlexJustifyContent": "plain:ion-justify-content-end"
+        }'
       tagName: ion-row
       ↓GridCol [ngx.components.UIDynamicElement-1653988043860]: 
-        beanData: '{"ionBean":"GridCol"}'
+        beanData: |
+          '{
+           "ionBean": "GridCol",
+           "FlexAlignement": "plain:ion-align-self-end",
+           "SizeLg": "plain:1",
+           "SizeMd": "plain:1",
+           "SizeSm": "plain:12",
+           "SizeXl": "plain:1",
+           "SizeXs": "plain:12"
+          }'
         tagName: ion-col
         ↓Text [ngx.components.UIText-1653988043863]: 
           textValue: 
@@ -21,10 +35,24 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
           beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
           selfClose: false
     ↓GridRow1 [ngx.components.UIDynamicElement-1653988043869]: 
-      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      beanData: |
+        '{
+         "ionBean": "GridRow",
+         "Height": "plain:33%",
+         "FlexJustifyContent": "plain:ion-justify-content-end"
+        }'
       tagName: ion-row
       ↓GridCol1 [ngx.components.UIDynamicElement-1653988043872]: 
-        beanData: '{"ionBean":"GridCol"}'
+        beanData: |
+          '{
+           "ionBean": "GridCol",
+           "FlexAlignement": "plain:ion-align-self-end",
+           "SizeLg": "plain:1",
+           "SizeMd": "plain:1",
+           "SizeSm": "plain:12",
+           "SizeXl": "plain:1",
+           "SizeXs": "plain:12"
+          }'
         tagName: ion-col
         ↓Style [ngx.components.UIStyle-1653988379060]: 
           styleContent: 
@@ -50,7 +78,16 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                   //--ion-grid-columns	//The number of total Columns in the Grid
                   '
       ↓GridCol [ngx.components.UIDynamicElement-1653988043875]: 
-        beanData: '{"ionBean":"GridCol","FlexAlignement":"plain:ion-align-self-center"}'
+        beanData: |
+          '{
+           "ionBean": "GridCol",
+           "FlexAlignement": "plain:ion-align-self-center",
+           "SizeLg": "plain:1",
+           "SizeMd": "plain:1",
+           "SizeSm": "plain:12",
+           "SizeXl": "plain:1",
+           "SizeXs": "plain:12"
+          }'
         tagName: ion-col
         ↓Tag [ngx.components.UIElement-1653988043878]: 
           identifier: FileBrowser
@@ -97,7 +134,12 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                    "data": "script:out"
                   }'
         ↓Button [ngx.components.UIDynamicElement-1653988043899]: 
-          beanData: '{"ionBean":"Button"}'
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain"
+            }'
           tagName: ion-button
           ↓Text [ngx.components.UIText-1653988043902]: 
             textValue: 
@@ -116,13 +158,36 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                       		resolve();
                       '
       ↓GridCol2 [ngx.components.UIDynamicElement-1653988043911]: 
-        beanData: '{"ionBean":"GridCol"}'
+        beanData: |
+          '{
+           "ionBean": "GridCol",
+           "FlexAlignement": "plain:ion-align-self-center",
+           "SizeLg": "plain:1",
+           "SizeMd": "plain:1",
+           "SizeSm": "plain:12",
+           "SizeXl": "plain:1",
+           "SizeXs": "plain:12"
+          }'
         tagName: ion-col
     ↓GridRow2 [ngx.components.UIDynamicElement-1653988043914]: 
-      beanData: '{"ionBean":"GridRow","Height":"plain:33%"}'
+      beanData: |
+        '{
+         "ionBean": "GridRow",
+         "Height": "plain:33%",
+         "FlexJustifyContent": "plain:ion-justify-content-end"
+        }'
       tagName: ion-row
       ↓GridCol [ngx.components.UIDynamicElement-1653988043917]: 
-        beanData: '{"ionBean":"GridCol","FlexAlignement":"plain:ion-align-self-end"}'
+        beanData: |
+          '{
+           "ionBean": "GridCol",
+           "FlexAlignement": "plain:ion-align-self-end",
+           "SizeLg": "plain:1",
+           "SizeMd": "plain:1",
+           "SizeSm": "plain:12",
+           "SizeXl": "plain:1",
+           "SizeXs": "plain:12"
+          }'
         tagName: ion-col
         ↓Text [ngx.components.UIText-1653988043920]: 
           textValue: 

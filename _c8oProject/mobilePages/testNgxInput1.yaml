@@ -26,7 +26,12 @@ title: testNgxInput1
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1578671960860]: 
-        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         comment: A button to toggle the menu
         tagName: ion-menu-button
     ↓BarTitle [ngx.components.UIDynamicElement-1578671960854]: 
@@ -41,7 +46,12 @@ title: testNgxInput1
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1578671960869]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1578671960872]: 
           beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
@@ -59,6 +69,7 @@ title: testNgxInput1
           '{
            "ionBean": "Input",
            "ControlName": "plain:myInput",
+           "Disabled": "plain",
            "Debounce": "plain:0",
            "Placeholder": "plain:standard input: please enter text, then click Enter"
           }'

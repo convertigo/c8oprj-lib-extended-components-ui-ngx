@@ -27,7 +27,12 @@ title: cardIO
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440435]: 
-        beanData: '{"ionBean":"MenuButton"}'
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         comment: A button to toggle the menu
         tagName: ion-menu-button
     ↓BarTitle [ngx.components.UIDynamicElement-1595431440429]: 
@@ -42,7 +47,12 @@ title: cardIO
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440444]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1595431440447]: 
           beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
@@ -64,7 +74,12 @@ title: cardIO
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440465]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1595431440468]: 
           textValue: 
@@ -75,7 +90,12 @@ title: cardIO
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440474]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1595431440477]: 
           textValue: 
