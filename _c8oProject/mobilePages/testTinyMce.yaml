@@ -12,7 +12,12 @@ title: testTinyMce
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614265212835]: 
-        beanData: '{"ionBean":"MenuButton","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         comment: A button to toggle the menu
         tagName: ion-menu-button
     ↓BarTitle [ngx.components.UIDynamicElement-1614265212838]: 
@@ -27,10 +32,21 @@ title: testTinyMce
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614265212847]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1614265212850]: 
-          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "plain:ellipsis-vertical-outline",
+             "IconMdName": "plain",
+             "IconIosName": "plain"
+            }'
           tagName: ion-icon
 ↓Content [ngx.components.UIDynamicElement-1614265220259]: 
   beanData: '{"ionBean":"Content"}'
@@ -46,7 +62,12 @@ title: testTinyMce
       attrName: (onChange)
       eventName: onChange
       ↓Log [ngx.components.UIDynamicAction-1645465781708]: 
-        beanData: '{"ionBean":"LogAction","message":"script:out"}'
+        beanData: |
+          '{
+           "ionBean": "LogAction",
+           "message": "script:out",
+           "level": "plain:warn"
+          }'
     ↓Event1 [ngx.components.UIControlEvent-1645465765592]: 
       attrName: (onBlur)
       eventName: onBlur
@@ -61,7 +82,12 @@ title: testTinyMce
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614265212862]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1614265212865]: 
           textValue: 
@@ -72,7 +98,12 @@ title: testTinyMce
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1614265212871]: 
-        beanData: '{"ionBean":"Button","ButtonFormType":"plain:false"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1614265212874]: 
           textValue: 

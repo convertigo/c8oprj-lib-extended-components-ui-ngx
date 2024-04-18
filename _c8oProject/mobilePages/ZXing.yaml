@@ -12,7 +12,12 @@ title: ZXing
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440501]: 
-        beanData: '{"ionBean":"MenuButton"}'
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         comment: A button to toggle the menu
         tagName: ion-menu-button
     ↓BarTitle [ngx.components.UIDynamicElement-1595431440495]: 
@@ -27,17 +32,34 @@ title: ZXing
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440510]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1595431440513]: 
-          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "plain:ellipsis-vertical-outline",
+             "IconMdName": "plain",
+             "IconIosName": "plain"
+            }'
           tagName: ion-icon
 ↓Content [ngx.components.UIDynamicElement-1595431440516]: 
   beanData: '{"ionBean":"Content"}'
   comment: Page content
   tagName: ion-content
   ↓GenericItem [ngx.components.UIDynamicElement-1595431403994]: 
-    beanData: '{"ionBean":"GenericItem"}'
+    beanData: |
+      '{
+       "ionBean": "GenericItem",
+       "DetailIconName": "plain",
+       "ButtonFormType": "plain",
+       "Disabled": "plain"
+      }'
     tagName: ion-item
     ↓Label [ngx.components.UIDynamicElement-1595431403997]: 
       beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
@@ -48,7 +70,14 @@ title: ZXing
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:QRC_BarC
     ↓TextInput [ngx.components.UIDynamicElement-1595431404003]: 
-      beanData: '{"ionBean":"Input","Debounce":"plain:0"}'
+      beanData: |
+        '{
+         "ionBean": "Input",
+         "ControlName": "plain",
+         "Disabled": "plain",
+         "Debounce": "plain:0",
+         "Placeholder": "plain:standard input: please enter text, then click Enter"
+        }'
       identifier: codeResult
       tagName: ion-input
       ↓id [ngx.components.UIAttribute-1606127068331]: 
@@ -58,10 +87,22 @@ title: ZXing
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:idInputResult
     ↓Button [ngx.components.UIDynamicElement-1595431404006]: 
-      beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+      beanData: |
+        '{
+         "ionBean": "Button",
+         "ButtonFormType": "plain",
+         "Disabled": "plain",
+         "IonSize": "plain:small"
+        }'
       tagName: ion-button
       ↓Icon [ngx.components.UIDynamicElement-1595431404009]: 
-        beanData: '{"ionBean":"Icon","IconName":"plain:camera"}'
+        beanData: |
+          '{
+           "ionBean": "Icon",
+           "IconName": "plain:camera",
+           "IconMdName": "plain",
+           "IconIosName": "plain"
+          }'
         tagName: ion-icon
       ↓Attr [ngx.components.UIAttribute-1595431404012]: 
         attrName: 
@@ -134,10 +175,22 @@ title: ZXing
                 '	margin-top: 27px !important;
                 '
     ↓Button1 [ngx.components.UIDynamicElement-1595431404039]: 
-      beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+      beanData: |
+        '{
+         "ionBean": "Button",
+         "ButtonFormType": "plain",
+         "Disabled": "plain",
+         "IonSize": "plain:small"
+        }'
       tagName: ion-button
       ↓Icon [ngx.components.UIDynamicElement-1595431404042]: 
-        beanData: '{"ionBean":"Icon","IconName":"plain:document"}'
+        beanData: |
+          '{
+           "ionBean": "Icon",
+           "IconName": "plain:document",
+           "IconMdName": "plain",
+           "IconIosName": "plain"
+          }'
         tagName: ion-icon
       ↓Attr [ngx.components.UIAttribute-1595431404045]: 
         attrName: 
@@ -271,7 +324,12 @@ title: ZXing
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440531]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1595431440534]: 
           textValue: 
@@ -282,7 +340,12 @@ title: ZXing
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
       ↓Button [ngx.components.UIDynamicElement-1595431440540]: 
-        beanData: '{"ionBean":"Button"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain"
+          }'
         tagName: ion-button
         ↓Text [ngx.components.UIText-1595431440543]: 
           textValue: 

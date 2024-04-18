@@ -14,7 +14,13 @@ comment: CardIO SharedComponent
       }'
     tagName: ion-col
     ↓GenericItem [ngx.components.UIDynamicElement-1595431403886]: 
-      beanData: '{"ionBean":"GenericItem"}'
+      beanData: |
+        '{
+         "ionBean": "GenericItem",
+         "DetailIconName": "plain",
+         "ButtonFormType": "plain",
+         "Disabled": "plain"
+        }'
       tagName: ion-item
       ↓Label [ngx.components.UIDynamicElement-1595431403889]: 
         beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
@@ -25,7 +31,13 @@ comment: CardIO SharedComponent
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Credit Card Number
       ↓TextInput [ngx.components.UIDynamicElement-1595431403895]: 
-        beanData: '{"ionBean":"Input","Debounce":"plain:0"}'
+        beanData: |
+          '{
+           "ionBean": "Input",
+           "ControlName": "plain",
+           "Disabled": "plain",
+           "Debounce": "plain:0"
+          }'
         identifier: field_cardNumber
         tagName: ion-input
   ↓GridCol1 [ngx.components.UIDynamicElement-1595431403898]: 
@@ -40,7 +52,13 @@ comment: CardIO SharedComponent
       }'
     tagName: ion-col
     ↓GenericItem1 [ngx.components.UIDynamicElement-1595431403901]: 
-      beanData: '{"ionBean":"GenericItem"}'
+      beanData: |
+        '{
+         "ionBean": "GenericItem",
+         "DetailIconName": "plain",
+         "ButtonFormType": "plain",
+         "Disabled": "plain"
+        }'
       tagName: ion-item
       ↓Label [ngx.components.UIDynamicElement-1595431403904]: 
         beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
@@ -54,6 +72,8 @@ comment: CardIO SharedComponent
         beanData: |
           '{
            "ionBean": "Input",
+           "ControlName": "plain",
+           "Disabled": "plain",
            "Debounce": "plain:0",
            "Placeholder": "script:this.translate.instant(''MM_YY'')"
           }'
@@ -71,7 +91,13 @@ comment: CardIO SharedComponent
       }'
     tagName: ion-col
     ↓GenericItem2 [ngx.components.UIDynamicElement-1595431403916]: 
-      beanData: '{"ionBean":"GenericItem"}'
+      beanData: |
+        '{
+         "ionBean": "GenericItem",
+         "DetailIconName": "plain",
+         "ButtonFormType": "plain",
+         "Disabled": "plain"
+        }'
       tagName: ion-item
       ↓Label [ngx.components.UIDynamicElement-1595431403919]: 
         beanData: '{"ionBean":"Label","Position":"plain:stacked"}'
@@ -85,6 +111,8 @@ comment: CardIO SharedComponent
         beanData: |
           '{
            "ionBean": "Input",
+           "ControlName": "plain",
+           "Disabled": "plain",
            "Debounce": "plain:0",
            "Placeholder": "plain:123"
           }'
@@ -109,10 +137,22 @@ comment: CardIO SharedComponent
         }'
       tagName: ion-col
       ↓Button [ngx.components.UIDynamicElement-1595431403934]: 
-        beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain",
+           "IonSize": "plain:small"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1595431403937]: 
-          beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "plain:card",
+             "IconMdName": "plain",
+             "IconIosName": "plain"
+            }'
           tagName: ion-icon
         ↓Event [ngx.components.UIControlEvent-1595431403940]: 
           ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1595431403943]: 
@@ -177,10 +217,22 @@ comment: CardIO SharedComponent
         }'
       tagName: ion-col
       ↓Button [ngx.components.UIDynamicElement-1595431403976]: 
-        beanData: '{"ionBean":"Button","IonSize":"plain:small"}'
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain",
+           "Disabled": "plain",
+           "IonSize": "plain:small"
+          }'
         tagName: ion-button
         ↓Icon [ngx.components.UIDynamicElement-1595431403979]: 
-          beanData: '{"ionBean":"Icon","IconName":"plain:card"}'
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "plain:card",
+             "IconMdName": "plain",
+             "IconIosName": "plain"
+            }'
           tagName: ion-icon
         ↓Event [ngx.components.UIControlEvent-1595431403982]: 
           ↓CustomAction [ngx.components.UICustomAction-1595431403985]: 
