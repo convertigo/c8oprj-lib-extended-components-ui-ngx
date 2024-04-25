@@ -227,6 +227,9 @@ Also be shure to add the theme in the Theme object as :
 <td>rowSelection</td><td>string: 'single' (default) or 'multiple'</td>
 </tr>
 <tr>
+<td>showCsvDownload</td><td></td>
+</tr>
+<tr>
 <td>suppressCellSelection</td><td></td>
 </tr>
 <tr>
