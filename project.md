@@ -494,6 +494,7 @@ string: 'single' (default) or 'multiple'
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showCsvDownload
 </td>
 <td>
+If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
 
 </td>
 </tr>

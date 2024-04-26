@@ -465,40 +465,46 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this.ariaLabel
-      ↓GridCol1 [ngx.components.UIDynamicElement-1714061566712]: 
-        beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
-        tagName: ion-col
-        ↓Span [ngx.components.UIDynamicElement-1714062106936]: 
-          beanData: '{"ionBean":"SpanTag"}'
-          tagName: span
-        ↓Button [ngx.components.UIDynamicElement-1714062600299]: 
-          beanData: |
-            '{
-             "ionBean": "Button",
-             "IonColor": "plain:light",
-             "IonSize": "plain:small"
-            }'
-          tagName: ion-button
-          ↓Event [ngx.components.UIControlEvent-1714062600298]: 
-            ↓DoDownload [ngx.components.UICustomAction-1714062894665]: 
-              actionValue: 
+      ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
+        directiveName: If
+        directiveSource: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownload","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓GridCol1 [ngx.components.UIDynamicElement-1714061566712]: 
+          beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+          tagName: ion-col
+          ↓Span [ngx.components.UIDynamicElement-1714062106936]: 
+            beanData: '{"ionBean":"SpanTag"}'
+            tagName: span
+          ↓Button [ngx.components.UIDynamicElement-1714062600299]: 
+            beanData: |
+              '{
+               "ionBean": "Button",
+               "IonColor": "plain:light",
+               "IonSize": "plain:small"
+              }'
+            tagName: ion-button
+            ↓Event [ngx.components.UIControlEvent-1714062600298]: 
+              ↓DoDownload [ngx.components.UICustomAction-1714062894665]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                        		page.agGrid.api.exportDataAsCsv(props);
+                        		resolve(null);
+                        '
+            ↓Attr [ngx.components.UIAttribute-1714061961653]: 
+              attrName: tile
+              attrValue: 
                 - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                    →: |
-                      '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                      		page.agGrid.api.exportDataAsCsv(props);
-                      		resolve(null);
-                      '
-          ↓Attr [ngx.components.UIAttribute-1714061961653]: 
-            attrName: tile
-            attrValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:Download CSV
-          ↓Icon [ngx.components.UIDynamicElement-1714061608027]: 
-            beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
-            tagName: ion-icon
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: plain:Download CSV
+            ↓Icon [ngx.components.UIDynamicElement-1714061608027]: 
+              beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
+              tagName: ion-icon
 ↓wrapperClass [ngx.components.UICompVariable-1710934919124]: 
   comment: Height of the row in pixels as a string
 ↓SelectionChanged [ngx.components.UICompEvent-1710934919127]: 
@@ -636,3 +642,7 @@ scriptContent:
   value: false
 ↓ariaLabel [ngx.components.UICompVariable-1710934919154]: 
 ↓showCsvDownload [ngx.components.UICompVariable-1714064892515]: 
+  comment: |
+    If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+    
+  value: false

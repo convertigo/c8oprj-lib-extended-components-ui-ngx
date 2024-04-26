@@ -227,7 +227,8 @@ Also be shure to add the theme in the Theme object as :
 <td>rowSelection</td><td>string: 'single' (default) or 'multiple'</td>
 </tr>
 <tr>
-<td>showCsvDownload</td><td></td>
+<td>showCsvDownload</td><td>If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+</td>
 </tr>
 <tr>
 <td>suppressCellSelection</td><td></td>
