@@ -30,6 +30,19 @@ scriptContent:
         /*Begin_c8o_CompAfterViewChecked*/
         		/*End_c8o_CompAfterViewChecked*/
         /*Begin_c8o_CompFunction*/
+        	computeColumnDef() {
+        		if (this.columnDefs == undefined ||  this.columnDefs.length == 0 || this.columnDefs == null) {
+        			// extract columnDefs from this.rowData knwing that each element of the array is an object with each key being a column
+        			let keys = Object.keys(this.rowData[0]);
+        			let columnDefs = [];
+        			keys.forEach((key) => {
+        				columnDefs.push({ headerName: key, field: key });
+        			});
+        			this.columnDefs = columnDefs;
+        		}
+        		return this.columnDefs;
+        	}
+        	
         	/*End_c8o_CompFunction*/
         '
 ↓pagination [ngx.components.UICompVariable-1710934918902]: 
@@ -49,7 +62,7 @@ scriptContent:
   value: '{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
 ↓columnDefs [ngx.components.UICompVariable-1710934918917]: 
   comment: 'Array of columnDef {headerName: ''headerName'', field: ''fieldName''} objects'
-  value: '[{headerName: ''Make'', field: ''make'', cellEditor: ''agSelectCellEditor'', cellEditorParams: {values: [''Toyota'',''Ford'',''Porshe'',''BMW'',''Renault'',''VW'']}}, {headerName: ''Model'', field: ''model'', filter: ''agTextColumnFilter'', filterParams: {resetButton: true,applyButton: true,debounceMs: 200}}, {headerName: ''Price'', field: ''price'', cellEditor: ''agPopupTextCellEditor''}]'
+  value: '[]'
 ↓rowData [ngx.components.UICompVariable-1710934918920]: 
   comment: 'Array of row { fieldName1: ''value1'', fieldName2: ''value2'', fieldName3: true, ...} objects'
   value: '[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
@@ -192,7 +205,7 @@ scriptContent:
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.columnDefs","prefix":"","suffix":"","custom":"","useCustom":false}}
+                - MobileSmartSourceType: script:this.computeColumnDef()
           ↓Attr4 [ngx.components.UIAttribute-1710934919004]: 
             attrName: '[rowData]'
             attrValue: 
