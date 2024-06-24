@@ -49,10 +49,10 @@ scriptContent:
   value: '{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
 ↓columnDefs [ngx.components.UICompVariable-1710934918917]: 
   comment: 'Array of columnDef {headerName: ''headerName'', field: ''fieldName''} objects'
-  value: '[]'
+  value: '[{headerName: ''Make'', field: ''make'', cellEditor: ''agSelectCellEditor'', cellEditorParams: {values: [''Toyota'',''Ford'',''Porshe'',''BMW'',''Renault'',''VW'']}}, {headerName: ''Model'', field: ''model'', filter: ''agTextColumnFilter'', filterParams: {resetButton: true,applyButton: true,debounceMs: 200}}, {headerName: ''Price'', field: ''price'', cellEditor: ''agPopupTextCellEditor''}]'
 ↓rowData [ngx.components.UICompVariable-1710934918920]: 
   comment: 'Array of row { fieldName1: ''value1'', fieldName2: ''value2'', fieldName3: true, ...} objects'
-  value: '[]'
+  value: '[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
 ↓width [ngx.components.UICompVariable-1710934918923]: 
   comment: width value in % or px
   value: '''100%'''
@@ -145,11 +145,11 @@ scriptContent:
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.width","prefix":"'width:' +","suffix":"","custom":"","useCustom":false}}
           ↓Attr [ngx.components.UIAttribute-1710934918980]: 
-            attrName: '[class]'
+            attrName: '[ngClass]'
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.class","prefix":"","suffix":"","custom":"","useCustom":false}}
+                - MobileSmartSourceType: script:'ag-theme-quartz'
           ↓Attr8 [ngx.components.UIAttribute-1710934918983]: 
             attrName: domLayout
             attrValue: 
