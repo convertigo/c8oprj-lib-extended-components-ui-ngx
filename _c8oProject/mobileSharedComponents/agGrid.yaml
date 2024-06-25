@@ -33,6 +33,10 @@ scriptContent:
         	computeColumnDef() {
         		if (this.columnDefs == undefined ||  this.columnDefs.length == 0 || this.columnDefs == null) {
         			// extract columnDefs from this.rowData knwing that each element of the array is an object with each key being a column
+        			if (this.rowData == undefined || this.rowData.length == 0 || this.rowData == null) {
+        				return [];
+        			}
+        			
         			let keys = Object.keys(this.rowData[0]);
         			let columnDefs = [];
         			keys.forEach((key) => {
@@ -211,7 +215,7 @@ scriptContent:
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.rowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+                - MobileSmartSourceType: 'source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.rowData","prefix":"","suffix":"? this.rowData : [{}]","custom":"[{ a: ''b''}]","useCustom":false}}'
           ↓Event [ngx.components.UIControlEvent-1710934919007]: 
             attrName: (gridReady)
             eventName: (gridReady)
@@ -478,6 +482,12 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this.ariaLabel
+        ↓Directive [ngx.components.UIControlDirective-1719332811898]: 
+          directiveName: If
+          directiveSource: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.rowData","prefix":"","suffix":"","custom":"","useCustom":false}}
       ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
         directiveName: If
         directiveSource: 
