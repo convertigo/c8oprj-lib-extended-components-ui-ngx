@@ -345,8 +345,8 @@ scriptContent:
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
           ↓Event6 [ngx.components.UIControlEvent-1710934919052]: 
-            attrName: (rowDataChanged)
-            eventName: (rowDataChanged)
+            attrName: (rowDataUpdated)
+            eventName: (rowDataUpdated)
             ↓handleRowDataChanged [ngx.components.UICustomAction-1710934919055]: 
               actionValue: 
                 - xmlizable: 
