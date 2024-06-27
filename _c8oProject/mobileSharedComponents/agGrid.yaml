@@ -136,7 +136,7 @@ scriptContent:
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: 'plain:width: 100%'
+        - MobileSmartSourceType: 'plain:width: 100%; height: 100%'
   ↓Attr2 [ngx.components.UIAttribute-1710934919121]: 
     attrName: '[className]'
     attrValue: 
@@ -144,7 +144,7 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.wrapperClass
   ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
-    beanData: '{"ionBean":"Grid"}'
+    beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
     tagName: ion-grid
     ↓GridRow [ngx.components.UIDynamicElement-1714061566704]: 
       beanData: '{"ionBean":"GridRow"}'
@@ -482,12 +482,6 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this.ariaLabel
-        ↓Directive [ngx.components.UIControlDirective-1719332811898]: 
-          directiveName: If
-          directiveSource: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.rowData","prefix":"","suffix":"","custom":"","useCustom":false}}
       ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
         directiveName: If
         directiveSource: 
@@ -528,6 +522,12 @@ scriptContent:
             ↓Icon [ngx.components.UIDynamicElement-1714061608027]: 
               beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
               tagName: ion-icon
+    ↓class [ngx.components.UIAttribute-1719501022201]: 
+      attrName: class
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:ion-no-padding
 ↓wrapperClass [ngx.components.UICompVariable-1710934919124]: 
   comment: Height of the row in pixels as a string
 ↓SelectionChanged [ngx.components.UICompEvent-1710934919127]: 
