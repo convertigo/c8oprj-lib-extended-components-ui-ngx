@@ -21,6 +21,13 @@ comment: agGrid Update Rows, must be called in a GetRows Control
           			let lastRow = ''lastRow'' in vars.data ? vars.data.lastRow : undefined;
           			vars.agGridEvent.successCallback(data, lastRow);
           			
+          			if(page["autoSizeColumns"]) {
+          				vars.agGridEvent.object.api.autoSizeAllColumns();
+          			}
+          			else{
+          				vars.agGridEvent.object.api.sizeColumnsToFit();
+          			}
+          			
           			resolve();
           		} catch (e) {
           			try {
