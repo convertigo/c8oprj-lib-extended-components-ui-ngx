@@ -136,7 +136,7 @@ scriptContent:
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: 'plain:width: 100%; height: 100%'
+        - MobileSmartSourceType: 'plain:width: 100%'
   ↓Attr2 [ngx.components.UIAttribute-1710934919121]: 
     attrName: '[className]'
     attrValue: 
