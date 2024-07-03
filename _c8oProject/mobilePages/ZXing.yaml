@@ -261,7 +261,7 @@ title: ZXing
         selfClose: true
         tagName: br
       ↓Image [ngx.components.UIDynamicElement-1595431404093]: 
-        beanData: '{"ionBean":"Image","url":"plain"}'
+        beanData: '{"ionBean":"Image"}'
         identifier: zxing_image_id
         selfClose: true
         tagName: img

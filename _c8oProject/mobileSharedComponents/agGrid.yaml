@@ -55,6 +55,9 @@ scriptContent:
 ↓paginationPageSize [ngx.components.UICompVariable-1710934918905]: 
   comment: 'integer: 10 by default'
   value: 10
+↓paginationPageSizeSelector [ngx.components.UICompVariable-1719926091046]: 
+  comment: 'array | boolean: [20,50,100] by default'
+  value: true
 ↓rowSelection [ngx.components.UICompVariable-1710934918908]: 
   comment: 'string: ''single'' (default) or ''multiple'''
   value: '''single'''
@@ -186,6 +189,12 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.paginationPageSize","prefix":"","suffix":"","custom":"","useCustom":false}}
+          ↓paginationPageSizeSelector [ngx.components.UIAttribute-1719926151222]: 
+            attrName: '[paginationPageSizeSelector]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.paginationPageSizeSelector","prefix":"","suffix":"","custom":"","useCustom":false}}
           ↓Attr7 [ngx.components.UIAttribute-1710934918992]: 
             attrName: '[rowSelection]'
             attrValue: 
@@ -563,6 +572,18 @@ scriptContent:
                         	                return resultElement;
                         	            }
                         	        }
+                        	        
+                        	        if (page.global["agGridCompareInsensitive"] == undefined) {
+            							page.c8o.log.debug(''[MB] defining global function : agGridCompareInsensitive'');
+                        	            page.global["agGridCompareInsensitive"] = function(a,b) {
+            								if (typeof a === ''string'') {
+            					               return a.localeCompare(b);
+            								} else {
+            					               return (a > b ? 1 : (a < b ? -1 : 0));
+            						          }
+            							}
+            						}
+                        	        
                         		    resolve();
             '
     build_styles: 
