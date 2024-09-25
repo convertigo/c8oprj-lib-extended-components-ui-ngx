@@ -19,11 +19,11 @@
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.step
   ↓Attr3 [ngx.components.UIAttribute-1662984476980]: 
-    attrName: 
+    attrName: '[discrete]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: plain:thumbLabel
+        - MobileSmartSourceType: script:true
   ↓Style [ngx.components.UIStyle-1662989706787]: 
     styleContent: 
       - xmlizable: 
@@ -59,6 +59,7 @@
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.model
+    isEnabled: false
   ↓Attr6 [ngx.components.UIAttribute-1662994378521]: 
     attrName: '[attr.aria-label]'
     attrValue: 
@@ -71,6 +72,22 @@
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.id
+  ↓Tag [ngx.components.UIElement-1727189593001]: 
+    selfClose: true
+    tagName: input
+    ↓Attr [ngx.components.UIAttribute-1727189615670]: 
+      attrName: 
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:matSliderThumb
+    ↓Attr5 [ngx.components.UIAttribute-1727189708541]: 
+      attrName: '[(ngModel)]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.model
+  ↓Attr8 [ngx.components.UIAttribute-1727189610688]: 
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662984526639]: 
   ↓Imports [ngx.components.UICustomAction-1662984537097]: 
     module_ng_imports: 

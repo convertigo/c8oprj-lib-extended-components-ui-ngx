@@ -365,22 +365,22 @@ scriptContent:
                       		const grid = props.stack["root"].scope.agGrid
                       		if(grid != undefined){
                       			if(page.autoSizeColumns){
-                      					grid.columnApi.autoSizeAllColumns();
+                      					event?.api?.autoSizeAllColumns();
                       					//grid.api.autoSizeAllColumns();
                       			}
                       			else{
-                      				grid.api.sizeColumnsToFit();
+                      				event?.api?.sizeColumnsToFit();
                       			}
-                      				grid.api.resetRowHeights();
+                      				event?.api?.resetRowHeights();
                       			setTimeout(()=>{
                       				if(page.autoSizeColumns){
-                      					grid.columnApi.autoSizeAllColumns();
+                      					event?.columnApi?.autoSizeAllColumns();
                       					//grid.api.autoSizeAllColumns();
                       				}
                       				else{
-                      					grid.api.sizeColumnsToFit();
+                      					event?.api?.sizeColumnsToFit();
                       				}
-                      				grid.api.resetRowHeights();
+                      				event?.api?.resetRowHeights();
                       				page.c8o.log.debug('[MB] gridApi.sizeColumnsToFit() and gridApi.resetRowHeights() done');
                       			}, 500)
                       		}
