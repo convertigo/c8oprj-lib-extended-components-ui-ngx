@@ -8,10 +8,10 @@
     
     '
   corsOrigin: =Origin
-  version: 8.3.0.4
+  version: 8.4.0.0
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
-  ↓project [references.ProjectSchemaReference]: 
-    projectName: mobilebuilder_tpl_8_3_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_3_0_ngx.zip
+  ↓project1 [references.ProjectSchemaReference]: 
+    projectName: mobilebuilder_tpl_8_4_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_4_0_ngx.zip
   ↓MobileApplication [core.MobileApplication]: 
     comment: Describes the mobile application global properties
     splashRemoveMode: beforeUpdate
