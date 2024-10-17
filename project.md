@@ -968,6 +968,28 @@ comment
 </tr>
 </table>
 
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ModelChange
+</td>
+<td>
+
+</td>
+</tr>
+</table>
+
 </p></blockquote></details>
 
 <details><summary><b>ngxTagInput</b> : This component provides Chips management for your apps</summary><blockquote><p>
