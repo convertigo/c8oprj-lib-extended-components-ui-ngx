@@ -491,6 +491,18 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this.ariaLabel
+          ↓Attr18 [ngx.components.UIAttribute-1730210689448]: 
+            attrName: '[localeText]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.localeText","prefix":"","suffix":"","custom":"","useCustom":false}}
+          ↓Attr19 [ngx.components.UIAttribute-1730212024597]: 
+            attrName: '[getLocaleText]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.getLocaleText","prefix":"","suffix":"","custom":"","useCustom":false}}
       ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
         directiveName: If
         directiveSource: 
@@ -690,3 +702,7 @@ scriptContent:
     If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
     
   value: false
+↓localeText [ngx.components.UICompVariable-1730210710648]: 
+  value: null
+↓getLocaleText [ngx.components.UICompVariable-1730212109285]: 
+  value: null
