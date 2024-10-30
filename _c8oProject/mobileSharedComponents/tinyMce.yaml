@@ -7,9 +7,13 @@ scriptContent:
         '/*Begin_c8o_CompImport*/
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
+        	public _tiny_id = new Date().getTime() + (""+Math.random()).substring(2);
         	public initOffline: any =  {
         	    base_url: document.head.baseURI + "tinymce", // Root for resources
-        	    suffix: ''.min''        // Suffix to use when loading resources
+        	    suffix: ''.min'',        // Suffix to use when loading resources,
+        	    selector: ''#''+this._tiny_id,
+        	    promotion: false,
+        	    license_key: ''gpl''
           	}
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
@@ -107,11 +111,11 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
     ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
-      attrName: '[attr.id]'
+      attrName: '[id]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this._tiny_id
     ↓Attr5 [ngx.components.UIAttribute-1584115486506]: 
       attrName: plugins
       attrValue: 
@@ -157,6 +161,77 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:ngDefaultControl
+      isEnabled: false
+    ↓Attr8 [ngx.components.UIAttribute-1730282412975]: 
+      attrName: licenseKey
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:gpl
+    ↓Event2 [ngx.components.UIControlEvent-1730282946091]: 
+      attrName: (onActivate)
+      eventName: (onActivate)
+      ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1730282973651]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		try {
+                			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                			console.log("on activate called for id"+ page._tiny_id, event);
+                			console.log("on activate called for id"+ page._tiny_id, page.init);
+                //			setTimeout(()=>{
+                //				event?.editor.execCommand(''mceAutoResize'');
+                //				console.log(''mceAutoResize done'');
+                //			}, 5000);
+                		} catch (e) {
+                		
+                		} finally {
+                			return;
+                		}
+                '
+    ↓Event3 [ngx.components.UIControlEvent-1730282955267]: 
+      attrName: (onRemove)
+      eventName: (onRemove)
+      ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1730283001958]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		try {
+                			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                			console.log("on removed called", event);
+                		} catch (e) {
+                		
+                		} finally {
+                			return;
+                		}
+                '
+    ↓Event4 [ngx.components.UIControlEvent-1730284669481]: 
+      attrName: (onDeactivate)
+      eventName: (onDeactivate)
+      ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1730284669484]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		try {
+                			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                			console.log("on onDeactivate called for id"+ page._tiny_id, event);
+                			console.log("on onDeactivate called for id"+ page._tiny_id, page.init);
+                //			setTimeout(()=>{
+                //				event?.editor.execCommand(''mceAutoResize'');
+                //				console.log(''mceAutoResize done'');
+                //			}, 5000);
+                		} catch (e) {
+                		
+                		} finally {
+                			return;
+                		}
+                '
 ↓Tag2 [ngx.components.UIElement-1610985402974]: 
   identifier: ElseBlock_1610985402974
   tagName: ng-template
@@ -225,7 +300,7 @@ scriptContent:
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this._tiny_id
     ↓Attr5 [ngx.components.UIAttribute-1645258496111]: 
       attrName: plugins
       attrValue: 
@@ -250,6 +325,12 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:ngDefaultControl
+    ↓Attr8 [ngx.components.UIAttribute-1730282440260]: 
+      attrName: license_key
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:gpl
 ↓onBlur [ngx.components.UICompEvent-1645465531073]: 
   attrName: onBlur
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414862134]: 
@@ -326,11 +407,11 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
               - java.lang.String: 
-                - ↑value: 5.0.1
+                - ↑value: 8.0.1
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: tinymce
               - java.lang.String: 
-                - ↑value: 5.8.2
+                - ↑value: 7.4.1
