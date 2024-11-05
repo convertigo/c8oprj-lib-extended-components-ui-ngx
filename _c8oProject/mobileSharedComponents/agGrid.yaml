@@ -503,6 +503,12 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.getLocaleText","prefix":"","suffix":"","custom":"","useCustom":false}}
+          ↓Attr20 [ngx.components.UIAttribute-1730805459174]: 
+            attrName: '[suppressFieldDotNotation]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.suppressFieldDotNotation","prefix":"","suffix":"","custom":"","useCustom":false}}
       ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
         directiveName: If
         directiveSource: 
@@ -706,3 +712,6 @@ scriptContent:
   value: null
 ↓getLocaleText [ngx.components.UICompVariable-1730212109285]: 
   value: null
+↓suppressFieldDotNotation [ngx.components.UICompVariable-1730805476518]: 
+  comment: 'boolean: true (default) or false'
+  value: false

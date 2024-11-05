@@ -532,6 +532,14 @@ If set to true will display a side bar menu where user can click a download butt
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressFieldDotNotation
+</td>
+<td>
+boolean: true (default) or false
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressRowClickSelection
 </td>
 <td>
