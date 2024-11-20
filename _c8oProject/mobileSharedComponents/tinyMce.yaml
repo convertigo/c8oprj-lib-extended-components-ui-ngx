@@ -13,8 +13,7 @@ scriptContent:
         	    suffix: ''.min'',        // Suffix to use when loading resources,
         	    selector: ''#''+this._tiny_id,
         	    promotion: false,
-        	    license_key: ''gpl'',
-        		branding: false
+        	    license_key: ''gpl''
           	}
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
@@ -415,4 +414,4 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: tinymce
               - java.lang.String: 
-                - ↑value: 6.8.5
+                - ↑value: 7.4.1
