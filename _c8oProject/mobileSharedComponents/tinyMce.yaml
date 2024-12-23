@@ -333,4 +333,4 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: tinymce
               - java.lang.String: 
-                - ↑value: 5.8.2
+                - ↑value: 5.10.9
