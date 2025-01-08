@@ -175,7 +175,7 @@ scriptContent:
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:autoHeight
+                - MobileSmartSourceType: plain:normal
             comment: 'Don''t use Grid Auto Height when displaying large numbers of rows: eg >1,000 rows'
           ↓Attr2 [ngx.components.UIAttribute-1710934918986]: 
             attrName: '[pagination]'
