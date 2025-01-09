@@ -36,6 +36,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓DropZoneComponent [ngx.components.UISharedRegularComponent-1653988043625]: 🗏 mobileSharedComponents/DropZoneComponent.yaml
 ↓materialDatePicker [ngx.components.UISharedRegularComponent-1662652067972]: 🗏 mobileSharedComponents/materialDatePicker.yaml
 ↓materialSlider [ngx.components.UISharedRegularComponent-1662984391613]: 🗏 mobileSharedComponents/materialSlider.yaml
+↓tuiImageEditor [ngx.components.UISharedRegularComponent-1733927373662]: 🗏 mobileSharedComponents/tuiImageEditor.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml
@@ -45,6 +46,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testTinyMce [ngx.components.PageComponent-1614265132496]: 🗏 mobilePages/testTinyMce.yaml
 ↓testAngularxQRCode [ngx.components.PageComponent-1614267429193]: 🗏 mobilePages/testAngularxQRCode.yaml
 ↓testMaterialDatePicker [ngx.components.PageComponent-1662715336337]: 🗏 mobilePages/testMaterialDatePicker.yaml
+↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
 ↓Theme [ngx.components.UITheme-1491635018260]: 
   comment: Global color themes can be customized here
   styleContent: 

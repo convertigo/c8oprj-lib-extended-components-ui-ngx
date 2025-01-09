@@ -1,0 +1,143 @@
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        import ImageEditor from "tui-image-editor";
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	public getDataURL(){
+        		return this.local.instance.toDataURL();
+        	}
+        	public getBlob(){
+        		return this.dataURItoBlob(this.getDataURL());
+        	}
+        	private dataURItoBlob(dataURI) {
+        	  // convert base64 to raw binary data held in a string
+        	  // doesn''t handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        	  var byteString = atob(dataURI.split('','')[1]);
+        
+        	  // separate out the mime component
+        	  var mimeString = dataURI.split('','')[0].split('':'')[1].split('';'')[0]
+        
+        	  // write the bytes of the string to an ArrayBuffer
+        	  var ab = new ArrayBuffer(byteString.length);
+        
+        	  // create a view into the buffer
+        	  var ia = new Uint8Array(ab);
+        
+        	  // set the bytes of the buffer to the correct values
+        	  for (var i = 0; i < byteString.length; i++) {
+        	      ia[i] = byteString.charCodeAt(i);
+        	  }
+        
+        	  // write the ArrayBuffer to a blob, and you''re done
+        	  var blob = new Blob([ab], {type: mimeString});
+        	  return blob;
+        
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1733927420454]: 
+  ↓imports [ngx.components.UICustomAsyncAction-1733927432354]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		try{
+            			page.local.instance = new ImageEditor(document.querySelector(''#tui-image-editor''), {
+            				includeUI: {
+            				    loadImage: {
+            				      path: page.imagePath,
+            				      name: page.imageName,
+            				    },
+            				},
+            			  cssMaxWidth: page.cssMaxWidth,
+            			  cssMaxHeight: page.cssMaxHeight,
+            			});
+            			// hide logo
+            			let logo: any = document.querySelectorAll(''.tui-image-editor-header-logo'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");		
+            			// hide load button
+            			document.querySelectorAll(''.tui-image-editor-load-btn'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");
+            			// hide download button
+            			document.querySelectorAll(''.tui-image-editor-download-btn'')?.forEach((x: any)=> {x.style.visibility = "hidden";});
+            
+            		}
+            		catch(e){
+            			console.log("error", e);
+            		}
+            		
+            '
+    build_styles: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/tui-image-editor/dist/tui-image-editor.min.css
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/tui-color-picker/dist/tui-color-picker.min.css
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: tui-image-editor
+              - java.lang.String: 
+                - ↑value: 3.15.3
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: file-saver
+              - java.lang.String: 
+                - ↑value: 2.0.5
+↓Div [ngx.components.UIDynamicElement-1733928630770]: 
+  beanData: '{"ionBean":"DivTag"}'
+  tagName: div
+  ↓Attr [ngx.components.UIAttribute-1733928643166]: 
+    attrName: id
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:tui-image-editor
+↓imagePath [ngx.components.UICompVariable-1734347304829]: 
+↓imageName [ngx.components.UICompVariable-1734347325244]: 
+↓cssMaxWidth [ngx.components.UICompVariable-1734347348419]: 
+↓cssMaxHeight [ngx.components.UICompVariable-1734347350128]: 
+↓imageName3 [ngx.components.UICompVariable-1734347351388]: 
+↓imageName4 [ngx.components.UICompVariable-1734347352685]: 
+↓imageName5 [ngx.components.UICompVariable-1734347385446]: 
+↓imageName6 [ngx.components.UICompVariable-1734347386728]: 
+↓imageName7 [ngx.components.UICompVariable-1734347387824]: 
+↓imageName8 [ngx.components.UICompVariable-1734347388827]: 
