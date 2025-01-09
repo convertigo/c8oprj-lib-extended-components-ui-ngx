@@ -175,7 +175,7 @@ scriptContent:
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:normal
+                - MobileSmartSourceType: script:this.domLayout
             comment: 'Don''t use Grid Auto Height when displaying large numbers of rows: eg >1,000 rows'
           ↓Attr2 [ngx.components.UIAttribute-1710934918986]: 
             attrName: '[pagination]'
@@ -715,3 +715,6 @@ scriptContent:
 ↓suppressFieldDotNotation [ngx.components.UICompVariable-1730805476518]: 
   comment: 'boolean: true (default) or false'
   value: false
+↓domLayout [ngx.components.UICompVariable-1736414720782]: 
+  comment: 'boolean: true (default) or false'
+  value: '''autoHeight'''
