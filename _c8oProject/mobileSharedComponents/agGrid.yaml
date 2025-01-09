@@ -718,3 +718,24 @@ scriptContent:
 ↓domLayout [ngx.components.UICompVariable-1736414720782]: 
   comment: 'boolean: true (default) or false'
   value: '''autoHeight'''
+↓SharedComponent_Event1 [ngx.components.UISharedComponentEvent-1736431569720]: 
+  componentEvent: onChanges
+  ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1736431569723]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		try {
+            			if(props?.stack?.root?.scope?.changes?.height?.currentValue != null && props.stack.root.scope.changes.height.firstChange != true){
+            				let height = props?.stack?.root?.scope?.changes?.height?.currentValue;
+            				var autoHeight = height == "" || height == "auto";
+            				(page.agGrid as any)._nativeElement.style.height = autoHeight ? "" : height;
+            			}
+            			debugger;
+            		} catch (e) {
+            		
+            		} finally {
+            			return;
+            		}
+            '
