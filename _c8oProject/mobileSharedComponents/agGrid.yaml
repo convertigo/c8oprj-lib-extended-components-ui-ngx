@@ -732,7 +732,7 @@ scriptContent:
             				var autoHeight = height == "" || height == "auto";
             				(page.agGrid as any)._nativeElement.style.height = autoHeight ? "" : height;
             			}
-            			debugger;
+            //			debugger;
             		} catch (e) {
             		
             		} finally {
