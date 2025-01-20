@@ -290,6 +290,8 @@ scriptContent:
                             - ↑value: IDatasource, IGetRowsParams,GridOptions
                           - java.lang.String: 
                             - ↑value: ag-grid-community
+                          - java.lang.String: 
+                            - ↑value: false
                 ↓width [ngx.components.UIControlVariable-1710934919016]: 
                   varValue: 
                     - xmlizable: 
@@ -405,6 +407,7 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressCellSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+            isEnabled: false
           ↓Attr101 [ngx.components.UIAttribute-1710934919067]: 
             attrName: '[suppressRowClickSelection]'
             attrValue: 
@@ -643,6 +646,8 @@ scriptContent:
                 - ↑value: AgGridAngular
               - java.lang.String: 
                 - ↑value: ag-grid-angular
+              - java.lang.String: 
+                - ↑value: false
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -679,6 +684,8 @@ scriptContent:
                 - ↑value: ModuleRegistry
               - java.lang.String: 
                 - ↑value: ag-grid-community
+              - java.lang.String: 
+                - ↑value: false
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -686,6 +693,8 @@ scriptContent:
                 - ↑value: CsvExportModule
               - java.lang.String: 
                 - ↑value: '@ag-grid-community/csv-export'
+              - java.lang.String: 
+                - ↑value: false
 ↓rowModelType [ngx.components.UICompVariable-1710934919136]: 
   comment: Row model type
   value: '''clientSide'''

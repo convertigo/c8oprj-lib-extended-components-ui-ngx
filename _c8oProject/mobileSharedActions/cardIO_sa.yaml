@@ -110,6 +110,8 @@ comment: CardIO SharedAction
               - ↑value: CardIO
             - java.lang.String: 
               - ↑value: '@ionic-native/card-io/ngx'
+            - java.lang.String: 
+              - ↑value: false
   package_dependencies: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -139,6 +141,8 @@ comment: CardIO SharedAction
               - ↑value: CardIO
             - java.lang.String: 
               - ↑value: '@ionic-native/card-io/ngx'
+            - java.lang.String: 
+              - ↑value: false
   ↓ccn [ngx.components.UIControlVariable-1595431416106]: 
     varValue: 
       - xmlizable: 

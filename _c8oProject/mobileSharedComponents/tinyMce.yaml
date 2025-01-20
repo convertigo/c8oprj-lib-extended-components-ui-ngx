@@ -309,6 +309,8 @@ scriptContent:
                 - ↑value: EditorModule
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
+              - java.lang.String: 
+                - ↑value: false
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -316,6 +318,8 @@ scriptContent:
                 - ↑value: TINYMCE_SCRIPT_SRC
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
+              - java.lang.String: 
+                - ↑value: false
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector

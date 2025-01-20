@@ -269,6 +269,8 @@ comment: This component provides Chips management for your apps
                 - ↑value: TagInputModule
               - java.lang.String: 
                 - ↑value: ngx-chips
+              - java.lang.String: 
+                - ↑value: false
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -276,6 +278,8 @@ comment: This component provides Chips management for your apps
                 - ↑value: BrowserAnimationsModule
               - java.lang.String: 
                 - ↑value: '@angular/platform-browser/animations'
+              - java.lang.String: 
+                - ↑value: false
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector

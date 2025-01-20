@@ -158,6 +158,8 @@ comment: ZXing SharedAction
               - ↑value: BrowserMultiFormatReader
             - java.lang.String: 
               - ↑value: '@zxing/library'
+            - java.lang.String: 
+              - ↑value: false
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
           - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -165,6 +167,8 @@ comment: ZXing SharedAction
               - ↑value: NotFoundException
             - java.lang.String: 
               - ↑value: '@zxing/library'
+            - java.lang.String: 
+              - ↑value: false
   ↓type [ngx.components.UIControlVariable-1595431416160]: 
     varValue: 
       - xmlizable: 
