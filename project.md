@@ -369,6 +369,14 @@ boolean: true (default) or false
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cacheBlockSize
+</td>
+<td>
+
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;class
 </td>
 <td>
@@ -391,6 +399,14 @@ Also be shure to add the theme in the Theme object as :
 </td>
 <td>
 Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;datasource
+</td>
+<td>
+
 </td>
 </tr>
 <tr>

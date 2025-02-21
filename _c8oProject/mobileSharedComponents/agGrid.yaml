@@ -141,11 +141,11 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: 'plain:width: 100%'
   ↓Attr2 [ngx.components.UIAttribute-1710934919121]: 
-    attrName: '[className]'
+    attrName: '[ngClass]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-        - MobileSmartSourceType: script:this.wrapperClass
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.wrapperClass","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
     beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
     tagName: ion-grid
@@ -374,7 +374,7 @@ scriptContent:
                       				event?.api?.resetRowHeights();
                       			setTimeout(()=>{
                       				if(page.autoSizeColumns){
-                      					event?.columnApi?.autoSizeAllColumns();
+                      					event?.api?.autoSizeAllColumns();
                       					//grid.api.autoSizeAllColumns();
                       				}
                       				else{
@@ -509,6 +509,18 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.suppressFieldDotNotation","prefix":"","suffix":"","custom":"","useCustom":false}}
+          ↓Attr21 [ngx.components.UIAttribute-1739986943597]: 
+            attrName: '[datasource]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this.datasource
+          ↓Attr22 [ngx.components.UIAttribute-1739987426754]: 
+            attrName: '[cacheBlockSize]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this.cacheBlockSize
       ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
         directiveName: If
         directiveSource: 
@@ -739,3 +751,7 @@ scriptContent:
             			return;
             		}
             '
+↓datasource [ngx.components.UICompVariable-1739986920136]: 
+  value: null
+↓cacheBlockSize [ngx.components.UICompVariable-1739987415429]: 
+  value: 100
