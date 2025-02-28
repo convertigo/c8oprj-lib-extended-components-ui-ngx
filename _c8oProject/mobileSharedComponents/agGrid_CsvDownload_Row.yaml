@@ -1,0 +1,19 @@
+↓GridRow [ngx.components.UIDynamicElement-1740749016203]: 
+  beanData: '{"ionBean":"GridRow"}'
+  tagName: ion-row
+  ↓Attr [ngx.components.UIAttribute-1740749016206]: 
+    attrName: '[ngClass]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:'ion-justify-content-' + this?.alignment
+  ↓UseSharedComponent [ngx.components.UIUseShared-1740749016209]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+    ↓ag_grid [ngx.components.UIUseVariable-1740749016212]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1740749016195,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+↓alignment [ngx.components.UICompVariable-1740749102733]: 
+  value: '''end'''
+↓ag_grid [ngx.components.UICompVariable-1740749365643]: 

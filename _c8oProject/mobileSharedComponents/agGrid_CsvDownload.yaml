@@ -1,0 +1,40 @@
+↓GridCol1 [ngx.components.UIDynamicElement-1740737699313]: 
+  beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+  tagName: ion-col
+  ↓Button [ngx.components.UIDynamicElement-1740737699316]: 
+    beanData: |
+      '{
+       "ionBean": "Button",
+       "IonColor": "plain:light",
+       "IonSize": "plain:small"
+      }'
+    tagName: ion-button
+    ↓Event [ngx.components.UIControlEvent-1740737699319]: 
+      ↓DoDownload [ngx.components.UICustomAction-1740737699322]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		if(vars.agGrid && vars.agGrid != ''''){
+                			vars.agGrid.api.exportDataAsCsv(props);
+                		}
+                		
+                		resolve(null);
+                '
+        ↓agGrid [ngx.components.UIControlVariable-1740738890083]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1740737699309,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓Attr [ngx.components.UIAttribute-1740737699325]: 
+      attrName: title
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:Download CSV
+    ↓Icon [ngx.components.UIDynamicElement-1740737699328]: 
+      beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
+      tagName: ion-icon
+↓ag_grid [ngx.components.UICompVariable-1740738695111]: 

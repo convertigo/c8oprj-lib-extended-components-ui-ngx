@@ -149,9 +149,40 @@ scriptContent:
   ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
     beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
     tagName: ion-grid
+    ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
+      directiveName: If
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'top' || this?.showCsvDownloadPosition == 'both_row')
+      ↓UseSharedComponent [ngx.components.UIUseShared-1740749016214]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
+        ↓alignment [ngx.components.UIUseVariable-1740749193489]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓ag_grid [ngx.components.UIUseVariable-1740749454848]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this?.agGrid
     ↓GridRow [ngx.components.UIDynamicElement-1714061566704]: 
       beanData: '{"ionBean":"GridRow"}'
       tagName: ion-row
+      ↓Directive2 [ngx.components.UIControlDirective-1740740215803]: 
+        directiveName: If
+        directiveSource: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'left' || this?.showCsvDownloadPosition == 'both_col')
+        ↓UseSharedComponent [ngx.components.UIUseShared-1740740215806]: 
+          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+          ↓ag_grid [ngx.components.UIUseVariable-1740740215809]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.agGrid
       ↓GridCol [ngx.components.UIDynamicElement-1714061566706]: 
         beanData: '{"ionBean":"GridCol"}'
         tagName: ion-col
@@ -491,52 +522,55 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this.ariaLabel
-      ↓Directive [ngx.components.UIControlDirective-1714120677046]: 
+          ↓Attr18 [ngx.components.UIAttribute-1740676240724]: 
+            attrName: '[localeText]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this.local.agGridLang
+      ↓Directive1 [ngx.components.UIControlDirective-1740737400747]: 
         directiveName: If
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownload","prefix":"","suffix":"","custom":"","useCustom":false}}
-        ↓GridCol1 [ngx.components.UIDynamicElement-1714061566712]: 
-          beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
-          tagName: ion-col
-          ↓Span [ngx.components.UIDynamicElement-1714062106936]: 
-            beanData: '{"ionBean":"SpanTag"}'
-            tagName: span
-          ↓Button [ngx.components.UIDynamicElement-1714062600299]: 
-            beanData: |
-              '{
-               "ionBean": "Button",
-               "IonColor": "plain:light",
-               "IonSize": "plain:small"
-              }'
-            tagName: ion-button
-            ↓Event [ngx.components.UIControlEvent-1714062600298]: 
-              ↓DoDownload [ngx.components.UICustomAction-1714062894665]: 
-                actionValue: 
-                  - xmlizable: 
-                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                      →: |
-                        '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                        		page.agGrid.api.exportDataAsCsv(props);
-                        		resolve(null);
-                        '
-            ↓Attr [ngx.components.UIAttribute-1714061961653]: 
-              attrName: tile
-              attrValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Download CSV
-            ↓Icon [ngx.components.UIDynamicElement-1714061608027]: 
-              beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
-              tagName: ion-icon
+            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'right' || this?.showCsvDownloadPosition == 'both_col')
+        ↓UseSharedComponent [ngx.components.UIUseShared-1740739326846]: 
+          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+          ↓ag_grid [ngx.components.UIUseVariable-1740739326849]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.agGrid
+      ↓class [ngx.components.UIAttribute-1740741583901]: 
+        attrName: '[ngClass]'
+        attrValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'ion-align-items-' + this?.showCsvDownloadAlignment
     ↓class [ngx.components.UIAttribute-1719501022201]: 
       attrName: class
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:ion-no-padding
+    ↓Directive1 [ngx.components.UIControlDirective-1740737208011]: 
+      directiveName: If
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'bottom' || this?.showCsvDownloadPosition == 'both_row')
+      ↓UseSharedComponent [ngx.components.UIUseShared-1740749499442]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
+        ↓alignment [ngx.components.UIUseVariable-1740749499445]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓ag_grid [ngx.components.UIUseVariable-1740749499448]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this?.agGrid
 ↓wrapperClass [ngx.components.UICompVariable-1710934919124]: 
   comment: Height of the row in pixels as a string
 ↓SelectionChanged [ngx.components.UICompEvent-1710934919127]: 
@@ -650,6 +684,13 @@ scriptContent:
                 - ↑value: '@ag-grid-community/csv-export'
               - java.lang.String: 
                 - ↑value: 31.2.1
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@ag-grid-community/locale'
+              - java.lang.String: 
+                - ↑value: 32.3.1
     page_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -690,3 +731,110 @@ scriptContent:
     If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
     
   value: false
+↓showCsvDownloadPosition [ngx.components.UICompVariable-1740672273851]: 
+  comment: |
+    If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+    
+  value: '''top'''
+↓showCsvDownloadAlignment [ngx.components.UICompVariable-1740672348917]: 
+  comment: |
+    If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+    
+  value: '''end'''
+↓localeText [ngx.components.UICompVariable-1740677495030]: 
+  comment: |
+    'Define the Grid localisation.
+    You can provide:
+    
+     - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+     - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
+    
+    The default language of the grid is American English.'
+  value: '''en'''
+↓SharedComponent_Event1 [ngx.components.UISharedComponentEvent-1740679748012]: 
+  componentEvent: onChanges
+  ↓agGridLang [ngx.components.UICustomAsyncAction-1740679526517]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		let curLocaleText = props?.stack?.root?.scope?.changes?.localeText?.currentValue;
+            		if(typeof curLocaleText == ''string''){
+            			async function getLocale(locale) {
+            			    const locales = {
+            			        ''ar'': ''AG_GRID_LOCALE_EG'',
+            			        ''ar-EG'': ''AG_GRID_LOCALE_EG'',
+            			        ''bg'': ''AG_GRID_LOCALE_BG'',
+            			        ''bg-BG'': ''AG_GRID_LOCALE_BG'',
+            			        ''zh-HK'': ''AG_GRID_LOCALE_HK'',
+            			        ''zh'': ''AG_GRID_LOCALE_CN'',
+            			        ''cn'': ''AG_GRID_LOCALE_CN'',
+            			        ''zh-CN'': ''AG_GRID_LOCALE_CN'',
+            			        ''zh-TW'': ''AG_GRID_LOCALE_TW'',
+            			        ''hr'': ''AG_GRID_LOCALE_HR'',
+            			        ''hr-HR'': ''AG_GRID_LOCALE_HR'',
+            			        ''cs'': ''AG_GRID_LOCALE_CZ'',
+            			        ''cs-CZ'': ''AG_GRID_LOCALE_CZ'',
+            			        ''da'': ''AG_GRID_LOCALE_DK'',
+            			        ''da-DK'': ''AG_GRID_LOCALE_DK'',
+            			        ''nl'': ''AG_GRID_LOCALE_NL'',
+            			        ''nl-NL'': ''AG_GRID_LOCALE_NL'',
+            			        ''fi'': ''AG_GRID_LOCALE_FI'',
+            			        ''fi-FI'': ''AG_GRID_LOCALE_FI'',
+            			        ''fr'': ''AG_GRID_LOCALE_FR'',
+            			        ''fr-FR'': ''AG_GRID_LOCALE_FR'',
+            			        ''de'': ''AG_GRID_LOCALE_DE'',
+            			        ''de-DE'': ''AG_GRID_LOCALE_DE'',
+            			        ''el'': ''AG_GRID_LOCALE_GR'',
+            			        ''el-GR'': ''AG_GRID_LOCALE_GR'',
+            			        ''he'': ''AG_GRID_LOCALE_IL'',
+            			        ''he-IL'': ''AG_GRID_LOCALE_IL'',
+            			        ''hu'': ''AG_GRID_LOCALE_HU'',
+            			        ''hu-HU'': ''AG_GRID_LOCALE_HU'',
+            			        ''it'': ''AG_GRID_LOCALE_IT'',
+            			        ''it-IT'': ''AG_GRID_LOCALE_IT'',
+            			        ''ja'': ''AG_GRID_LOCALE_JP'',
+            			        ''ja-JP'': ''AG_GRID_LOCALE_JP'',
+            			        ''ko'': ''AG_GRID_LOCALE_KR'',
+            			        ''ko-KR'': ''AG_GRID_LOCALE_KR'',
+            			        ''nb'': ''AG_GRID_LOCALE_NO'',
+            			        ''nb-NO'': ''AG_GRID_LOCALE_NO'',
+            			        ''fa'': ''AG_GRID_LOCALE_IR'',
+            			        ''fa-IR'': ''AG_GRID_LOCALE_IR'',
+            			        ''pl'': ''AG_GRID_LOCALE_PL'',
+            			        ''pl-PL'': ''AG_GRID_LOCALE_PL'',
+            			        ''pt'': ''AG_GRID_LOCALE_PT'',
+            			        ''pt-PT'': ''AG_GRID_LOCALE_PT'',
+            			        ''br'': ''AG_GRID_LOCALE_BR'',
+            			        ''pt-BR'': ''AG_GRID_LOCALE_BR'',
+            			        ''ro'': ''AG_GRID_LOCALE_RO'',
+            			        ''ro-RO'': ''AG_GRID_LOCALE_RO'',
+            			        ''sk'': ''AG_GRID_LOCALE_SK'',
+            			        ''sk-SK'': ''AG_GRID_LOCALE_SK'',
+            			        ''es'': ''AG_GRID_LOCALE_ES'',
+            			        ''es-ES'': ''AG_GRID_LOCALE_ES'',
+            			        ''sv'': ''AG_GRID_LOCALE_SE'',
+            			        ''sv-SE'': ''AG_GRID_LOCALE_SE'',
+            			        ''tr'': ''AG_GRID_LOCALE_TR'',
+            			        ''tr-TR'': ''AG_GRID_LOCALE_TR'',
+            			        ''uk'': ''AG_GRID_LOCALE_UA'',
+            			        ''uk-UA'': ''AG_GRID_LOCALE_UA'',
+            			        ''ur'': ''AG_GRID_LOCALE_PK'',
+            			        ''ur-PK'': ''AG_GRID_LOCALE_PK'',
+            			        ''vi'': ''AG_GRID_LOCALE_VN'',
+            			        ''vi-VN'': ''AG_GRID_LOCALE_VN'',
+            			        ''en'': ''AG_GRID_LOCALE_EN'',
+            			        ''en-US'': ''AG_GRID_LOCALE_EN''
+            			    };
+            			
+            			    const localeModule = await import(''@ag-grid-community/locale'');
+            			    return localeModule[locales[locale] || ''AG_GRID_LOCALE_EN''];
+            			}
+            			
+            			curLocaleText = await getLocale(curLocaleText);
+            
+            
+            		}
+            		page.local.agGridLang = curLocaleText;
+            '

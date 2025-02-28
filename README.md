@@ -21,6 +21,8 @@ For more technical informations : [documentation](./project.md)
         - [ZXing_sa](#zxing_sa)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
+        - [agGrid_CsvDownload](#aggrid_csvdownload)
+        - [agGrid_CsvDownload_Row](#aggrid_csvdownload_row)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
@@ -197,6 +199,15 @@ Also be shure to add the theme in the Theme object as :
 <td>id</td><td>An Optional ID</td>
 </tr>
 <tr>
+<td>localeText</td><td>Define the Grid localisation.
+You can provide:
+
+ - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+ - 'fr' or 'fr-FR' => A string representing the translation language (BCP47 Tag or Sub tag)
+
+The default language of the grid is American English.</td>
+</tr>
+<tr>
 <td>maxBlocksInCache</td><td>How many blocks to keep in the store. Default is no limit, so every requested block is kept</td>
 </tr>
 <tr>
@@ -210,6 +221,9 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>paginationPageSize</td><td>integer: 10 by default</td>
+</tr>
+<tr>
+<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default</td>
 </tr>
 <tr>
 <td>rowData</td><td>Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...} objects</td>
@@ -228,6 +242,14 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>showCsvDownload</td><td>If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+</td>
+</tr>
+<tr>
+<td>showCsvDownloadAlignment</td><td>If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+</td>
+</tr>
+<tr>
+<td>showCsvDownloadPosition</td><td>If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
 </td>
 </tr>
 <tr>
@@ -279,6 +301,35 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>SortChanged</td><td>Fired when a a column is sorted. Data will be the agGrid event</td>
+</tr>
+</table>
+
+#### agGrid_CsvDownload
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+</table>
+
+#### agGrid_CsvDownload_Row
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+<tr>
+<td>alignment</td><td></td>
 </tr>
 </table>
 

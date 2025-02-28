@@ -29,6 +29,8 @@ tplProjectName: mobilebuilder_tpl_8_3_0_ngx
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
 ↓agGridUpdateRows [ngx.components.UIActionStack-1652954574813]: 🗏 mobileSharedActions/agGridUpdateRows.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
+↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1740737699309]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
+↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1740749016195]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
