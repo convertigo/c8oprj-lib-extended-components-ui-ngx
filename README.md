@@ -190,6 +190,14 @@ Also be shure to add the theme in the Theme object as :
 <td>columnDefs</td><td>Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects</td>
 </tr>
 <tr>
+<td>customLocaleText</td><td>Add or surcharge Grid localisation.
+You have to provide:
+
+ - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+
+The default value is an empty object.</td>
+</tr>
+<tr>
 <td>defaultColDef</td><td>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</td>
 </tr>
 <tr>
@@ -220,10 +228,10 @@ The default language of the grid is American English.</td>
 <td>pagination</td><td>boolean: true (default) or false</td>
 </tr>
 <tr>
-<td>paginationPageSize</td><td>integer: 10 by default</td>
+<td>paginationPageSize</td><td>integer: 20 by default</td>
 </tr>
 <tr>
-<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default</td>
+<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default. If 'paginationPageSize' has a value not in the default array, it is automatically added.</td>
 </tr>
 <tr>
 <td>rowData</td><td>Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...} objects</td>

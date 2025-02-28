@@ -73,7 +73,7 @@ title: testAgGrid1
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:20
+          - MobileSmartSourceType: script:10
     ↓rowSelection [ngx.components.UIUseVariable-1577112296989]: 
       varValue: 
         - xmlizable: 
@@ -100,19 +100,6 @@ title: testAgGrid1
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
-    ↓localeText [ngx.components.UIUseVariable-1740671610645]: 
-      comment: |
-        'Define the Grid localisation.
-        You can provide:
-        
-         - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
-         - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
-        
-        The default language of the grid is American English.'
-      varValue: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:'fr'
     ↓showCsvDownload [ngx.components.UIUseVariable-1740671655992]: 
       comment: |
         If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
@@ -137,6 +124,31 @@ title: testAgGrid1
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'end'
+    ↓localeText [ngx.components.UIUseVariable-1740757866974]: 
+      comment: |
+        'Define the Grid localisation.
+        You can provide:
+        
+         - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+         - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
+        
+        The default language of the grid is American English.'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'fr'
+    ↓customLocaleText [ngx.components.UIUseVariable-1740760979060]: 
+      comment: |
+        'Add or overload Grid localisation.
+        You have to provide:
+        
+         - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+        
+        The default value is an empty object.'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{fr: {pageSizeSelectorLabel: ''Lignes par page :''}, es: {pageSizeSelectorLabel: ''Filas por página''}}'
 ↓Footer [ngx.components.UIDynamicElement-1577112297028]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

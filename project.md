@@ -387,6 +387,19 @@ Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;customLocaleText
+</td>
+<td>
+Add or surcharge Grid localisation.
+You have to provide:
+
+ - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+
+The default value is an empty object.
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;defaultColDef
 </td>
 <td>
@@ -460,7 +473,7 @@ boolean: true (default) or false
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paginationPageSize
 </td>
 <td>
-integer: 10 by default
+integer: 20 by default
 </td>
 </tr>
 <tr>
@@ -468,7 +481,7 @@ integer: 10 by default
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paginationPageSizeSelector
 </td>
 <td>
-array | boolean: [20,50,100] by default
+array | boolean: [20,50,100] by default. If 'paginationPageSize' has a value not in the default array, it is automatically added.
 </td>
 </tr>
 <tr>
