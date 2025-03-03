@@ -1115,7 +1115,7 @@ Features :
 - [x] Good base functionality test coverage
 - [x] Themes
 
-For more informations see [documention](https://www.npmjs.com/package/@ng-select/ng-select/v/12.0.7)
+For more informations see [documentation](https://www.npmjs.com/package/@ng-select/ng-select/v/12.0.7)
 
 <span style="color:DarkGoldenRod">Variables</span>
 
