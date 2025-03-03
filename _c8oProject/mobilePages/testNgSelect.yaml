@@ -1,0 +1,124 @@
+segment: path-to-testngselect
+title: Title for testNgSelect
+↓Header [ngx.components.UIDynamicElement-1741013889464]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Page header
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1741013889467]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1741013889470]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1741013889473]: 
+        beanData: |
+          '{
+           "ionBean": "MenuButton",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
+        comment: A button to toggle the menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1741013889476]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1741013889479]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:My First App
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1741013889482]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1741013889485]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1741013889488]: 
+          beanData: '{"ionBean":"Icon","IconName":"plain:ellipsis-vertical-outline"}'
+          tagName: ion-icon
+↓Content [ngx.components.UIDynamicElement-1741013900656]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓UseSharedComponent [ngx.components.UIUseShared-1741013909940]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect
+    ↓items [ngx.components.UIUseVariable-1741014343172]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local.data
+    ↓virtualScroll [ngx.components.UIUseVariable-1741014343174]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓bindValue [ngx.components.UIUseVariable-1741018488122]: 
+      comment: Object property to use for selected model. By default binds to whole object.
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'id'
+    ↓bindLabel [ngx.components.UIUseVariable-1741018488124]: 
+      comment: Object property to use for label. Default label
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'name'
+↓Footer [ngx.components.UIDynamicElement-1741013896663]: 
+  beanData: '{"ionBean":"Footer"}'
+  comment: Page footer
+  tagName: ion-footer
+  ↓ToolBar [ngx.components.UIDynamicElement-1741013896666]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1741013896669]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1741013896672]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1741013896675]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 1
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1741013896678]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1741013896681]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "ButtonFormType": "plain:false",
+           "Disabled": "plain"
+          }'
+        tagName: ion-button
+        ↓Text [ngx.components.UIText-1741013896684]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Action 2
+↓PageEvent [ngx.components.UIPageEvent-1741014352935]: 
+  ↓CreateLargeFakeData [ngx.components.UICustomAsyncAction-1741014360828]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		try {
+            			page.local.data = Array.from({ length: 1000 }).map((_, i) => ({ id: i, name: `Élément ${i + 1}` }));
+            		} catch (e) {
+            		
+            		} finally {
+            			return;
+            		}
+            '
