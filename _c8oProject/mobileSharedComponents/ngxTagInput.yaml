@@ -244,7 +244,7 @@ comment: This component provides Chips management for your apps
           →: |
             		resolve();
             
-    module_ng_imports: 
+    local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
         - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -258,7 +258,7 @@ comment: This component provides Chips management for your apps
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: BrowserAnimationsModule 
-    module_ts_imports: 
+    local_module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
         - com.twinsoft.convertigo.beans.common.XMLVector: 

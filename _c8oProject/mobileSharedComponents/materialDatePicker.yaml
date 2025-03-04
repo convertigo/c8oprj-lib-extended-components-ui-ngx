@@ -58,7 +58,7 @@ scriptContent:
             	    matTogglerChild?.setAttribute('aria-label', page.buttonAriaLabel);
             		resolve();
             
-    module_ng_imports: 
+    local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
         - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -82,7 +82,7 @@ scriptContent:
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: MatInputModule
-    module_ng_providers: 
+    local_module_ng_providers: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
         - com.twinsoft.convertigo.beans.common.XMLVector: 
@@ -106,7 +106,7 @@ scriptContent:
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: '{provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]}'
-    module_ts_imports: 
+    local_module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
         - com.twinsoft.convertigo.beans.common.XMLVector: 
