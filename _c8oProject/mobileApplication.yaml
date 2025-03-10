@@ -29,6 +29,8 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
 ↓agGridUpdateRows [ngx.components.UIActionStack-1652954574813]: 🗏 mobileSharedActions/agGridUpdateRows.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
+↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
+↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
@@ -37,6 +39,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓materialDatePicker [ngx.components.UISharedRegularComponent-1662652067972]: 🗏 mobileSharedComponents/materialDatePicker.yaml
 ↓materialSlider [ngx.components.UISharedRegularComponent-1662984391613]: 🗏 mobileSharedComponents/materialSlider.yaml
 ↓tuiImageEditor [ngx.components.UISharedRegularComponent-1733927373662]: 🗏 mobileSharedComponents/tuiImageEditor.yaml
+↓ngSelect [ngx.components.UISharedRegularComponent-1741619592591]: 🗏 mobileSharedComponents/ngSelect.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml
@@ -47,6 +50,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testAngularxQRCode [ngx.components.PageComponent-1614267429193]: 🗏 mobilePages/testAngularxQRCode.yaml
 ↓testMaterialDatePicker [ngx.components.PageComponent-1662715336337]: 🗏 mobilePages/testMaterialDatePicker.yaml
 ↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
+↓testNgSelect [ngx.components.PageComponent-1741619640644]: 🗏 mobilePages/testNgSelect.yaml
 ↓Theme [ngx.components.UITheme-1491635018260]: 
   comment: Global color themes can be customized here
   styleContent: 

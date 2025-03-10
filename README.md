@@ -21,13 +21,17 @@ For more technical informations : [documentation](./project.md)
         - [ZXing_sa](#zxing_sa)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
+        - [agGrid_CsvDownload](#aggrid_csvdownload)
+        - [agGrid_CsvDownload_Row](#aggrid_csvdownload_row)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
         - [materialDatePicker](#materialdatepicker)
         - [materialSlider](#materialslider)
+        - [ngSelect](#ngselect)
         - [ngxTagInput](#ngxtaginput)
         - [tinyMce](#tinymce)
+        - [tuiImageEditor](#tuiimageeditor)
 
 
 ## Installation
@@ -43,13 +47,13 @@ For more technical informations : [documentation](./project.md)
      <tr><td>To contribute</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.3.0.0
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=b5b834de69c45ed0faa79e131cd8b2f3be1b2089
      ```
      </td></tr>
      <tr><td>To simply use</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/8.3.0.0.zip
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/b5b834de69c45ed0faa79e131cd8b2f3be1b2089.zip
      ```
      </td></tr>
     </table>
@@ -172,6 +176,9 @@ This Shared component wraps the ag-grid component. Most of the properties and ev
 <td>autoSizeColumns</td><td></td>
 </tr>
 <tr>
+<td>cacheBlockSize</td><td></td>
+</tr>
+<tr>
 <td>class</td><td>One of the themes provided here :
 
 https://www.ag-grid.com/javascript-grid-themes-provided/
@@ -188,13 +195,39 @@ Also be shure to add the theme in the Theme object as :
 <td>columnDefs</td><td>Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects</td>
 </tr>
 <tr>
+<td>customLocaleText</td><td>Add or surcharge Grid localisation.
+You have to provide:
+
+ - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+
+The default value is an empty object.</td>
+</tr>
+<tr>
+<td>datasource</td><td></td>
+</tr>
+<tr>
 <td>defaultColDef</td><td>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</td>
+</tr>
+<tr>
+<td>domLayout</td><td>boolean: true (default) or false</td>
+</tr>
+<tr>
+<td>getLocaleText</td><td></td>
 </tr>
 <tr>
 <td>height</td><td>height is 'auto' or value in % or px</td>
 </tr>
 <tr>
 <td>id</td><td>An Optional ID</td>
+</tr>
+<tr>
+<td>localeText</td><td>Define the Grid localisation.
+You can provide:
+
+ - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+ - 'fr' or 'fr-FR' => A string representing the translation language (BCP47 Tag or Sub tag)
+
+The default language of the grid is American English.</td>
 </tr>
 <tr>
 <td>maxBlocksInCache</td><td>How many blocks to keep in the store. Default is no limit, so every requested block is kept</td>
@@ -210,6 +243,9 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>paginationPageSize</td><td>integer: 10 by default</td>
+</tr>
+<tr>
+<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default</td>
 </tr>
 <tr>
 <td>rowData</td><td>Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...} objects</td>
@@ -231,7 +267,18 @@ Also be shure to add the theme in the Theme object as :
 </td>
 </tr>
 <tr>
+<td>showCsvDownloadAlignment</td><td>If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+</td>
+</tr>
+<tr>
+<td>showCsvDownloadPosition</td><td>If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+</td>
+</tr>
+<tr>
 <td>suppressCellSelection</td><td></td>
+</tr>
+<tr>
+<td>suppressFieldDotNotation</td><td>boolean: true (default) or false</td>
 </tr>
 <tr>
 <td>suppressRowClickSelection</td><td></td>
@@ -279,6 +326,35 @@ Also be shure to add the theme in the Theme object as :
 </tr>
 <tr>
 <td>SortChanged</td><td>Fired when a a column is sorted. Data will be the agGrid event</td>
+</tr>
+</table>
+
+#### agGrid_CsvDownload
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+</table>
+
+#### agGrid_CsvDownload_Row
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+<tr>
+<td>alignment</td><td></td>
 </tr>
 </table>
 
@@ -418,7 +494,228 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <td>model</td><td></td>
 </tr>
 <tr>
+<td>showTickMarks</td><td></td>
+</tr>
+<tr>
+<td>showValue</td><td></td>
+</tr>
+<tr>
 <td>step</td><td></td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ModelChange</td><td></td>
+</tr>
+</table>
+
+#### ngSelect
+
+Lightweight all in one UI Select, Multiselect and Autocomplete
+
+Features :
+- [x] Custom binding to property or object
+- [x] Custom option, label, header and footer templates
+- [x] Virtual Scroll support with large data sets (>5000 items).
+- [x] Infinite scroll
+- [x] Keyboard navigation
+- [x] Multiselect
+- [x] Flexible autocomplete with client/server filtering
+- [x] Custom search
+- [x] Custom tags
+- [x] Append to
+- [x] Group items
+- [x] Output events
+- [x] Accessibility
+- [x] Good base functionality test coverage
+- [x] Themes
+
+For more informations see [documentation](https://www.npmjs.com/package/@ng-select/ng-select/v/12.0.7)
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>addTag</td><td>Allows to create custom options.</td>
+</tr>
+<tr>
+<td>addTagText</td><td>Set custom text when using tagging</td>
+</tr>
+<tr>
+<td>appearance</td><td>Allows to select dropdown appearance. Set to outline to add border instead of underline (applies only to Material theme)</td>
+</tr>
+<tr>
+<td>appendTo</td><td>Append dropdown to body or any other element using css selector. For correct positioning body should have position:relative</td>
+</tr>
+<tr>
+<td>bindLabel</td><td>Object property to use for label. Default label</td>
+</tr>
+<tr>
+<td>bindValue</td><td>Object property to use for selected model. By default binds to whole object.</td>
+</tr>
+<tr>
+<td>clearable</td><td>Allow to clear selected value. Default true</td>
+</tr>
+<tr>
+<td>clearAllText</td><td>Set custom text for clear all icon title</td>
+</tr>
+<tr>
+<td>clearOnBackspace</td><td>Clear selected values one by one when clicking backspace. Default true</td>
+</tr>
+<tr>
+<td>clearSearchOnAdd</td><td>Clears search input when item is selected. Default true. Default false when closeOnSelect is false</td>
+</tr>
+<tr>
+<td>closeOnSelect</td><td>Whether to close the menu when a value is selected</td>
+</tr>
+<tr>
+<td>compareWith</td><td>A function to compare the option values with the selected values. The first argument is a value from an option. The second is a value from the selection(model). A boolean should be returned.</td>
+</tr>
+<tr>
+<td>deselectOnClick</td><td>Deselects a selected item when it is clicked in the dropdown. Default false. Default true when multiple is true</td>
+</tr>
+<tr>
+<td>dropdownPosition</td><td>Set the dropdown position on open -- bottom | top | auto</td>
+</tr>
+<tr>
+<td>editableSearchTerm</td><td>Allow to edit search query if option selected. Default false. Works only if multiple is false.</td>
+</tr>
+<tr>
+<td>groupBy</td><td>Allow to group items by key or function expression</td>
+</tr>
+<tr>
+<td>groupValue</td><td>Function expression to provide group value</td>
+</tr>
+<tr>
+<td>hideSelected</td><td>Allows to hide selected items.</td>
+</tr>
+<tr>
+<td>inputAttrs</td><td>Pass custom attributes to underlying input element</td>
+</tr>
+<tr>
+<td>isOpen</td><td>Allows manual control of dropdown opening and closing. true - won't close. false - won't open.</td>
+</tr>
+<tr>
+<td>items</td><td>Items array</td>
+</tr>
+<tr>
+<td>keyDownFn</td><td>Provide custom keyDown function. Executed before default handler. Return false to suppress execution of default key down handlers.</td>
+</tr>
+<tr>
+<td>labelForId</td><td>Id to associate control with label.</td>
+</tr>
+<tr>
+<td>loading</td><td>You can set the loading state from the outside (e.g. async items loading)</td>
+</tr>
+<tr>
+<td>loadingText</td><td>Set custom text when for loading items</td>
+</tr>
+<tr>
+<td>markFirst</td><td>Marks first item as focused when opening/filtering.</td>
+</tr>
+<tr>
+<td>maxSelectedItems</td><td>When multiple = true, allows to set a limit number of selection.</td>
+</tr>
+<tr>
+<td>minTermLength</td><td>Minimum term length to start a search. Should be used with typeahead</td>
+</tr>
+<tr>
+<td>multiple</td><td>Allows to select multiple items.</td>
+</tr>
+<tr>
+<td>notFoundText</td><td>Set custom text when filter returns empty result</td>
+</tr>
+<tr>
+<td>openOnEnter</td><td>Open dropdown using enter. Default true</td>
+</tr>
+<tr>
+<td>placeholder</td><td>Placeholder text.</td>
+</tr>
+<tr>
+<td>readonly</td><td>Set ng-select as readonly. Mostly used with reactive forms.</td>
+</tr>
+<tr>
+<td>searchable</td><td>Allow to search for value. Default true</td>
+</tr>
+<tr>
+<td>searchFn</td><td>Allow to filter by custom search function</td>
+</tr>
+<tr>
+<td>searchWhileComposing</td><td>Whether items should be filtered while composition started</td>
+</tr>
+<tr>
+<td>selectableGroup</td><td>Allow to select group when groupBy is used</td>
+</tr>
+<tr>
+<td>selectableGroupAsModel</td><td>Indicates whether to select all children or group itself</td>
+</tr>
+<tr>
+<td>selectOnTab</td><td>Select marked dropdown item using tab. Default false</td>
+</tr>
+<tr>
+<td>tabIndex</td><td>Set tabindex on ng-select</td>
+</tr>
+<tr>
+<td>trackByFn</td><td>Provide custom trackBy function</td>
+</tr>
+<tr>
+<td>typeahead</td><td>Custom autocomplete or advanced filter.</td>
+</tr>
+<tr>
+<td>typeToSearchText</td><td>Set custom text when using Typeahead</td>
+</tr>
+<tr>
+<td>virtualScroll</td><td>Enable virtual scroll for better performance when rendering a lot of data</td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>add</td><td>Fired when item is added while [multiple]="true". Outputs added item</td>
+</tr>
+<tr>
+<td>blur</td><td>Fired on select blur</td>
+</tr>
+<tr>
+<td>change</td><td>Fired on model change. Outputs whole model</td>
+</tr>
+<tr>
+<td>clear</td><td>Fired on clear icon click</td>
+</tr>
+<tr>
+<td>close</td><td>Fired on select dropdown close</td>
+</tr>
+<tr>
+<td>focus</td><td>Fired on select focus</td>
+</tr>
+<tr>
+<td>open</td><td>Fired on select dropdown open</td>
+</tr>
+<tr>
+<td>remove</td><td>Fired when item is removed while [multiple]="true"</td>
+</tr>
+<tr>
+<td>scroll</td><td>Fired when scrolled. Provides the start and end index of the currently available items. Can be used for loading more items in chunks before the user has scrolled all the way to the bottom of the list.</td>
+</tr>
+<tr>
+<td>scrollToEnd</td><td>Fired when scrolled to the end of items. Can be used for loading more items in chunks.</td>
+</tr>
+<tr>
+<td>search</td><td>Fired while typing search term. Outputs search term with filtered items</td>
 </tr>
 </table>
 
@@ -567,6 +864,46 @@ This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing
 </tr>
 <tr>
 <td>onBlur</td><td></td>
+</tr>
+</table>
+
+#### tuiImageEditor
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>cssMaxHeight</td><td></td>
+</tr>
+<tr>
+<td>cssMaxWidth</td><td></td>
+</tr>
+<tr>
+<td>imageName3</td><td></td>
+</tr>
+<tr>
+<td>imageName4</td><td></td>
+</tr>
+<tr>
+<td>imageName5</td><td></td>
+</tr>
+<tr>
+<td>imageName6</td><td></td>
+</tr>
+<tr>
+<td>imageName7</td><td></td>
+</tr>
+<tr>
+<td>imageName8</td><td></td>
+</tr>
+<tr>
+<td>imageName</td><td></td>
+</tr>
+<tr>
+<td>imagePath</td><td></td>
 </tr>
 </table>
 

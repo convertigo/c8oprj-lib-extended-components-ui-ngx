@@ -100,6 +100,60 @@ title: testAgGrid1
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
+    ↓showCsvDownload [ngx.components.UIUseVariable-1741622706413]: 
+      comment: |
+        If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+        
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓showCsvDownloadPosition [ngx.components.UIUseVariable-1741622706416]: 
+      comment: |
+        If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+        
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'top'
+    ↓showCsvDownloadAlignment [ngx.components.UIUseVariable-1741622706419]: 
+      comment: |
+        If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+        
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'end'
+    ↓localeText [ngx.components.UIUseVariable-1741622706422]: 
+      comment: |
+        'Define the Grid localisation.
+        You can provide:
+        
+         - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+         - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
+        
+        The default language of the grid is American English.'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'fr'
+    ↓customLocaleText [ngx.components.UIUseVariable-1741622706425]: 
+      comment: |
+        'Add or overload Grid localisation.
+        You have to provide:
+        
+         - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+        
+        The default value is an empty object.'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{fr: {pageSizeSelectorLabel: ''Lignes par page :''}, es: {pageSizeSelectorLabel: ''Filas por página''}}'
+    ↓autoSizeColumns [ngx.components.UIUseVariable-1741622911942]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
 ↓Footer [ngx.components.UIDynamicElement-1577112297028]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer
