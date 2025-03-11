@@ -321,92 +321,94 @@ scriptContent:
             		}
             		
             		let curLocaleText = props?.stack?.root?.scope?.changes?.localeText?.currentValue;
-            		if(curLocaleText == null){
-            			curLocaleText = ''en'';
-            		}
-            		if(typeof curLocaleText == ''string''){
-            			async function getLocale(locale) {
-            			    const locales = {
-            			        ''ar'': ''AG_GRID_LOCALE_EG'',
-            			        ''ar-EG'': ''AG_GRID_LOCALE_EG'',
-            			        ''bg'': ''AG_GRID_LOCALE_BG'',
-            			        ''bg-BG'': ''AG_GRID_LOCALE_BG'',
-            			        ''zh-HK'': ''AG_GRID_LOCALE_HK'',
-            			        ''zh'': ''AG_GRID_LOCALE_CN'',
-            			        ''cn'': ''AG_GRID_LOCALE_CN'',
-            			        ''zh-CN'': ''AG_GRID_LOCALE_CN'',
-            			        ''zh-TW'': ''AG_GRID_LOCALE_TW'',
-            			        ''hr'': ''AG_GRID_LOCALE_HR'',
-            			        ''hr-HR'': ''AG_GRID_LOCALE_HR'',
-            			        ''cs'': ''AG_GRID_LOCALE_CZ'',
-            			        ''cs-CZ'': ''AG_GRID_LOCALE_CZ'',
-            			        ''da'': ''AG_GRID_LOCALE_DK'',
-            			        ''da-DK'': ''AG_GRID_LOCALE_DK'',
-            			        ''nl'': ''AG_GRID_LOCALE_NL'',
-            			        ''nl-NL'': ''AG_GRID_LOCALE_NL'',
-            			        ''fi'': ''AG_GRID_LOCALE_FI'',
-            			        ''fi-FI'': ''AG_GRID_LOCALE_FI'',
-            			        ''fr'': ''AG_GRID_LOCALE_FR'',
-            			        ''fr-FR'': ''AG_GRID_LOCALE_FR'',
-            			        ''de'': ''AG_GRID_LOCALE_DE'',
-            			        ''de-DE'': ''AG_GRID_LOCALE_DE'',
-            			        ''el'': ''AG_GRID_LOCALE_GR'',
-            			        ''el-GR'': ''AG_GRID_LOCALE_GR'',
-            			        ''he'': ''AG_GRID_LOCALE_IL'',
-            			        ''he-IL'': ''AG_GRID_LOCALE_IL'',
-            			        ''hu'': ''AG_GRID_LOCALE_HU'',
-            			        ''hu-HU'': ''AG_GRID_LOCALE_HU'',
-            			        ''it'': ''AG_GRID_LOCALE_IT'',
-            			        ''it-IT'': ''AG_GRID_LOCALE_IT'',
-            			        ''ja'': ''AG_GRID_LOCALE_JP'',
-            			        ''ja-JP'': ''AG_GRID_LOCALE_JP'',
-            			        ''ko'': ''AG_GRID_LOCALE_KR'',
-            			        ''ko-KR'': ''AG_GRID_LOCALE_KR'',
-            			        ''nb'': ''AG_GRID_LOCALE_NO'',
-            			        ''nb-NO'': ''AG_GRID_LOCALE_NO'',
-            			        ''fa'': ''AG_GRID_LOCALE_IR'',
-            			        ''fa-IR'': ''AG_GRID_LOCALE_IR'',
-            			        ''pl'': ''AG_GRID_LOCALE_PL'',
-            			        ''pl-PL'': ''AG_GRID_LOCALE_PL'',
-            			        ''pt'': ''AG_GRID_LOCALE_PT'',
-            			        ''pt-PT'': ''AG_GRID_LOCALE_PT'',
-            			        ''br'': ''AG_GRID_LOCALE_BR'',
-            			        ''pt-BR'': ''AG_GRID_LOCALE_BR'',
-            			        ''ro'': ''AG_GRID_LOCALE_RO'',
-            			        ''ro-RO'': ''AG_GRID_LOCALE_RO'',
-            			        ''sk'': ''AG_GRID_LOCALE_SK'',
-            			        ''sk-SK'': ''AG_GRID_LOCALE_SK'',
-            			        ''es'': ''AG_GRID_LOCALE_ES'',
-            			        ''es-ES'': ''AG_GRID_LOCALE_ES'',
-            			        ''sv'': ''AG_GRID_LOCALE_SE'',
-            			        ''sv-SE'': ''AG_GRID_LOCALE_SE'',
-            			        ''tr'': ''AG_GRID_LOCALE_TR'',
-            			        ''tr-TR'': ''AG_GRID_LOCALE_TR'',
-            			        ''uk'': ''AG_GRID_LOCALE_UA'',
-            			        ''uk-UA'': ''AG_GRID_LOCALE_UA'',
-            			        ''ur'': ''AG_GRID_LOCALE_PK'',
-            			        ''ur-PK'': ''AG_GRID_LOCALE_PK'',
-            			        ''vi'': ''AG_GRID_LOCALE_VN'',
-            			        ''vi-VN'': ''AG_GRID_LOCALE_VN'',
-            			        ''en'': ''AG_GRID_LOCALE_EN'',
-            			        ''en-US'': ''AG_GRID_LOCALE_EN''
-            			    };
-            			
-            			    const localeModule = await import(''@ag-grid-community/locale'');
-            			    const selectedLocale = localeModule[locales[locale] || ''AG_GRID_LOCALE_EN''];
-            			    const customLocaleText = page.customLocaleText[locale.split(''-'')[0]] || {};
-            			    			    
-            			    return {
-            		        	...selectedLocale,
-            		        	...customLocaleText
-            			    };
+            		if (curLocaleText != undefined) {			
+            			if(curLocaleText == null){
+            				curLocaleText = ''en'';
             			}
-            			
-            			curLocaleText = await getLocale(curLocaleText);
-            
-            
+            			if(typeof curLocaleText == ''string''){
+            				async function getLocale(locale) {
+            				    const locales = {
+            				        ''ar'': ''AG_GRID_LOCALE_EG'',
+            				        ''ar-EG'': ''AG_GRID_LOCALE_EG'',
+            				        ''bg'': ''AG_GRID_LOCALE_BG'',
+            				        ''bg-BG'': ''AG_GRID_LOCALE_BG'',
+            				        ''zh-HK'': ''AG_GRID_LOCALE_HK'',
+            				        ''zh'': ''AG_GRID_LOCALE_CN'',
+            				        ''cn'': ''AG_GRID_LOCALE_CN'',
+            				        ''zh-CN'': ''AG_GRID_LOCALE_CN'',
+            				        ''zh-TW'': ''AG_GRID_LOCALE_TW'',
+            				        ''hr'': ''AG_GRID_LOCALE_HR'',
+            				        ''hr-HR'': ''AG_GRID_LOCALE_HR'',
+            				        ''cs'': ''AG_GRID_LOCALE_CZ'',
+            				        ''cs-CZ'': ''AG_GRID_LOCALE_CZ'',
+            				        ''da'': ''AG_GRID_LOCALE_DK'',
+            				        ''da-DK'': ''AG_GRID_LOCALE_DK'',
+            				        ''nl'': ''AG_GRID_LOCALE_NL'',
+            				        ''nl-NL'': ''AG_GRID_LOCALE_NL'',
+            				        ''fi'': ''AG_GRID_LOCALE_FI'',
+            				        ''fi-FI'': ''AG_GRID_LOCALE_FI'',
+            				        ''fr'': ''AG_GRID_LOCALE_FR'',
+            				        ''fr-FR'': ''AG_GRID_LOCALE_FR'',
+            				        ''de'': ''AG_GRID_LOCALE_DE'',
+            				        ''de-DE'': ''AG_GRID_LOCALE_DE'',
+            				        ''el'': ''AG_GRID_LOCALE_GR'',
+            				        ''el-GR'': ''AG_GRID_LOCALE_GR'',
+            				        ''he'': ''AG_GRID_LOCALE_IL'',
+            				        ''he-IL'': ''AG_GRID_LOCALE_IL'',
+            				        ''hu'': ''AG_GRID_LOCALE_HU'',
+            				        ''hu-HU'': ''AG_GRID_LOCALE_HU'',
+            				        ''it'': ''AG_GRID_LOCALE_IT'',
+            				        ''it-IT'': ''AG_GRID_LOCALE_IT'',
+            				        ''ja'': ''AG_GRID_LOCALE_JP'',
+            				        ''ja-JP'': ''AG_GRID_LOCALE_JP'',
+            				        ''ko'': ''AG_GRID_LOCALE_KR'',
+            				        ''ko-KR'': ''AG_GRID_LOCALE_KR'',
+            				        ''nb'': ''AG_GRID_LOCALE_NO'',
+            				        ''nb-NO'': ''AG_GRID_LOCALE_NO'',
+            				        ''fa'': ''AG_GRID_LOCALE_IR'',
+            				        ''fa-IR'': ''AG_GRID_LOCALE_IR'',
+            				        ''pl'': ''AG_GRID_LOCALE_PL'',
+            				        ''pl-PL'': ''AG_GRID_LOCALE_PL'',
+            				        ''pt'': ''AG_GRID_LOCALE_PT'',
+            				        ''pt-PT'': ''AG_GRID_LOCALE_PT'',
+            				        ''br'': ''AG_GRID_LOCALE_BR'',
+            				        ''pt-BR'': ''AG_GRID_LOCALE_BR'',
+            				        ''ro'': ''AG_GRID_LOCALE_RO'',
+            				        ''ro-RO'': ''AG_GRID_LOCALE_RO'',
+            				        ''sk'': ''AG_GRID_LOCALE_SK'',
+            				        ''sk-SK'': ''AG_GRID_LOCALE_SK'',
+            				        ''es'': ''AG_GRID_LOCALE_ES'',
+            				        ''es-ES'': ''AG_GRID_LOCALE_ES'',
+            				        ''sv'': ''AG_GRID_LOCALE_SE'',
+            				        ''sv-SE'': ''AG_GRID_LOCALE_SE'',
+            				        ''tr'': ''AG_GRID_LOCALE_TR'',
+            				        ''tr-TR'': ''AG_GRID_LOCALE_TR'',
+            				        ''uk'': ''AG_GRID_LOCALE_UA'',
+            				        ''uk-UA'': ''AG_GRID_LOCALE_UA'',
+            				        ''ur'': ''AG_GRID_LOCALE_PK'',
+            				        ''ur-PK'': ''AG_GRID_LOCALE_PK'',
+            				        ''vi'': ''AG_GRID_LOCALE_VN'',
+            				        ''vi-VN'': ''AG_GRID_LOCALE_VN'',
+            				        ''en'': ''AG_GRID_LOCALE_EN'',
+            				        ''en-US'': ''AG_GRID_LOCALE_EN''
+            				    };
+            				
+            				    const localeModule = await import(''@ag-grid-community/locale'');
+            				    const selectedLocale = localeModule[locales[locale] || ''AG_GRID_LOCALE_EN''];
+            				    const customLocaleText = page.customLocaleText[locale.split(''-'')[0]] || {};
+            				    			    
+            				    return {
+            			        	...selectedLocale,
+            			        	...customLocaleText
+            				    };
+            				}
+            				
+            				curLocaleText = await getLocale(curLocaleText);
+            	
+            	
+            			}
+            			page.local.agGridLang = curLocaleText;
             		}
-            		page.local.agGridLang = curLocaleText;
             '
 ↓Directive [ngx.components.UIControlDirective-1740756887361]: 
   directiveName: If
