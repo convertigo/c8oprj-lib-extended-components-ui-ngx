@@ -1,5 +1,5 @@
 segment: path-to-testtuiimageeditor
-title: Title for testTUIImageEditor
+title: testTUIImageEditor
 ↓Header [ngx.components.UIDynamicElement-1733928726433]: 
   beanData: '{"ionBean":"Header"}'
   comment: Page header

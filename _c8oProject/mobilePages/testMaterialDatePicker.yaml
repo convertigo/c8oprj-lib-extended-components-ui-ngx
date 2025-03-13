@@ -1,5 +1,5 @@
 segment: path-to-testmaterialdatepicker
-title: Title for testMaterialDatePicker
+title: testMaterialDatePicker
 ↓Header [ngx.components.UIDynamicElement-1662715349295]: 
   beanData: '{"ionBean":"Header"}'
   comment: Page header

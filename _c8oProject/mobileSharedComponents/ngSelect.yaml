@@ -1,0 +1,643 @@
+comment: |
+  'Lightweight all in one UI Select, Multiselect and Autocomplete
+  
+  Features :
+  - [x] Custom binding to property or object
+  - [x] Custom option, label, header and footer templates
+  - [x] Virtual Scroll support with large data sets (>5000 items).
+  - [x] Infinite scroll
+  - [x] Keyboard navigation
+  - [x] Multiselect
+  - [x] Flexible autocomplete with client/server filtering
+  - [x] Custom search
+  - [x] Custom tags
+  - [x] Append to
+  - [x] Group items
+  - [x] Output events
+  - [x] Accessibility
+  - [x] Good base functionality test coverage
+  - [x] Themes
+  
+  For more informations see [documentation](https://www.npmjs.com/package/@ng-select/ng-select/v/12.0.7)'
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1741619592594]: 
+  componentEvent: onInit
+  ↓importDependencies [ngx.components.UICustomAsyncAction-1741619592597]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		try {
+            			page.local.defaultKeyDownFn = (e)=>{return true};
+            			page.local.defaultCompareWith = (a, b) => a === b;
+            		} catch (e) {
+            		
+            		} finally {
+            			return;
+            		}
+            
+    build_styles: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@ng-select/ng-select/themes/default.theme.css'
+    module_ng_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ReactiveFormsModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: NgSelectModule
+    module_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: NgSelectModule
+              - java.lang.String: 
+                - ↑value: '@ng-select/ng-select'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ReactiveFormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@ng-select/ng-select'
+              - java.lang.String: 
+                - ↑value: 12.0.7
+↓ng_select [ngx.components.UIElement-1741619592600]: 
+  tagName: ng-select
+  ↓Attr [ngx.components.UIAttribute-1741619592603]: 
+    attrName: '[addTag]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.addTag
+  ↓Attr1 [ngx.components.UIAttribute-1741619592606]: 
+    attrName: '[addTagText]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.addTagText
+  ↓Attr2 [ngx.components.UIAttribute-1741619592609]: 
+    attrName: '[appearance]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.appearance
+  ↓Attr3 [ngx.components.UIAttribute-1741619592612]: 
+    attrName: '[appendTo]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.appendTo
+  ↓Attr4 [ngx.components.UIAttribute-1741619592615]: 
+    attrName: '[bindValue]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.bindValue
+  ↓Attr5 [ngx.components.UIAttribute-1741619592618]: 
+    attrName: '[bindLabel]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.bindLabel
+  ↓Attr6 [ngx.components.UIAttribute-1741619592621]: 
+    attrName: '[closeOnSelect]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.closeOnSelect
+  ↓Attr7 [ngx.components.UIAttribute-1741619592624]: 
+    attrName: '[clearAllText]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.clearAllText
+  ↓Attr8 [ngx.components.UIAttribute-1741619592627]: 
+    attrName: '[clearable]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.clearable
+  ↓Attr9 [ngx.components.UIAttribute-1741619592630]: 
+    attrName: '[clearOnBackspace]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.clearOnBackspace
+  ↓Attr10 [ngx.components.UIAttribute-1741619592633]: 
+    attrName: '[compareWith]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.compareWith ?? this.local.defaultCompareWith
+  ↓Attr11 [ngx.components.UIAttribute-1741619592636]: 
+    attrName: '[dropdownPosition]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.dropdownPosition
+  ↓Attr12 [ngx.components.UIAttribute-1741619592639]: 
+    attrName: '[groupBy]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.groupBy
+  ↓Attr13 [ngx.components.UIAttribute-1741619592642]: 
+    attrName: '[groupValue]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.groupValue
+  ↓Attr14 [ngx.components.UIAttribute-1741619592645]: 
+    attrName: '[selectableGroup]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.selectableGroup
+  ↓Attr15 [ngx.components.UIAttribute-1741619592648]: 
+    attrName: '[selectableGroupAsModel]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.selectableGroupAsModel
+  ↓Attr16 [ngx.components.UIAttribute-1741619592651]: 
+    attrName: '[items]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.items
+  ↓Attr17 [ngx.components.UIAttribute-1741619592654]: 
+    attrName: '[loading]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.loading
+  ↓Attr18 [ngx.components.UIAttribute-1741619592657]: 
+    attrName: '[loadingText]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.loadingText
+  ↓Attr19 [ngx.components.UIAttribute-1741619592660]: 
+    attrName: '[labelForId]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.labelForId
+  ↓Attr20 [ngx.components.UIAttribute-1741619592663]: 
+    attrName: '[markFirst]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.markFirst
+  ↓Attr21 [ngx.components.UIAttribute-1741619592666]: 
+    attrName: '[isOpen]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.isOpen
+  ↓Attr22 [ngx.components.UIAttribute-1741619592669]: 
+    attrName: '[maxSelectedItems]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.maxSelectedItems
+  ↓Attr23 [ngx.components.UIAttribute-1741619592672]: 
+    attrName: '[hideSelected]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.hideSelected
+  ↓Attr24 [ngx.components.UIAttribute-1741619592675]: 
+    attrName: '[multiple]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.multiple
+  ↓Attr25 [ngx.components.UIAttribute-1741619592678]: 
+    attrName: '[notFoundText]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.notFoundText
+  ↓Attr26 [ngx.components.UIAttribute-1741619592681]: 
+    attrName: '[placeholder]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.placeholder
+  ↓Attr27 [ngx.components.UIAttribute-1741619592684]: 
+    attrName: '[searchable]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.searchable
+  ↓Attr28 [ngx.components.UIAttribute-1741619592687]: 
+    attrName: '[readonly]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.readonly
+  ↓Attr29 [ngx.components.UIAttribute-1741619592690]: 
+    attrName: '[searchFn]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.searchFn
+  ↓Attr30 [ngx.components.UIAttribute-1741619592693]: 
+    attrName: '[searchWhileComposing]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.searchWhileComposing
+  ↓Attr31 [ngx.components.UIAttribute-1741619592696]: 
+    attrName: '[trackByFn]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.trackByFn
+  ↓Attr32 [ngx.components.UIAttribute-1741619592699]: 
+    attrName: '[clearSearchOnAdd]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.clearSearchOnAdd
+  ↓Attr33 [ngx.components.UIAttribute-1741619592702]: 
+    attrName: '[deselectOnClick]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.deselectOnClick
+  ↓Attr34 [ngx.components.UIAttribute-1741619592705]: 
+    attrName: '[editableSearchTerm]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.editableSearchTerm
+  ↓Attr35 [ngx.components.UIAttribute-1741619592708]: 
+    attrName: '[selectOnTab]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.selectOnTab
+  ↓Attr36 [ngx.components.UIAttribute-1741619592711]: 
+    attrName: '[openOnEnter]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.openOnEnter
+  ↓Attr37 [ngx.components.UIAttribute-1741619592714]: 
+    attrName: '[typeahead]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.typeahead
+  ↓Attr38 [ngx.components.UIAttribute-1741619592717]: 
+    attrName: '[minTermLength]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.minTermLength
+  ↓Attr39 [ngx.components.UIAttribute-1741619592720]: 
+    attrName: '[typeToSearchText]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.typeToSearchText
+  ↓Attr40 [ngx.components.UIAttribute-1741619592723]: 
+    attrName: '[virtualScroll]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.virtualScroll
+  ↓Attr41 [ngx.components.UIAttribute-1741619592726]: 
+    attrName: '[inputAttrs]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.inputAttrs
+  ↓Attr42 [ngx.components.UIAttribute-1741619592729]: 
+    attrName: '[tabIndex]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.tabIndex
+  ↓Attr43 [ngx.components.UIAttribute-1741619592732]: 
+    attrName: '[keyDownFn]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.keyDownFn ?? this.local.defaultKeyDownFn
+  ↓Event [ngx.components.UIControlEvent-1741619592735]: 
+    attrName: (add)
+    eventName: (add)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592738]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.add",
+         "data": "script:{event:event}"
+        }'
+  ↓Event1 [ngx.components.UIControlEvent-1741619592741]: 
+    attrName: (blur)
+    eventName: (blur)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592744]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.blur",
+         "data": "script:{event:event}"
+        }'
+  ↓Event2 [ngx.components.UIControlEvent-1741619592747]: 
+    attrName: (change)
+    eventName: (change)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592750]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.change",
+         "data": "script:{event:event}"
+        }'
+  ↓Event3 [ngx.components.UIControlEvent-1741619592753]: 
+    attrName: (close)
+    eventName: (close)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592756]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.close",
+         "data": "script:{event:event}"
+        }'
+  ↓Event4 [ngx.components.UIControlEvent-1741619592759]: 
+    attrName: (clear)
+    eventName: (clear)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592762]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.clear",
+         "data": "script:{event:event}"
+        }'
+  ↓Event5 [ngx.components.UIControlEvent-1741619592765]: 
+    attrName: (focus)
+    eventName: (focus)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592768]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.focus",
+         "data": "script:{event:event}"
+        }'
+  ↓Event6 [ngx.components.UIControlEvent-1741619592771]: 
+    attrName: (search)
+    eventName: (search)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592774]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.search",
+         "data": "script:{event:event}"
+        }'
+  ↓Event7 [ngx.components.UIControlEvent-1741619592777]: 
+    attrName: (open)
+    eventName: (open)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592780]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.open",
+         "data": "script:{event:event}"
+        }'
+  ↓Event8 [ngx.components.UIControlEvent-1741619592783]: 
+    attrName: (remove)
+    eventName: (remove)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592786]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.remove",
+         "data": "script:{event:event}"
+        }'
+  ↓Event9 [ngx.components.UIControlEvent-1741619592789]: 
+    attrName: (scroll)
+    eventName: (scroll)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592792]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.scroll",
+         "data": "script:{event:event}"
+        }'
+  ↓Event10 [ngx.components.UIControlEvent-1741619592795]: 
+    attrName: (scrollToEnd)
+    eventName: (scrollToEnd)
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1741619592798]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.scrollToEnd",
+         "data": "script:{event:event}"
+        }'
+↓addTag [ngx.components.UICompVariable-1741619592801]: 
+  comment: Allows to create custom options.
+  value: false
+↓addTagText [ngx.components.UICompVariable-1741619592804]: 
+  comment: Set custom text when using tagging
+  value: '''Add item'''
+↓appearance [ngx.components.UICompVariable-1741619592807]: 
+  comment: Allows to select dropdown appearance. Set to outline to add border instead of underline (applies only to Material theme)
+  value: '''underline'''
+↓appendTo [ngx.components.UICompVariable-1741619592810]: 
+  comment: Append dropdown to body or any other element using css selector. For correct positioning body should have position:relative
+  value: null
+↓bindValue [ngx.components.UICompVariable-1741619592813]: 
+  comment: Object property to use for selected model. By default binds to whole object.
+  value: null
+↓bindLabel [ngx.components.UICompVariable-1741619592816]: 
+  comment: Object property to use for label. Default label
+  value: '''label'''
+↓closeOnSelect [ngx.components.UICompVariable-1741619592819]: 
+  comment: Whether to close the menu when a value is selected
+  value: true
+↓clearAllText [ngx.components.UICompVariable-1741619592822]: 
+  comment: Set custom text for clear all icon title
+  value: '''Clear all'''
+↓clearable [ngx.components.UICompVariable-1741619592825]: 
+  comment: Allow to clear selected value. Default true
+  value: true
+↓clearOnBackspace [ngx.components.UICompVariable-1741619592828]: 
+  comment: Clear selected values one by one when clicking backspace. Default true
+  value: true
+↓compareWith [ngx.components.UICompVariable-1741619592831]: 
+  comment: A function to compare the option values with the selected values. The first argument is a value from an option. The second is a value from the selection(model). A boolean should be returned.
+  value: null
+↓dropdownPosition [ngx.components.UICompVariable-1741619592834]: 
+  comment: Set the dropdown position on open -- bottom | top | auto
+  value: '''auto'''
+↓groupBy [ngx.components.UICompVariable-1741619592837]: 
+  comment: Allow to group items by key or function expression
+  value: null
+↓groupValue [ngx.components.UICompVariable-1741619592840]: 
+  comment: Function expression to provide group value
+  value: null
+↓selectableGroup [ngx.components.UICompVariable-1741619592843]: 
+  comment: Allow to select group when groupBy is used
+  value: false
+↓selectableGroupAsModel [ngx.components.UICompVariable-1741619592846]: 
+  comment: Indicates whether to select all children or group itself
+  value: true
+↓items [ngx.components.UICompVariable-1741619592849]: 
+  comment: Items array
+  value: '[]'
+↓loading [ngx.components.UICompVariable-1741619592852]: 
+  comment: You can set the loading state from the outside (e.g. async items loading)
+  value: null
+↓loadingText [ngx.components.UICompVariable-1741619592855]: 
+  comment: Set custom text when for loading items
+  value: '''Loading...'''
+↓labelForId [ngx.components.UICompVariable-1741619592858]: 
+  comment: Id to associate control with label.
+  value: null
+↓markFirst [ngx.components.UICompVariable-1741619592861]: 
+  comment: Marks first item as focused when opening/filtering.
+  value: true
+↓isOpen [ngx.components.UICompVariable-1741619592864]: 
+  comment: Allows manual control of dropdown opening and closing. true - won't close. false - won't open.
+  value: null
+↓maxSelectedItems [ngx.components.UICompVariable-1741619592867]: 
+  comment: When multiple = true, allows to set a limit number of selection.
+  value: null
+↓hideSelected [ngx.components.UICompVariable-1741619592870]: 
+  comment: Allows to hide selected items.
+  value: false
+↓multiple [ngx.components.UICompVariable-1741619592873]: 
+  comment: Allows to select multiple items.
+  value: false
+↓notFoundText [ngx.components.UICompVariable-1741619592876]: 
+  comment: Set custom text when filter returns empty result
+  value: '''No items found'''
+↓placeholder [ngx.components.UICompVariable-1741619592879]: 
+  comment: Placeholder text.
+  value: '''-'''
+↓searchable [ngx.components.UICompVariable-1741619592882]: 
+  comment: Allow to search for value. Default true
+  value: true
+↓readonly [ngx.components.UICompVariable-1741619592885]: 
+  comment: Set ng-select as readonly. Mostly used with reactive forms.
+  value: false
+↓searchFn [ngx.components.UICompVariable-1741619592888]: 
+  comment: Allow to filter by custom search function
+  value: null
+↓searchWhileComposing [ngx.components.UICompVariable-1741619592891]: 
+  comment: Whether items should be filtered while composition started
+  value: true
+↓trackByFn [ngx.components.UICompVariable-1741619592894]: 
+  comment: Provide custom trackBy function
+  value: null
+↓clearSearchOnAdd [ngx.components.UICompVariable-1741619592897]: 
+  comment: Clears search input when item is selected. Default true. Default false when closeOnSelect is false
+  value: true
+↓deselectOnClick [ngx.components.UICompVariable-1741619592900]: 
+  comment: Deselects a selected item when it is clicked in the dropdown. Default false. Default true when multiple is true
+  value: false
+↓editableSearchTerm [ngx.components.UICompVariable-1741619592903]: 
+  comment: Allow to edit search query if option selected. Default false. Works only if multiple is false.
+  value: false
+↓selectOnTab [ngx.components.UICompVariable-1741619592906]: 
+  comment: Select marked dropdown item using tab. Default false
+  value: false
+↓openOnEnter [ngx.components.UICompVariable-1741619592909]: 
+  comment: Open dropdown using enter. Default true
+  value: true
+↓typeahead [ngx.components.UICompVariable-1741619592912]: 
+  comment: Custom autocomplete or advanced filter.
+  value: null
+↓minTermLength [ngx.components.UICompVariable-1741619592915]: 
+  comment: Minimum term length to start a search. Should be used with typeahead
+  value: 0
+↓typeToSearchText [ngx.components.UICompVariable-1741619592918]: 
+  comment: Set custom text when using Typeahead
+  value: '''Type to search'''
+↓virtualScroll [ngx.components.UICompVariable-1741619592921]: 
+  comment: Enable virtual scroll for better performance when rendering a lot of data
+  value: false
+↓inputAttrs [ngx.components.UICompVariable-1741619592924]: 
+  comment: Pass custom attributes to underlying input element
+  value: null
+↓tabIndex [ngx.components.UICompVariable-1741619592927]: 
+  comment: Set tabindex on ng-select
+  value: null
+↓keyDownFn [ngx.components.UICompVariable-1741619592930]: 
+  comment: Provide custom keyDown function. Executed before default handler. Return false to suppress execution of default key down handlers.
+  value: null
+↓add [ngx.components.UICompEvent-1741619592933]: 
+  attrName: add
+  comment: Fired when item is added while [multiple]="true". Outputs added item
+↓blur [ngx.components.UICompEvent-1741619592936]: 
+  attrName: blur
+  comment: Fired on select blur
+↓change [ngx.components.UICompEvent-1741619592939]: 
+  attrName: change
+  comment: Fired on model change. Outputs whole model
+↓close [ngx.components.UICompEvent-1741619592942]: 
+  attrName: close
+  comment: Fired on select dropdown close
+↓clear [ngx.components.UICompEvent-1741619592945]: 
+  attrName: clear
+  comment: Fired on clear icon click
+↓focus [ngx.components.UICompEvent-1741619592948]: 
+  attrName: focus
+  comment: Fired on select focus
+↓search [ngx.components.UICompEvent-1741619592951]: 
+  attrName: search
+  comment: Fired while typing search term. Outputs search term with filtered items
+↓open [ngx.components.UICompEvent-1741619592954]: 
+  attrName: open
+  comment: Fired on select dropdown open
+↓remove [ngx.components.UICompEvent-1741619592957]: 
+  attrName: remove
+  comment: Fired when item is removed while [multiple]="true"
+↓scroll [ngx.components.UICompEvent-1741619592960]: 
+  attrName: scroll
+  comment: Fired when scrolled. Provides the start and end index of the currently available items. Can be used for loading more items in chunks before the user has scrolled all the way to the bottom of the list.
+↓scrollToEnd [ngx.components.UICompEvent-1741619592963]: 
+  attrName: scrollToEnd
+  comment: Fired when scrolled to the end of items. Can be used for loading more items in chunks.
