@@ -154,7 +154,7 @@ comment: A QR Code Reader  using Full JS Algorithm
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: QRCodeModule
+                - ↑value: '{ QRCodeModule }'
               - java.lang.String: 
                 - ↑value: angularx-qrcode
     package_dependencies: 
@@ -176,7 +176,7 @@ comment: A QR Code Reader  using Full JS Algorithm
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: QRCodeModule
+                - ↑value: '{ QRCodeModule }'
               - java.lang.String: 
                 - ↑value: angularx-qrcode
 ↓alt [ngx.components.UICompVariable-1649752916516]: 

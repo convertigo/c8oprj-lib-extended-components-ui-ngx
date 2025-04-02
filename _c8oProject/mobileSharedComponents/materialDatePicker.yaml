@@ -114,35 +114,35 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE
+                - ↑value: '{ MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE }'
               - java.lang.String: 
                 - ↑value: '@angular/material/core'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatDatepickerModule
+                - ↑value: '{ MatDatepickerModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/datepicker'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatFormFieldModule
+                - ↑value: '{ MatFormFieldModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/form-field'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatInputModule
+                - ↑value: '{ MatInputModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/input'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS
+                - ↑value: '{ MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS }'
               - java.lang.String: 
                 - ↑value: '@angular/material-moment-adapter'
     package_dependencies: 
@@ -185,35 +185,35 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatDatepickerModule
+                - ↑value: '{ MatDatepickerModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/datepicker'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatCalendar
+                - ↑value: '{ MatCalendar }'
               - java.lang.String: 
                 - ↑value: '@angular/material/datepicker'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE 
+                - ↑value: '{ DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE }'
               - java.lang.String: 
                 - ↑value: '@angular/material/core'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: Inject
+                - ↑value: '{ Inject }'
               - java.lang.String: 
                 - ↑value: '@angular/core'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS
+                - ↑value: '{ MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS }'
               - java.lang.String: 
                 - ↑value: '@angular/material-moment-adapter'
 ↓Style [ngx.components.UIStyle-1662716938918]: 

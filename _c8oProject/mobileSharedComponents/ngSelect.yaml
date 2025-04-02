@@ -72,21 +72,21 @@ comment: |
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: NgSelectModule
+                - ↑value: '{ NgSelectModule }'
               - java.lang.String: 
                 - ↑value: '@ng-select/ng-select'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: FormsModule
+                - ↑value: '{ FormsModule }'
               - java.lang.String: 
                 - ↑value: '@angular/forms'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: ReactiveFormsModule
+                - ↑value: '{ ReactiveFormsModule }'
               - java.lang.String: 
                 - ↑value: '@angular/forms'
     package_dependencies: 

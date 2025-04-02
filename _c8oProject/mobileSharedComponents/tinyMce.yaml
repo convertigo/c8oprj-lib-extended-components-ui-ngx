@@ -306,14 +306,14 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: EditorModule
+                - ↑value: '{ EditorModule }'
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: TINYMCE_SCRIPT_SRC
+                - ↑value: '{ TINYMCE_SCRIPT_SRC }'
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
     module_ng_imports: 
@@ -342,14 +342,14 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: EditorModule
+                - ↑value: '{ EditorModule }'
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: TINYMCE_SCRIPT_SRC
+                - ↑value: '{ TINYMCE_SCRIPT_SRC }'
               - java.lang.String: 
                 - ↑value: '@tinymce/tinymce-angular'
     package_dependencies: 

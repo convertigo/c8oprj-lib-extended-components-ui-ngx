@@ -77,6 +77,17 @@ comment: CardIO SharedAction
                           }
                       );
           '
+  app_ts_imports: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: '{ CardIO }'
+            - java.lang.String: 
+              - ↑value: '@ionic-native/card-io/ngx'
   cordova_plugins: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -107,7 +118,7 @@ comment: CardIO SharedAction
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
           - com.twinsoft.convertigo.beans.common.XMLVector: 
             - java.lang.String: 
-              - ↑value: CardIO
+              - ↑value: '{ CardIO }'
             - java.lang.String: 
               - ↑value: '@ionic-native/card-io/ngx'
   module_ng_providers: 
@@ -127,7 +138,7 @@ comment: CardIO SharedAction
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
           - com.twinsoft.convertigo.beans.common.XMLVector: 
             - java.lang.String: 
-              - ↑value: CardIO
+              - ↑value: '{ CardIO }'
             - java.lang.String: 
               - ↑value: '@ionic-native/card-io/ngx'
   package_dependencies: 
@@ -148,17 +159,6 @@ comment: CardIO SharedAction
               - ↑value: '@ionic-native/core'
             - java.lang.String: 
               - ↑value: 5.36.0
-  page_ts_imports: 
-    - xmlizable: 
-      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-      - com.twinsoft.convertigo.beans.common.XMLVector: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-          - com.twinsoft.convertigo.beans.common.XMLVector: 
-            - java.lang.String: 
-              - ↑value: CardIO
-            - java.lang.String: 
-              - ↑value: '@ionic-native/card-io/ngx'
   ↓ccn [ngx.components.UIControlVariable-1595431416106]: 
     varValue: 
       - xmlizable: 

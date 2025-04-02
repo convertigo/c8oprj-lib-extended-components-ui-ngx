@@ -210,7 +210,7 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: AgGridAngular
+                - ↑value: '{ AgGridAngular }'
               - java.lang.String: 
                 - ↑value: ag-grid-angular
     package_dependencies: 
@@ -253,14 +253,14 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: ModuleRegistry
+                - ↑value: '{ ModuleRegistry }'
               - java.lang.String: 
                 - ↑value: ag-grid-community
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: CsvExportModule
+                - ↑value: '{ CsvExportModule }'
               - java.lang.String: 
                 - ↑value: '@ag-grid-community/csv-export'
 ↓rowModelType [ngx.components.UICompVariable-1710934919136]: 
@@ -649,7 +649,7 @@ scriptContent:
                           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
                           - com.twinsoft.convertigo.beans.common.XMLVector: 
                             - java.lang.String: 
-                              - ↑value: IDatasource, IGetRowsParams,GridOptions
+                              - ↑value: '{ IDatasource, IGetRowsParams,GridOptions }'
                             - java.lang.String: 
                               - ↑value: ag-grid-community
                   ↓width [ngx.components.UIControlVariable-1710934919016]: 

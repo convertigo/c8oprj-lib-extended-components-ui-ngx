@@ -122,7 +122,7 @@
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: MatSliderModule
+                - ↑value: '{ MatSliderModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/slider'
 ↓min [ngx.components.UICompVariable-1662984662329]: 
