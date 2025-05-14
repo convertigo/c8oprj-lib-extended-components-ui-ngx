@@ -9,7 +9,8 @@ scriptContent:
         /*Begin_c8o_CompDeclaration*/
         	public initOffline: any =  {
         	    base_url: document.head.baseURI + "tinymce", // Root for resources
-        	    suffix: ''.min''        // Suffix to use when loading resources
+        	    suffix: ''.min'',        // Suffix to use when loading resources
+        		promotion: false
           	}
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
@@ -369,4 +370,4 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: tinymce
               - java.lang.String: 
-                - ↑value: 5.10.9
+                - ↑value: 6.8.5
