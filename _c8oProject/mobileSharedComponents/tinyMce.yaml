@@ -53,7 +53,7 @@ scriptContent:
 ↓tagName [ngx.components.UICompVariable-1584112510198]: 
   value: '''div'''
 ↓plugins [ngx.components.UICompVariable-1584112512654]: 
-  value: '[''advlist autolink lists link image charmap print preview anchor'',''searchreplace visualblocks code fullscreen'',''insertdatetime media table paste code imagetools help wordcount'']'
+  value: '[''advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount'']'
 ↓toolbar [ngx.components.UICompVariable-1584112515048]: 
   value: '''undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'''
 ↓Directive [ngx.components.UIControlDirective-1610985343772]: 
