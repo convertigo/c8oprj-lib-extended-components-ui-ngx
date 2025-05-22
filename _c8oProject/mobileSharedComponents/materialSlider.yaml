@@ -1,3 +1,39 @@
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		this.local.displayFormatter = (value: number) =>{
+        			if (value >= 10000) {
+        			    return (value / 1000) + ''k'';
+        			  }
+        			  return value.toString();
+        		}
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	/*End_c8o_CompFunction*/
+        '
 ↓Tag [ngx.components.UIElement-1662984415570]: 
   tagName: mat-slider
   ↓Attr [ngx.components.UIAttribute-1662984433444]: 
@@ -30,7 +66,8 @@
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            '	.mat-slider-track-fill{ //line filled
+            '	::ng-deep {
+            	.mat-slider-track-fill{ //line filled
             		background-color: var(--ion-color-primary) !important;
             	}
             	
@@ -44,7 +81,24 @@
             	
             	.mat-slider-thumb-label { // up circle
             		background-color: var(--ion-color-primary) !important;
+            		font-size: 12px; /* Taille de police plus petite */
+            		  padding: 4px 8px; /* Espacement interne */
+            		  border-radius: 4px; /* Coins arrondis */
+            		  min-width: auto; /* Largeur minimale automatique */
+            		  white-space: nowrap; /* Empêcher le retour à la ligne */
             	}
+            	.mdc-slider__value-indicator{
+            		width: 40px;
+            	    height: 40px;		
+            	}
+            	.mdc-slider__value-indicator-text{	
+            		width: 40px;
+            	}
+            	.slider__thumb{
+            		min-width: auto;
+            	}
+            	}
+            	
             	width:100%;
             '
   ↓Attr4 [ngx.components.UIAttribute-1662991630400]: 
@@ -103,6 +157,12 @@
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1662984391613,"regular":true}],"path":"?.showTickMarks","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr8 [ngx.components.UIAttribute-1747909954335]: 
+    attrName: '[displayWith]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.local.displayFormatter
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662984526639]: 
   ↓Imports [ngx.components.UICustomAction-1662984537097]: 
     local_module_ng_imports: 
