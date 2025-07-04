@@ -67,22 +67,24 @@ scriptContent:
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
             '		try{
-            			page.local.instance = new ImageEditor(document.querySelector(''#tui-image-editor''), {
-            				includeUI: {
-            				    loadImage: {
-            				      path: page.imagePath,
-            				      name: page.imageName,
-            				    },
-            				},
-            			  cssMaxWidth: page.cssMaxWidth,
-            			  cssMaxHeight: page.cssMaxHeight,
-            			});
-            			// hide logo
-            			let logo: any = document.querySelectorAll(''.tui-image-editor-header-logo'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");		
-            			// hide load button
-            			document.querySelectorAll(''.tui-image-editor-load-btn'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");
-            			// hide download button
-            			document.querySelectorAll(''.tui-image-editor-download-btn'')?.forEach((x: any)=> {x.style.visibility = "hidden";});
+            			setTimeout(()=>{
+            				page.local.instance = new ImageEditor(document.querySelector(''#tui-image-editor''), {
+            					includeUI: {
+            					    loadImage: {
+            					      path: page.imagePath,
+            					      name: page.imageName,
+            					    },
+            					},
+            				  cssMaxWidth: page.cssMaxWidth,
+            				  cssMaxHeight: page.cssMaxHeight,
+            				});
+            				// hide logo
+            				let logo: any = document.querySelectorAll(''.tui-image-editor-header-logo'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");		
+            				// hide load button
+            				document.querySelectorAll(''.tui-image-editor-load-btn'')?.forEach((e: any) => e.parentElement.style.visibility = "hidden");
+            				// hide download button
+            				document.querySelectorAll(''.tui-image-editor-download-btn'')?.forEach((x: any)=> {x.style.visibility = "hidden";});
+            			},100);
             
             		}
             		catch(e){
