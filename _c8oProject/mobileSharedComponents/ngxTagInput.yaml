@@ -193,6 +193,12 @@ comment: This component provides Chips management for your apps
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.addOnBlur","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr7 [ngx.components.UIAttribute-1753293535179]: 
+    attrName: '[formControl]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1577113184271,"regular":true}],"path":"?.formCtrl","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓inputtext [ngx.components.UICompVariable-1578501199371]: 
 ↓theme [ngx.components.UICompVariable-1578496464013]: 
 ↓maxItems [ngx.components.UICompVariable-1577119156324]: 
@@ -242,6 +248,12 @@ comment: This component provides Chips management for your apps
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
+            		if(page){
+            			vars;
+            			props;
+            			event;
+            		}
+            		debugger;
             		resolve();
             
     module_ng_imports: 
@@ -258,6 +270,16 @@ comment: This component provides Chips management for your apps
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: BrowserAnimationsModule 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ReactiveFormsModule
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
     module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -276,6 +298,20 @@ comment: This component provides Chips management for your apps
                 - ↑value: BrowserAnimationsModule
               - java.lang.String: 
                 - ↑value: '@angular/platform-browser/animations'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: ReactiveFormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormsModule
+              - java.lang.String: 
+                - ↑value: '@angular/core'
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -287,3 +323,16 @@ comment: This component provides Chips management for your apps
                 - ↑value: ngx-chips
               - java.lang.String: 
                 - ↑value: 3.0.0
+    page_ts_imports: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: FormControl
+              - java.lang.String: 
+                - ↑value: '@angular/forms'
+↓formCtrl [ngx.components.UICompVariable-1753292753795]: 
+  value: null
