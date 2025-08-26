@@ -1,0 +1,104 @@
+↑default: true
+jdbcDriverClassName: org.hsqldb.jdbcDriver
+jdbcURL: jdbc:hsqldb:file:.//hsqldb
+jdbcUserName: SA
+↓AGGRIDCRUD_DELETE [transactions.SqlTransaction]: 
+  sqlQuery: |
+    DELETE FROM AGGRIDCRUD
+    WHERE ID = {ID}
+  ↓ID [variables.RequestableVariable-1756201388819]: 
+    description: ID
+↓AGGRIDCRUD_INSERT [transactions.SqlTransaction]: 
+  sqlQuery: |
+    INSERT INTO AGGRIDCRUD (FIRST_NAME, LAST_NAME, EMAIL, PHONE, SCORE)
+    VALUES ({FIRST_NAME}, {LAST_NAME}, {EMAIL}, {PHONE}, {SCORE})
+  ↓FIRST_NAME [variables.RequestableVariable-1756201388316]: 
+    description: FIRST_NAME
+  ↓LAST_NAME [variables.RequestableVariable-1756201388318]: 
+    description: LAST_NAME
+  ↓EMAIL [variables.RequestableVariable-1756201388320]: 
+    description: EMAIL
+  ↓PHONE [variables.RequestableVariable-1756201388322]: 
+    description: PHONE
+  ↓SCORE [variables.RequestableVariable-1756201388324]: 
+    description: SCORE
+↓AGGRIDCRUD_LIST [transactions.SqlTransaction]: 
+  sqlQuery: |
+    SELECT ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE, SCORE
+    FROM AGGRIDCRUD
+    ORDER BY {{order_by}}
+    LIMIT {limit} OFFSET {offset}
+  handlers: 
+    →: |
+      'function onTransactionStarted() {
+          if (!order_by || !order_by.length || -1 == context.transaction.sqlQuery.indexOf(order_by.replace(/\s+(asc|desc)/i,""))) {
+              order_by = "''''";
+          }
+      }'
+  ↓order_by [variables.RequestableVariable-1756201388086]: 
+    description: order_by
+    value: ID
+  ↓limit [variables.RequestableVariable-1756201388088]: 
+    description: limit
+    value: 100
+    xmlTypeAffectation: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XmlQName
+        - schemaDefinition: 
+          - ↑pLocalPart: long
+          - ↑pNamespace: http://www.w3.org/2001/XMLSchema
+  ↓offset [variables.RequestableVariable-1756201388090]: 
+    description: offset
+    value: 0
+    xmlTypeAffectation: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XmlQName
+        - schemaDefinition: 
+          - ↑pLocalPart: long
+          - ↑pNamespace: http://www.w3.org/2001/XMLSchema
+↓AGGRIDCRUD_SELECT [transactions.SqlTransaction]: 
+  sqlQuery: |
+    SELECT ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE, SCORE
+    FROM AGGRIDCRUD
+    WHERE ID = {ID}
+  ↓ID [variables.RequestableVariable-1756201388482]: 
+    description: ID
+↓AGGRIDCRUD_UPDATE [transactions.SqlTransaction]: 
+  sqlQuery: |
+    UPDATE AGGRIDCRUD
+    SET FIRST_NAME = {FIRST_NAME}, LAST_NAME = {LAST_NAME}, EMAIL = {EMAIL}, PHONE = {PHONE}, SCORE = {SCORE}
+    WHERE ID = {ID}
+  ↓FIRST_NAME [variables.RequestableVariable-1756201388638]: 
+    description: FIRST_NAME
+  ↓LAST_NAME [variables.RequestableVariable-1756201388640]: 
+    description: LAST_NAME
+  ↓EMAIL [variables.RequestableVariable-1756201388642]: 
+    description: EMAIL
+  ↓PHONE [variables.RequestableVariable-1756201388644]: 
+    description: PHONE
+  ↓SCORE [variables.RequestableVariable-1756201388646]: 
+    description: SCORE
+  ↓ID [variables.RequestableVariable-1756201388648]: 
+    description: ID
+↓void [transactions.SqlTransaction]: 
+  ↑default: true
+  comment: does nothing
+  xmlGrouping: true
+  xmlOutput: 0
+  handlers: 
+    →: |
+      '
+      // Handles the transaction start event.
+      function onTransactionStarted() {
+          // TODO: add your code here
+      	
+          // TODO: customize the returned value (if you omit returned value, the 
+          // algorithm will continue its process).
+          // Possible values are:
+          //    cancel - means the algorithm cancels the transaction core process.
+      
+          log.message("This transaction does nothing as it has a return \"cancel\" statement in the \"onTransactionStarted\" handler.");
+      
+          return "cancel";
+      }
+      '

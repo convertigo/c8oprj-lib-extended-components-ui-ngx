@@ -1,0 +1,902 @@
+↓IfBar [ngx.components.UIControlDirective-1755849413935]: 
+  directiveExpression: enableInsert || enableDelete
+  directiveName: If
+  ↓ButtonSet [ngx.components.UIDynamicElement-1755787421218]: 
+    beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+    tagName: ion-buttons
+    ↓ifInsert [ngx.components.UIControlDirective-1755853979723]: 
+      directiveName: If
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.enableInsert","prefix":"","suffix":"","custom":"","useCustom":false}}
+      ↓Insert [ngx.components.UIDynamicElement-1755787421220]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "IonFill": "source:{\"filter\":\"Local\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"localObject\":\"local\"}],\"path\":\"?.enabledInsert\",\"prefix\":\"\",\"suffix\":\"? ''solid'':undefined\",\"custom\":\"\",\"useCustom\":false}}",
+           "IonSize": "plain:small"
+          }'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1755787834608]: 
+          beanData: '{"ionBean":"Icon","IconSlot":"plain:icon-only"}'
+          tagName: ion-icon
+        ↓Event [ngx.components.UIControlEvent-1755787421224]: 
+          ↓enabledInsert [ngx.components.UIDynamicAction-1755849670623]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:enabledInsert",
+               "Value": "source:{\"filter\":\"Local\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"localObject\":\"local\"}],\"path\":\"?.enabledInsert\",\"prefix\":\"!\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}"
+              }'
+            ↓If [ngx.components.UIDynamicAction-1755854869015]: 
+              beanData: '{"ionBean":"IfAction","condition":"source:{\"filter\":\"Local\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"localObject\":\"local\"}],\"path\":\"?.enabledInsert\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}"}'
+              ↓select [ngx.components.UICustomAsyncAction-1755854191303]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		try {
+                        			window.setTimeout(() => {
+                        				page.c8o.log.debug(''[MB] '' + props.actionFunction + '': '' + props.actionName);
+                        				let api = page.local.gridApi;
+                        				api.getPinnedTopRow(0)?.setData({});
+                        				//window[''gapi''] = api;
+                        				api.startEditingCell({
+                        					rowIndex: 0,
+                        					colKey: api.getColumnDefs().find(c => c.field && !c.hide).field,
+                        					rowPinned: ''top''
+                        				});
+                        			}, 10);
+                        		} catch (e) {
+                        
+                        		} finally {
+                        			return;
+                        		}
+                        '
+          ↓disableDelete [ngx.components.UIDynamicAction-1755875575553]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:enabledDelete",
+               "Value": "script:false"
+              }'
+    ↓Style [ngx.components.UIStyle-1755787488550]: 
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              'padding: 1px;
+              '
+    ↓ifDelete1 [ngx.components.UIControlDirective-1755854083716]: 
+      directiveName: If
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.enableDelete","prefix":"","suffix":"","custom":"","useCustom":false}}
+      ↓Delete [ngx.components.UIDynamicElement-1755787647764]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "IonFill": "source:{\"filter\":\"Local\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"localObject\":\"local\"}],\"path\":\"?.enabledDelete\",\"prefix\":\"\",\"suffix\":\"? ''solid'' : undefined\",\"custom\":\"\",\"useCustom\":false}}",
+           "IonSize": "plain:small"
+          }'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1755787847157]: 
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "source:{\"filter\":\"Icon\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"icon\":\"''trash''\"}],\"path\":\"\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+             "IconSlot": "plain:icon-only"
+            }'
+          tagName: ion-icon
+        ↓Event [ngx.components.UIControlEvent-1755787647770]: 
+          ↓enabledInsert [ngx.components.UIDynamicAction-1755849833840]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:enabledDelete",
+               "Value": "source:{\"filter\":\"Local\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"localObject\":\"local\"}],\"path\":\"?.enabledDelete\",\"prefix\":\"!\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}"
+              }'
+            ↓toggleCheck [ngx.components.UICustomAsyncAction-1755850213034]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		try {
+                      			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                      			let api = page.local.gridApi;
+                      			api.deselectAll();
+                      			let colDefs = api.getColumnDefs();
+                      			colDefs[0].hide = !page.local.enabledDelete;
+                      			api.setColumnDefs(colDefs);
+                      		} catch (e) {
+                      		
+                      		} finally {
+                      			return;
+                      		}
+                      '
+          ↓disableInsert [ngx.components.UIDynamicAction-1755871286746]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:enabledInsert",
+               "Value": "script:false"
+              }'
+      ↓ifDelete [ngx.components.UIControlDirective-1755851522943]: 
+        directiveName: If
+        directiveSource: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Local","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"localObject":"local"}],"path":"?.selectedRows","prefix":"","suffix":"?.length > 0 && local?.enabledDelete","custom":"","useCustom":false}}
+        ↓DeleteValidate [ngx.components.UIDynamicElement-1755851322539]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "IonColor": "plain:danger",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Icon [ngx.components.UIDynamicElement-1755851322542]: 
+            beanData: |
+              '{
+               "ionBean": "Icon",
+               "IconName": "source:{\"filter\":\"Icon\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"icon\":\"''checkmark-done''\"}],\"path\":\"\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+               "IconSlot": "plain:icon-only"
+              }'
+            tagName: ion-icon
+          ↓Event [ngx.components.UIControlEvent-1755851322545]: 
+            ↓Delete [ngx.components.UICustomAsyncAction-1755851322548]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		try {
+                      			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                      			let rows = page.local.selectedRows;
+                      			for (let row of rows) {
+                      				await page.call(page.table + ''_DELETE'', {id: row.id});	
+                      			}
+                      			page.local.gridApi.deselectAll();
+                      			page.local.gridApi.refreshInfiniteCache();
+                      		} catch (e) {
+                      		
+                      		} finally {
+                      			return;
+                      		}
+                      '
+↓UseSharedComponent [ngx.components.UIUseShared-1755612063468]: 
+  sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+  ↓rowModelType [ngx.components.UIUseVariable-1755676749794]: 
+    comment: Row model type
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:infinite
+  ↓pagination [ngx.components.UIUseVariable-1755612063471]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.pagination","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓paginationPageSize [ngx.components.UIUseVariable-1755612063474]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.paginationPageSize","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓rowSelection [ngx.components.UIUseVariable-1755612063477]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.rowSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓rowDeselection [ngx.components.UIUseVariable-1755612063480]: 
+    comment: '''single'' or ''multiple'''
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.rowDeselection","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓defaultColDef [ngx.components.UIUseVariable-1755612063483]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.defaultColDef","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓showCsvDownload [ngx.components.UIUseVariable-1755612063492]: 
+    comment: |
+      If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+      
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.showCsvDownload","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓showCsvDownloadPosition [ngx.components.UIUseVariable-1755612063495]: 
+    comment: |
+      If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+      
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.showCsvDownloadPosition","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓showCsvDownloadAlignment [ngx.components.UIUseVariable-1755612063498]: 
+    comment: |
+      If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+      
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓localeText [ngx.components.UIUseVariable-1755612063501]: 
+    comment: |
+      'Define the Grid localisation.
+      You can provide:
+      
+       - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+       - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
+      
+      The default language of the grid is American English.'
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.localeText","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓customLocaleText [ngx.components.UIUseVariable-1755612063504]: 
+    comment: |
+      'Add or overload Grid localisation.
+      You have to provide:
+      
+       - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+      
+      The default value is an empty object.'
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.customLocaleText","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Event9 [ngx.components.UIControlEvent-1755617761700]: 
+    attrName: (GetRows)
+    comment: Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action
+    eventName: GetRows
+    ↓GetRows [ngx.components.UICustomAsyncAction-1755677200172]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		function suppressKeyboardEvent(e) {
+              			if (e.event.key === ''Enter'') {
+              				page.local.lastCommitByEnter = true;
+              			}
+              		}
+              
+              		function prettifyHeader(key) {
+              			return key
+              				.replace(/([a-z0-9])([A-Z])/g, ''$1 $2'')
+              				.replace(/[_-]/g, '' '').toLowerCase().split('' '')
+              				.map(w => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+              				.join('' '')
+              		}
+              
+              		function firstNonNullValue(key, rows) {
+              			for (const r of rows) {
+              				if (r && r.hasOwnProperty(key)) {
+              					const v = r[key];
+              					if (v !== null && v !== undefined && v !== '''') return v;
+              				}
+              			}
+              			return undefined;
+              		}
+              
+              		function isNumericLike(v) {
+              			if (typeof v === ''number'') return Number.isFinite(v);
+              			if (typeof v === ''string'' && v.trim() !== '''') {
+              				const n = Number(v.replace(/\s/g, '''').replace('','', ''.'')); // 1 234,56 -> 1234.56
+              				return Number.isFinite(n);
+              			}
+              			return false;
+              		}
+              
+              		function parseDateLoose(v) {
+              			if (v instanceof Date && !isNaN(Number(v))) return v;
+              			if (typeof v === ''number'' && Number.isFinite(v)) {
+              				const d = new Date(v); // epoch ms
+              				return isNaN(Number(d)) ? null : d;
+              			}
+              			if (typeof v === ''string'') {
+              				// ISO, YYYY-MM-DD, DD/MM/YYYY, DD/MM/YYYY HH:mm[:ss]
+              				const s = v.trim();
+              
+              				// DD/MM/YYYY[ HH:mm[:ss]]
+              				const m = s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+              				if (m) {
+              					const [, dd, mm, yyyy, HH = ''0'', MM = ''0'', SS = ''0''] = m;
+              					const year = Number(yyyy.length === 2 ? (Number(yyyy) + 2000) : yyyy);
+              					const d = new Date(year, Number(mm) - 1, Number(dd), Number(HH), Number(MM), Number(SS));
+              					return isNaN(Number(d)) ? null : d;
+              				}
+              
+              				const d2 = new Date(s); // ISO, RFC, etc.
+              				return isNaN(Number(d2)) ? null : d2;
+              			}
+              			return null;
+              		}
+              
+              		function toNumberLoose(v) {
+              			if (typeof v === ''number'') return v;
+              			if (typeof v === ''string'' && v.trim() !== '''') {
+              				// "1 234,56" => 1234.56
+              				const n = Number(v.replace(/\s/g, '''').replace('','', ''.''));
+              				return Number.isFinite(n) ? n : NaN;
+              			}
+              			return NaN;
+              		}
+              
+              		function inferFilterAndParams(sample) {
+              			// Bool
+              			if (typeof sample === ''boolean'' || (typeof sample === ''string'' && /^(true|false)$/i.test(sample))) {
+              				return {
+              					filter: ''agSetColumnFilter'',
+              					filterParams: { values: [true, false] }
+              				};
+              			}
+              
+              			// Nombre
+              			if (isNumericLike(sample)) {
+              				return {
+              					filter: ''agNumberColumnFilter'',
+              					filterParams: { resetButton: true, applyButton: true, debounceMs: 200 },
+              					cellClass: [''ag-right-aligned-cell'', ''num-cell''],
+              					cellClassRules: {
+              						''num-negative'': params => {
+              							const n = toNumberLoose(params.value);
+              							return Number.isFinite(n) && n < 0;
+              						}
+              					},
+              					cellStyle: params => {
+              						const n = toNumberLoose(params.value);
+              						if (Number.isFinite(n) && n < 0) {
+              							return { color: "red" };
+              						}
+              					}
+              				};
+              			}
+              
+              			// Date
+              			const parsed = parseDateLoose(sample);
+              			if (parsed) {
+              				return {
+              					filter: ''agDateColumnFilter'',
+              					filterParams: {
+              						resetButton: true, applyButton: true, debounceMs: 200,
+              						comparator: (filterLocalDateAtMidnight, cellValue) => {
+              							const d = parseDateLoose(cellValue);
+              							if (!d) return -1;
+              							const cell = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+              							if (cell < filterLocalDateAtMidnight) return -1;
+              							if (cell > filterLocalDateAtMidnight) return 1;
+              							return 0;
+              						}
+              					},
+              					valueFormatter: params => {
+              						const d = parseDateLoose(params.value);
+              						if (!d) return '''';
+              						const y = d.getFullYear();
+              						const m = String(d.getMonth() + 1).padStart(2, ''0'');
+              						const day = String(d.getDate()).padStart(2, ''0'');
+              						return y + ''-'' + m + ''-'' + day;
+              					}
+              				};
+              			}
+              
+              			// Texte
+              			return {
+              				filter: ''agTextColumnFilter'',
+              				filterParams: { resetButton: true, applyButton: true, debounceMs: 200 }
+              			};
+              		}
+              		try {
+              			page.c8o.log.debug(''[MB] '' + props.actionFunction + '': '' + props.actionName);
+              			
+              			let args = { limit: props.out.limit, offset: props.out.skip };
+              			if (props.out.sortModel.length > 0) {
+              				let sortModel = props.out.sortModel[0];
+              				args[''order_by''] = sortModel.colId + '' '' + sortModel.sort;
+              			}
+              			
+              			let table = await page.call(page.table + ''_LIST'', args);
+              			let RowData = table.row ?? [];
+              
+              			let ColDef = [];
+              
+              			if (RowData.length > 0 && props.out.skip == 0) {
+              				const firstRow = RowData[0];
+              				ColDef = Object.keys(firstRow).map(key => {
+              					const sample = firstNonNullValue(key, RowData);
+              					const { filter, filterParams, valueFormatter, cellClass, cellClassRules, cellStyle } = inferFilterAndParams(sample);
+              
+              					const col: any = {
+              						headerName: prettifyHeader(key),
+              						field: key,
+              						filter,
+              						filterParams,
+              						suppressKeyboardEvent
+              					};
+              					if (valueFormatter) col.valueFormatter = valueFormatter;
+              					if (cellClass) col.cellClass = cellClass;
+              					if (cellClassRules) col.cellClassRules = cellClassRules;
+              					if (cellStyle) col.cellStyle = cellStyle;
+              					return col;
+              				});
+              			}
+              			let lastRow = undefined;
+              			RowData.length = RowData.length ?? 0;
+              			if (RowData.length < props.out.limit) {
+              				lastRow = props.out.startRow + RowData.length;
+              			}
+              			for (let c of ColDef) {
+              				if (c.field in page.customColDef) {
+              					const custom = page.customColDef[c.field];
+              					for (let k in custom) {
+              						c[k] = custom[k];
+              					}
+              				}
+              			}
+              			ColDef.unshift({
+              				headerCheckboxSelection: true,
+              				checkboxSelection: true,
+              				showDisabledCheckboxes: true,
+              				editable: false,
+              				sortable: false,
+              				filter: false,
+              				maxWidth: 40,
+              				hide: !page.local.enabledDelete
+              			});
+              			return { RowData, ColDef, lastRow };
+              		} catch (e) {
+              
+              		} finally {
+              		}
+              		return {};
+              '
+      ↓InvokeSharedAction [ngx.components.UIDynamicInvoke-1755677307035]: 
+        beanData: '{"ionBean":"InvokeAction"}'
+        stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGridUpdateRows
+        ↓data [ngx.components.UIControlVariable-1755677315856]: 
+          comment: data must receive a JSON with a RowData key and an optional ColDef key
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Action","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755677200172,"rootEvent":false,"pageLocals":false},{"priority":1755617761700,"rootEvent":true,"pageLocals":false}],"path":"?.out","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓agGridEvent [ngx.components.UIControlVariable-1755677315858]: 
+          comment: map agGridEvent to the TS 'event' parameter from the GetRows Control
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Action","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755617761700,"rootEvent":true,"pageLocals":false}],"path":"?.out","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Event [ngx.components.UIControlEvent-1755617761682]: 
+    attrName: (CellClicked)
+    comment: Fired when a cell is clicked. Data will be the agGrid event
+    eventName: CellClicked
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682310856]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.CellClicked",
+         "data": "script:event"
+        }'
+  ↓Event1 [ngx.components.UIControlEvent-1755617761684]: 
+    attrName: (RowClicked)
+    comment: Fired when a row is clicked. Data will be the agGrid event
+    eventName: RowClicked
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682354015]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.RowClicked",
+         "data": "script:event"
+        }'
+  ↓Event2 [ngx.components.UIControlEvent-1755617761686]: 
+    attrName: (RowSelected)
+    comment: Fired when a row is selected. Data will be the agGrid event
+    eventName: RowSelected
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682370382]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.RowSelected",
+         "data": "script:event"
+        }'
+  ↓Event3 [ngx.components.UIControlEvent-1755617761688]: 
+    attrName: (SortChanged)
+    comment: Fired when a a column is sorted. Data will be the agGrid event
+    eventName: SortChanged
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682528370]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.SortChanged",
+         "data": "script:event"
+        }'
+  ↓Event4 [ngx.components.UIControlEvent-1755617761690]: 
+    attrName: (RowDataChanged)
+    comment: Fired when Row data changed. Data will be the agGrid event
+    eventName: RowDataChanged
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682544265]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.RowDataChanged",
+         "data": "script:event"
+        }'
+  ↓Event5 [ngx.components.UIControlEvent-1755617761692]: 
+    attrName: (RowValueChanged)
+    comment: Fired when A Cell is edited changed. Data will be the agGrid event
+    eventName: RowValueChanged
+    ↓Update [ngx.components.UICustomAsyncAction-1755675657521]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		try {
+              			if (page.local.lastCommitByEnter) {
+              				page.c8o.log.debug(''[MB] '' + props.actionFunction + '': '' + props.actionName);
+              				await page.call(page.table + (props.out.rowPinned ? ''_INSERT'' : ''_UPDATE''), props.out.data);
+              				page.local.enabledInsert = false;
+              			}
+              			page.local.gridApi.refreshInfiniteCache();
+              		} catch (e) {
+              
+              		} finally {
+              			return;
+              		}
+              '
+      ↓EmitEvent [ngx.components.UIDynamicEmit-1755869718648]: 
+        beanData: |
+          '{
+           "ionBean": "EmitEventAction",
+           "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.RowValueChanged",
+           "data": "script:event"
+          }'
+  ↓Event6 [ngx.components.UIControlEvent-1755617761694]: 
+    attrName: (RowDoubleClicked)
+    comment: Fired when A Cell is edited changed. Data will be the agGrid event
+    eventName: RowDoubleClicked
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682560853]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.RowDoubleClicked",
+         "data": "script:event"
+        }'
+  ↓Event7 [ngx.components.UIControlEvent-1755617761696]: 
+    attrName: (SelectionChanged)
+    comment: Fired when selectionChange. Data will be the agGrid event
+    eventName: SelectionChanged
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682578094]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.SelectionChanged",
+         "data": "script:event"
+        }'
+    ↓onSelection [ngx.components.UICustomAsyncAction-1755788181079]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		try {
+              			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              			page.local.selectedRows = props.out.api.getSelectedRows();
+              		} catch (e) {
+              		
+              		} finally {
+              			return;
+              		}
+              '
+  ↓Event8 [ngx.components.UIControlEvent-1755617761698]: 
+    attrName: (GridReady)
+    comment: Fired when the Grid is ready. Data will be the agGrid event
+    eventName: GridReady
+    ↓EmitEvent [ngx.components.UIDynamicEmit-1755682593274]: 
+      beanData: |
+        '{
+         "ionBean": "EmitEventAction",
+         "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CRUD.GridReady",
+         "data": "script:event"
+        }'
+    ↓gridApi [ngx.components.UIDynamicAction-1755849954113]: 
+      beanData: |
+        '{
+         "ionBean": "SetLocalAction",
+         "Property": "plain:gridApi",
+         "Value": "script:out.api"
+        }'
+      ↓Init [ngx.components.UICustomAsyncAction-1755872028967]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		try {
+                			page.c8o.log.debug(''[MB] '' + props.actionFunction + '': '' + props.actionName);
+                			let api = page.local.gridApi;
+                			page.local.lastCommitByEnter = false;
+                			api.updateGridOptions({
+                				suppressKeyboardEvent: (e) => {
+                					if (e.event.key === ''Enter'') {
+                						page.local.lastCommitByEnter = true;
+                					}
+                				},
+                				onRowEditingStopped: (e) => {
+                					page.local.lastCommitByEnter = false;
+                				}
+                			})
+                		} catch (e) {
+                
+                		} finally {
+                			return;
+                		}
+                '
+  ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1755676749772]: 
+    comment: 'array | boolean: [20,50,100] by default. If ''paginationPageSize'' has a value not in the default array, it is automatically added.'
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.paginationPageSizeSelector","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓width [ngx.components.UIUseVariable-1755676749774]: 
+    comment: width value in % or px
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.width","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓height [ngx.components.UIUseVariable-1755676749776]: 
+    comment: height is 'auto' or value in % or px
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.height","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓class [ngx.components.UIUseVariable-1755676749778]: 
+    comment: |
+      'One of the themes provided here :
+      
+      https://www.ag-grid.com/javascript-grid-themes-provided/
+      
+      Also be shure to add the theme in the Theme object as :
+      
+      @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
+      
+      
+      
+      '
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.class","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓id [ngx.components.UIUseVariable-1755676749780]: 
+    comment: An Optional ID
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓suppressCellSelection [ngx.components.UIUseVariable-1755676749782]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.suppressCellSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓suppressRowClickSelection [ngx.components.UIUseVariable-1755676749784]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.suppressRowClickSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓overlayLoadingTemplate [ngx.components.UIUseVariable-1755676749786]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓overlayNoRowsTemplate [ngx.components.UIUseVariable-1755676749788]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.overlayNoRowsTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓rowHeight [ngx.components.UIUseVariable-1755676749790]: 
+    comment: Height of the row in pixels as a string
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.rowHeight","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓wrapperClass [ngx.components.UIUseVariable-1755676749792]: 
+    comment: Height of the row in pixels as a string
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.wrapperClass","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓maxBlocksInCache [ngx.components.UIUseVariable-1755676749796]: 
+    comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.maxBlocksInCache","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓autoSizeColumns [ngx.components.UIUseVariable-1755676749798]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓accessibility [ngx.components.UIUseVariable-1755676749800]: 
+    comment: 'boolean: true (default) or false'
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.accessibility","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓ariaLabel [ngx.components.UIUseVariable-1755676749802]: 
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1755611658900,"regular":true}],"path":"?.ariaLabel","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓editType [ngx.components.UIUseVariable-1755770383642]: 
+    comment: '''singleCell'' or ''fullRow'''
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:'fullRow'
+  ↓pinnedTopRowData [ngx.components.UIUseVariable-1755771041149]: 
+    comment: Data to be displayed as pinned top rows in the grid.
+    varValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: 'source:{"filter":"Local","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"localObject":"local"}],"path":"?.enabledInsert","prefix":"","suffix":"? [{}] : []","custom":"","useCustom":false}}'
+↓table [ngx.components.UICompVariable-1755612562438]: 
+↓init [ngx.components.UISharedComponentEvent-1755612584944]: 
+  ↓rowSelected [ngx.components.UIDynamicAction-1755788519134]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:selectedRows",
+       "Value": "script:[]"
+      }'
+  ↓enabledInsert [ngx.components.UIDynamicAction-1755849604585]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:enabledInsert",
+       "Value": "script:false"
+      }'
+  ↓enabledDelete [ngx.components.UIDynamicAction-1755849627351]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:enabledDelete",
+       "Value": "script:false"
+      }'
+↓enableInsert [ngx.components.UICompVariable-1755849252795]: 
+  value: true
+↓enableUpdate [ngx.components.UICompVariable-1755849274199]: 
+  value: true
+↓enableDelete [ngx.components.UICompVariable-1755849287092]: 
+  value: true
+↓pagination [ngx.components.UICompVariable-1755681591333]: 
+  comment: 'boolean: true (default) or false'
+  value: true
+↓paginationPageSize [ngx.components.UICompVariable-1755681591336]: 
+  comment: 'integer: 20 by default'
+  value: 20
+↓paginationPageSizeSelector [ngx.components.UICompVariable-1755681591339]: 
+  comment: 'array | boolean: [20,50,100] by default. If ''paginationPageSize'' has a value not in the default array, it is automatically added.'
+  value: true
+↓rowSelection [ngx.components.UICompVariable-1755681591342]: 
+  comment: 'string: ''single'' (default) or ''multiple'''
+  value: '''multiple'''
+↓rowDeselection [ngx.components.UICompVariable-1755681591345]: 
+  comment: 'boolean: true (default) or false'
+  value: true
+↓customColDef [ngx.components.UICompVariable-1755769160792]: 
+  comment: 'Object of columnDef {''fieldName'': {headerName: ''headerName'', ...} objects'
+  value: '{id: {hide:true}}'
+↓defaultColDef [ngx.components.UICompVariable-1755681591348]: 
+  comment: 'default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
+  value: '{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
+↓width [ngx.components.UICompVariable-1755681591357]: 
+  comment: width value in % or px
+  value: '''100%'''
+↓height [ngx.components.UICompVariable-1755681591360]: 
+  comment: height is 'auto' or value in % or px
+  value: '''auto'''
+↓class [ngx.components.UICompVariable-1755681591363]: 
+  comment: |
+    'One of the themes provided here :
+    
+    https://www.ag-grid.com/javascript-grid-themes-provided/
+    
+    Also be shure to add the theme in the Theme object as :
+    
+    @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
+    
+    
+    
+    '
+  value: '''ag-theme-quartz'''
+↓id [ngx.components.UICompVariable-1755681591366]: 
+  comment: An Optional ID
+↓suppressCellSelection [ngx.components.UICompVariable-1755681591369]: 
+  value: false
+↓suppressRowClickSelection [ngx.components.UICompVariable-1755681591372]: 
+  value: true
+↓overlayLoadingTemplate [ngx.components.UICompVariable-1755681591375]: 
+↓overlayNoRowsTemplate [ngx.components.UICompVariable-1755681591378]: 
+↓rowHeight [ngx.components.UICompVariable-1755681591381]: 
+  comment: Height of the row in pixels as a string
+  value: '''25'''
+↓wrapperClass [ngx.components.UICompVariable-1755681591384]: 
+  comment: Height of the row in pixels as a string
+↓rowModelType [ngx.components.UICompVariable-1755681591387]: 
+  comment: Row model type
+  value: '''clientSide'''
+↓maxBlocksInCache [ngx.components.UICompVariable-1755681591390]: 
+  comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
+↓autoSizeColumns [ngx.components.UICompVariable-1755681591393]: 
+  value: true
+↓accessibility [ngx.components.UICompVariable-1755681591396]: 
+  comment: 'boolean: true (default) or false'
+  value: false
+↓ariaLabel [ngx.components.UICompVariable-1755681591399]: 
+↓showCsvDownload [ngx.components.UICompVariable-1755681591402]: 
+  comment: |
+    If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+    
+  value: false
+↓showCsvDownloadPosition [ngx.components.UICompVariable-1755681591405]: 
+  comment: |
+    If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+    
+  value: '''top'''
+↓showCsvDownloadAlignment [ngx.components.UICompVariable-1755681591408]: 
+  comment: |
+    If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+    
+  value: '''end'''
+↓localeText [ngx.components.UICompVariable-1755681591411]: 
+  comment: |
+    'Define the Grid localisation.
+    You can provide:
+    
+     - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
+     - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
+    
+    The default language of the grid is American English.'
+  value: '''en'''
+↓customLocaleText [ngx.components.UICompVariable-1755681591414]: 
+  comment: |
+    'Add or surcharge Grid localisation.
+    You have to provide:
+    
+     - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+    
+    The default value is an empty object.'
+  value: '{}'
+↓CellClicked [ngx.components.UICompEvent-1755681647504]: 
+  attrName: CellClicked
+  comment: Fired when a cell is clicked. Data will be the agGrid event
+↓RowClicked [ngx.components.UICompEvent-1755681647507]: 
+  attrName: RowClicked
+  comment: Fired when a row is clicked. Data will be the agGrid event
+↓RowSelected [ngx.components.UICompEvent-1755681647510]: 
+  attrName: RowSelected
+  comment: Fired when a row is selected. Data will be the agGrid event
+↓SortChanged [ngx.components.UICompEvent-1755681647513]: 
+  attrName: SortChanged
+  comment: Fired when a a column is sorted. Data will be the agGrid event
+↓RowDataChanged [ngx.components.UICompEvent-1755681647516]: 
+  attrName: RowDataChanged
+  comment: Fired when Row data changed. Data will be the agGrid event
+↓RowValueChanged [ngx.components.UICompEvent-1755681647519]: 
+  attrName: RowValueChanged
+  comment: Fired when A Cell is edited changed. Data will be the agGrid event
+↓RowDoubleClicked [ngx.components.UICompEvent-1755681647522]: 
+  attrName: RowDoubleClicked
+  comment: Fired when A Cell is edited changed. Data will be the agGrid event
+↓SelectionChanged [ngx.components.UICompEvent-1755681647525]: 
+  attrName: SelectionChanged
+  comment: Fired when selectionChange. Data will be the agGrid event
+↓GridReady [ngx.components.UICompEvent-1755681647528]: 
+  attrName: GridReady
+  comment: Fired when the Grid is ready. Data will be the agGrid event

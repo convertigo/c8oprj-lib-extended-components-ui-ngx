@@ -8,8 +8,13 @@
     
     '
   corsOrigin: =Origin
-  version: 8.3.0.9
-  ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  version: 8.3.0.10
+  ↓sample [connectors.SqlConnector]: 🗏 connectors/sample.yaml
+  ↓AGGRIDCRUD_DELETE [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_DELETE.yaml
+  ↓AGGRIDCRUD_INSERT [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_INSERT.yaml
+  ↓AGGRIDCRUD_LIST [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_LIST.yaml
+  ↓AGGRIDCRUD_SELECT [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_SELECT.yaml
+  ↓AGGRIDCRUD_UPDATE [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_UPDATE.yaml
   ↓project [references.ProjectSchemaReference]: 
     projectName: mobilebuilder_tpl_8_3_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_3_0_ngx.zip
   ↓MobileApplication [core.MobileApplication]: 

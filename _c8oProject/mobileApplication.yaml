@@ -31,6 +31,7 @@ tplProjectName: mobilebuilder_tpl_8_3_0_ngx
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1740737699309]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
 ↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1740749016195]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
+↓agGrid_CRUD [ngx.components.UISharedRegularComponent-1755611658900]: 🗏 mobileSharedComponents/agGrid_CRUD.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
@@ -41,6 +42,7 @@ tplProjectName: mobilebuilder_tpl_8_3_0_ngx
 ↓ngSelect [ngx.components.UISharedRegularComponent-1741013348704]: 🗏 mobileSharedComponents/ngSelect.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
+↓testAgGridCrud1 [ngx.components.PageComponent-1755611633713]: 🗏 mobilePages/testAgGridCrud1.yaml
 ↓testNgxInput [ngx.components.PageComponent-1577114040810]: 🗏 mobilePages/testNgxInput.yaml
 ↓testNgxInput1 [ngx.components.PageComponent-1578565185309]: 🗏 mobilePages/testNgxInput1.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml

@@ -116,6 +116,8 @@ scriptContent:
 ↓RowDataChanged [ngx.components.UICompEvent-1710934918959]: 
   attrName: RowDataChanged
   comment: Fired when Row data changed. Data will be the agGrid event
+↓RowValueChanged [ngx.components.UICompEvent-1755869511174]: 
+  attrName: RowValueChanged
 ↓CellValueChanged [ngx.components.UICompEvent-1710934918962]: 
   attrName: CellValueChanged
   comment: Fired when A Cell is edited changed. Data will be the agGrid event
@@ -756,7 +758,7 @@ scriptContent:
                    "data": "script:event"
                   }'
               ↓Log [ngx.components.UIDynamicAction-1710934919082]: 
-                beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
+                beanData: '{"ionBean":"LogAction","message":"plain:cellChanged"}'
             ↓Event5 [ngx.components.UIControlEvent-1710934919085]: 
               attrName: (rowDoubleClicked)
               eventName: (rowDoubleClicked)
@@ -819,6 +821,36 @@ scriptContent:
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.local.agGridLang
+            ↓Attr19 [ngx.components.UIAttribute-1755770245668]: 
+              attrName: '[editType]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.editType","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Attr20 [ngx.components.UIAttribute-1755770633303]: 
+              attrName: '[pinnedTopRowData]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.pinnedTopRowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Attr21 [ngx.components.UIAttribute-1755770853838]: 
+              attrName: '[pinnedBottomRowData]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.pinnedBottomRowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Event42 [ngx.components.UIControlEvent-1755869559327]: 
+              attrName: (rowValueChanged)
+              eventName: (rowValueChanged)
+              ↓EmitEvent [ngx.components.UIDynamicEmit-1755869559330]: 
+                beanData: |
+                  '{
+                   "ionBean": "EmitEventAction",
+                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowValueChanged",
+                   "data": "script:event"
+                  }'
+              ↓Log [ngx.components.UIDynamicAction-1755869559333]: 
+                beanData: '{"ionBean":"LogAction","message":"plain:rowChanged"}'
         ↓Directive1 [ngx.components.UIControlDirective-1740737400747]: 
           directiveName: If
           directiveSource: 
@@ -871,3 +903,12 @@ scriptContent:
     
     The default value is an empty object.'
   value: '{}'
+↓editType [ngx.components.UICompVariable-1755770286084]: 
+  comment: '''singleCell'' or ''fullRow'''
+  value: '''singleCell'''
+↓pinnedTopRowData [ngx.components.UICompVariable-1755770900201]: 
+  comment: Data to be displayed as pinned top rows in the grid.
+  value: '[]'
+↓pinnedBottomRowData [ngx.components.UICompVariable-1755770936305]: 
+  comment: Data to be displayed as pinned bottom rows in the grid.
+  value: '[]'

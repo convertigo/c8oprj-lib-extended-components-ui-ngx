@@ -20,3 +20,7 @@
 /oas3/
 
 /build/
+
+.DS_Store
+/hsqldb.lck
+/hsqldb.log

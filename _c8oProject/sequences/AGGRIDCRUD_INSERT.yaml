@@ -1,0 +1,32 @@
+accessibility: Hidden
+↓Call_Transaction [steps.TransactionStep-1756201388339]: 
+  sourceTransaction: lib_ExtendedComponents_ui_ngx.sample.AGGRIDCRUD_INSERT
+  ↓FIRST_NAME [variables.StepVariable-1756201388341]: 
+    description: FIRST_NAME
+  ↓LAST_NAME [variables.StepVariable-1756201388343]: 
+    description: LAST_NAME
+  ↓EMAIL [variables.StepVariable-1756201388345]: 
+    description: EMAIL
+  ↓PHONE [variables.StepVariable-1756201388347]: 
+    description: PHONE
+  ↓SCORE [variables.StepVariable-1756201388349]: 
+    description: SCORE
+↓Copy [steps.XMLCopyStep-1756201388361]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1756201388339
+        - java.lang.String: 
+          - ↑value: ./document/error|./document/sql_output[row]/*|./document/sql_output[not(row)]
+↓FIRST_NAME [variables.RequestableVariable-1756201388351]: 
+  description: FIRST_NAME
+↓LAST_NAME [variables.RequestableVariable-1756201388353]: 
+  description: LAST_NAME
+↓EMAIL [variables.RequestableVariable-1756201388355]: 
+  description: EMAIL
+↓PHONE [variables.RequestableVariable-1756201388357]: 
+  description: PHONE
+↓SCORE [variables.RequestableVariable-1756201388359]: 
+  description: SCORE

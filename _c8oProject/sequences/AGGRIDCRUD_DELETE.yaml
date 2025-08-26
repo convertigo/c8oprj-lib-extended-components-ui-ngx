@@ -1,0 +1,16 @@
+accessibility: Hidden
+↓Call_Transaction [steps.TransactionStep-1756201388835]: 
+  sourceTransaction: lib_ExtendedComponents_ui_ngx.sample.AGGRIDCRUD_DELETE
+  ↓ID [variables.StepVariable-1756201388837]: 
+    description: ID
+↓Copy [steps.XMLCopyStep-1756201388841]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1756201388835
+        - java.lang.String: 
+          - ↑value: ./document/error|./document/sql_output[row]/*|./document/sql_output[not(row)]
+↓ID [variables.RequestableVariable-1756201388839]: 
+  description: ID
