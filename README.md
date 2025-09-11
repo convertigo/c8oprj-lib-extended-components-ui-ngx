@@ -629,6 +629,9 @@ For more informations see [documentation](https://www.npmjs.com/package/@ng-sele
 <td>minTermLength</td><td>Minimum term length to start a search. Should be used with typeahead</td>
 </tr>
 <tr>
+<td>model</td><td></td>
+</tr>
+<tr>
 <td>multiple</td><td>Allows to select multiple items.</td>
 </tr>
 <tr>

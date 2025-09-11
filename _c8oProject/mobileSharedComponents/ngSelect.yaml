@@ -476,6 +476,12 @@ comment: |
          "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.ngSelect.scrollToEnd",
          "data": "script:{event:event}"
         }'
+  ↓Attr44 [ngx.components.UIAttribute-1757597957804]: 
+    attrName: '[(ngModel)]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.model
 ↓addTag [ngx.components.UICompVariable-1741619592801]: 
   comment: Allows to create custom options.
   value: false
@@ -641,3 +647,6 @@ comment: |
 ↓scrollToEnd [ngx.components.UICompEvent-1741619592963]: 
   attrName: scrollToEnd
   comment: Fired when scrolled to the end of items. Can be used for loading more items in chunks.
+↓model [ngx.components.UICompVariable-1757597976239]: 
+  autoEmit: true
+  value: null
