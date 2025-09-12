@@ -1,3 +1,6 @@
+comment: |
+  This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
+  Enhanced version that handle CRUD Sequences (*_INSERT, *_LIST, *_UPDATE, *_DELETE) to manage data.
 ↓IfBar [ngx.components.UIControlDirective-1755849413935]: 
   directiveExpression: enableInsert || enableDelete
   directiveName: If
@@ -746,6 +749,7 @@
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: 'source:{"filter":"Local","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"localObject":"local"}],"path":"?.enabledInsert","prefix":"","suffix":"? [{}] : []","custom":"","useCustom":false}}'
 ↓table [ngx.components.UICompVariable-1755612562438]: 
+  comment: Prefix of callable CRUD Sequence (without _LIST). Can be from the current project with dot ".mydata" or another project "myback.mydata".
 ↓init [ngx.components.UISharedComponentEvent-1755612584944]: 
   ↓rowSelected [ngx.components.UIDynamicAction-1755788519134]: 
     beanData: |
@@ -769,10 +773,13 @@
        "Value": "script:false"
       }'
 ↓enableInsert [ngx.components.UICompVariable-1755849252795]: 
+  comment: Allow to add entry in the table (need _INSERT).
   value: true
 ↓enableUpdate [ngx.components.UICompVariable-1755849274199]: 
+  comment: Allow to update entry in the table (need _UPDATE)
   value: true
 ↓enableDelete [ngx.components.UICompVariable-1755849287092]: 
+  comment: Allow to delete entry from the table (need _DELETE)
   value: true
 ↓pagination [ngx.components.UICompVariable-1755681591333]: 
   comment: 'boolean: true (default) or false'

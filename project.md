@@ -1213,12 +1213,13 @@ Fired when a a column is sorted. Data will be the agGrid event
 
 </p></blockquote></details>
 
-<details><summary><b>agGrid_CRUD</b></summary><blockquote><p>
+<details><summary><b>agGrid_CRUD</b> : This Shared component wraps the ag-grid component</summary><blockquote><p>
 
 
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_CRUD
 
-
+This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
+Enhanced version that handle CRUD Sequences (*_INSERT, *_LIST, *_UPDATE, *_DELETE) to manage data.
 
 <span style="color:DarkGoldenRod">Variables</span>
 
@@ -1307,7 +1308,7 @@ default is {hide: false, editable: true, sortable: true, resizable: true, filter
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;enableDelete
 </td>
 <td>
-
+Allow to delete entry from the table (need _DELETE)
 </td>
 </tr>
 <tr>
@@ -1315,7 +1316,7 @@ default is {hide: false, editable: true, sortable: true, resizable: true, filter
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;enableInsert
 </td>
 <td>
-
+Allow to add entry in the table (need _INSERT).
 </td>
 </tr>
 <tr>
@@ -1323,7 +1324,7 @@ default is {hide: false, editable: true, sortable: true, resizable: true, filter
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;enableUpdate
 </td>
 <td>
-
+Allow to update entry in the table (need _UPDATE)
 </td>
 </tr>
 <tr>
@@ -1484,7 +1485,7 @@ If 'showCsvDownload' is set to true, you can define the CSV button position to '
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;table
 </td>
 <td>
-
+Prefix of callable CRUD Sequence (without _LIST). Can be from the current project with dot ".mydata" or another project "myback.mydata".
 </td>
 </tr>
 <tr>
