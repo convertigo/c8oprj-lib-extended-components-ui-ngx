@@ -1,0 +1,37 @@
+↓Button [ngx.components.UIDynamicElement-1765968209324]: 
+  beanData: |
+    '{
+     "ionBean": "Button",
+     "IonColor": "plain:light",
+     "IonSize": "plain:small"
+    }'
+  tagName: ion-button
+  ↓Event [ngx.components.UIControlEvent-1765968209329]: 
+    ↓DoClear [ngx.components.UICustomAction-1765968209336]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		if(vars.agGrid && vars.agGrid != ''''){
+              			vars.agGrid.api.applyColumnState({defaultState: { sort: null }});
+              		}
+              		
+              		resolve(null);
+              '
+      ↓agGrid [ngx.components.UIControlVariable-1765968209339]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1765968209317,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr [ngx.components.UIAttribute-1765968209342]: 
+    attrName: title
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:Clear Sort
+  ↓Icon [ngx.components.UIDynamicElement-1765968209345]: 
+    beanData: '{"ionBean":"Icon","IconName":"script:''funnel-outline''"}'
+    tagName: ion-icon
+↓ag_grid [ngx.components.UICompVariable-1765968209351]: 

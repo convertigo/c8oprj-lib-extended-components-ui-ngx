@@ -21,8 +21,12 @@ For more technical informations : [documentation](./project.md)
         - [ZXing_sa](#zxing_sa)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
+        - [agGrid_ClearSort](#aggrid_clearsort)
+        - [agGrid_CopyToClipboard](#aggrid_copytoclipboard)
         - [agGrid_CsvDownload](#aggrid_csvdownload)
         - [agGrid_CsvDownload_Row](#aggrid_csvdownload_row)
+        - [agGrid_FitColSize](#aggrid_fitcolsize)
+        - [agGrid_ResetFilters](#aggrid_resetfilters)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
@@ -47,13 +51,13 @@ For more technical informations : [documentation](./project.md)
      <tr><td>To contribute</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.4.0.0
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=47bfcb19b6d0d45b37febd9ec00c6e718419c1d4
      ```
      </td></tr>
      <tr><td>To simply use</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/8.4.0.0.zip
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/47bfcb19b6d0d45b37febd9ec00c6e718419c1d4.zip
      ```
      </td></tr>
     </table>
@@ -263,16 +267,36 @@ The default language of the grid is American English.</td>
 <td>rowSelection</td><td>string: 'single' (default) or 'multiple'</td>
 </tr>
 <tr>
+<td>showButtonsAlignment</td><td>You can define the general buttons horizontal or vertical alignment to 'start', 'center' or 'end'.
+</td>
+</tr>
+<tr>
+<td>showButtonsPosition</td><td>You can define the general buttons position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+</td>
+</tr>
+<tr>
+<td>showClearSort</td><td>If set to true will display a side bar menu where user can click a button to clear sort on all columns.</td>
+</tr>
+<tr>
+<td>showCopyGrid</td><td>If set to true will display a side bar menu where user can click a button to copy the Grid content in the system clipboard.</td>
+</tr>
+<tr>
 <td>showCsvDownload</td><td>If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
 </td>
 </tr>
 <tr>
-<td>showCsvDownloadAlignment</td><td>If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
+<td>showCsvDownloadAlignment</td><td>*Deprecated* See 'showButtonsAlignment'. If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
 </td>
 </tr>
 <tr>
-<td>showCsvDownloadPosition</td><td>If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+<td>showCsvDownloadPosition</td><td>*Deprecated* See 'showButtonsPosition'. If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
 </td>
+</tr>
+<tr>
+<td>showFitColSize</td><td>If set to true will display a side bar menu where user can click a button to toggle columns size to fit content or Grid width.</td>
+</tr>
+<tr>
+<td>showResetFilter</td><td>If set to true will display a side bar menu where user can click a button to reset filters on all columns.</td>
 </tr>
 <tr>
 <td>suppressCellSelection</td><td></td>
@@ -329,6 +353,32 @@ The default language of the grid is American English.</td>
 </tr>
 </table>
 
+#### agGrid_ClearSort
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+</table>
+
+#### agGrid_CopyToClipboard
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+</table>
+
 #### agGrid_CsvDownload
 
 **variables**
@@ -355,6 +405,35 @@ The default language of the grid is American English.</td>
 </tr>
 <tr>
 <td>alignment</td><td></td>
+</tr>
+</table>
+
+#### agGrid_FitColSize
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
+</tr>
+<tr>
+<td>autoSizeColumns</td><td></td>
+</tr>
+</table>
+
+#### agGrid_ResetFilters
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ag_grid</td><td></td>
 </tr>
 </table>
 

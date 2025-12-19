@@ -31,6 +31,10 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
 ↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
+↓agGrid_ResetFilters [ngx.components.UISharedRegularComponent-1765450443823]: 🗏 mobileSharedComponents/agGrid_ResetFilters.yaml
+↓agGrid_ClearSort [ngx.components.UISharedRegularComponent-1765968209317]: 🗏 mobileSharedComponents/agGrid_ClearSort.yaml
+↓agGrid_CopyToClipboard [ngx.components.UISharedRegularComponent-1765984732737]: 🗏 mobileSharedComponents/agGrid_CopyToClipboard.yaml
+↓agGrid_FitColSize [ngx.components.UISharedRegularComponent-1766139389143]: 🗏 mobileSharedComponents/agGrid_FitColSize.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml

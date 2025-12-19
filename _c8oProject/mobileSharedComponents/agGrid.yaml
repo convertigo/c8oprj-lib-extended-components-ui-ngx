@@ -47,6 +47,26 @@ scriptContent:
         		return this.columnDefs;
         	}
         	
+        	showButtons(position: ''top'' | ''bottom'' | ''left'' | ''right''): boolean {
+        	  const flags = [
+        	    this?.showCsvDownload,
+        	    this?.showResetFilter,
+        	    this?.showClearSort
+        	  ];
+        
+        	  if (!flags.some(v => !!v)) {
+        	    return false;
+        	  }
+        
+        	  const mapping: Record<''top'' | ''bottom'' | ''left'' | ''right'', string[]> = {
+        	    top: [''top'', ''both_row''],
+        	    bottom: [''bottom'', ''both_row''],
+        	    left: [''left'', ''both_col''],
+        	    right: [''right'', ''both_col'']
+        	  };
+        
+        	  return mapping[position].includes(this?.showButtonsPosition);
+        	}
         	/*End_c8o_CompFunction*/
         '
 ↓pagination [ngx.components.UICompVariable-1710934918902]: 
@@ -263,6 +283,17 @@ scriptContent:
                 - ↑value: '{ CsvExportModule }'
               - java.lang.String: 
                 - ↑value: '@ag-grid-community/csv-export'
+  ↓migrate_old_vars [ngx.components.UICustomAction-1766063684752]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+            		page.showButtonsPosition = page.showCsvDownloadPosition || page.showButtonsPosition || ''top'';
+            		page.showButtonsAlignment = page.showCsvDownloadAlignment || page.showButtonsAlignment || ''end'';
+            		resolve();
+            '
 ↓rowModelType [ngx.components.UICompVariable-1710934919136]: 
   comment: Row model type
   value: '''clientSide'''
@@ -284,6 +315,18 @@ scriptContent:
   comment: |
     If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
     
+  value: false
+↓showResetFilter [ngx.components.UICompVariable-1765459622433]: 
+  comment: If set to true will display a side bar menu where user can click a button to reset filters on all columns.
+  value: false
+↓showClearSort [ngx.components.UICompVariable-1765968816079]: 
+  comment: If set to true will display a side bar menu where user can click a button to clear sort on all columns.
+  value: false
+↓showCopyGrid [ngx.components.UICompVariable-1766051440025]: 
+  comment: If set to true will display a side bar menu where user can click a button to copy the Grid content in the system clipboard.
+  value: false
+↓showFitColSize [ngx.components.UICompVariable-1766152477825]: 
+  comment: If set to true will display a side bar menu where user can click a button to toggle columns size to fit content or Grid width.
   value: false
 ↓getLocaleText [ngx.components.UICompVariable-1730212109285]: 
   value: null
@@ -423,14 +466,12 @@ scriptContent:
   value: 100
 ↓showCsvDownloadPosition [ngx.components.UICompVariable-1741620025245]: 
   comment: |
-    If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
-    
-  value: '''top'''
+    '*Deprecated* See ''showButtonsPosition''. If ''showCsvDownload'' is set to true, you can define the CSV button position to ''top'', ''bottom'', ''left'', ''right'', ''both_row'' or ''both_col'' relative to the Grid. 
+    '
 ↓showCsvDownloadAlignment [ngx.components.UICompVariable-1741620025248]: 
   comment: |
-    If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
-    
-  value: '''end'''
+    '*Deprecated* See ''showButtonsAlignment''. If ''showCsvDownload'' is set to true, you can define the CSV button horizontal or vertical alignment to ''start'', ''center'' or ''end''.
+    '
 ↓localeText [ngx.components.UICompVariable-1741620025251]: 
   comment: |
     'Define the Grid localisation.
@@ -480,40 +521,201 @@ scriptContent:
     ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
       beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
       tagName: ion-grid
-      ↓Directive [ngx.components.UIControlDirective-1741622178213]: 
+      ↓Directive4 [ngx.components.UIControlDirective-1765461225724]: 
         directiveName: If
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'top' || this?.showCsvDownloadPosition == 'both_row')
-        ↓UseSharedComponent [ngx.components.UIUseShared-1741622178216]: 
-          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
-          ↓alignment [ngx.components.UIUseVariable-1741622178219]: 
-            varValue: 
+            - MobileSmartSourceType: script:showButtons('top')
+        ↓GridRow [ngx.components.UIDynamicElement-1765461323961]: 
+          beanData: '{"ionBean":"GridRow"}'
+          tagName: ion-row
+          ↓Attr [ngx.components.UIAttribute-1765461323964]: 
+            attrName: '[ngClass]'
+            attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
-          ↓ag_grid [ngx.components.UIUseVariable-1741622178222]: 
-            varValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: script:this?.agGrid
+                - MobileSmartSourceType: script:'ion-justify-content-' + this?.showButtonsAlignment
+          ↓GridCol [ngx.components.UIDynamicElement-1765462565525]: 
+            beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+            tagName: ion-col
+            ↓Directive5 [ngx.components.UIControlDirective-1766152554869]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showFitColSize
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1766152587733]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_FitColSize
+                ↓ag_grid [ngx.components.UIUseVariable-1766152595359]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+                ↓autoSizeColumns [ngx.components.UIUseVariable-1766152626069]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Directive2 [ngx.components.UIControlDirective-1765460450347]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showResetFilter
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765461550555]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ResetFilters
+                ↓ag_grid [ngx.components.UIUseVariable-1765461550558]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive3 [ngx.components.UIControlDirective-1765968879239]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showClearSort
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765968425575]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ClearSort
+                ↓ag_grid [ngx.components.UIUseVariable-1765968437663]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive4 [ngx.components.UIControlDirective-1766051239153]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCopyGrid
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765993794242]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CopyToClipboard
+                ↓ag_grid [ngx.components.UIUseVariable-1765993838230]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive [ngx.components.UIControlDirective-1741622178213]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1765461520504]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+                ↓ag_grid [ngx.components.UIUseVariable-1765461520507]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
       ↓GridRow [ngx.components.UIDynamicElement-1714061566704]: 
         beanData: '{"ionBean":"GridRow"}'
         tagName: ion-row
-        ↓Directive2 [ngx.components.UIControlDirective-1741622362242]: 
+        ↓Directive4 [ngx.components.UIControlDirective-1765463796464]: 
           directiveName: If
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'left' || this?.showCsvDownloadPosition == 'both_col')
-          ↓UseSharedComponent [ngx.components.UIUseShared-1741622362245]: 
-            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
-            ↓ag_grid [ngx.components.UIUseVariable-1741622362248]: 
-              varValue: 
+              - MobileSmartSourceType: script:showButtons('left')
+          ↓GridCol_buttons [ngx.components.UIDynamicElement-1765462868359]: 
+            beanData: '{"ionBean":"GridCol","Size":"plain:1"}'
+            tagName: ion-col
+            ↓Directive6 [ngx.components.UIControlDirective-1766152768054]: 
+              directiveName: If
+              directiveSource: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: script:this?.agGrid
+                  - MobileSmartSourceType: script:this?.showFitColSize
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1766152768057]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_FitColSize
+                ↓ag_grid [ngx.components.UIUseVariable-1766152768060]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+                ↓autoSizeColumns [ngx.components.UIUseVariable-1766152768063]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Directive3 [ngx.components.UIControlDirective-1765459497621]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showResetFilter
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765458805429]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ResetFilters
+                ↓ag_grid [ngx.components.UIUseVariable-1765458829642]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive4 [ngx.components.UIControlDirective-1765971241624]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showClearSort
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765971241627]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ClearSort
+                ↓ag_grid [ngx.components.UIUseVariable-1765971241630]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive5 [ngx.components.UIControlDirective-1766051383751]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCopyGrid
+              ↓UseSharedComponent [ngx.components.UIUseShared-1766051383754]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CopyToClipboard
+                ↓ag_grid [ngx.components.UIUseVariable-1766051383757]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive2 [ngx.components.UIControlDirective-1741622362242]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+              ↓UseSharedComponent [ngx.components.UIUseShared-1741622362245]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+                ↓ag_grid [ngx.components.UIUseVariable-1741622362248]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Style [ngx.components.UIStyle-1765463521156]: 
+              styleContent: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '/**
+                       * Custom properties (sometimes referred to as CSS variables or cascading variables)
+                       * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+                       * They are set using custom property notation, e.g.: --main-color: black;
+                       * and are accessed using the var() function, e.g.: color: var(--main-color);
+                       * You can find below your component''s properties you can customize within the page.
+                       * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+                       * For more informations see https://ionicframework.com/docs/theming.
+                      **/
+                      //--ion-grid-column-padding	//Padding for the Column
+                      //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
+                      //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
+                      //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
+                      //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
+                      //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
+                      //--ion-grid-columns	//The number of total Columns in the Grid
+                      max-width: 45px !important;
+                      width: 45px !important;
+                      '
         ↓GridCol [ngx.components.UIDynamicElement-1714061566706]: 
           beanData: '{"ionBean":"GridCol"}'
           tagName: ion-col
@@ -912,41 +1114,212 @@ scriptContent:
           attrValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:'ion-align-items-' + this?.showCsvDownloadAlignment
-        ↓Directive1 [ngx.components.UIControlDirective-1741622375550]: 
+              - MobileSmartSourceType: script:'ion-align-items-' + this?.showButtonsAlignment
+        ↓Directive5 [ngx.components.UIControlDirective-1765463808051]: 
           directiveName: If
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'right' || this?.showCsvDownloadPosition == 'both_col')
-          ↓UseSharedComponent [ngx.components.UIUseShared-1741622375553]: 
-            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
-            ↓ag_grid [ngx.components.UIUseVariable-1741622375556]: 
-              varValue: 
+              - MobileSmartSourceType: script:showButtons('right')
+          ↓GridCol_buttons [ngx.components.UIDynamicElement-1765463147647]: 
+            beanData: '{"ionBean":"GridCol","Size":"plain:1"}'
+            tagName: ion-col
+            ↓Directive7 [ngx.components.UIControlDirective-1766152782636]: 
+              directiveName: If
+              directiveSource: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: script:this?.agGrid
+                  - MobileSmartSourceType: script:this?.showFitColSize
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1766152782639]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_FitColSize
+                ↓ag_grid [ngx.components.UIUseVariable-1766152782642]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+                ↓autoSizeColumns [ngx.components.UIUseVariable-1766152782645]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Directive4 [ngx.components.UIControlDirective-1765460152907]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showResetFilter
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765460152910]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ResetFilters
+                ↓ag_grid [ngx.components.UIUseVariable-1765460152913]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive5 [ngx.components.UIControlDirective-1765971284970]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showClearSort
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765971284973]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ClearSort
+                ↓ag_grid [ngx.components.UIUseVariable-1765971284976]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive6 [ngx.components.UIControlDirective-1766051395397]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCopyGrid
+              ↓UseSharedComponent [ngx.components.UIUseShared-1766051395400]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CopyToClipboard
+                ↓ag_grid [ngx.components.UIUseVariable-1766051395403]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive1 [ngx.components.UIControlDirective-1741622375550]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+              ↓UseSharedComponent [ngx.components.UIUseShared-1741622375553]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+                ↓ag_grid [ngx.components.UIUseVariable-1741622375556]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Style [ngx.components.UIStyle-1765463740096]: 
+              styleContent: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '/**
+                       * Custom properties (sometimes referred to as CSS variables or cascading variables)
+                       * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+                       * They are set using custom property notation, e.g.: --main-color: black;
+                       * and are accessed using the var() function, e.g.: color: var(--main-color);
+                       * You can find below your component''s properties you can customize within the page.
+                       * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+                       * For more informations see https://ionicframework.com/docs/theming.
+                      **/
+                      //--ion-grid-column-padding	//Padding for the Column
+                      //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
+                      //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
+                      //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
+                      //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
+                      //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
+                      //--ion-grid-columns	//The number of total Columns in the Grid
+                      max-width: 45px !important;
+                      width: 45px !important;
+                      '
       ↓class [ngx.components.UIAttribute-1719501022201]: 
         attrName: class
         attrValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:ion-no-padding
-      ↓Directive1 [ngx.components.UIControlDirective-1741622295420]: 
+      ↓Directive5 [ngx.components.UIControlDirective-1765461705232]: 
         directiveName: If
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'bottom' || this?.showCsvDownloadPosition == 'both_row')
-        ↓UseSharedComponent [ngx.components.UIUseShared-1741622295423]: 
-          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
-          ↓alignment [ngx.components.UIUseVariable-1741622295426]: 
-            varValue: 
+            - MobileSmartSourceType: script:showButtons('bottom')
+        ↓GridRow [ngx.components.UIDynamicElement-1765461705235]: 
+          beanData: '{"ionBean":"GridRow"}'
+          tagName: ion-row
+          ↓Attr [ngx.components.UIAttribute-1765461705238]: 
+            attrName: '[ngClass]'
+            attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
-          ↓ag_grid [ngx.components.UIUseVariable-1741622295429]: 
-            varValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: script:this?.agGrid
+                - MobileSmartSourceType: script:'ion-justify-content-' + this?.showButtonsAlignment
+          ↓GridCol [ngx.components.UIDynamicElement-1765462643944]: 
+            beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+            tagName: ion-col
+            ↓Directive5 [ngx.components.UIControlDirective-1766152728658]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showFitColSize
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1766152728661]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_FitColSize
+                ↓ag_grid [ngx.components.UIUseVariable-1766152728664]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+                ↓autoSizeColumns [ngx.components.UIUseVariable-1766152728667]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓Directive2 [ngx.components.UIControlDirective-1765461705241]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showResetFilter
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765461705244]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ResetFilters
+                ↓ag_grid [ngx.components.UIUseVariable-1765461705247]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive3 [ngx.components.UIControlDirective-1765968977587]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showClearSort
+              ↓UseSharedComponent [ngx.components.UIUseShared-1765968977590]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_ClearSort
+                ↓ag_grid [ngx.components.UIUseVariable-1765968977593]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive4 [ngx.components.UIControlDirective-1766051349153]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCopyGrid
+              ↓UseSharedComponent [ngx.components.UIUseShared-1766051349156]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CopyToClipboard
+                ↓ag_grid [ngx.components.UIUseVariable-1766051349159]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+            ↓Directive [ngx.components.UIControlDirective-1765461705250]: 
+              directiveName: If
+              directiveSource: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+              ↓UseSharedComponent1 [ngx.components.UIUseShared-1765461705253]: 
+                sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
+                ↓ag_grid [ngx.components.UIUseVariable-1765461705256]: 
+                  varValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                      - MobileSmartSourceType: script:this?.agGrid
+↓showButtonsPosition [ngx.components.UICompVariable-1765459663960]: 
+  comment: |
+    You can define the general buttons position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
+    
+  value: '''top'''
+↓showButtonsAlignment [ngx.components.UICompVariable-1765459663963]: 
+  comment: |
+    You can define the general buttons horizontal or vertical alignment to 'start', 'center' or 'end'.
+    
+  value: '''end'''

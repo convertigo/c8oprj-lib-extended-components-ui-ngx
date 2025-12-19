@@ -1,0 +1,54 @@
+↓Button [ngx.components.UIDynamicElement-1766139389146]: 
+  beanData: |
+    '{
+     "ionBean": "Button",
+     "IonColor": "plain:light",
+     "IonSize": "plain:small"
+    }'
+  tagName: ion-button
+  ↓Event [ngx.components.UIControlEvent-1766139389149]: 
+    ↓DoSize [ngx.components.UICustomAction-1766139389152]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		if(vars.agGrid && vars.agGrid != ''''){
+              			(page.local.autoSizeModeGrid = !(page.local.autoSizeModeGrid ?? vars.autoSizeColumns))
+              			  ? vars.agGrid.columnApi.autoSizeAllColumns()
+              			  : vars.agGrid.columnApi.sizeColumnsToFit()
+              		}
+              		
+              		resolve(null);
+              '
+      ↓agGrid [ngx.components.UIControlVariable-1766139389155]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1766139389143,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+      ↓autoSizeColumns [ngx.components.UIControlVariable-1766151289563]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1766139389143,"regular":true}],"path":"?.autoSizeColumns","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr [ngx.components.UIAttribute-1766139389158]: 
+    attrName: title
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:Fit Grid Width
+  ↓Icon [ngx.components.UIDynamicElement-1766139389161]: 
+    beanData: '{"ionBean":"Icon","IconName":"script:(this.local.autoSizeModeGrid ?? this.autoSizeColumns) ? ''chevron-expand-outline'' : ''chevron-collapse-outline''"}'
+    tagName: ion-icon
+    ↓Style [ngx.components.UIStyle-1766151020144]: 
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '	transform: rotate(90deg);
+              '
+↓ag_grid [ngx.components.UICompVariable-1766139389164]: 
+↓autoSizeColumns [ngx.components.UICompVariable-1766151317447]: 
+  value: true

@@ -1,0 +1,57 @@
+↓Button [ngx.components.UIDynamicElement-1765984732740]: 
+  beanData: |
+    '{
+     "ionBean": "Button",
+     "IonColor": "plain:light",
+     "IonSize": "plain:small"
+    }'
+  tagName: ion-button
+  ↓Event [ngx.components.UIControlEvent-1765984732743]: 
+    ↓DoCopy [ngx.components.UICustomAction-1765984732746]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '			page.c8o.log.debug(''[MB] '' + props.actionFunction + '': '' + props.actionName);
+              			if (vars.agGrid && vars.agGrid != '''') {
+              				const api = vars.agGrid.api;
+              				const rowCount = api.getDisplayedRowCount();
+              				const allCols = api.getAllGridColumns();
+              				const header = allCols.map(col => col.getColDef().headerName || col.getColId());
+              
+              				const allRows: string[] = [header.join(''\t'')];
+              
+              				for (let i = 0; i < rowCount; i++) {
+              					const rowNode = api.getDisplayedRowAtIndex(i);
+              					if (rowNode) {
+              						const values = allCols.map(col =>
+              							rowNode.data[col.getColId()]
+              						);
+              						allRows.push(values.join(''\t''));
+              					}
+              				}
+              
+              				const textToCopy = allRows.join(''\n'');
+              				navigator.clipboard.writeText(textToCopy).then(() => {
+              					console.log(''Grid rows copied!'');
+              				});
+              			}
+              
+              			resolve(null);
+              '
+      ↓agGrid [ngx.components.UIControlVariable-1765984732749]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1765984732737,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr [ngx.components.UIAttribute-1765984732752]: 
+    attrName: title
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:Copy Data to Clipboard
+  ↓Icon [ngx.components.UIDynamicElement-1765984732755]: 
+    beanData: '{"ionBean":"Icon","IconName":"script:''clipboard-outline''"}'
+    tagName: ion-icon
+↓ag_grid [ngx.components.UICompVariable-1765984732761]: 

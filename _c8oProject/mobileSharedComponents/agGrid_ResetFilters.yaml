@@ -1,0 +1,37 @@
+↓Button [ngx.components.UIDynamicElement-1765450443829]: 
+  beanData: |
+    '{
+     "ionBean": "Button",
+     "IonColor": "plain:light",
+     "IonSize": "plain:small"
+    }'
+  tagName: ion-button
+  ↓Event [ngx.components.UIControlEvent-1765450443832]: 
+    ↓DoReset [ngx.components.UICustomAction-1765450443835]: 
+      actionValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+              		if(vars.agGrid && vars.agGrid != ''''){
+              			vars.agGrid.api.setFilterModel(null);
+              		}
+              		
+              		resolve(null);
+              '
+      ↓agGrid [ngx.components.UIControlVariable-1765450443838]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1765450443823,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+  ↓Attr [ngx.components.UIAttribute-1765450443841]: 
+    attrName: title
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:Reset Filters
+  ↓Icon [ngx.components.UIDynamicElement-1765450443844]: 
+    beanData: '{"ionBean":"Icon","IconName":"script:''filter-outline''"}'
+    tagName: ion-icon
+↓ag_grid [ngx.components.UICompVariable-1765450443847]: 
