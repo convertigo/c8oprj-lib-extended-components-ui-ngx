@@ -47,13 +47,13 @@ For more technical informations : [documentation](./project.md)
      <tr><td>To contribute</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.4.0.0
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.4.0.0_legacy
      ```
      </td></tr>
      <tr><td>To simply use</td><td>
 
      ```
-     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/8.4.0.0.zip
+     lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/archive/8.4.0.0_legacy.zip
      ```
      </td></tr>
     </table>
