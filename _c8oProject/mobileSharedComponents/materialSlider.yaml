@@ -185,6 +185,24 @@ scriptContent:
                 - ↑value: '{ MatSliderModule }'
               - java.lang.String: 
                 - ↑value: '@angular/material/slider'
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@angular/material'
+              - java.lang.String: 
+                - ↑value: 20.2.14
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: '@angular/cdk'
+              - java.lang.String: 
+                - ↑value: 20.2.14
 ↓min [ngx.components.UICompVariable-1662984662329]: 
   value: 0
 ↓max [ngx.components.UICompVariable-1662984674914]: 
