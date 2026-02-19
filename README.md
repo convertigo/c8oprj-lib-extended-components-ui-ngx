@@ -21,15 +21,12 @@ For more technical informations : [documentation](./project.md)
         - [ZXing_sa](#zxing_sa)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
-        - [agGrid_CsvDownload](#aggrid_csvdownload)
-        - [agGrid_CsvDownload_Row](#aggrid_csvdownload_row)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
         - [materialDatePicker](#materialdatepicker)
         - [materialSlider](#materialslider)
         - [ngSelect](#ngselect)
-        - [ngxTagInput](#ngxtaginput)
         - [tinyMce](#tinymce)
         - [tuiImageEditor](#tuiimageeditor)
 
@@ -326,35 +323,6 @@ The default language of the grid is American English.</td>
 </tr>
 <tr>
 <td>SortChanged</td><td>Fired when a a column is sorted. Data will be the agGrid event</td>
-</tr>
-</table>
-
-#### agGrid_CsvDownload
-
-**variables**
-
-<table>
-<tr>
-<th>name</th><th>comment</th>
-</tr>
-<tr>
-<td>ag_grid</td><td></td>
-</tr>
-</table>
-
-#### agGrid_CsvDownload_Row
-
-**variables**
-
-<table>
-<tr>
-<th>name</th><th>comment</th>
-</tr>
-<tr>
-<td>ag_grid</td><td></td>
-</tr>
-<tr>
-<td>alignment</td><td></td>
 </tr>
 </table>
 
@@ -719,98 +687,6 @@ For more informations see [documentation](https://www.npmjs.com/package/@ng-sele
 </tr>
 <tr>
 <td>search</td><td>Fired while typing search term. Outputs search term with filtered items</td>
-</tr>
-</table>
-
-#### ngxTagInput
-
-This component provides Chips management for your apps
-
-**variables**
-
-<table>
-<tr>
-<th>name</th><th>comment</th>
-</tr>
-<tr>
-<td>addOnBlur</td><td></td>
-</tr>
-<tr>
-<td>autocompleteItems</td><td></td>
-</tr>
-<tr>
-<td>editableTag</td><td></td>
-</tr>
-<tr>
-<td>inputtext</td><td></td>
-</tr>
-<tr>
-<td>itemDisplayBy</td><td></td>
-</tr>
-<tr>
-<td>itemIdentifyBy</td><td></td>
-</tr>
-<tr>
-<td>items</td><td></td>
-</tr>
-<tr>
-<td>maxItems</td><td></td>
-</tr>
-<tr>
-<td>onlyFromAutocomplete</td><td></td>
-</tr>
-<tr>
-<td>placeholder</td><td></td>
-</tr>
-<tr>
-<td>removableTag</td><td></td>
-</tr>
-<tr>
-<td>secondaryPlaceholder</td><td></td>
-</tr>
-<tr>
-<td>showAutoCompleteDropdownIfEmpty</td><td></td>
-</tr>
-<tr>
-<td>theme</td><td></td>
-</tr>
-</table>
-
-**events**
-
-<table>
-<tr>
-<th>name</th><th>comment</th>
-</tr>
-<tr>
-<td>Add</td><td></td>
-</tr>
-<tr>
-<td>Blur</td><td></td>
-</tr>
-<tr>
-<td>Focus</td><td></td>
-</tr>
-<tr>
-<td>ModelChange</td><td></td>
-</tr>
-<tr>
-<td>Paste</td><td></td>
-</tr>
-<tr>
-<td>Remove</td><td></td>
-</tr>
-<tr>
-<td>Select</td><td></td>
-</tr>
-<tr>
-<td>TagEdited</td><td></td>
-</tr>
-<tr>
-<td>TextChange</td><td></td>
-</tr>
-<tr>
-<td>ValidationError</td><td></td>
 </tr>
 </table>
 

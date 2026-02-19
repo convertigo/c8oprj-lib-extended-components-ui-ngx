@@ -308,5 +308,7 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
             	height: 100%;
             '
 ↓Information [ngx.components.UICompVariable-1653988043956]: 
+  comment: Information text displayed inside the drop zone
 ↓FilesDropped [ngx.components.UICompEvent-1653988043959]: 
   attrName: FilesDropped
+  comment: Fired when file(s) are dropped on the drop zone. Data is the dropped files array.

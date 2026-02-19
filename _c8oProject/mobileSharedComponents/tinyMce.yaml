@@ -38,23 +38,34 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓model [ngx.components.UICompVariable-1584094766604]: 
+  comment: HTML content bound to the editor ngModel
   value: 
 ↓init [ngx.components.UICompVariable-1584112503370]: 
+  comment: TinyMCE init configuration object
   value: '{}'
 ↓disabled [ngx.components.UICompVariable-1584112464251]: 
+  comment: 'boolean: disable or enable editor interactions'
 ↓apiKey [ngx.components.UICompVariable-1584112464252]: 
+  comment: Tiny Cloud API key (optional when using local assets)
   value: 
 ↓cloudChannel [ngx.components.UICompVariable-1584112464253]: 
+  comment: Tiny Cloud channel version (used when loading cloud resources)
   value: '''5-dev'''
 ↓id [ngx.components.UICompVariable-1584112500988]: 
+  comment: Optional HTML id applied to the editor element
 ↓initialValue [ngx.components.UICompVariable-1584112507501]: 
+  comment: Initial editor content when ngModel is null
 ↓inline [ngx.components.UICompVariable-1584112510197]: 
+  comment: 'boolean: use TinyMCE inline mode'
   value: false
 ↓tagName [ngx.components.UICompVariable-1584112510198]: 
+  comment: HTML tag name used as editor root element in inline mode
   value: '''div'''
 ↓plugins [ngx.components.UICompVariable-1584112512654]: 
+  comment: List of TinyMCE plugins to load
   value: '[''advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount'']'
 ↓toolbar [ngx.components.UICompVariable-1584112515048]: 
+  comment: TinyMCE toolbar configuration string
   value: '''undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'''
 ↓Directive [ngx.components.UIControlDirective-1610985343772]: 
   directiveName: If
@@ -253,6 +264,7 @@ scriptContent:
           - MobileSmartSourceType: plain:ngDefaultControl
 ↓onBlur [ngx.components.UICompEvent-1645465531073]: 
   attrName: onBlur
+  comment: Fired when the editor loses focus.
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414862134]: 
   ↓tinyMceImports [ngx.components.UICustomAction-1649751552149]: 
     actionValue: 

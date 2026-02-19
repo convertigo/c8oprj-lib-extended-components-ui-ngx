@@ -1,3 +1,4 @@
+exposed: false
 ↓GridRow [ngx.components.UIDynamicElement-1741622230202]: 
   beanData: '{"ionBean":"GridRow"}'
   tagName: ion-row
@@ -15,5 +16,7 @@
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1741622230199,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
 ↓alignment [ngx.components.UICompVariable-1741622230214]: 
+  comment: Row alignment for the CSV button container (start, center or end)
   value: '''end'''
 ↓ag_grid [ngx.components.UICompVariable-1741622230217]: 
+  comment: Reference to the agGrid instance used to trigger CSV export

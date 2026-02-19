@@ -649,4 +649,5 @@ comment: |
   comment: Fired when scrolled to the end of items. Can be used for loading more items in chunks.
 ↓model [ngx.components.UICompVariable-1757597976239]: 
   autoEmit: true
+  comment: Selected value(s) bound to ngModel (single value or array when multiple=true)
   value: null

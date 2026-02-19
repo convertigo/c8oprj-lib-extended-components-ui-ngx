@@ -204,18 +204,27 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: 20.2.14
 ↓min [ngx.components.UICompVariable-1662984662329]: 
+  comment: Minimum slider value
   value: 0
 ↓max [ngx.components.UICompVariable-1662984674914]: 
+  comment: Maximum slider value
   value: 10
 ↓step [ngx.components.UICompVariable-1662984698727]: 
+  comment: Slider step increment
   value: 1
 ↓model [ngx.components.UICompVariable-1662993959976]: 
   autoEmit: true
+  comment: Current slider value bound to ngModel
 ↓ariaLabel [ngx.components.UICompVariable-1662994395684]: 
+  comment: Accessibility label applied to the slider thumb input
 ↓id [ngx.components.UICompVariable-1663777347392]: 
+  comment: Optional HTML id for the slider input
 ↓ModelChange [ngx.components.UICompEvent-1729160795513]: 
   attrName: ModelChange
+  comment: Fired when the slider value changes. Data is the new numeric value.
 ↓showTickMarks [ngx.components.UICompVariable-1729506171869]: 
+  comment: 'boolean: show or hide slider tick marks'
   value: false
 ↓showValue [ngx.components.UICompVariable-1729506413222]: 
+  comment: 'boolean: display current value label near the thumb'
   value: true

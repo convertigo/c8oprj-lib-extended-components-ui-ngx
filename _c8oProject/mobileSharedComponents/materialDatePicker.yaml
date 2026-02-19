@@ -348,5 +348,8 @@ scriptContent:
             
 ↓model [ngx.components.UICompVariable-1662976119000]: 
   autoEmit: true
+  comment: Date model bound to the input and emitted on change
 ↓inputAriaLabel [ngx.components.UICompVariable-1662983194985]: 
+  comment: Accessibility label applied to the date input
 ↓buttonAriaLabel [ngx.components.UICompVariable-1662983201078]: 
+  comment: Accessibility label applied to the datepicker toggle button

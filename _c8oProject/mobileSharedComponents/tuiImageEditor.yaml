@@ -134,12 +134,22 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: plain:tui-image-editor
 ↓imagePath [ngx.components.UICompVariable-1734347304829]: 
+  comment: Source image path or data URL loaded by the editor
 ↓imageName [ngx.components.UICompVariable-1734347325244]: 
+  comment: Source image display name shown in the editor UI
 ↓cssMaxWidth [ngx.components.UICompVariable-1734347348419]: 
+  comment: Maximum editor canvas width in pixels
 ↓cssMaxHeight [ngx.components.UICompVariable-1734347350128]: 
+  comment: Maximum editor canvas height in pixels
 ↓imageName3 [ngx.components.UICompVariable-1734347351388]: 
+  comment: Reserved variable not used by the current component implementation
 ↓imageName4 [ngx.components.UICompVariable-1734347352685]: 
+  comment: Reserved variable not used by the current component implementation
 ↓imageName5 [ngx.components.UICompVariable-1734347385446]: 
+  comment: Reserved variable not used by the current component implementation
 ↓imageName6 [ngx.components.UICompVariable-1734347386728]: 
+  comment: Reserved variable not used by the current component implementation
 ↓imageName7 [ngx.components.UICompVariable-1734347387824]: 
+  comment: Reserved variable not used by the current component implementation
 ↓imageName8 [ngx.components.UICompVariable-1734347388827]: 
+  comment: Reserved variable not used by the current component implementation
