@@ -1,8 +1,8 @@
 comment: agGrid Update Rows, must be called in a GetRows Control
 ↓data [ngx.components.UIStackVariable-1652954618888]: 
-  comment: data must receive a JSON with a RowData key and an optional ColDef key
+  comment: <p>data must receive a JSON with a RowData key and an optional ColDef key</p><p><b>Example:</b> <code>n/a</code></p>
 ↓agGridEvent [ngx.components.UIStackVariable-1652954635246]: 
-  comment: map agGridEvent to the TS 'event' parameter from the GetRows Control
+  comment: <p>map agGridEvent to the TS &#x27;event&#x27; parameter from the GetRows Control</p><p><b>Example:</b> <code>n/a</code></p>
 ↓agGridUpdateRows [ngx.components.UICustomAction-1652955181261]: 
   actionValue: 
     - xmlizable: 
@@ -36,3 +36,4 @@ comment: agGrid Update Rows, must be called in a GetRows Control
           			reject(e);
           		}
           '
+  comment: ag Grid Update Rows (UICustomAction).

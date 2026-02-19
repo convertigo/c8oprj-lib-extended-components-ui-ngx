@@ -1,6 +1,6 @@
 comment: ZXing SharedAction
 ↓type [ngx.components.UIStackVariable-1595431416154]: 
-  comment: 'Scan from file or video. Default: ''file'''
+  comment: '<p>Scan from file or video. Default: &#x27;file&#x27;</p><p><b>Example:</b> <code>&#x27;file&#x27;</code></p>'
   value: '''file'''
 ↓initZxing [ngx.components.UICustomAction-1595431416157]: 
   actionValue: 
@@ -154,6 +154,7 @@ comment: ZXing SharedAction
               - ↑value: '{ NotFoundException }'
             - java.lang.String: 
               - ↑value: '@zxing/library'
+  comment: init Zxing (UICustomAction).
   package_dependencies: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -166,32 +167,38 @@ comment: ZXing SharedAction
             - java.lang.String: 
               - ↑value: 0.17.1
   ↓type [ngx.components.UIControlVariable-1595431416160]: 
+    comment: <p>Variable type.</p><p><b>Example:</b> <code>script:params.type</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.type
   ↓file [ngx.components.UIControlVariable-1606124134140]: 
+    comment: <p>Variable file.</p><p><b>Example:</b> <code>script:params.file</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.file
   ↓imgId [ngx.components.UIControlVariable-1595431416166]: 
+    comment: <p>Variable img Id.</p><p><b>Example:</b> <code>script:params.imgId</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.imgId
   ↓videoId [ngx.components.UIControlVariable-1595431416169]: 
+    comment: <p>Variable video Id.</p><p><b>Example:</b> <code>script:params.videoId</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.videoId
   ↓resultId [ngx.components.UIControlVariable-1595431416163]: 
+    comment: <p>Variable result Id.</p><p><b>Example:</b> <code>script:params.resultId</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.resultId
   ↓If_OutputEvent [ngx.components.UIDynamicAction-1595431416175]: 
     beanData: '{"ionBean":"IfAction","condition":"script:params.isOutputEvent == true && params.topic && params.topic != '''' && !parent.out.error"}'
+    comment: If Output Event (UIDynamicAction).
     ↓PublishEvent [ngx.components.UIDynamicAction-1595431416178]: 
       beanData: |
         '{
@@ -199,22 +206,27 @@ comment: ZXing SharedAction
          "topic": "script:params.topic",
          "data": "script:stack[''initZxing''].out"
         }'
+      comment: Publish Event (UIDynamicAction).
   ↓isOutputEvent [ngx.components.UIControlVariable-1605714903883]: 
+    comment: <p>Variable is Output Event.</p><p><b>Example:</b> <code>script:params.isOutputEvent</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.isOutputEvent
   ↓topic [ngx.components.UIControlVariable-1605717554082]: 
+    comment: <p>Variable topic.</p><p><b>Example:</b> <code>script:params.topic</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.topic
   ↓isOutputGlobal [ngx.components.UIControlVariable-1605714922585]: 
+    comment: <p>Variable is Output Global.</p><p><b>Example:</b> <code>script:params.isOutputGlobal</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.isOutputGlobal
   ↓ref [ngx.components.UIControlVariable-1595431416172]: 
+    comment: <p>Variable ref.</p><p><b>Example:</b> <code>script:params.ref</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -228,27 +240,29 @@ comment: ZXing SharedAction
             '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
             		resolve(vars.output);
             '
+    comment: add Resolve Output (UICustomAction).
     ↓output [ngx.components.UIControlVariable-1595431416184]: 
+      comment: <p>Variable output.</p><p><b>Example:</b> <code>script:stack[&#x27;initZxing&#x27;].out</code></p>
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:stack['initZxing'].out
 ↓file [ngx.components.UIStackVariable-1606124111567]: 
-  comment: File object as Array (if not provided from an input type file).
+  comment: <p>File object as Array (if not provided from an input type file).</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imgId [ngx.components.UIStackVariable-1595431416187]: 
-  comment: Img tag identifier to output image file. Optional
+  comment: <p>Img tag identifier to output image file. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓videoId [ngx.components.UIStackVariable-1595431416190]: 
-  comment: 'Video tag identifier to output video camera. Default: ''video''. Optional'
+  comment: '<p>Video tag identifier to output video camera. Default: &#x27;video&#x27;. Optional</p><p><b>Example:</b> <code>&#x27;video&#x27;</code></p>'
   value: '''video'''
 ↓resultId [ngx.components.UIStackVariable-1595431416193]: 
-  comment: Input tag identifier to set value to. Optional
+  comment: <p>Input tag identifier to set value to. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓topic [ngx.components.UIStackVariable-1595431416199]: 
-  comment: Publish Topic name to use with a Subscribe component. Optional
+  comment: <p>Publish Topic name to use with a Subscribe component. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓isOutputEvent [ngx.components.UIStackVariable-1605714736942]: 
-  comment: 'Publish scan result or not to the topic event. Default: true.'
+  comment: '<p>Publish scan result or not to the topic event. Default: true.</p><p><b>Example:</b> <code>true</code></p>'
   value: true
 ↓isOutputGlobal [ngx.components.UIStackVariable-1605714753453]: 
-  comment: 'Insert or not the scan result in a global page variable. The variable is composed of ''zxing:'' + topic + ref variables. Default: true.'
+  comment: '<p>Insert or not the scan result in a global page variable. The variable is composed of &#x27;zxing:&#x27; + topic + ref variables. Default: true.</p><p><b>Example:</b> <code>true</code></p>'
   value: true
 ↓ref [ngx.components.UIStackVariable-1595431416196]: 
-  comment: 'In case of multiple ZXing package instances, set the variable to different values to distinguish the Publish data event and/or the local page variable. Default: ''''. Optional'
+  comment: '<p>In case of multiple ZXing package instances, set the variable to different values to distinguish the Publish data event and/or the local page variable. Default: &#x27;&#x27;. Optional</p><p><b>Example:</b> <code>n/a</code></p>'

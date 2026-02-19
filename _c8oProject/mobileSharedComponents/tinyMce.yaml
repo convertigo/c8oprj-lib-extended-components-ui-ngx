@@ -38,42 +38,44 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓model [ngx.components.UICompVariable-1584094766604]: 
-  comment: HTML content bound to the editor ngModel
+  comment: <p>HTML content bound to the editor ngModel</p><p><b>Example:</b> <code>n/a</code></p>
   value: 
 ↓init [ngx.components.UICompVariable-1584112503370]: 
-  comment: TinyMCE init configuration object
+  comment: <p>TinyMCE init configuration object</p><p><b>Example:</b> <code>{}</code></p>
   value: '{}'
 ↓disabled [ngx.components.UICompVariable-1584112464251]: 
-  comment: 'boolean: disable or enable editor interactions'
+  comment: '<p>boolean: disable or enable editor interactions</p><p><b>Example:</b> <code>n/a</code></p>'
 ↓apiKey [ngx.components.UICompVariable-1584112464252]: 
-  comment: Tiny Cloud API key (optional when using local assets)
+  comment: <p>Tiny Cloud API key (optional when using local assets)</p><p><b>Example:</b> <code>n/a</code></p>
   value: 
 ↓cloudChannel [ngx.components.UICompVariable-1584112464253]: 
-  comment: Tiny Cloud channel version (used when loading cloud resources)
+  comment: <p>Tiny Cloud channel version (used when loading cloud resources)</p><p><b>Example:</b> <code>&#x27;5-dev&#x27;</code></p>
   value: '''5-dev'''
 ↓id [ngx.components.UICompVariable-1584112500988]: 
-  comment: Optional HTML id applied to the editor element
+  comment: <p>Optional HTML id applied to the editor element</p><p><b>Example:</b> <code>n/a</code></p>
 ↓initialValue [ngx.components.UICompVariable-1584112507501]: 
-  comment: Initial editor content when ngModel is null
+  comment: <p>Initial editor content when ngModel is null</p><p><b>Example:</b> <code>n/a</code></p>
 ↓inline [ngx.components.UICompVariable-1584112510197]: 
-  comment: 'boolean: use TinyMCE inline mode'
+  comment: '<p>boolean: use TinyMCE inline mode</p><p><b>Example:</b> <code>false</code></p>'
   value: false
 ↓tagName [ngx.components.UICompVariable-1584112510198]: 
-  comment: HTML tag name used as editor root element in inline mode
+  comment: <p>HTML tag name used as editor root element in inline mode</p><p><b>Example:</b> <code>&#x27;div&#x27;</code></p>
   value: '''div'''
 ↓plugins [ngx.components.UICompVariable-1584112512654]: 
-  comment: List of TinyMCE plugins to load
+  comment: <p>List of TinyMCE plugins to load</p><p><b>Example:</b> <code>[&#x27;advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code hel...</code></p>
   value: '[''advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount'']'
 ↓toolbar [ngx.components.UICompVariable-1584112515048]: 
-  comment: TinyMCE toolbar configuration string
+  comment: <p>TinyMCE toolbar configuration string</p><p><b>Example:</b> <code>&#x27;undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | rem...</code></p>
   value: '''undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'''
 ↓Directive [ngx.components.UIControlDirective-1610985343772]: 
+  comment: Directive (UIControlDirective).
   directiveName: If
   directiveSource: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
       - MobileSmartSourceType: script:this.model != null else ElseBlock_1610985402974
   ↓Tag [ngx.components.UIElement-1584094766595]: 
+    comment: Tag (UIElement).
     identifier: editor
     tagName: editor
     ↓Attr [ngx.components.UIAttribute-1584094766598]: 
@@ -82,68 +84,80 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.model
+      comment: Attr (UIAttribute).
     ↓Attr1 [ngx.components.UIAttribute-1584107509437]: 
       attrName: '[init]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.mergeInitObject(this.init)
+      comment: Attr1 (UIAttribute).
     ↓Attr13 [ngx.components.UIAttribute-1584115481411]: 
       attrName: '[inline]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:this.inline != undefined && this.inline != '''' ? this.inline : false'
+      comment: Attr13 (UIAttribute).
     ↓Attr4 [ngx.components.UIAttribute-1610987611370]: 
       attrName: initialValue
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:this.initialValue != undefined ? this.initialValue : '''''
+      comment: Attr4 (UIAttribute).
     ↓Attr2 [ngx.components.UIAttribute-1584115468148]: 
       attrName: apiKey
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.apiKey","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr2 (UIAttribute).
     ↓Attr11 [ngx.components.UIAttribute-1584115468151]: 
       attrName: cloudChannel
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.cloudChannel","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr11 (UIAttribute).
     ↓Attr3 [ngx.components.UIAttribute-1584115479179]: 
       attrName: '[disabled]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr3 (UIAttribute).
     ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
       attrName: '[attr.id]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr12 (UIAttribute).
     ↓Attr5 [ngx.components.UIAttribute-1584115486506]: 
       attrName: plugins
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.plugins","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr5 (UIAttribute).
     ↓Attr14 [ngx.components.UIAttribute-1584115486509]: 
       attrName: tagName
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.tagName","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr14 (UIAttribute).
     ↓Attr6 [ngx.components.UIAttribute-1584115486510]: 
       attrName: toolbar
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.toolbar","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr6 (UIAttribute).
     ↓Event [ngx.components.UIControlEvent-1584548207346]: 
       attrName: (ngModelChange)
+      comment: Event (UIControlEvent).
       eventName: (ngModelChange)
       isEnabled: false
       ↓EmitEvent [ngx.components.UIDynamicEmit-1646055836444]: 
@@ -153,8 +167,10 @@ scriptContent:
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onChange",
            "data": "script:event"
           }'
+        comment: Emit Event (UIDynamicEmit).
     ↓Event1 [ngx.components.UIControlEvent-1611068127001]: 
       attrName: (onBlur)
+      comment: Event1 (UIControlEvent).
       eventName: (onBlur)
       ↓EmitEvent [ngx.components.UIDynamicEmit-1646055843786]: 
         beanData: |
@@ -163,16 +179,20 @@ scriptContent:
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onBlur",
            "data": "script:event"
           }'
+        comment: Emit Event (UIDynamicEmit).
     ↓Attr7 [ngx.components.UIAttribute-1646127219808]: 
       attrName: 
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:ngDefaultControl
+      comment: Attr7 (UIAttribute).
 ↓Tag2 [ngx.components.UIElement-1610985402974]: 
+  comment: Tag2 (UIElement).
   identifier: ElseBlock_1610985402974
   tagName: ng-template
   ↓Tag1 [ngx.components.UIElement-1610985320371]: 
+    comment: Tag1 (UIElement).
     identifier: editor
     tagName: editor
     ↓Attr1 [ngx.components.UIAttribute-1610985320377]: 
@@ -181,20 +201,24 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.mergeInitObject(this.init)
+      comment: Attr1 (UIAttribute).
     ↓Attr4 [ngx.components.UIAttribute-1610985320392]: 
       attrName: initialValue
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:this.initialValue != undefined ? this.initialValue : '''''
+      comment: Attr4 (UIAttribute).
     ↓Attr13 [ngx.components.UIAttribute-1610985320395]: 
       attrName: '[inline]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'script:this.inline != undefined && this.inline != '''' ? this.inline : false'
+      comment: Attr13 (UIAttribute).
     ↓Event [ngx.components.UIControlEvent-1610985320407]: 
       attrName: (ngModelChange)
+      comment: Event (UIControlEvent).
       eventName: (ngModelChange)
       isEnabled: false
       ↓EmitEvent [ngx.components.UIDynamicEmit-1645465562432]: 
@@ -204,8 +228,10 @@ scriptContent:
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onChange",
            "data": "script:event"
           }'
+        comment: Emit Event (UIDynamicEmit).
     ↓Event1 [ngx.components.UIControlEvent-1610986431860]: 
       attrName: (onBlur)
+      comment: Event1 (UIControlEvent).
       eventName: (onBlur)
       ↓EmitEvent [ngx.components.UIDynamicEmit-1645465632799]: 
         beanData: |
@@ -214,58 +240,68 @@ scriptContent:
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce.onBlur",
            "data": "script:event"
           }'
+        comment: Emit Event (UIDynamicEmit).
     ↓Attr2 [ngx.components.UIAttribute-1645258496099]: 
       attrName: apiKey
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.apiKey","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr2 (UIAttribute).
     ↓Attr11 [ngx.components.UIAttribute-1645258496102]: 
       attrName: cloudChannel
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.cloudChannel","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr11 (UIAttribute).
     ↓Attr3 [ngx.components.UIAttribute-1645258496105]: 
       attrName: '[disabled]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr3 (UIAttribute).
     ↓Attr12 [ngx.components.UIAttribute-1645258496108]: 
       attrName: '[attr.id]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr12 (UIAttribute).
     ↓Attr5 [ngx.components.UIAttribute-1645258496111]: 
       attrName: plugins
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.plugins","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr5 (UIAttribute).
     ↓Attr14 [ngx.components.UIAttribute-1645258496114]: 
       attrName: tagName
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.tagName","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr14 (UIAttribute).
     ↓Attr6 [ngx.components.UIAttribute-1645258496117]: 
       attrName: toolbar
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.toolbar","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr6 (UIAttribute).
     ↓Attr7 [ngx.components.UIAttribute-1646127247461]: 
       attrName: 
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:ngDefaultControl
+      comment: Attr7 (UIAttribute).
 ↓onBlur [ngx.components.UICompEvent-1645465531073]: 
   attrName: onBlur
   comment: Fired when the editor loses focus.
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1649414862134]: 
+  comment: Shared Component Event (UISharedComponentEvent).
   ↓tinyMceImports [ngx.components.UICustomAction-1649751552149]: 
     actionValue: 
       - xmlizable: 
@@ -293,6 +329,7 @@ scriptContent:
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: node_modules/tinymce/tinymce.min.js
+    comment: tiny Mce Imports (UICustomAction).
     local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector

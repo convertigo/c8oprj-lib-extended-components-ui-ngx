@@ -1,6 +1,7 @@
 exposed: false
 ↓GridCol1 [ngx.components.UIDynamicElement-1741622230175]: 
   beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+  comment: Grid Col1 (UIDynamicElement).
   tagName: ion-col
   ↓Button [ngx.components.UIDynamicElement-1741622230178]: 
     beanData: |
@@ -9,8 +10,10 @@ exposed: false
        "IonColor": "plain:light",
        "IonSize": "plain:small"
       }'
+    comment: Button (UIDynamicElement).
     tagName: ion-button
     ↓Event [ngx.components.UIControlEvent-1741622230181]: 
+      comment: Event (UIControlEvent).
       ↓DoDownload [ngx.components.UICustomAction-1741622230184]: 
         actionValue: 
           - xmlizable: 
@@ -24,7 +27,9 @@ exposed: false
                 		
                 		resolve(null);
                 '
+        comment: Do Download (UICustomAction).
         ↓agGrid [ngx.components.UIControlVariable-1741622230187]: 
+          comment: <p>Variable ag Grid.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1741622230172,&quot;regular&quot;:true}...</code></p>
           varValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -35,8 +40,10 @@ exposed: false
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:Download CSV
+      comment: Attr (UIAttribute).
     ↓Icon [ngx.components.UIDynamicElement-1741622230193]: 
       beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
+      comment: Icon (UIDynamicElement).
       tagName: ion-icon
 ↓ag_grid [ngx.components.UICompVariable-1741622230196]: 
-  comment: Reference to the agGrid instance used to trigger CSV export
+  comment: <p>Reference to the agGrid instance used to trigger CSV export</p><p><b>Example:</b> <code>n/a</code></p>

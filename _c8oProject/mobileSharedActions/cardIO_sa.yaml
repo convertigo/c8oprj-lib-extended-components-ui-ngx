@@ -88,6 +88,7 @@ comment: CardIO SharedAction
               - ↑value: '{ CardIO }'
             - java.lang.String: 
               - ↑value: '@ionic-native/card-io/ngx'
+  comment: init Card I O (UICustomAction).
   cordova_plugins: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -160,32 +161,38 @@ comment: CardIO SharedAction
             - java.lang.String: 
               - ↑value: 5.36.0
   ↓ccn [ngx.components.UIControlVariable-1595431416106]: 
+    comment: <p>Variable ccn.</p><p><b>Example:</b> <code>script:params.ccn</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.ccn
   ↓cvv [ngx.components.UIControlVariable-1595431416109]: 
+    comment: <p>Variable cvv.</p><p><b>Example:</b> <code>script:params.cvv</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.cvv
   ↓cexp [ngx.components.UIControlVariable-1595431416112]: 
+    comment: <p>Variable cexp.</p><p><b>Example:</b> <code>script:params.cexp</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.cexp
   ↓options [ngx.components.UIControlVariable-1595431416115]: 
+    comment: <p>Variable options.</p><p><b>Example:</b> <code>script:params.options</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.options
   ↓local_ccard_suffix [ngx.components.UIControlVariable-1595431416118]: 
+    comment: <p>Variable local ccard suffix.</p><p><b>Example:</b> <code>script:params.local_ccard_suffix</code></p>
     varValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:params.local_ccard_suffix
   ↓If [ngx.components.UIDynamicAction-1595431416121]: 
-    beanData: '{"ionBean":"IfAction","condition":"script:params.ccard_topic && params.ccard_topic != '''' && parent.out.cardNumber"}'
+    beanData: '{"ionBean":"IfAction","condition":"script:params.ccard_topic && params.ccard_topic != '''' && (parent.out.cardNumber || parent.out.error)"}'
+    comment: If (UIDynamicAction).
     ↓PublishEvent [ngx.components.UIDynamicAction-1595431416124]: 
       beanData: |
         '{
@@ -193,6 +200,7 @@ comment: CardIO SharedAction
          "topic": "script:params.ccard_topic",
          "data": "script:stack[''initCardIO''].out"
         }'
+      comment: Publish Event (UIDynamicAction).
     ↓addResolveOutput [ngx.components.UICustomAction-1595431416127]: 
       actionValue: 
         - xmlizable: 
@@ -202,21 +210,23 @@ comment: CardIO SharedAction
               '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
               		resolve(vars.output);
               '
+      comment: add Resolve Output (UICustomAction).
       ↓output [ngx.components.UIControlVariable-1595431416130]: 
+        comment: <p>Variable output.</p><p><b>Example:</b> <code>script:stack[&#x27;initCardIO&#x27;].out</code></p>
         varValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: script:stack['initCardIO'].out
 ↓ccn [ngx.components.UIStackVariable-1595431416133]: 
-  comment: Input tag identifier to set Card Number value to. Optional
+  comment: <p>Input tag identifier to set Card Number value to. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓cvv [ngx.components.UIStackVariable-1595431416136]: 
-  comment: Input tag identifier to set cryptogram value (123) to. Optional
+  comment: <p>Input tag identifier to set cryptogram value (123) to. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓cexp [ngx.components.UIStackVariable-1595431416139]: 
-  comment: Input tag identifier to set Expiry date value (MM/YY) to. Optional
+  comment: <p>Input tag identifier to set Expiry date value (MM/YY) to. Optional</p><p><b>Example:</b> <code>n/a</code></p>
 ↓options [ngx.components.UIStackVariable-1595431416142]: 
-  comment: CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin
+  comment: '<p>CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin</p><p><b>Example:</b> <code>{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressC...</code></p>'
   value: '{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressConfirmation: true, hideCardIOLogo: true}'
 ↓local_ccard_suffix [ngx.components.UIStackVariable-1595431416145]: 
-  comment: 'Suffix for local page variable in case of multiple CardIO plugin instances. Default: ''''. Optional'
+  comment: '<p>Suffix for local page variable in case of multiple CardIO plugin instances. Default: &#x27;&#x27;. Optional</p><p><b>Example:</b> <code>n/a</code></p>'
 ↓ccard_topic [ngx.components.UIStackVariable-1595431416148]: 
-  comment: Publish Topic name to use with a Subscribe component. Optional
+  comment: <p>Publish Topic name to use with a Subscribe component. Optional</p><p><b>Example:</b> <code>n/a</code></p>

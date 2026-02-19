@@ -74,10 +74,22 @@ agGrid Update Rows, must be called in a GetRows Control
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>agGridEvent</td><td>map agGridEvent to the TS 'event' parameter from the GetRows Control</td>
+<td>agGridEvent</td><td><p>map agGridEvent to the TS &#x27;event&#x27; parameter from the GetRows Control</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>data</td><td>data must receive a JSON with a RowData key and an optional ColDef key</td>
+<td>data</td><td><p>data must receive a JSON with a RowData key and an optional ColDef key</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -92,22 +104,58 @@ CardIO SharedAction
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>ccard_topic</td><td>Publish Topic name to use with a Subscribe component. Optional</td>
+<td>ccard_topic</td><td><p>Publish Topic name to use with a Subscribe component. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>ccn</td><td>Input tag identifier to set Card Number value to. Optional</td>
+<td>ccn</td><td><p>Input tag identifier to set Card Number value to. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>cexp</td><td>Input tag identifier to set Expiry date value (MM/YY) to. Optional</td>
+<td>cexp</td><td><p>Input tag identifier to set Expiry date value (MM/YY) to. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>cvv</td><td>Input tag identifier to set cryptogram value (123) to. Optional</td>
+<td>cvv</td><td><p>Input tag identifier to set cryptogram value (123) to. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>local_ccard_suffix</td><td>Suffix for local page variable in case of multiple CardIO plugin instances. Default: ''. Optional</td>
+<td>local_ccard_suffix</td><td><p>Suffix for local page variable in case of multiple CardIO plugin instances. Default: &#x27;&#x27;. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>options</td><td>CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin</td>
+<td>options</td><td><p>CardIO plugin options. See https://github.com/card-io/card.io-Cordova-Plugin</p><p><b>Example:</b> 
+
+```
+{requireExpiry: true, requireCVV: true, suppressManual: true, scanExpiry: true, guideColor: 3702517, keepApplicationTheme: true, supressC...
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -122,31 +170,85 @@ ZXing SharedAction
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>file</td><td>File object as Array (if not provided from an input type file).</td>
+<td>file</td><td><p>File object as Array (if not provided from an input type file).</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imgId</td><td>Img tag identifier to output image file. Optional</td>
+<td>imgId</td><td><p>Img tag identifier to output image file. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>isOutputEvent</td><td>Publish scan result or not to the topic event. Default: true.</td>
+<td>isOutputEvent</td><td><p>Publish scan result or not to the topic event. Default: true.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>isOutputGlobal</td><td>Insert or not the scan result in a global page variable. The variable is composed of 'zxing:' + topic + ref variables. Default: true.</td>
+<td>isOutputGlobal</td><td><p>Insert or not the scan result in a global page variable. The variable is composed of &#x27;zxing:&#x27; + topic + ref variables. Default: true.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>ref</td><td>In case of multiple ZXing package instances, set the variable to different values to distinguish the Publish data event and/or the local page variable. Default: ''. Optional</td>
+<td>ref</td><td><p>In case of multiple ZXing package instances, set the variable to different values to distinguish the Publish data event and/or the local page variable. Default: &#x27;&#x27;. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>resultId</td><td>Input tag identifier to set value to. Optional</td>
+<td>resultId</td><td><p>Input tag identifier to set value to. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>topic</td><td>Publish Topic name to use with a Subscribe component. Optional</td>
+<td>topic</td><td><p>Publish Topic name to use with a Subscribe component. Optional</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>type</td><td>Scan from file or video. Default: 'file'</td>
+<td>type</td><td><p>Scan from file or video. Default: &#x27;file&#x27;</p><p><b>Example:</b> 
+
+```
+&#x27;file&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>videoId</td><td>Video tag identifier to output video camera. Default: 'video'. Optional</td>
+<td>videoId</td><td><p>Video tag identifier to output video camera. Default: &#x27;video&#x27;. Optional</p><p><b>Example:</b> 
+
+```
+&#x27;video&#x27;
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -164,127 +266,301 @@ This Shared component wraps the ag-grid component. Most of the properties and ev
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>accessibility</td><td>boolean: true (default) or false</td>
-</tr>
-<tr>
-<td>ariaLabel</td><td></td>
-</tr>
-<tr>
-<td>autoSizeColumns</td><td></td>
-</tr>
-<tr>
-<td>cacheBlockSize</td><td></td>
-</tr>
-<tr>
-<td>class</td><td>One of the themes provided here :
+<td>accessibility</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
 
-https://www.ag-grid.com/javascript-grid-themes-provided/
+```
+false
+```
 
-Also be shure to add the theme in the Theme object as :
+</p></td>
+</tr>
+<tr>
+<td>ariaLabel</td><td><p>Variable aria Label.</p><p><b>Example:</b> 
 
-@import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
+```
+n/a
+```
 
+</p></td>
+</tr>
+<tr>
+<td>autoSizeColumns</td><td><p>Variable auto Size Columns.</p><p><b>Example:</b> 
 
+```
+true
+```
 
-</td>
+</p></td>
 </tr>
 <tr>
-<td>columnDefs</td><td>Array of columnDef {headerName: 'headerName', field: 'fieldName'} objects</td>
-</tr>
-<tr>
-<td>customLocaleText</td><td>Add or surcharge Grid localisation.
-You have to provide:
+<td>cacheBlockSize</td><td><p>Variable cache Block Size.</p><p><b>Example:</b> 
 
- - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
+```
+100
+```
 
-The default value is an empty object.</td>
+</p></td>
 </tr>
 <tr>
-<td>datasource</td><td></td>
-</tr>
-<tr>
-<td>defaultColDef</td><td>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</td>
-</tr>
-<tr>
-<td>domLayout</td><td>boolean: true (default) or false</td>
-</tr>
-<tr>
-<td>getLocaleText</td><td></td>
-</tr>
-<tr>
-<td>height</td><td>height is 'auto' or value in % or px</td>
-</tr>
-<tr>
-<td>id</td><td>An Optional ID</td>
-</tr>
-<tr>
-<td>localeText</td><td>Define the Grid localisation.
-You can provide:
+<td>class</td><td><p>One of the themes provided by AG Grid. See https://www.ag-grid.com/javascript-grid-themes-provided/ and import the matching theme stylesheet in the app theme.</p><p><b>Example:</b> 
 
- - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
- - 'fr' or 'fr-FR' => A string representing the translation language (BCP47 Tag or Sub tag)
+```
+&#x27;ag-theme-quartz&#x27;
+```
 
-The default language of the grid is American English.</td>
+</p></td>
 </tr>
 <tr>
-<td>maxBlocksInCache</td><td>How many blocks to keep in the store. Default is no limit, so every requested block is kept</td>
+<td>columnDefs</td><td><p>Array of columnDef {headerName: &#x27;headerName&#x27;, field: &#x27;fieldName&#x27;} objects</p><p><b>Example:</b> 
+
+```
+[]
+```
+
+</p></td>
 </tr>
 <tr>
-<td>overlayLoadingTemplate</td><td></td>
+<td>customLocaleText</td><td><p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> 
+
+```
+{}
+```
+
+</p></td>
 </tr>
 <tr>
-<td>overlayNoRowsTemplate</td><td></td>
+<td>datasource</td><td><p>Variable datasource.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>pagination</td><td>boolean: true (default) or false</td>
+<td>defaultColDef</td><td><p>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</p><p><b>Example:</b> 
+
+```
+{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}
+```
+
+</p></td>
 </tr>
 <tr>
-<td>paginationPageSize</td><td>integer: 10 by default</td>
+<td>domLayout</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
+
+```
+&#x27;autoHeight&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default</td>
+<td>getLocaleText</td><td><p>Variable get Locale Text.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>rowData</td><td>Array of row { fieldName1: 'value1', fieldName2: 'value2', fieldName3: true, ...} objects</td>
+<td>height</td><td><p>height is &#x27;auto&#x27; or value in % or px</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>rowDeselection</td><td>boolean: true (default) or false</td>
+<td>id</td><td><p>An Optional ID</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>rowHeight</td><td>Height of the row in pixels as a string</td>
+<td>localeText</td><td><p>Defines grid localization. You can pass a language code (for example fr or fr-FR) or a map of translation key/value pairs.</p><p><b>Example:</b> 
+
+```
+&#x27;en&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>rowModelType</td><td>Row model type</td>
+<td>maxBlocksInCache</td><td><p>How many blocks to keep in the store. Default is no limit, so every requested block is kept</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>rowSelection</td><td>string: 'single' (default) or 'multiple'</td>
+<td>overlayLoadingTemplate</td><td><p>Variable overlay Loading Template.</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>showCsvDownload</td><td>If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
-</td>
+<td>overlayNoRowsTemplate</td><td><p>Variable overlay No Rows Template.</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>showCsvDownloadAlignment</td><td>If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
-</td>
+<td>pagination</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>showCsvDownloadPosition</td><td>If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
-</td>
+<td>paginationPageSize</td><td><p>integer: 10 by default</p><p><b>Example:</b> 
+
+```
+10
+```
+
+</p></td>
 </tr>
 <tr>
-<td>suppressCellSelection</td><td></td>
+<td>paginationPageSizeSelector</td><td><p>array | boolean: [20,50,100] by default</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>suppressFieldDotNotation</td><td>boolean: true (default) or false</td>
+<td>rowData</td><td><p>Array of row { fieldName1: &#x27;value1&#x27;, fieldName2: &#x27;value2&#x27;, fieldName3: true, ...} objects</p><p><b>Example:</b> 
+
+```
+[{ make: &#x27;Toyota&#x27;, model: &#x27;Celica&#x27;, price: 35000 },{ make: &#x27;Ford&#x27;, model: &#x27;Mondeo&#x27;, price: 32000 },{ make: &#x27;Porsche&#x27;, model: &#x27;Boxter&#x27;, pr...
+```
+
+</p></td>
 </tr>
 <tr>
-<td>suppressRowClickSelection</td><td></td>
+<td>rowDeselection</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>width</td><td>width value in % or px</td>
+<td>rowHeight</td><td><p>Height of the row in pixels as a string</p><p><b>Example:</b> 
+
+```
+&#x27;25&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>wrapperClass</td><td>Height of the row in pixels as a string</td>
+<td>rowModelType</td><td><p>Row model type</p><p><b>Example:</b> 
+
+```
+&#x27;clientSide&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowSelection</td><td><p>string: &#x27;single&#x27; (default) or &#x27;multiple&#x27;</p><p><b>Example:</b> 
+
+```
+&#x27;single&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>showCsvDownload</td><td><p>If true, displays a CSV download button/menu around the grid.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>showCsvDownloadAlignment</td><td><p>If showCsvDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> 
+
+```
+&#x27;end&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>showCsvDownloadPosition</td><td><p>If showCsvDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> 
+
+```
+&#x27;top&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>suppressCellSelection</td><td><p>Variable suppress Cell Selection.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>suppressFieldDotNotation</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>suppressRowClickSelection</td><td><p>Variable suppress Row Click Selection.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>width</td><td><p>width value in % or px</p><p><b>Example:</b> 
+
+```
+&#x27;100%&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>wrapperClass</td><td><p>Height of the row in pixels as a string</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -337,55 +613,157 @@ A QR Code Reader  using Full JS Algorithm
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>allowEmptyString</td><td>Allow qrdata to be an empty string</td>
+<td>allowEmptyString</td><td><p>Allow qrdata to be an empty string</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>alt</td><td>HTML alt attribute (supported by img, url)</td>
+<td>alt</td><td><p>HTML alt attribute (supported by img, url)</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>ariaLabel</td><td>HTML aria-label attribute (supported by canvas, img, url)</td>
+<td>ariaLabel</td><td><p>HTML aria-label attribute (supported by canvas, img, url)</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>colordark</td><td>RGBA color, color of dark module (foreground)</td>
+<td>colordark</td><td><p>RGBA color, color of dark module (foreground)</p><p><b>Example:</b> 
+
+```
+&#x27;#000000&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>colorlight</td><td>RGBA color, color of light module (background)</td>
+<td>colorlight</td><td><p>RGBA color, color of light module (background)</p><p><b>Example:</b> 
+
+```
+&#x27;#FFFFFF&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>cssClass</td><td>CSS Class</td>
+<td>cssClass</td><td><p>CSS Class</p><p><b>Example:</b> 
+
+```
+&#x27;qrcode&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>elementType</td><td>'canvas', 'svg', 'img', 'url' (alias for 'img')</td>
+<td>elementType</td><td><p>&#x27;canvas&#x27;, &#x27;svg&#x27;, &#x27;img&#x27;, &#x27;url&#x27; (alias for &#x27;img&#x27;)</p><p><b>Example:</b> 
+
+```
+&#x27;canvas&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>errorCorrectionLevel</td><td>QR Correction level ('L', 'M', 'Q', 'H')</td>
+<td>errorCorrectionLevel</td><td><p>QR Correction level (&#x27;L&#x27;, &#x27;M&#x27;, &#x27;Q&#x27;, &#x27;H&#x27;)</p><p><b>Example:</b> 
+
+```
+&#x27;M&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageHeight</td><td>height of your image</td>
+<td>imageHeight</td><td><p>height of your image</p><p><b>Example:</b> 
+
+```
+256
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageSrc</td><td>Link to your image</td>
+<td>imageSrc</td><td><p>Link to your image</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageWidth</td><td>width of your image</td>
+<td>imageWidth</td><td><p>width of your image</p><p><b>Example:</b> 
+
+```
+256
+```
+
+</p></td>
 </tr>
 <tr>
-<td>margin</td><td>Define how much wide the quiet zone should be.</td>
+<td>margin</td><td><p>Define how much wide the quiet zone should be.</p><p><b>Example:</b> 
+
+```
+4
+```
+
+</p></td>
 </tr>
 <tr>
-<td>qrdata</td><td>String to encode</td>
+<td>qrdata</td><td><p>String to encode</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>scale</td><td>Scale factor. A value of 1 means 1px per modules (black dots).</td>
+<td>scale</td><td><p>Scale factor. A value of 1 means 1px per modules (black dots).</p><p><b>Example:</b> 
+
+```
+4
+```
+
+</p></td>
 </tr>
 <tr>
-<td>title</td><td>HTML title attribute (supported by canvas, img, url)</td>
+<td>title</td><td><p>HTML title attribute (supported by canvas, img, url)</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>version</td><td>1-40</td>
+<td>version</td><td><p>1-40</p><p><b>Example:</b> 
+
+```
+&#x27;(auto)&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>width</td><td>Height/Width (any value)</td>
+<td>width</td><td><p>Height/Width (any value)</p><p><b>Example:</b> 
+
+```
+10
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -404,7 +782,13 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>Information</td><td></td>
+<td>Information</td><td><p>Information text displayed inside the drop zone</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -415,7 +799,7 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>FilesDropped</td><td></td>
+<td>FilesDropped</td><td>Fired when file(s) are dropped on the drop zone. Data is the dropped files array.</td>
 </tr>
 </table>
 
@@ -428,13 +812,31 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>buttonAriaLabel</td><td></td>
+<td>buttonAriaLabel</td><td><p>Accessibility label applied to the datepicker toggle button</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>inputAriaLabel</td><td></td>
+<td>inputAriaLabel</td><td><p>Accessibility label applied to the date input</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>model</td><td></td>
+<td>model</td><td><p>Date model bound to the input and emitted on change</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -447,28 +849,76 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>ariaLabel</td><td></td>
+<td>ariaLabel</td><td><p>Accessibility label applied to the slider thumb input</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>id</td><td></td>
+<td>id</td><td><p>Optional HTML id for the slider input</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>max</td><td></td>
+<td>max</td><td><p>Maximum slider value</p><p><b>Example:</b> 
+
+```
+10
+```
+
+</p></td>
 </tr>
 <tr>
-<td>min</td><td></td>
+<td>min</td><td><p>Minimum slider value</p><p><b>Example:</b> 
+
+```
+0
+```
+
+</p></td>
 </tr>
 <tr>
-<td>model</td><td></td>
+<td>model</td><td><p>Current slider value bound to ngModel</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>showTickMarks</td><td></td>
+<td>showTickMarks</td><td><p>boolean: show or hide slider tick marks</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>showValue</td><td></td>
+<td>showValue</td><td><p>boolean: display current value label near the thumb</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>step</td><td></td>
+<td>step</td><td><p>Slider step increment</p><p><b>Example:</b> 
+
+```
+1
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -479,7 +929,7 @@ This component handles file trop an a Zone. It will fire a  FileDropped event wi
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>ModelChange</td><td></td>
+<td>ModelChange</td><td>Fired when the slider value changes. Data is the new numeric value.</td>
 </tr>
 </table>
 
@@ -513,139 +963,409 @@ For more informations see [documentation](https://www.npmjs.com/package/@ng-sele
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>addTag</td><td>Allows to create custom options.</td>
+<td>addTag</td><td><p>Allows to create custom options.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>addTagText</td><td>Set custom text when using tagging</td>
+<td>addTagText</td><td><p>Set custom text when using tagging</p><p><b>Example:</b> 
+
+```
+&#x27;Add item&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>appearance</td><td>Allows to select dropdown appearance. Set to outline to add border instead of underline (applies only to Material theme)</td>
+<td>appearance</td><td><p>Allows to select dropdown appearance. Set to outline to add border instead of underline (applies only to Material theme)</p><p><b>Example:</b> 
+
+```
+&#x27;underline&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>appendTo</td><td>Append dropdown to body or any other element using css selector. For correct positioning body should have position:relative</td>
+<td>appendTo</td><td><p>Append dropdown to body or any other element using css selector. For correct positioning body should have position:relative</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>bindLabel</td><td>Object property to use for label. Default label</td>
+<td>bindLabel</td><td><p>Object property to use for label. Default label</p><p><b>Example:</b> 
+
+```
+&#x27;label&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>bindValue</td><td>Object property to use for selected model. By default binds to whole object.</td>
+<td>bindValue</td><td><p>Object property to use for selected model. By default binds to whole object.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>clearable</td><td>Allow to clear selected value. Default true</td>
+<td>clearable</td><td><p>Allow to clear selected value. Default true</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>clearAllText</td><td>Set custom text for clear all icon title</td>
+<td>clearAllText</td><td><p>Set custom text for clear all icon title</p><p><b>Example:</b> 
+
+```
+&#x27;Clear all&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>clearOnBackspace</td><td>Clear selected values one by one when clicking backspace. Default true</td>
+<td>clearOnBackspace</td><td><p>Clear selected values one by one when clicking backspace. Default true</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>clearSearchOnAdd</td><td>Clears search input when item is selected. Default true. Default false when closeOnSelect is false</td>
+<td>clearSearchOnAdd</td><td><p>Clears search input when item is selected. Default true. Default false when closeOnSelect is false</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>closeOnSelect</td><td>Whether to close the menu when a value is selected</td>
+<td>closeOnSelect</td><td><p>Whether to close the menu when a value is selected</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>compareWith</td><td>A function to compare the option values with the selected values. The first argument is a value from an option. The second is a value from the selection(model). A boolean should be returned.</td>
+<td>compareWith</td><td><p>A function to compare the option values with the selected values. The first argument is a value from an option. The second is a value from the selection(model). A boolean should be returned.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>deselectOnClick</td><td>Deselects a selected item when it is clicked in the dropdown. Default false. Default true when multiple is true</td>
+<td>deselectOnClick</td><td><p>Deselects a selected item when it is clicked in the dropdown. Default false. Default true when multiple is true</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>dropdownPosition</td><td>Set the dropdown position on open -- bottom | top | auto</td>
+<td>dropdownPosition</td><td><p>Set the dropdown position on open -- bottom | top | auto</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>editableSearchTerm</td><td>Allow to edit search query if option selected. Default false. Works only if multiple is false.</td>
+<td>editableSearchTerm</td><td><p>Allow to edit search query if option selected. Default false. Works only if multiple is false.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>groupBy</td><td>Allow to group items by key or function expression</td>
+<td>groupBy</td><td><p>Allow to group items by key or function expression</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>groupValue</td><td>Function expression to provide group value</td>
+<td>groupValue</td><td><p>Function expression to provide group value</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>hideSelected</td><td>Allows to hide selected items.</td>
+<td>hideSelected</td><td><p>Allows to hide selected items.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>inputAttrs</td><td>Pass custom attributes to underlying input element</td>
+<td>inputAttrs</td><td><p>Pass custom attributes to underlying input element</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>isOpen</td><td>Allows manual control of dropdown opening and closing. true - won't close. false - won't open.</td>
+<td>isOpen</td><td><p>Allows manual control of dropdown opening and closing. true - won&#x27;t close. false - won&#x27;t open.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>items</td><td>Items array</td>
+<td>items</td><td><p>Items array</p><p><b>Example:</b> 
+
+```
+[]
+```
+
+</p></td>
 </tr>
 <tr>
-<td>keyDownFn</td><td>Provide custom keyDown function. Executed before default handler. Return false to suppress execution of default key down handlers.</td>
+<td>keyDownFn</td><td><p>Provide custom keyDown function. Executed before default handler. Return false to suppress execution of default key down handlers.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>labelForId</td><td>Id to associate control with label.</td>
+<td>labelForId</td><td><p>Id to associate control with label.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>loading</td><td>You can set the loading state from the outside (e.g. async items loading)</td>
+<td>loading</td><td><p>You can set the loading state from the outside (e.g. async items loading)</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>loadingText</td><td>Set custom text when for loading items</td>
+<td>loadingText</td><td><p>Set custom text when for loading items</p><p><b>Example:</b> 
+
+```
+&#x27;Loading...&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>markFirst</td><td>Marks first item as focused when opening/filtering.</td>
+<td>markFirst</td><td><p>Marks first item as focused when opening/filtering.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>maxSelectedItems</td><td>When multiple = true, allows to set a limit number of selection.</td>
+<td>maxSelectedItems</td><td><p>When multiple = true, allows to set a limit number of selection.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>minTermLength</td><td>Minimum term length to start a search. Should be used with typeahead</td>
+<td>minTermLength</td><td><p>Minimum term length to start a search. Should be used with typeahead</p><p><b>Example:</b> 
+
+```
+0
+```
+
+</p></td>
 </tr>
 <tr>
-<td>model</td><td></td>
+<td>model</td><td><p>Selected value(s) bound to ngModel (single value or array when multiple=true)</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>multiple</td><td>Allows to select multiple items.</td>
+<td>multiple</td><td><p>Allows to select multiple items.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>notFoundText</td><td>Set custom text when filter returns empty result</td>
+<td>notFoundText</td><td><p>Set custom text when filter returns empty result</p><p><b>Example:</b> 
+
+```
+&#x27;No items found&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>openOnEnter</td><td>Open dropdown using enter. Default true</td>
+<td>openOnEnter</td><td><p>Open dropdown using enter. Default true</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>placeholder</td><td>Placeholder text.</td>
+<td>placeholder</td><td><p>Placeholder text.</p><p><b>Example:</b> 
+
+```
+&#x27;-&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>readonly</td><td>Set ng-select as readonly. Mostly used with reactive forms.</td>
+<td>readonly</td><td><p>Set ng-select as readonly. Mostly used with reactive forms.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>searchable</td><td>Allow to search for value. Default true</td>
+<td>searchable</td><td><p>Allow to search for value. Default true</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>searchFn</td><td>Allow to filter by custom search function</td>
+<td>searchFn</td><td><p>Allow to filter by custom search function</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>searchWhileComposing</td><td>Whether items should be filtered while composition started</td>
+<td>searchWhileComposing</td><td><p>Whether items should be filtered while composition started</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>selectableGroup</td><td>Allow to select group when groupBy is used</td>
+<td>selectableGroup</td><td><p>Allow to select group when groupBy is used</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>selectableGroupAsModel</td><td>Indicates whether to select all children or group itself</td>
+<td>selectableGroupAsModel</td><td><p>Indicates whether to select all children or group itself</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
 </tr>
 <tr>
-<td>selectOnTab</td><td>Select marked dropdown item using tab. Default false</td>
+<td>selectOnTab</td><td><p>Select marked dropdown item using tab. Default false</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>tabIndex</td><td>Set tabindex on ng-select</td>
+<td>tabIndex</td><td><p>Set tabindex on ng-select</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>trackByFn</td><td>Provide custom trackBy function</td>
+<td>trackByFn</td><td><p>Provide custom trackBy function</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>typeahead</td><td>Custom autocomplete or advanced filter.</td>
+<td>typeahead</td><td><p>Custom autocomplete or advanced filter.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
 </tr>
 <tr>
-<td>typeToSearchText</td><td>Set custom text when using Typeahead</td>
+<td>typeToSearchText</td><td><p>Set custom text when using Typeahead</p><p><b>Example:</b> 
+
+```
+&#x27;Type to search&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>virtualScroll</td><td>Enable virtual scroll for better performance when rendering a lot of data</td>
+<td>virtualScroll</td><td><p>Enable virtual scroll for better performance when rendering a lot of data</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -701,37 +1421,103 @@ This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>apiKey</td><td></td>
+<td>apiKey</td><td><p>Tiny Cloud API key (optional when using local assets)</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>cloudChannel</td><td></td>
+<td>cloudChannel</td><td><p>Tiny Cloud channel version (used when loading cloud resources)</p><p><b>Example:</b> 
+
+```
+&#x27;5-dev&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>disabled</td><td></td>
+<td>disabled</td><td><p>boolean: disable or enable editor interactions</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>id</td><td></td>
+<td>id</td><td><p>Optional HTML id applied to the editor element</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>init</td><td></td>
+<td>init</td><td><p>TinyMCE init configuration object</p><p><b>Example:</b> 
+
+```
+{}
+```
+
+</p></td>
 </tr>
 <tr>
-<td>initialValue</td><td></td>
+<td>initialValue</td><td><p>Initial editor content when ngModel is null</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>inline</td><td></td>
+<td>inline</td><td><p>boolean: use TinyMCE inline mode</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
 </tr>
 <tr>
-<td>model</td><td></td>
+<td>model</td><td><p>HTML content bound to the editor ngModel</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>plugins</td><td></td>
+<td>plugins</td><td><p>List of TinyMCE plugins to load</p><p><b>Example:</b> 
+
+```
+[&#x27;advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code hel...
+```
+
+</p></td>
 </tr>
 <tr>
-<td>tagName</td><td></td>
+<td>tagName</td><td><p>HTML tag name used as editor root element in inline mode</p><p><b>Example:</b> 
+
+```
+&#x27;div&#x27;
+```
+
+</p></td>
 </tr>
 <tr>
-<td>toolbar</td><td></td>
+<td>toolbar</td><td><p>TinyMCE toolbar configuration string</p><p><b>Example:</b> 
+
+```
+&#x27;undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | rem...
+```
+
+</p></td>
 </tr>
 </table>
 
@@ -742,7 +1528,7 @@ This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>onBlur</td><td></td>
+<td>onBlur</td><td>Fired when the editor loses focus.</td>
 </tr>
 </table>
 
@@ -755,34 +1541,94 @@ This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>cssMaxHeight</td><td></td>
+<td>cssMaxHeight</td><td><p>Maximum editor canvas height in pixels</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>cssMaxWidth</td><td></td>
+<td>cssMaxWidth</td><td><p>Maximum editor canvas width in pixels</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName3</td><td></td>
+<td>imageName3</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName4</td><td></td>
+<td>imageName4</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName5</td><td></td>
+<td>imageName5</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName6</td><td></td>
+<td>imageName6</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName7</td><td></td>
+<td>imageName7</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName8</td><td></td>
+<td>imageName8</td><td><p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imageName</td><td></td>
+<td>imageName</td><td><p>Source image display name shown in the editor UI</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 <tr>
-<td>imagePath</td><td></td>
+<td>imagePath</td><td><p>Source image path or data URL loaded by the editor</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
 </tr>
 </table>
 

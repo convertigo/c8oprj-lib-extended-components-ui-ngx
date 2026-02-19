@@ -35,6 +35,7 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓Tag [ngx.components.UIElement-1662984415570]: 
+  comment: Tag (UIElement).
   tagName: mat-slider
   ↓Attr [ngx.components.UIAttribute-1662984433444]: 
     attrName: '[min]'
@@ -42,25 +43,30 @@ scriptContent:
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.min
+    comment: Attr (UIAttribute).
   ↓Attr1 [ngx.components.UIAttribute-1662984441358]: 
     attrName: '[max]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.max
+    comment: Attr1 (UIAttribute).
   ↓Attr2 [ngx.components.UIAttribute-1662984444661]: 
     attrName: '[step]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.step
+    comment: Attr2 (UIAttribute).
   ↓Attr3 [ngx.components.UIAttribute-1662984476980]: 
     attrName: '[discrete]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1662984391613,"regular":true}],"path":"?.showValue","prefix":"","suffix":"","custom":"","useCustom":false}}
+    comment: Attr3 (UIAttribute).
   ↓Style [ngx.components.UIStyle-1662989706787]: 
+    comment: Style (UIStyle).
     styleContent: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -107,12 +113,14 @@ scriptContent:
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.step
+    comment: Attr4 (UIAttribute).
   ↓Attr5 [ngx.components.UIAttribute-1662993944337]: 
     attrName: '[(ngModel)]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.model
+    comment: Attr5 (UIAttribute).
     isEnabled: false
   ↓Attr6 [ngx.components.UIAttribute-1662994378521]: 
     attrName: '[attr.aria-label]'
@@ -120,13 +128,16 @@ scriptContent:
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.ariaLabel
+    comment: Attr6 (UIAttribute).
   ↓Attr7 [ngx.components.UIAttribute-1663777315612]: 
     attrName: '[attr.id]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.id
+    comment: Attr7 (UIAttribute).
   ↓Tag [ngx.components.UIElement-1727189593001]: 
+    comment: Tag (UIElement).
     selfClose: true
     tagName: input
     ↓Attr [ngx.components.UIAttribute-1727189615670]: 
@@ -135,14 +146,17 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:matSliderThumb
+      comment: Attr (UIAttribute).
     ↓Attr5 [ngx.components.UIAttribute-1727189708541]: 
       attrName: '[(ngModel)]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.model
+      comment: Attr5 (UIAttribute).
     ↓Event [ngx.components.UIControlEvent-1729160757496]: 
       attrName: (ngModelChange)
+      comment: Event (UIControlEvent).
       eventName: (ngModelChange)
       ↓EmitEvent [ngx.components.UIDynamicEmit-1729160815287]: 
         beanData: |
@@ -151,20 +165,25 @@ scriptContent:
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.materialSlider.ModelChange",
            "data": "script:{event: event}"
           }'
+        comment: Emit Event (UIDynamicEmit).
   ↓Attr9 [ngx.components.UIAttribute-1729506195141]: 
     attrName: '[showTickMarks]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1662984391613,"regular":true}],"path":"?.showTickMarks","prefix":"","suffix":"","custom":"","useCustom":false}}
+    comment: Attr9 (UIAttribute).
   ↓Attr8 [ngx.components.UIAttribute-1747909954335]: 
     attrName: '[displayWith]'
     attrValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.local.displayFormatter
+    comment: Attr8 (UIAttribute).
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662984526639]: 
+  comment: Shared Component Event (UISharedComponentEvent).
   ↓Imports [ngx.components.UICustomAction-1662984537097]: 
+    comment: Imports (UICustomAction).
     local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -204,27 +223,27 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: 20.2.14
 ↓min [ngx.components.UICompVariable-1662984662329]: 
-  comment: Minimum slider value
+  comment: <p>Minimum slider value</p><p><b>Example:</b> <code>0</code></p>
   value: 0
 ↓max [ngx.components.UICompVariable-1662984674914]: 
-  comment: Maximum slider value
+  comment: <p>Maximum slider value</p><p><b>Example:</b> <code>10</code></p>
   value: 10
 ↓step [ngx.components.UICompVariable-1662984698727]: 
-  comment: Slider step increment
+  comment: <p>Slider step increment</p><p><b>Example:</b> <code>1</code></p>
   value: 1
 ↓model [ngx.components.UICompVariable-1662993959976]: 
   autoEmit: true
-  comment: Current slider value bound to ngModel
+  comment: <p>Current slider value bound to ngModel</p><p><b>Example:</b> <code>n/a</code></p>
 ↓ariaLabel [ngx.components.UICompVariable-1662994395684]: 
-  comment: Accessibility label applied to the slider thumb input
+  comment: <p>Accessibility label applied to the slider thumb input</p><p><b>Example:</b> <code>n/a</code></p>
 ↓id [ngx.components.UICompVariable-1663777347392]: 
-  comment: Optional HTML id for the slider input
+  comment: <p>Optional HTML id for the slider input</p><p><b>Example:</b> <code>n/a</code></p>
 ↓ModelChange [ngx.components.UICompEvent-1729160795513]: 
   attrName: ModelChange
   comment: Fired when the slider value changes. Data is the new numeric value.
 ↓showTickMarks [ngx.components.UICompVariable-1729506171869]: 
-  comment: 'boolean: show or hide slider tick marks'
+  comment: '<p>boolean: show or hide slider tick marks</p><p><b>Example:</b> <code>false</code></p>'
   value: false
 ↓showValue [ngx.components.UICompVariable-1729506413222]: 
-  comment: 'boolean: display current value label near the thumb'
+  comment: '<p>boolean: display current value label near the thumb</p><p><b>Example:</b> <code>true</code></p>'
   value: true

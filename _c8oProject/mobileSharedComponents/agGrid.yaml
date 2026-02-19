@@ -50,57 +50,50 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓pagination [ngx.components.UICompVariable-1710934918902]: 
-  comment: 'boolean: true (default) or false'
+  comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>true</code></p>'
   value: true
 ↓paginationPageSize [ngx.components.UICompVariable-1710934918905]: 
-  comment: 'integer: 10 by default'
+  comment: '<p>integer: 10 by default</p><p><b>Example:</b> <code>10</code></p>'
   value: 10
 ↓paginationPageSizeSelector [ngx.components.UICompVariable-1719926091046]: 
-  comment: 'array | boolean: [20,50,100] by default'
+  comment: '<p>array | boolean: [20,50,100] by default</p><p><b>Example:</b> <code>true</code></p>'
   value: true
 ↓rowSelection [ngx.components.UICompVariable-1710934918908]: 
-  comment: 'string: ''single'' (default) or ''multiple'''
+  comment: '<p>string: &#x27;single&#x27; (default) or &#x27;multiple&#x27;</p><p><b>Example:</b> <code>&#x27;single&#x27;</code></p>'
   value: '''single'''
 ↓rowDeselection [ngx.components.UICompVariable-1710934918911]: 
-  comment: 'boolean: true (default) or false'
+  comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>true</code></p>'
   value: true
 ↓defaultColDef [ngx.components.UICompVariable-1710934918914]: 
-  comment: 'default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
+  comment: '<p>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</p><p><b>Example:</b> <code>{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</code></p>'
   value: '{hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
 ↓columnDefs [ngx.components.UICompVariable-1710934918917]: 
-  comment: 'Array of columnDef {headerName: ''headerName'', field: ''fieldName''} objects'
+  comment: '<p>Array of columnDef {headerName: &#x27;headerName&#x27;, field: &#x27;fieldName&#x27;} objects</p><p><b>Example:</b> <code>[]</code></p>'
   value: '[]'
 ↓rowData [ngx.components.UICompVariable-1710934918920]: 
-  comment: 'Array of row { fieldName1: ''value1'', fieldName2: ''value2'', fieldName3: true, ...} objects'
+  comment: '<p>Array of row { fieldName1: &#x27;value1&#x27;, fieldName2: &#x27;value2&#x27;, fieldName3: true, ...} objects</p><p><b>Example:</b> <code>[{ make: &#x27;Toyota&#x27;, model: &#x27;Celica&#x27;, price: 35000 },{ make: &#x27;Ford&#x27;, model: &#x27;Mondeo&#x27;, price: 32000 },{ make: &#x27;Porsche&#x27;, model: &#x27;Boxter&#x27;, pr...</code></p>'
   value: '[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
 ↓width [ngx.components.UICompVariable-1710934918923]: 
-  comment: width value in % or px
+  comment: <p>width value in % or px</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
   value: '''100%'''
 ↓height [ngx.components.UICompVariable-1710934918926]: 
-  comment: height is 'auto' or value in % or px
+  comment: <p>height is &#x27;auto&#x27; or value in % or px</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>
   value: '''auto'''
 ↓class [ngx.components.UICompVariable-1710934918929]: 
-  comment: |
-    'One of the themes provided here :
-    
-    https://www.ag-grid.com/javascript-grid-themes-provided/
-    
-    Also be shure to add the theme in the Theme object as :
-    
-    @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
-    
-    
-    
-    '
+  comment: <p>One of the themes provided by AG Grid. See https://www.ag-grid.com/javascript-grid-themes-provided/ and import the matching theme stylesheet in the app theme.</p><p><b>Example:</b> <code>&#x27;ag-theme-quartz&#x27;</code></p>
   value: '''ag-theme-quartz'''
 ↓id [ngx.components.UICompVariable-1710934918932]: 
-  comment: An Optional ID
+  comment: <p>An Optional ID</p><p><b>Example:</b> <code>n/a</code></p>
 ↓suppressCellSelection [ngx.components.UICompVariable-1710934918935]: 
+  comment: <p>Variable suppress Cell Selection.</p><p><b>Example:</b> <code>false</code></p>
   value: false
 ↓suppressRowClickSelection [ngx.components.UICompVariable-1710934918938]: 
+  comment: <p>Variable suppress Row Click Selection.</p><p><b>Example:</b> <code>false</code></p>
   value: false
 ↓overlayLoadingTemplate [ngx.components.UICompVariable-1710934918941]: 
+  comment: <p>Variable overlay Loading Template.</p><p><b>Example:</b> <code>n/a</code></p>
 ↓overlayNoRowsTemplate [ngx.components.UICompVariable-1710934918944]: 
+  comment: <p>Variable overlay No Rows Template.</p><p><b>Example:</b> <code>n/a</code></p>
 ↓CellClicked [ngx.components.UICompEvent-1710934918947]: 
   attrName: CellClicked
   comment: Fired when a cell is clicked. Data will be the agGrid event
@@ -120,17 +113,18 @@ scriptContent:
   attrName: CellValueChanged
   comment: Fired when A Cell is edited changed. Data will be the agGrid event
 ↓rowHeight [ngx.components.UICompVariable-1710934918965]: 
-  comment: Height of the row in pixels as a string
+  comment: <p>Height of the row in pixels as a string</p><p><b>Example:</b> <code>&#x27;25&#x27;</code></p>
   value: '''25'''
 ↓RowDoubleClicked [ngx.components.UICompEvent-1710934918968]: 
   attrName: RowDoubleClicked
   comment: Fired when A Cell is edited changed. Data will be the agGrid event
 ↓wrapperClass [ngx.components.UICompVariable-1710934919124]: 
-  comment: Height of the row in pixels as a string
+  comment: <p>Height of the row in pixels as a string</p><p><b>Example:</b> <code>n/a</code></p>
 ↓SelectionChanged [ngx.components.UICompEvent-1710934919127]: 
   attrName: SelectionChanged
   comment: Fired when selectionChange. Data will be the agGrid event
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1710934919130]: 
+  comment: Shared Component Event (UISharedComponentEvent).
   ↓AgGridImports [ngx.components.UICustomAction-1710934919133]: 
     actionValue: 
       - xmlizable: 
@@ -193,6 +187,7 @@ scriptContent:
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: ag-grid-community/styles/ag-theme-balham.css
+    comment: Ag Grid Imports (UICustomAction).
     local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -264,7 +259,7 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: '@ag-grid-community/csv-export'
 ↓rowModelType [ngx.components.UICompVariable-1710934919136]: 
-  comment: Row model type
+  comment: <p>Row model type</p><p><b>Example:</b> <code>&#x27;clientSide&#x27;</code></p>
   value: '''clientSide'''
 ↓GridReady [ngx.components.UICompEvent-1710934919139]: 
   attrName: GridReady
@@ -273,27 +268,29 @@ scriptContent:
   attrName: GetRows
   comment: Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action
 ↓maxBlocksInCache [ngx.components.UICompVariable-1710934919145]: 
-  comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
+  comment: <p>How many blocks to keep in the store. Default is no limit, so every requested block is kept</p><p><b>Example:</b> <code>n/a</code></p>
 ↓autoSizeColumns [ngx.components.UICompVariable-1710934919148]: 
+  comment: <p>Variable auto Size Columns.</p><p><b>Example:</b> <code>true</code></p>
   value: true
 ↓accessibility [ngx.components.UICompVariable-1710934919151]: 
-  comment: 'boolean: true (default) or false'
+  comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>false</code></p>'
   value: false
 ↓ariaLabel [ngx.components.UICompVariable-1710934919154]: 
+  comment: <p>Variable aria Label.</p><p><b>Example:</b> <code>n/a</code></p>
 ↓showCsvDownload [ngx.components.UICompVariable-1714064892515]: 
-  comment: |
-    If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
-    
+  comment: <p>If true, displays a CSV download button/menu around the grid.</p><p><b>Example:</b> <code>false</code></p>
   value: false
 ↓getLocaleText [ngx.components.UICompVariable-1730212109285]: 
+  comment: <p>Variable get Locale Text.</p><p><b>Example:</b> <code>null</code></p>
   value: null
 ↓suppressFieldDotNotation [ngx.components.UICompVariable-1730805476518]: 
-  comment: 'boolean: true (default) or false'
+  comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>false</code></p>'
   value: false
 ↓domLayout [ngx.components.UICompVariable-1736414720782]: 
-  comment: 'boolean: true (default) or false'
+  comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>&#x27;autoHeight&#x27;</code></p>'
   value: '''autoHeight'''
 ↓SharedComponent_Event1 [ngx.components.UISharedComponentEvent-1736431569720]: 
+  comment: Shared Component Event1 (UISharedComponentEvent).
   componentEvent: onChanges
   ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1736431569723]: 
     actionValue: 
@@ -314,6 +311,7 @@ scriptContent:
             			return;
             		}
             '
+    comment: Custom Async Action (UICustomAsyncAction).
   ↓agGridLang [ngx.components.UICustomAsyncAction-1741619830154]: 
     actionValue: 
       - xmlizable: 
@@ -417,40 +415,27 @@ scriptContent:
             			page.local.agGridLang = curLocaleText;
             		} 
             '
+    comment: ag Grid Lang (UICustomAsyncAction).
 ↓datasource [ngx.components.UICompVariable-1739986920136]: 
+  comment: <p>Variable datasource.</p><p><b>Example:</b> <code>null</code></p>
   value: null
 ↓cacheBlockSize [ngx.components.UICompVariable-1739987415429]: 
+  comment: <p>Variable cache Block Size.</p><p><b>Example:</b> <code>100</code></p>
   value: 100
 ↓showCsvDownloadPosition [ngx.components.UICompVariable-1741620025245]: 
-  comment: |
-    If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid. 
-    
+  comment: '<p>If showCsvDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> <code>&#x27;top&#x27;</code></p>'
   value: '''top'''
 ↓showCsvDownloadAlignment [ngx.components.UICompVariable-1741620025248]: 
-  comment: |
-    If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.
-    
+  comment: '<p>If showCsvDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>'
   value: '''end'''
 ↓localeText [ngx.components.UICompVariable-1741620025251]: 
-  comment: |
-    'Define the Grid localisation.
-    You can provide:
-    
-     - { [key: string]: string } => A map of key->value pairs for localising text within the grid.
-     - ''fr'' or ''fr-FR'' => A string representing the translation language (BCP47 Tag or Sub tag)
-    
-    The default language of the grid is American English.'
+  comment: <p>Defines grid localization. You can pass a language code (for example fr or fr-FR) or a map of translation key/value pairs.</p><p><b>Example:</b> <code>&#x27;en&#x27;</code></p>
   value: '''en'''
 ↓customLocaleText [ngx.components.UICompVariable-1741620025254]: 
-  comment: |
-    'Add or surcharge Grid localisation.
-    You have to provide:
-    
-     - { [key_lang: string]: { [key: string]: string } } => A map of key_lang->object pairs for adding or surcharging localising text within the grid.
-    
-    The default value is an empty object.'
+  comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
   value: '{}'
 ↓Directive [ngx.components.UIControlDirective-1741622118182]: 
+  comment: Directive (UIControlDirective).
   directiveName: If
   directiveSource: 
     - xmlizable: 
@@ -458,6 +443,7 @@ scriptContent:
       - MobileSmartSourceType: script:this?.local?.agGridLang != null
   ↓gridThemeWrapper [ngx.components.UIDynamicElement-1710934918971]: 
     beanData: '{"ionBean":"DivTag"}'
+    comment: grid Theme Wrapper (UIDynamicElement).
     tagName: div
     ↓Attr [ngx.components.UIAttribute-1710934919115]: 
       attrName: id
@@ -465,59 +451,73 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:grid-theme-wrapper
+      comment: Attr (UIAttribute).
     ↓Attr1 [ngx.components.UIAttribute-1710934919118]: 
       attrName: style
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: 'plain:width: 100%'
+      comment: Attr1 (UIAttribute).
     ↓Attr2 [ngx.components.UIAttribute-1710934919121]: 
       attrName: '[ngClass]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.wrapperClass","prefix":"","suffix":"","custom":"","useCustom":false}}
+      comment: Attr2 (UIAttribute).
     ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
       beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
+      comment: Grid (UIDynamicElement).
       tagName: ion-grid
       ↓Directive [ngx.components.UIControlDirective-1741622178213]: 
+        comment: Directive (UIControlDirective).
         directiveName: If
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'top' || this?.showCsvDownloadPosition == 'both_row')
         ↓UseSharedComponent [ngx.components.UIUseShared-1741622178216]: 
+          comment: Use Shared Component (UIUseShared).
           sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
           ↓alignment [ngx.components.UIUseVariable-1741622178219]: 
+            comment: <p>Variable alignment.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1710934918899,&quot;regular&quot;:true}...</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
           ↓ag_grid [ngx.components.UIUseVariable-1741622178222]: 
+            comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.agGrid
       ↓GridRow [ngx.components.UIDynamicElement-1714061566704]: 
         beanData: '{"ionBean":"GridRow"}'
+        comment: Grid Row (UIDynamicElement).
         tagName: ion-row
         ↓Directive2 [ngx.components.UIControlDirective-1741622362242]: 
+          comment: Directive2 (UIControlDirective).
           directiveName: If
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'left' || this?.showCsvDownloadPosition == 'both_col')
           ↓UseSharedComponent [ngx.components.UIUseShared-1741622362245]: 
+            comment: Use Shared Component (UIUseShared).
             sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
             ↓ag_grid [ngx.components.UIUseVariable-1741622362248]: 
+              comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this?.agGrid
         ↓GridCol [ngx.components.UIDynamicElement-1714061566706]: 
           beanData: '{"ionBean":"GridCol"}'
+          comment: Grid Col (UIDynamicElement).
           tagName: ion-col
           ↓Tag [ngx.components.UIElement-1710934918974]: 
+            comment: Tag (UIElement).
             identifier: agGrid
             tagName: ag-grid-angular
             ↓Attr1 [ngx.components.UIAttribute-1710934918977]: 
@@ -526,12 +526,14 @@ scriptContent:
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.width","prefix":"'width:' +","suffix":"","custom":"","useCustom":false}}
+              comment: Attr1 (UIAttribute).
             ↓Attr [ngx.components.UIAttribute-1710934918980]: 
               attrName: '[ngClass]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:'ag-theme-quartz'
+              comment: Attr (UIAttribute).
             ↓Attr8 [ngx.components.UIAttribute-1710934918983]: 
               attrName: domLayout
               attrValue: 
@@ -545,53 +547,63 @@ scriptContent:
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.pagination","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr2 (UIAttribute).
             ↓Attr3 [ngx.components.UIAttribute-1710934918989]: 
               attrName: '[paginationPageSize]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.paginationPageSize","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr3 (UIAttribute).
             ↓paginationPageSizeSelector [ngx.components.UIAttribute-1719926151222]: 
               attrName: '[paginationPageSizeSelector]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.paginationPageSizeSelector","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: pagination Page Size Selector (UIAttribute).
             ↓Attr7 [ngx.components.UIAttribute-1710934918992]: 
               attrName: '[rowSelection]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr7 (UIAttribute).
             ↓Attr71 [ngx.components.UIAttribute-1710934918995]: 
               attrName: '[suppressRowDeselection]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowDeselection","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr71 (UIAttribute).
             ↓Attr6 [ngx.components.UIAttribute-1710934918998]: 
               attrName: '[defaultColDef]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.defaultColDef","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr6 (UIAttribute).
             ↓Attr5 [ngx.components.UIAttribute-1710934919001]: 
               attrName: '[columnDefs]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.computeColumnDef()
+              comment: Attr5 (UIAttribute).
             ↓Attr4 [ngx.components.UIAttribute-1710934919004]: 
               attrName: '[rowData]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: 'source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.rowData","prefix":"","suffix":"? this.rowData : [{}]","custom":"[{ a: ''b''}]","useCustom":false}}'
+              comment: Attr4 (UIAttribute).
             ↓Event [ngx.components.UIControlEvent-1710934919007]: 
               attrName: (gridReady)
+              comment: Event (UIControlEvent).
               eventName: (gridReady)
               ↓Log [ngx.components.UIDynamicAction-1710934919010]: 
                 beanData: '{"ionBean":"LogAction","message":"plain:gridReady event received"}'
+                comment: Log (UIDynamicAction).
                 ↓handleOnReady [ngx.components.UICustomAction-1710934919013]: 
                   actionValue: 
                     - xmlizable: 
@@ -641,6 +653,7 @@ scriptContent:
                           			}
                           			resolve();
                           '
+                  comment: handle On Ready (UICustomAction).
                   page_ts_imports: 
                     - xmlizable: 
                       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -653,11 +666,13 @@ scriptContent:
                             - java.lang.String: 
                               - ↑value: ag-grid-community
                   ↓width [ngx.components.UIControlVariable-1710934919016]: 
+                    comment: <p>Variable width.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1576501532114,&quot;regular&quot;:true}...</code></p>
                     varValue: 
                       - xmlizable: 
                         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                         - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.width","prefix":"","suffix":"","custom":"","useCustom":false}}
                   ↓height [ngx.components.UIControlVariable-1710934919019]: 
+                    comment: <p>Variable height.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1576501532114,&quot;regular&quot;:true}...</code></p>
                     varValue: 
                       - xmlizable: 
                         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -669,8 +684,10 @@ scriptContent:
                        "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.GridReady",
                        "data": "script:event"
                       }'
+                    comment: Emit Event (UIDynamicEmit).
             ↓Event1 [ngx.components.UIControlEvent-1710934919025]: 
               attrName: (cellClicked)
+              comment: Event1 (UIControlEvent).
               eventName: (cellClicked)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919028]: 
                 beanData: |
@@ -679,8 +696,10 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Event2 [ngx.components.UIControlEvent-1710934919031]: 
               attrName: (rowClicked)
+              comment: Event2 (UIControlEvent).
               eventName: (rowClicked)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919034]: 
                 beanData: |
@@ -689,8 +708,10 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Event3 [ngx.components.UIControlEvent-1710934919037]: 
               attrName: (rowSelected)
+              comment: Event3 (UIControlEvent).
               eventName: (rowSelected)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919040]: 
                 beanData: |
@@ -699,8 +720,10 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowSelected",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Event4 [ngx.components.UIControlEvent-1710934919043]: 
               attrName: (sortChanged)
+              comment: Event4 (UIControlEvent).
               eventName: (sortChanged)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919046]: 
                 beanData: |
@@ -709,14 +732,17 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.SortChanged",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Attr9 [ngx.components.UIAttribute-1710934919049]: 
               attrName: '[attr.id]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.id","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr9 (UIAttribute).
             ↓Event6 [ngx.components.UIControlEvent-1710934919052]: 
               attrName: (rowDataUpdated)
+              comment: Event6 (UIControlEvent).
               eventName: (rowDataUpdated)
               ↓handleRowDataChanged [ngx.components.UICustomAction-1710934919055]: 
                 actionValue: 
@@ -748,6 +774,7 @@ scriptContent:
                         		}
                         		resolve();
                         
+                comment: handle Row Data Changed (UICustomAction).
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919058]: 
                 beanData: |
                   '{
@@ -755,38 +782,45 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDataChanged",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Attr41 [ngx.components.UIAttribute-1710934919061]: 
               attrName: '[rowHeight]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowHeight","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr41 (UIAttribute).
             ↓Attr10 [ngx.components.UIAttribute-1710934919064]: 
               attrName: '[suppressCellSelection]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressCellSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr10 (UIAttribute).
             ↓Attr101 [ngx.components.UIAttribute-1710934919067]: 
               attrName: '[suppressRowClickSelection]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.suppressRowClickSelection","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr101 (UIAttribute).
             ↓Attr11 [ngx.components.UIAttribute-1710934919070]: 
               attrName: '[overlayNoRowsTemplate]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayNoRowsTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr11 (UIAttribute).
             ↓Attr12 [ngx.components.UIAttribute-1710934919073]: 
               attrName: '[overlayLoadingTemplate]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114}],"path":"?.overlayLoadingTemplate","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr12 (UIAttribute).
             ↓Event41 [ngx.components.UIControlEvent-1710934919076]: 
               attrName: (cellValueChanged)
+              comment: Event41 (UIControlEvent).
               eventName: (cellValueChanged)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919079]: 
                 beanData: |
@@ -795,10 +829,13 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
               ↓Log [ngx.components.UIDynamicAction-1710934919082]: 
                 beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
+                comment: Log (UIDynamicAction).
             ↓Event5 [ngx.components.UIControlEvent-1710934919085]: 
               attrName: (rowDoubleClicked)
+              comment: Event5 (UIControlEvent).
               eventName: (rowDoubleClicked)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919088]: 
                 beanData: |
@@ -807,8 +844,10 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Event7 [ngx.components.UIControlEvent-1710934919091]: 
               attrName: (selectionChanged)
+              comment: Event7 (UIControlEvent).
               eventName: (selectionChanged)
               ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919094]: 
                 beanData: |
@@ -817,73 +856,86 @@ scriptContent:
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.SelectionChanged",
                    "data": "script:event"
                   }'
+                comment: Emit Event (UIDynamicEmit).
             ↓Attr13 [ngx.components.UIAttribute-1710934919097]: 
               attrName: '[rowModelType]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.rowModelType","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr13 (UIAttribute).
             ↓Attr72 [ngx.components.UIAttribute-1710934919100]: 
               attrName: '[maxBlocksInCache]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.maxBlocksInCache","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr72 (UIAttribute).
             ↓Attr14 [ngx.components.UIAttribute-1710934919103]: 
               attrName: '[ensureDomOrder]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.accessibility
+              comment: Attr14 (UIAttribute).
             ↓Attr15 [ngx.components.UIAttribute-1710934919106]: 
               attrName: '[suppressColumnVirtualisation]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.accessibility
+              comment: Attr15 (UIAttribute).
             ↓Attr16 [ngx.components.UIAttribute-1710934919109]: 
               attrName: '[suppressRowVirtualisation]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.accessibility
+              comment: Attr16 (UIAttribute).
             ↓Attr17 [ngx.components.UIAttribute-1710934919112]: 
               attrName: '[attr.aria-label]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.ariaLabel
+              comment: Attr17 (UIAttribute).
             ↓Attr18 [ngx.components.UIAttribute-1730210689448]: 
               attrName: '[localeText]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.local.agGridLang
+              comment: Attr18 (UIAttribute).
             ↓Attr19 [ngx.components.UIAttribute-1730212024597]: 
               attrName: '[getLocaleText]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.getLocaleText","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr19 (UIAttribute).
             ↓Attr20 [ngx.components.UIAttribute-1730805459174]: 
               attrName: '[suppressFieldDotNotation]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.suppressFieldDotNotation","prefix":"","suffix":"","custom":"","useCustom":false}}
+              comment: Attr20 (UIAttribute).
             ↓Attr21 [ngx.components.UIAttribute-1739986943597]: 
               attrName: '[datasource]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.datasource
+              comment: Attr21 (UIAttribute).
             ↓Attr22 [ngx.components.UIAttribute-1739987426754]: 
               attrName: '[cacheBlockSize]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.cacheBlockSize
+              comment: Attr22 (UIAttribute).
           ↓height100 [ngx.components.UIStyle-1741629457874]: 
+            comment: height100 (UIStyle).
             styleContent: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -913,15 +965,19 @@ scriptContent:
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:'ion-align-items-' + this?.showCsvDownloadAlignment
+          comment: class (UIAttribute).
         ↓Directive1 [ngx.components.UIControlDirective-1741622375550]: 
+          comment: Directive1 (UIControlDirective).
           directiveName: If
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'right' || this?.showCsvDownloadPosition == 'both_col')
           ↓UseSharedComponent [ngx.components.UIUseShared-1741622375553]: 
+            comment: Use Shared Component (UIUseShared).
             sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
             ↓ag_grid [ngx.components.UIUseVariable-1741622375556]: 
+              comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
@@ -932,20 +988,25 @@ scriptContent:
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: plain:ion-no-padding
+        comment: class (UIAttribute).
       ↓Directive1 [ngx.components.UIControlDirective-1741622295420]: 
+        comment: Directive1 (UIControlDirective).
         directiveName: If
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
             - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'bottom' || this?.showCsvDownloadPosition == 'both_row')
         ↓UseSharedComponent [ngx.components.UIUseShared-1741622295423]: 
+          comment: Use Shared Component (UIUseShared).
           sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
           ↓alignment [ngx.components.UIUseVariable-1741622295426]: 
+            comment: <p>Variable alignment.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1710934918899,&quot;regular&quot;:true}...</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
           ↓ag_grid [ngx.components.UIUseVariable-1741622295429]: 
+            comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType

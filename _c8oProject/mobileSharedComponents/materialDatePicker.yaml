@@ -43,6 +43,7 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662652118763]: 
+  comment: Shared Component Event (UISharedComponentEvent).
   ↓Imports [ngx.components.UICustomAction-1662652126469]: 
     actionValue: 
       - xmlizable: 
@@ -58,6 +59,7 @@ scriptContent:
             	    matTogglerChild?.setAttribute('aria-label', page.buttonAriaLabel);
             		resolve();
             
+    comment: Imports (UICustomAction).
     local_module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -217,6 +219,7 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: '@angular/material-moment-adapter'
 ↓Style [ngx.components.UIStyle-1662716938918]: 
+  comment: Style (UIStyle).
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -270,8 +273,10 @@ scriptContent:
           @include mat.core();
           @include mat.color-variants-backwards-compatibility($theme);'
 ↓Tag4 [ngx.components.UIElement-1662717042434]: 
+  comment: Tag4 (UIElement).
   tagName: mat-form-field
   ↓Tag [ngx.components.UIElement-1662653194652]: 
+    comment: Tag (UIElement).
     selfClose: true
     tagName: input
     ↓Attr [ngx.components.UIAttribute-1662713366389]: 
@@ -280,32 +285,39 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:matInput
+      comment: Attr (UIAttribute).
     ↓Attr1 [ngx.components.UIAttribute-1662713378830]: 
       attrName: '[matDatepicker]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:picker
+      comment: Attr1 (UIAttribute).
     ↓Attr2 [ngx.components.UIAttribute-1662976091071]: 
       attrName: '[(ngModel)]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.model
+      comment: Attr2 (UIAttribute).
     ↓Attr3 [ngx.components.UIAttribute-1662983248515]: 
       attrName: '[attr.aria-label]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.inputAriaLabel
+      comment: Attr3 (UIAttribute).
   ↓Tag1 [ngx.components.UIElement-1662713421500]: 
+    comment: Tag1 (UIElement).
     tagName: mat-hint
     ↓Text [ngx.components.UIText-1662714042521]: 
+      comment: Text (UIText).
       textValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:getDateFormatString()
   ↓Tag3 [ngx.components.UIElement-1662714142022]: 
+    comment: Tag3 (UIElement).
     tagName: mat-datepicker-toggle
     ↓Attr [ngx.components.UIAttribute-1662714153048]: 
       attrName: 
@@ -313,19 +325,23 @@ scriptContent:
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: plain:matSuffix
+      comment: Attr (UIAttribute).
     ↓Attr1 [ngx.components.UIAttribute-1662714161889]: 
       attrName: '[for]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:picker
+      comment: Attr1 (UIAttribute).
     ↓Attr3 [ngx.components.UIAttribute-1662983269768]: 
       attrName: '[attr.aria-label]'
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.buttonAriaLabel
+      comment: Attr3 (UIAttribute).
   ↓Tag2 [ngx.components.UIElement-1662714059179]: 
+    comment: Tag2 (UIElement).
     identifier: picker
     tagName: mat-datepicker
   ↓Attr [ngx.components.UIAttribute-1662717195717]: 
@@ -334,7 +350,9 @@ scriptContent:
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: plain:fill
+    comment: Attr (UIAttribute).
   ↓Style [ngx.components.UIStyle-1662717258677]: 
+    comment: Style (UIStyle).
     styleContent: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -348,8 +366,8 @@ scriptContent:
             
 ↓model [ngx.components.UICompVariable-1662976119000]: 
   autoEmit: true
-  comment: Date model bound to the input and emitted on change
+  comment: <p>Date model bound to the input and emitted on change</p><p><b>Example:</b> <code>n/a</code></p>
 ↓inputAriaLabel [ngx.components.UICompVariable-1662983194985]: 
-  comment: Accessibility label applied to the date input
+  comment: <p>Accessibility label applied to the date input</p><p><b>Example:</b> <code>n/a</code></p>
 ↓buttonAriaLabel [ngx.components.UICompVariable-1662983201078]: 
-  comment: Accessibility label applied to the datepicker toggle button
+  comment: <p>Accessibility label applied to the datepicker toggle button</p><p><b>Example:</b> <code>n/a</code></p>

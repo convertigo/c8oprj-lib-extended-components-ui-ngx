@@ -1,95 +1,81 @@
 comment: This component handles file trop an a Zone. It will fire a  FileDropped event with a Files object as data. The File dropped will be in the out[0]
 ↓Div [ngx.components.UIDynamicElement-1653988043851]: 
   beanData: '{"ionBean":"DivTag"}'
+  comment: Div (UIDynamicElement).
   identifier: DropZone
   tagName: div
   ↓Grid [ngx.components.UIDynamicElement-1653988043854]: 
     beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
+    comment: Grid (UIDynamicElement).
     tagName: ion-grid
+    ↓Style [ngx.components.UIStyle-1799920000001]: 
+      comment: Style (UIStyle).
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '	width: 100%;
+              	height: 100%;
+              	margin: 0;
+              	padding: 0;
+              '
     ↓GridRow [ngx.components.UIDynamicElement-1653988043857]: 
       beanData: |
         '{
          "ionBean": "GridRow",
          "Height": "plain:33%",
-         "FlexJustifyContent": "plain:ion-justify-content-end"
+         "FlexJustifyContent": "plain:ion-justify-content-center"
         }'
+      comment: Grid Row (UIDynamicElement).
       tagName: ion-row
       ↓GridCol [ngx.components.UIDynamicElement-1653988043860]: 
         beanData: |
           '{
            "ionBean": "GridCol",
-           "FlexAlignement": "plain:ion-align-self-end",
-           "SizeLg": "plain:1",
-           "SizeMd": "plain:1",
+           "FlexAlignement": "plain:ion-align-self-center",
+           "SizeLg": "plain:12",
+           "SizeMd": "plain:12",
            "SizeSm": "plain:12",
-           "SizeXl": "plain:1",
+           "SizeXl": "plain:12",
            "SizeXs": "plain:12"
           }'
+        comment: Grid Col (UIDynamicElement).
         tagName: ion-col
         ↓Text [ngx.components.UIText-1653988043863]: 
+          comment: Text (UIText).
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1653988043625,"regular":true}],"path":"?.Information","prefix":"","suffix":"","custom":"","useCustom":false}}
         ↓FormatLayout [ngx.components.UIDynamicAttr-1653988043866]: 
           beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
+          comment: Format Layout (UIDynamicAttr).
           selfClose: false
     ↓GridRow1 [ngx.components.UIDynamicElement-1653988043869]: 
       beanData: |
         '{
          "ionBean": "GridRow",
          "Height": "plain:33%",
-         "FlexJustifyContent": "plain:ion-justify-content-end"
+         "FlexJustifyContent": "plain:ion-justify-content-center"
         }'
+      comment: Grid Row1 (UIDynamicElement).
       tagName: ion-row
-      ↓GridCol1 [ngx.components.UIDynamicElement-1653988043872]: 
-        beanData: |
-          '{
-           "ionBean": "GridCol",
-           "FlexAlignement": "plain:ion-align-self-end",
-           "SizeLg": "plain:1",
-           "SizeMd": "plain:1",
-           "SizeSm": "plain:12",
-           "SizeXl": "plain:1",
-           "SizeXs": "plain:12"
-          }'
-        tagName: ion-col
-        ↓Style [ngx.components.UIStyle-1653988379060]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '/**
-                   * Custom properties (sometimes referred to as CSS variables or cascading variables)
-                   * are entities defined by CSS authors that contain specific values to be reused throughout a document.
-                   * They are set using custom property notation, e.g.: --main-color: black;
-                   * and are accessed using the var() function, e.g.: color: var(--main-color);
-                   * You can find below your component''s properties you can customize within the page.
-                   * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
-                   * For more informations see https://ionicframework.com/docs/theming.
-                  **/
-                  //--ion-grid-column-padding	//Padding for the Column
-                  //--ion-grid-column-padding-lg	//Padding for the Column on lg screens and up
-                  //--ion-grid-column-padding-md	//Padding for the Column on md screens and up
-                  //--ion-grid-column-padding-sm	//Padding for the Column on sm screens and up
-                  //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
-                  //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
-                  //--ion-grid-columns	//The number of total Columns in the Grid
-                  '
       ↓GridCol [ngx.components.UIDynamicElement-1653988043875]: 
         beanData: |
           '{
            "ionBean": "GridCol",
            "FlexAlignement": "plain:ion-align-self-center",
-           "SizeLg": "plain:1",
-           "SizeMd": "plain:1",
+           "SizeLg": "plain:12",
+           "SizeMd": "plain:12",
            "SizeSm": "plain:12",
-           "SizeXl": "plain:1",
+           "SizeXl": "plain:12",
            "SizeXs": "plain:12"
           }'
+        comment: Grid Col (UIDynamicElement).
         tagName: ion-col
         ↓Tag [ngx.components.UIElement-1653988043878]: 
+          comment: Tag (UIElement).
           identifier: FileBrowser
           selfClose: true
           tagName: input
@@ -99,13 +85,16 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: plain:file
+            comment: Attr (UIAttribute).
           ↓Attr1 [ngx.components.UIAttribute-1653988043884]: 
             attrName: accept
             attrValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: plain:application/csv
+            comment: Attr1 (UIAttribute).
           ↓Style [ngx.components.UIStyle-1653988043887]: 
+            comment: Style (UIStyle).
             styleContent: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -115,6 +104,7 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                     '
           ↓Event [ngx.components.UIControlEvent-1653988043890]: 
             attrName: (change)
+            comment: Event (UIControlEvent).
             eventName: onChange
             ↓SetFileName [ngx.components.UICustomAction-1653988043893]: 
               actionValue: 
@@ -126,6 +116,7 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                       		this["Files"] = event.target.files;
                       		resolve(this["Files"]);
                       '
+              comment: Set File Name (UICustomAction).
               ↓EmitEvent [ngx.components.UIDynamicEmit-1653988043896]: 
                 beanData: |
                   '{
@@ -133,6 +124,7 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                    "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.DropZoneComponent.FilesDropped",
                    "data": "script:out"
                   }'
+                comment: Emit Event (UIDynamicEmit).
         ↓Button [ngx.components.UIDynamicElement-1653988043899]: 
           beanData: |
             '{
@@ -140,13 +132,27 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
              "ButtonFormType": "plain",
              "Disabled": "plain"
             }'
+          comment: Button (UIDynamicElement).
           tagName: ion-button
+          ↓Style [ngx.components.UIStyle-1799920000002]: 
+            comment: Style (UIStyle).
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	display: flex;
+                    	justify-content: center;
+                    	margin: 0 auto;
+                    '
           ↓Text [ngx.components.UIText-1653988043902]: 
+            comment: Text (UIText).
             textValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: plain:Browse file
           ↓Event [ngx.components.UIControlEvent-1653988043905]: 
+            comment: Event (UIControlEvent).
             ↓CustomAction [ngx.components.UICustomAction-1653988043908]: 
               actionValue: 
                 - xmlizable: 
@@ -157,44 +163,37 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                       		page["FileBrowser"].nativeElement.click();
                       		resolve();
                       '
-      ↓GridCol2 [ngx.components.UIDynamicElement-1653988043911]: 
-        beanData: |
-          '{
-           "ionBean": "GridCol",
-           "FlexAlignement": "plain:ion-align-self-center",
-           "SizeLg": "plain:1",
-           "SizeMd": "plain:1",
-           "SizeSm": "plain:12",
-           "SizeXl": "plain:1",
-           "SizeXs": "plain:12"
-          }'
-        tagName: ion-col
+              comment: Custom Action (UICustomAction).
     ↓GridRow2 [ngx.components.UIDynamicElement-1653988043914]: 
       beanData: |
         '{
          "ionBean": "GridRow",
          "Height": "plain:33%",
-         "FlexJustifyContent": "plain:ion-justify-content-end"
+         "FlexJustifyContent": "plain:ion-justify-content-center"
         }'
+      comment: Grid Row2 (UIDynamicElement).
       tagName: ion-row
       ↓GridCol [ngx.components.UIDynamicElement-1653988043917]: 
         beanData: |
           '{
            "ionBean": "GridCol",
-           "FlexAlignement": "plain:ion-align-self-end",
-           "SizeLg": "plain:1",
-           "SizeMd": "plain:1",
+           "FlexAlignement": "plain:ion-align-self-center",
+           "SizeLg": "plain:12",
+           "SizeMd": "plain:12",
            "SizeSm": "plain:12",
-           "SizeXl": "plain:1",
+           "SizeXl": "plain:12",
            "SizeXs": "plain:12"
           }'
+        comment: Grid Col (UIDynamicElement).
         tagName: ion-col
         ↓Text [ngx.components.UIText-1653988043920]: 
+          comment: Text (UIText).
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: 'script:$any(this).Files ? $any(this).Files[0].name : '''''
         ↓Style [ngx.components.UIStyle-1653988043923]: 
+          comment: Style (UIStyle).
           styleContent: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -216,10 +215,17 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
                   //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
                   //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
                   //--ion-grid-columns	//The number of total Columns in the Grid
+                  	display: block;
+                  	max-width: 100%;
+                  	overflow: hidden;
+                  	white-space: nowrap;
                   	text-overflow: ellipsis;
+                  	font-size: 0.95rem;
+                  	color: var(--ion-color-medium-shade);
                   '
     ↓FormatLayout [ngx.components.UIDynamicAttr-1653988043926]: 
       beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
+      comment: Format Layout (UIDynamicAttr).
       selfClose: false
   ↓Attr [ngx.components.UIAttribute-1653988043929]: 
     attrName: droppable
@@ -227,8 +233,10 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: plain:true
+    comment: Attr (UIAttribute).
   ↓Event [ngx.components.UIControlEvent-1653988043932]: 
     attrName: (drop)
+    comment: Event (UIControlEvent).
     eventName: (drop)
     ↓HandleFileDropped [ngx.components.UICustomAction-1653988043935]: 
       actionValue: 
@@ -238,13 +246,14 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
             →: |
               '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
               		
-              		page["DropZone"].nativeElement.style.border = "dashed grey 1px";
+              		page["DropZone"].nativeElement.style.border = "2px dashed var(--ion-color-medium)";
               		event.preventDefault();
               		page["Files"] = event.dataTransfer.files;
               		
               		resolve(event.dataTransfer.files);
               		
               '
+      comment: Handle File Dropped (UICustomAction).
       ↓EmitEvent [ngx.components.UIDynamicEmit-1653988043938]: 
         beanData: |
           '{
@@ -252,8 +261,10 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
            "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.DropZoneComponent.FilesDropped",
            "data": "source:{\"filter\":\"Action\",\"project\":\"lib_ExtendedComponents_ui_ngx\",\"input\":\"\",\"model\":{\"data\":[{\"priority\":1653988043935}],\"path\":\"?.out\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}"
           }'
+        comment: Emit Event (UIDynamicEmit).
   ↓Event1 [ngx.components.UIControlEvent-1653988043941]: 
     attrName: (dragover)
+    comment: Event1 (UIControlEvent).
     eventName: (dragover)
     ↓DragEnter [ngx.components.UICustomAction-1653988043944]: 
       actionValue: 
@@ -262,13 +273,15 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
           - com.twinsoft.convertigo.beans.common.FormatedContent: 
             →: |
               '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-              		page["DropZone"].nativeElement.style.border = "dashed red 3px";
+              		page["DropZone"].nativeElement.style.border = "2px dashed var(--ion-color-danger)";
               		
               		event.preventDefault();
               		resolve();
               '
+      comment: Drag Enter (UICustomAction).
   ↓Event11 [ngx.components.UIControlEvent-1653988043947]: 
     attrName: (dragleave)
+    comment: Event11 (UIControlEvent).
     eventName: (dragleave)
     ↓DragLeave [ngx.components.UICustomAction-1653988043950]: 
       actionValue: 
@@ -277,12 +290,14 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
           - com.twinsoft.convertigo.beans.common.FormatedContent: 
             →: |
               '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-              		page["DropZone"].nativeElement.style.border = "dashed grey 1px";
+              		page["DropZone"].nativeElement.style.border = "2px dashed var(--ion-color-medium)";
               		
               		event.preventDefault();
               		resolve();
               '
+      comment: Drag Leave (UICustomAction).
   ↓Style [ngx.components.UIStyle-1653988043953]: 
+    comment: Style (UIStyle).
     styleContent: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -304,11 +319,18 @@ comment: This component handles file trop an a Zone. It will fire a  FileDropped
             //--ion-grid-column-padding-xl	//Padding for the Column on xl screens and up
             //--ion-grid-column-padding-xs	//Padding for the Column on xs screens and up
             //--ion-grid-columns	//The number of total Columns in the Grid
-            	border: 1px dashed grey;
+            	display: flex;
+            	align-items: center;
+            	justify-content: center;
+            	border: 2px dashed var(--ion-color-medium);
+            	border-radius: 14px;
+            	background: rgba(var(--ion-color-medium-rgb), 0.08);
+            	transition: border-color 0.15s ease, background-color 0.15s ease;
+            	padding: 12px;
             	height: 100%;
             '
 ↓Information [ngx.components.UICompVariable-1653988043956]: 
-  comment: Information text displayed inside the drop zone
+  comment: <p>Information text displayed inside the drop zone</p><p><b>Example:</b> <code>n/a</code></p>
 ↓FilesDropped [ngx.components.UICompEvent-1653988043959]: 
   attrName: FilesDropped
   comment: Fired when file(s) are dropped on the drop zone. Data is the dropped files array.

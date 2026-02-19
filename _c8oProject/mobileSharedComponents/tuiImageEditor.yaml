@@ -60,6 +60,7 @@ scriptContent:
         	/*End_c8o_CompFunction*/
         '
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1733927420454]: 
+  comment: Shared Component Event (UISharedComponentEvent).
   ↓imports [ngx.components.UICustomAsyncAction-1733927432354]: 
     actionValue: 
       - xmlizable: 
@@ -106,6 +107,7 @@ scriptContent:
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: node_modules/tui-color-picker/dist/tui-color-picker.min.css
+    comment: imports (UICustomAsyncAction).
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -126,6 +128,7 @@ scriptContent:
                 - ↑value: 2.0.5
 ↓Div [ngx.components.UIDynamicElement-1733928630770]: 
   beanData: '{"ionBean":"DivTag"}'
+  comment: Div (UIDynamicElement).
   tagName: div
   ↓Attr [ngx.components.UIAttribute-1733928643166]: 
     attrName: id
@@ -133,23 +136,24 @@ scriptContent:
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: plain:tui-image-editor
+    comment: Attr (UIAttribute).
 ↓imagePath [ngx.components.UICompVariable-1734347304829]: 
-  comment: Source image path or data URL loaded by the editor
+  comment: <p>Source image path or data URL loaded by the editor</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName [ngx.components.UICompVariable-1734347325244]: 
-  comment: Source image display name shown in the editor UI
+  comment: <p>Source image display name shown in the editor UI</p><p><b>Example:</b> <code>n/a</code></p>
 ↓cssMaxWidth [ngx.components.UICompVariable-1734347348419]: 
-  comment: Maximum editor canvas width in pixels
+  comment: <p>Maximum editor canvas width in pixels</p><p><b>Example:</b> <code>n/a</code></p>
 ↓cssMaxHeight [ngx.components.UICompVariable-1734347350128]: 
-  comment: Maximum editor canvas height in pixels
+  comment: <p>Maximum editor canvas height in pixels</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName3 [ngx.components.UICompVariable-1734347351388]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName4 [ngx.components.UICompVariable-1734347352685]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName5 [ngx.components.UICompVariable-1734347385446]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName6 [ngx.components.UICompVariable-1734347386728]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName7 [ngx.components.UICompVariable-1734347387824]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>
 ↓imageName8 [ngx.components.UICompVariable-1734347388827]: 
-  comment: Reserved variable not used by the current component implementation
+  comment: <p>Reserved variable not used by the current component implementation</p><p><b>Example:</b> <code>n/a</code></p>

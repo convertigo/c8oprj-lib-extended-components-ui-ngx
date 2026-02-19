@@ -1,6 +1,5 @@
-comment: Page with a tinyMCE rich text editor
-segment: path-to-testtinymce
-title: TinyMCE
+segment: path-to-testmaterialslider
+title: Material Slider
 ↓Header [ngx.components.UIDynamicElement-1491634212350]: 
   beanData: '{"ionBean":"Header"}'
   comment: Top page header container
@@ -31,7 +30,7 @@ title: TinyMCE
         textValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:Page_TinyMce
+            - MobileSmartSourceType: plain:Page_MaterialSlider
     ↓ButtonSet2 [ngx.components.UIDynamicElement-1588170811054]: 
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       comment: Right toolbar button group
@@ -171,7 +170,7 @@ title: TinyMCE
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: plain:Lang_Spanish
-↓Content [ngx.components.UIDynamicElement-1614265220259]: 
+↓Content [ngx.components.UIDynamicElement-1662715357957]: 
   beanData: '{"ionBean":"Content"}'
   tagName: ion-content
   ↓DemoOverviewCard [ngx.components.UIDynamicElement-1799100000001]: 
@@ -201,7 +200,7 @@ title: TinyMCE
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Demo_What_TinyMce
+              - MobileSmartSourceType: plain:Demo_What_MaterialSlider
       ↓ParagraphScenarioTitle [ngx.components.UIDynamicElement-1799100000008]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
@@ -219,49 +218,49 @@ title: TinyMCE
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Demo_Scenario_TinyMce
-  ↓UseSharedComponent [ngx.components.UIUseShared-1614265515737]: 
-    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce
-    ↓model [ngx.components.UIUseVariable-1799200000040]: 
+              - MobileSmartSourceType: plain:Demo_Scenario_MaterialSlider
+  ↓UseSharedComponent [ngx.components.UIUseShared-1662715386296]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.materialSlider
+    ↓model [ngx.components.UIUseVariable-1799200000042]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:this.local['demo:param']
-    ↓init [ngx.components.UIUseVariable-1614266598819]: 
-      varValue: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:{height: 500}'
-    ↓Event [ngx.components.UIControlEvent-1645465765590]: 
-      attrName: (onChange)
-      eventName: onChange
-      ↓Log [ngx.components.UIDynamicAction-1645465781708]: 
-        beanData: |
-          '{
-           "ionBean": "LogAction",
-           "message": "script:out",
-           "level": "plain:warn"
-          }'
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000001]: 
+          - MobileSmartSourceType: 'script:this.local[''demo:param''] && this.local[''demo:param''] != '''' ? +this.local[''demo:param''] : 10'
+    ↓Event [ngx.components.UIControlEvent-1799200000044]: 
+      attrName: (ModelChange)
+      eventName: ModelChange
+      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000045]: 
         actionValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
             - com.twinsoft.convertigo.beans.common.FormatedContent: 
               →: |
                 '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "onChange", value: event};
+                		page.local["demo:lastEvent"] = {type: "ModelChange", value: event};
                 		resolve();
                 '
-    ↓Event1 [ngx.components.UIControlEvent-1645465765592]: 
-      attrName: (onBlur)
-      eventName: onBlur
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000002]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "onBlur"};
-                		resolve();
-                '
+  ↓Style [ngx.components.UIStyle-1662727634956]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '/**
+             * Custom properties (sometimes referred to as CSS variables or cascading variables)
+             * are entities defined by CSS authors that contain specific values to be reused throughout a document.
+             * They are set using custom property notation, e.g.: --main-color: black;
+             * and are accessed using the var() function, e.g.: color: var(--main-color);
+             * You can find below your component''s properties you can customize within the page.
+             * If you''d like to make some customizations for whole app, please see your app Style & Theme components.
+             * For more informations see https://ionicframework.com/docs/theming.
+            **/
+            --background: white;	//Background of the content
+            //--color	//Color of the content
+            //--keyboard-offset	//Keyboard offset of the content
+            //--offset-bottom	//Offset bottom of the content
+            //--offset-top	//Offset top of the content
+            //--padding-bottom	//Bottom padding of the content
+            //--padding-end	//Right padding if direction is left-to-right, and left padding if direction is right-to-left of the content
+            //--padding-start	//Left padding if direction is left-to-right, and right padding if direction is right-to-left of the content
+            //--padding-top	//Top padding of the content
+            '
