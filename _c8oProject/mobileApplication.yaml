@@ -530,7 +530,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
             --color: #e2e8f0;
           }'
 ↓TailwindTheme [ngx.components.UITheme-1771512152528]: 
-  comment: Utility-like design token layer mapped to Ionic components (v8.4.0.4)
+  comment: Utility-like design token layer mapped to Ionic components (v8.4.0.5)
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -541,7 +541,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
           
           /** Ionic CSS Variables **/
           
-          /** version 8.4.0.4 **/
+          /** version 8.4.0.5 **/
           
           /* tw-ionic.css
              Tailwind-ish theme overlay for Ionic (v6/v7+)
@@ -695,13 +695,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
           }
           
           /* Use ion-item as container: add a Tailwind-like field style */
-          ion-item.item-interactive,
-          ion-item.item-has-focus,
-          ion-item.item-has-value,
-          ion-item.item-label-floating,
-          ion-item.item-label-stacked,
-          ion-item.item-label-fixed,
-          ion-item.item-label-default {
+          ion-item {
             border: 1px solid var(--tw-border);
             border-radius: var(--tw-radius-sm);
             padding: 0.25rem 0.75rem;
