@@ -248,12 +248,6 @@ comment: This component provides Chips management for your apps
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            		if(page){
-            			vars;
-            			props;
-            			event;
-            		}
-            		debugger;
             		resolve();
             
     module_ng_imports: 
@@ -335,4 +329,4 @@ comment: This component provides Chips management for your apps
               - java.lang.String: 
                 - ↑value: '@angular/forms'
 ↓formCtrl [ngx.components.UICompVariable-1753292753795]: 
-  value: null
+  value: new FormControl()
