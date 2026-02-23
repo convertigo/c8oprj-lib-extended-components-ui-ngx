@@ -1,0 +1,290 @@
+comment: |
+  Shared component wrapping the Frappe Gantt chart library.
+  Pass tasks as an array or as a JSON string.
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        declare var window: any;
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	public ganttInstance: any;
+        	public ganttElementId: string = '''';
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		if (changes[''id''] && this.id && this.id !== '''' && this.id !== this.ganttElementId) {
+        			this.ganttElementId = this.id;
+        		}
+        		if (this.ganttElementId && (changes[''tasks''] || changes[''options''] || changes[''viewMode''] || changes[''dateFormat''] || changes[''width''] || changes[''height''] || changes[''id''])) {
+        			setTimeout(() => this.renderGantt(), 0);
+        		}
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	public ensureElementId(): void {
+        		if (this.id != undefined && this.id != null && this.id !== '''') {
+        			this.ganttElementId = this.id;
+        			return;
+        		}
+        		if (!this.ganttElementId) {
+        			this.ganttElementId = ''frappe-gantt-'' + Date.now();
+        		}
+        	}
+        
+        	public parseArray(value: any, fallback: any[] = []): any[] {
+        		if (Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === ''string'' && value.trim() !== '''') {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return Array.isArray(parsed) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn(''[MB] frappeGantt invalid tasks JSON: '' + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public parseObject(value: any, fallback: any = {}): any {
+        		if (value != null && typeof value === ''object'' && !Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === ''string'' && value.trim() !== '''') {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return (parsed != null && typeof parsed === ''object'' && !Array.isArray(parsed)) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn(''[MB] frappeGantt invalid options JSON: '' + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public resolveContainerHeight(container: any): number {
+        		var resolved = 0;
+        		if (container != null) {
+        			var rect = container.getBoundingClientRect ? container.getBoundingClientRect() : null;
+        			if (rect && rect.height) {
+        				resolved = Math.floor(rect.height);
+        			}
+        			if (!resolved && container.clientHeight) {
+        				resolved = Math.floor(container.clientHeight);
+        			}
+        		}
+        		if (!resolved && typeof this.height === ''number'') {
+        			resolved = Math.floor(this.height);
+        		}
+        		if (!resolved && typeof this.height === ''string'') {
+        			var match = this.height.match(/^(\d+(?:\.\d+)?)px$/i);
+        			if (match != null && match[1]) {
+        				resolved = parseInt(match[1], 10);
+        			}
+        		}
+        		return resolved > 0 ? resolved : 0;
+        	}
+        
+        	public renderGantt(): void {
+        		try {
+        			this.ensureElementId();
+        			var container = document.getElementById(this.ganttElementId);
+        			if (!container) {
+        				return;
+        			}
+        			container.innerHTML = '''';
+        
+        			var GanttCtor = window[''Gantt''];
+        			if (!GanttCtor) {
+        				this.c8o.log.warn(''[MB] frappeGantt script is not loaded yet'');
+        				return;
+        			}
+        
+        			var userOptions = this.parseObject(this.options, {});
+        			var autoContainerHeight = this.resolveContainerHeight(container);
+        			if ((userOptions[''container_height''] == null || userOptions[''container_height''] === '''' || userOptions[''container_height''] === ''auto'') && autoContainerHeight > 0) {
+        				userOptions[''container_height''] = autoContainerHeight;
+        			}
+        
+        			var mergedOptions = {
+        				view_mode: this.viewMode ? this.viewMode : ''Day'',
+        				date_format: this.dateFormat ? this.dateFormat : ''YYYY-MM-DD'',
+        				on_click: (task: any) => this.TaskClicked.emit(task),
+        				on_date_change: (task: any, start: any, end: any) => this.DateChanged.emit({task: task, start: start, end: end}),
+        				on_progress_change: (task: any, progress: any) => this.ProgressChanged.emit({task: task, progress: progress}),
+        				on_view_change: (mode: any) => this.ViewChanged.emit(mode)
+        			};
+        
+        			mergedOptions = {
+        				...mergedOptions,
+        				...userOptions
+        			};
+        
+        			this.ganttInstance = new GanttCtor(''#'' + this.ganttElementId, this.parseArray(this.tasks, []), mergedOptions);
+        			if (autoContainerHeight > 0) {
+        				var ganttContainer: any = container.querySelector(''.gantt-container'');
+        				if (ganttContainer && ganttContainer.style) {
+        					ganttContainer.style.height = autoContainerHeight + ''px'';
+        				}
+        			}
+        		} catch (e) {
+        			this.c8o.log.warn(''[MB] frappeGantt render failed: '' + e);
+        		}
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓tasks [ngx.components.UICompVariable-1801000000001]: 
+  comment: <p>Array of tasks accepted by Frappe Gantt (array or JSON string)</p><p><b>Example:</b> <code>[{&quot;id&quot;:&quot;Task 1&quot;,&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-02-01&quot;,&quot;end&quot;:&quot;2026-02-04&quot;,&quot;progress&quot;:65}]</code></p>
+  value: '[{"id":"Task 1","name":"Planning","start":"2026-02-01","end":"2026-02-04","progress":65},{"id":"Task 2","name":"Build","start":"2026-02-05","end":"2026-02-10","progress":30}]'
+↓options [ngx.components.UICompVariable-1801000000002]: 
+  comment: <p>Optional Frappe Gantt options object (object or JSON string)</p><p><b>Example:</b> <code>{&quot;readonly&quot;:false,&quot;bar_height&quot;:24}</code></p>
+  value: '{}'
+↓viewMode [ngx.components.UICompVariable-1801000000003]: 
+  comment: <p>Default view mode for the chart</p><p><b>Example:</b> <code>&#x27;Day&#x27;</code></p>
+  value: '''Day'''
+↓dateFormat [ngx.components.UICompVariable-1801000000004]: 
+  comment: <p>Date format used by Frappe Gantt parser</p><p><b>Example:</b> <code>&#x27;YYYY-MM-DD&#x27;</code></p>
+  value: '''YYYY-MM-DD'''
+↓width [ngx.components.UICompVariable-1801000000005]: 
+  comment: <p>Container width</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
+  value: '''100%'''
+↓height [ngx.components.UICompVariable-1801000000006]: 
+  comment: <p>Container height</p><p><b>Example:</b> <code>&#x27;360px&#x27;</code></p>
+  value: '''360px'''
+↓id [ngx.components.UICompVariable-1801000000007]: 
+  comment: <p>Optional HTML id for the gantt container</p><p><b>Example:</b> <code>&#x27;my-gantt&#x27;</code></p>
+↓TaskClicked [ngx.components.UICompEvent-1801000000008]: 
+  attrName: TaskClicked
+  comment: Fired when a task bar is clicked.
+↓DateChanged [ngx.components.UICompEvent-1801000000009]: 
+  attrName: DateChanged
+  comment: Fired when a task date range changes.
+↓ProgressChanged [ngx.components.UICompEvent-1801000000010]: 
+  attrName: ProgressChanged
+  comment: Fired when a task progress changes.
+↓ViewChanged [ngx.components.UICompEvent-1801000000011]: 
+  attrName: ViewChanged
+  comment: Fired when the gantt view mode changes.
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1801000000012]: 
+  comment: Shared Component Event (UISharedComponentEvent).
+  ↓frappeGanttImports [ngx.components.UICustomAction-1801000000013]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		page.ensureElementId();
+            		page.renderGantt();
+            		resolve();
+            
+    build_scripts: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/frappe-gantt/dist/frappe-gantt.umd.js
+    build_styles: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/frappe-gantt/dist/frappe-gantt.css
+    comment: Frappe Gantt Imports (UICustomAction).
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: frappe-gantt
+              - java.lang.String: 
+                - ↑value: 1.2.1
+↓GanttContainer [ngx.components.UIDynamicElement-1801000000014]: 
+  beanData: '{"ionBean":"DivTag"}'
+  comment: Gantt Container (UIDynamicElement).
+  tagName: div
+  ↓Attr [ngx.components.UIAttribute-1801000000015]: 
+    attrName: '[attr.id]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.ganttElementId
+    comment: Attr (UIAttribute).
+  ↓Attr1 [ngx.components.UIAttribute-1801000000016]: 
+    attrName: '[style.width]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.width
+    comment: Attr1 (UIAttribute).
+  ↓Attr2 [ngx.components.UIAttribute-1801000000017]: 
+    attrName: '[style.height]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.height
+    comment: Attr2 (UIAttribute).
+  ↓Attr3 [ngx.components.UIAttribute-1801000000018]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:frappe-gantt-host
+    comment: Attr3 (UIAttribute).
+↓Style [ngx.components.UIStyle-1801000000019]: 
+  comment: Style (UIStyle).
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.frappe-gantt-host {
+            display: block;
+            min-height: 220px;
+            position: relative;
+            overflow-x: auto;
+            overflow-y: hidden;
+          }
+          
+          .frappe-gantt-host .gantt-container {
+            height: 100%;
+          }
+          
+          .frappe-gantt-host .gantt-container svg.gantt {
+            height: 100%;
+            display: block;
+          }
+          
+          :host ::ng-deep .frappe-gantt-host .gantt-container {
+            height: 100% !important;
+          }
+          
+          :host ::ng-deep .frappe-gantt-host .gantt-container .gantt {
+            display: block;
+            min-height: 100%;
+          }
+          '

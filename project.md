@@ -74,6 +74,14 @@ Page with an angularx QRCode generator
 
 </p></blockquote></details>
 
+<details><summary><b>testFrappeGantt</b> : Page demonstrating the Frappe Gantt shared component</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testFrappeGantt
+
+Page demonstrating the Frappe Gantt shared component
+</p></blockquote></details>
+
 <details><summary><b>testMaterialDatePicker</b></summary><blockquote><p>
 
 
@@ -1419,6 +1427,173 @@ comment
 </td>
 <td>
 Fired when file(s) are dropped on the drop zone. Data is the dropped files array.
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>frappeGantt</b> : Shared component wrapping the Frappe Gantt chart library</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") frappeGantt
+
+Shared component wrapping the Frappe Gantt chart library.
+Pass tasks as an array or as a JSON string.
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;dateFormat
+</td>
+<td>
+<p>Date format used by Frappe Gantt parser</p><p><b>Example:</b> 
+
+```
+&#x27;YYYY-MM-DD&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
+</td>
+<td>
+<p>Container height</p><p><b>Example:</b> 
+
+```
+&#x27;360px&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+</td>
+<td>
+<p>Optional HTML id for the gantt container</p><p><b>Example:</b> 
+
+```
+&#x27;my-gantt&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;options
+</td>
+<td>
+<p>Optional Frappe Gantt options object (object or JSON string)</p><p><b>Example:</b> 
+
+```
+{&quot;readonly&quot;:false,&quot;bar_height&quot;:24}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;tasks
+</td>
+<td>
+<p>Array of tasks accepted by Frappe Gantt (array or JSON string)</p><p><b>Example:</b> 
+
+```
+[{&quot;id&quot;:&quot;Task 1&quot;,&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-02-01&quot;,&quot;end&quot;:&quot;2026-02-04&quot;,&quot;progress&quot;:65}]
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;viewMode
+</td>
+<td>
+<p>Default view mode for the chart</p><p><b>Example:</b> 
+
+```
+&#x27;Day&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
+</td>
+<td>
+<p>Container width</p><p><b>Example:</b> 
+
+```
+&#x27;100%&#x27;
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;DateChanged
+</td>
+<td>
+Fired when a task date range changes.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ProgressChanged
+</td>
+<td>
+Fired when a task progress changes.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;TaskClicked
+</td>
+<td>
+Fired when a task bar is clicked.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ViewChanged
+</td>
+<td>
+Fired when the gantt view mode changes.
 </td>
 </tr>
 </table>

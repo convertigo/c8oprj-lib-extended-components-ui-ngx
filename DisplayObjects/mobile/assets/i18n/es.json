@@ -54,5 +54,8 @@
   "Demo_What_TUIImageEditor": "TUI Image Editor permite editar y exportar imagen en navegador.",
   "Demo_Scenario_TUIImageEditor": "Edita la imagen de ejemplo y exporta blob para validar salida.",
   "Demo_What_NgSelect": "ng-select demuestra busqueda en gran volumen y virtual scroll.",
-  "Demo_Scenario_NgSelect": "Busca en la lista de 1000 elementos y valida la seleccion."
+  "Demo_Scenario_NgSelect": "Busca en la lista de 1000 elementos y valida la seleccion.",
+  "Page_FrappeGantt": "Frappe Gantt",
+  "Demo_What_FrappeGantt": "Frappe Gantt visualiza cronogramas con dependencias y progreso.",
+  "Demo_Scenario_FrappeGantt": "Cambia el modo de vista, aleatoriza el progreso y arrastra barras para ver eventos."
 }

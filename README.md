@@ -24,6 +24,7 @@ For more technical informations : [documentation](./project.md)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [DropZoneComponent](#dropzonecomponent)
+        - [frappeGantt](#frappegantt)
         - [materialDatePicker](#materialdatepicker)
         - [materialSlider](#materialslider)
         - [ngSelect](#ngselect)
@@ -800,6 +801,102 @@ n/a
 </tr>
 <tr>
 <td>FilesDropped</td><td>Fired when file(s) are dropped on the drop zone. Data is the dropped files array.</td>
+</tr>
+</table>
+
+#### frappeGantt
+
+Shared component wrapping the Frappe Gantt chart library.
+Pass tasks as an array or as a JSON string.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>dateFormat</td><td><p>Date format used by Frappe Gantt parser</p><p><b>Example:</b> 
+
+```
+&#x27;YYYY-MM-DD&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>height</td><td><p>Container height</p><p><b>Example:</b> 
+
+```
+&#x27;360px&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>id</td><td><p>Optional HTML id for the gantt container</p><p><b>Example:</b> 
+
+```
+&#x27;my-gantt&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>options</td><td><p>Optional Frappe Gantt options object (object or JSON string)</p><p><b>Example:</b> 
+
+```
+{&quot;readonly&quot;:false,&quot;bar_height&quot;:24}
+```
+
+</p></td>
+</tr>
+<tr>
+<td>tasks</td><td><p>Array of tasks accepted by Frappe Gantt (array or JSON string)</p><p><b>Example:</b> 
+
+```
+[{&quot;id&quot;:&quot;Task 1&quot;,&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-02-01&quot;,&quot;end&quot;:&quot;2026-02-04&quot;,&quot;progress&quot;:65}]
+```
+
+</p></td>
+</tr>
+<tr>
+<td>viewMode</td><td><p>Default view mode for the chart</p><p><b>Example:</b> 
+
+```
+&#x27;Day&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>width</td><td><p>Container width</p><p><b>Example:</b> 
+
+```
+&#x27;100%&#x27;
+```
+
+</p></td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>DateChanged</td><td>Fired when a task date range changes.</td>
+</tr>
+<tr>
+<td>ProgressChanged</td><td>Fired when a task progress changes.</td>
+</tr>
+<tr>
+<td>TaskClicked</td><td>Fired when a task bar is clicked.</td>
+</tr>
+<tr>
+<td>ViewChanged</td><td>Fired when the gantt view mode changes.</td>
 </tr>
 </table>
 

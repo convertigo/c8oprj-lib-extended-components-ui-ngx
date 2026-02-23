@@ -39,6 +39,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓materialSlider [ngx.components.UISharedRegularComponent-1662984391613]: 🗏 mobileSharedComponents/materialSlider.yaml
 ↓tuiImageEditor [ngx.components.UISharedRegularComponent-1733927373662]: 🗏 mobileSharedComponents/tuiImageEditor.yaml
 ↓ngSelect [ngx.components.UISharedRegularComponent-1741619592591]: 🗏 mobileSharedComponents/ngSelect.yaml
+↓frappeGantt [ngx.components.UISharedRegularComponent-1801000000020]: 🗏 mobileSharedComponents/frappeGantt.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
@@ -48,6 +49,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testMaterialDatePicker [ngx.components.PageComponent-1662715336337]: 🗏 mobilePages/testMaterialDatePicker.yaml
 ↓testMaterialSlider [ngx.components.PageComponent-1799901000001]: 🗏 mobilePages/testMaterialSlider.yaml
 ↓testDropZone [ngx.components.PageComponent-1799911000001]: 🗏 mobilePages/testDropZone.yaml
+↓testFrappeGantt [ngx.components.PageComponent-1801200000400]: 🗏 mobilePages/testFrappeGantt.yaml
 ↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
 ↓testNgSelect [ngx.components.PageComponent-1741619640644]: 🗏 mobilePages/testNgSelect.yaml
 ↓Style [ngx.components.UIStyle-1771498819195]: 
@@ -530,7 +532,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
             --color: #e2e8f0;
           }'
 ↓TailwindTheme [ngx.components.UITheme-1771512152528]: 
-  comment: Utility-like design token layer mapped to Ionic components (v8.4.0.5)
+  comment: Utility-like design token layer mapped to Ionic components (v8.4.0.6)
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -541,7 +543,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
           
           /** Ionic CSS Variables **/
           
-          /** version 8.4.0.5 **/
+          /** version 8.4.0.6 **/
           
           /* tw-ionic.css
              Tailwind-ish theme overlay for Ionic (v6/v7+)
@@ -2037,6 +2039,64 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
               --ag-border-color: color-mix(in srgb, #334155 64%, transparent);
               --ag-row-border-color: color-mix(in srgb, #334155 48%, transparent);
               border-color: color-mix(in srgb, #334155 62%, transparent);
+            }
+          }
+          
+          /* Frappe Gantt (lib_ExtendedComponents_ui_ngx) */
+          lib_extendedcomponents_ui_ngx-frappegantt .frappe-gantt-host .gantt-container {
+            border: 1px solid color-mix(in srgb, var(--tw-border) 86%, transparent);
+            border-radius: var(--tw-radius-md);
+            box-shadow: var(--tw-shadow-sm);
+            background: var(--tw-surface);
+          }
+          
+          :root.force-dark lib_extendedcomponents_ui_ngx-frappegantt .frappe-gantt-host .gantt-container {
+            --g-header-background: color-mix(in srgb, var(--tw-surface-2) 74%, #0b1220 26%);
+            --g-row-color: color-mix(in srgb, var(--tw-surface) 74%, #020617 26%);
+            --g-row-border-color: color-mix(in srgb, #334155 52%, transparent);
+            --g-border-color: color-mix(in srgb, #334155 62%, transparent);
+            --g-tick-color: color-mix(in srgb, #334155 40%, transparent);
+            --g-tick-color-thick: color-mix(in srgb, #334155 64%, transparent);
+            --g-text-dark: #e2e8f0;
+            --g-text-muted: #94a3b8;
+            --g-arrow-color: #cbd5e1;
+            --g-progress-color: color-mix(in srgb, var(--tw-primary) 40%, #1e293b 60%);
+            --g-expected-progress: color-mix(in srgb, var(--tw-primary) 28%, #1e293b 72%);
+            --g-bar-color: color-mix(in srgb, #1e293b 78%, #0f172a 22%);
+            --g-bar-border: color-mix(in srgb, #334155 68%, transparent);
+            --g-handle-color: #cbd5e1;
+            --g-actions-background: color-mix(in srgb, #1e293b 88%, #020617 12%);
+            --g-popup-actions: color-mix(in srgb, #1e293b 88%, #020617 12%);
+            --g-weekend-highlight-color: color-mix(in srgb, #0f172a 86%, #020617 14%);
+            --g-weekend-label-color: #1e293b;
+            --g-today-highlight: #93c5fd;
+            border-color: color-mix(in srgb, #334155 62%, transparent);
+            background: color-mix(in srgb, var(--tw-surface) 82%, #020617 18%);
+          }
+          
+          @media (prefers-color-scheme: dark) {
+            :root:not(.force-light) lib_extendedcomponents_ui_ngx-frappegantt .frappe-gantt-host .gantt-container {
+              --g-header-background: color-mix(in srgb, var(--tw-surface-2) 74%, #0b1220 26%);
+              --g-row-color: color-mix(in srgb, var(--tw-surface) 74%, #020617 26%);
+              --g-row-border-color: color-mix(in srgb, #334155 52%, transparent);
+              --g-border-color: color-mix(in srgb, #334155 62%, transparent);
+              --g-tick-color: color-mix(in srgb, #334155 40%, transparent);
+              --g-tick-color-thick: color-mix(in srgb, #334155 64%, transparent);
+              --g-text-dark: #e2e8f0;
+              --g-text-muted: #94a3b8;
+              --g-arrow-color: #cbd5e1;
+              --g-progress-color: color-mix(in srgb, var(--tw-primary) 40%, #1e293b 60%);
+              --g-expected-progress: color-mix(in srgb, var(--tw-primary) 28%, #1e293b 72%);
+              --g-bar-color: color-mix(in srgb, #1e293b 78%, #0f172a 22%);
+              --g-bar-border: color-mix(in srgb, #334155 68%, transparent);
+              --g-handle-color: #cbd5e1;
+              --g-actions-background: color-mix(in srgb, #1e293b 88%, #020617 12%);
+              --g-popup-actions: color-mix(in srgb, #1e293b 88%, #020617 12%);
+              --g-weekend-highlight-color: color-mix(in srgb, #0f172a 86%, #020617 14%);
+              --g-weekend-label-color: #1e293b;
+              --g-today-highlight: #93c5fd;
+              border-color: color-mix(in srgb, #334155 62%, transparent);
+              background: color-mix(in srgb, var(--tw-surface) 82%, #020617 18%);
             }
           }
           
