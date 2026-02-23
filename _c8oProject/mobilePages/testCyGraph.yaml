@@ -1,35 +1,35 @@
 comment: Page demonstrating multiple Cytoscape cyGraph configurations
-segment: path-to-testcygraph
-title: Cy Graph
 scriptContent: 
   - xmlizable: 
     - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
     - com.twinsoft.convertigo.beans.common.FormatedContent: 
       →: |
-        /*Begin_c8o_PageImport*/
+        '/*Begin_c8o_PageImport*/
         /*End_c8o_PageImport*/
         /*Begin_c8o_PageDeclaration*/
-        	public gridElements: any = '[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"n9","label":"N9"}},{"data":{"id":"n10","label":"N10"}},{"data":{"id":"n11","label":"N11"}},{"data":{"id":"n12","label":"N12"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n4","target":"n5"}},{"data":{"id":"e4","source":"n5","target":"n6"}},{"data":{"id":"e5","source":"n7","target":"n8"}},{"data":{"id":"e6","source":"n8","target":"n9"}},{"data":{"id":"e7","source":"n10","target":"n11"}},{"data":{"id":"e8","source":"n11","target":"n12"}}]';
-        	public gridLayout: any = '{"name":"grid","fit":true,"padding":24,"rows":3}';
-        	public gridHeight: any = '300px';
-        	public gridId: any = 'cy-demo-grid';
-        	public circleElements: any = '[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n3","target":"n4"}},{"data":{"id":"e4","source":"n4","target":"n5"}},{"data":{"id":"e5","source":"n5","target":"n6"}},{"data":{"id":"e6","source":"n6","target":"n7"}},{"data":{"id":"e7","source":"n7","target":"n8"}},{"data":{"id":"e8","source":"n8","target":"n1"}}]';
-        	public circleLayout: any = '{"name":"circle","fit":true,"padding":24,"startAngle":-1.5708,"clockwise":true}';
-        	public circleHeight: any = '320px';
-        	public circleId: any = 'cy-demo-circle';
-        	public breadthfirstElements: any = '[{"data":{"id":"r","label":"Root"}},{"data":{"id":"a","label":"A"}},{"data":{"id":"b","label":"B"}},{"data":{"id":"c","label":"C"}},{"data":{"id":"a1","label":"A1"}},{"data":{"id":"a2","label":"A2"}},{"data":{"id":"b1","label":"B1"}},{"data":{"id":"b2","label":"B2"}},{"data":{"id":"c1","label":"C1"}},{"data":{"id":"c2","label":"C2"}},{"data":{"id":"e1","source":"r","target":"a"}},{"data":{"id":"e2","source":"r","target":"b"}},{"data":{"id":"e3","source":"r","target":"c"}},{"data":{"id":"e4","source":"a","target":"a1"}},{"data":{"id":"e5","source":"a","target":"a2"}},{"data":{"id":"e6","source":"b","target":"b1"}},{"data":{"id":"e7","source":"b","target":"b2"}},{"data":{"id":"e8","source":"c","target":"c1"}},{"data":{"id":"e9","source":"c","target":"c2"}}]';
-        	public breadthfirstLayout: any = '{"name":"breadthfirst","directed":true,"fit":true,"padding":24,"spacingFactor":1.2}';
-        	public breadthfirstHeight: any = '340px';
-        	public breadthfirstId: any = 'cy-demo-breadthfirst';
-        	public presetElements: any = '[{"data":{"id":"p1","label":"P1"},"position":{"x":40,"y":40}},{"data":{"id":"p2","label":"P2"},"position":{"x":180,"y":40}},{"data":{"id":"p3","label":"P3"},"position":{"x":320,"y":40}},{"data":{"id":"p4","label":"P4"},"position":{"x":80,"y":170}},{"data":{"id":"p5","label":"P5"},"position":{"x":220,"y":170}},{"data":{"id":"p6","label":"P6"},"position":{"x":360,"y":170}},{"data":{"id":"p7","label":"P7"},"position":{"x":220,"y":290}},{"data":{"id":"e1","source":"p1","target":"p4"}},{"data":{"id":"e2","source":"p2","target":"p5"}},{"data":{"id":"e3","source":"p3","target":"p6"}},{"data":{"id":"e4","source":"p4","target":"p7"}},{"data":{"id":"e5","source":"p5","target":"p7"}},{"data":{"id":"e6","source":"p6","target":"p7"}}]';
-        	public presetLayout: any = '{"name":"preset","fit":true,"padding":24}';
-        	public presetHeight: any = '340px';
-        	public presetId: any = 'cy-demo-preset';
+        	public gridElements: any = ''[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"n9","label":"N9"}},{"data":{"id":"n10","label":"N10"}},{"data":{"id":"n11","label":"N11"}},{"data":{"id":"n12","label":"N12"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n4","target":"n5"}},{"data":{"id":"e4","source":"n5","target":"n6"}},{"data":{"id":"e5","source":"n7","target":"n8"}},{"data":{"id":"e6","source":"n8","target":"n9"}},{"data":{"id":"e7","source":"n10","target":"n11"}},{"data":{"id":"e8","source":"n11","target":"n12"}}]'';
+        	public gridLayout: any = ''{"name":"grid","fit":true,"padding":24,"rows":3}'';
+        	public gridHeight: any = ''300px'';
+        	public gridId: any = ''cy-demo-grid'';
+        	public circleElements: any = ''[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n3","target":"n4"}},{"data":{"id":"e4","source":"n4","target":"n5"}},{"data":{"id":"e5","source":"n5","target":"n6"}},{"data":{"id":"e6","source":"n6","target":"n7"}},{"data":{"id":"e7","source":"n7","target":"n8"}},{"data":{"id":"e8","source":"n8","target":"n1"}}]'';
+        	public circleLayout: any = ''{"name":"circle","fit":true,"padding":24,"startAngle":-1.5708,"clockwise":true}'';
+        	public circleHeight: any = ''320px'';
+        	public circleId: any = ''cy-demo-circle'';
+        	public breadthfirstElements: any = ''[{"data":{"id":"r","label":"Root"}},{"data":{"id":"a","label":"A"}},{"data":{"id":"b","label":"B"}},{"data":{"id":"c","label":"C"}},{"data":{"id":"a1","label":"A1"}},{"data":{"id":"a2","label":"A2"}},{"data":{"id":"b1","label":"B1"}},{"data":{"id":"b2","label":"B2"}},{"data":{"id":"c1","label":"C1"}},{"data":{"id":"c2","label":"C2"}},{"data":{"id":"e1","source":"r","target":"a"}},{"data":{"id":"e2","source":"r","target":"b"}},{"data":{"id":"e3","source":"r","target":"c"}},{"data":{"id":"e4","source":"a","target":"a1"}},{"data":{"id":"e5","source":"a","target":"a2"}},{"data":{"id":"e6","source":"b","target":"b1"}},{"data":{"id":"e7","source":"b","target":"b2"}},{"data":{"id":"e8","source":"c","target":"c1"}},{"data":{"id":"e9","source":"c","target":"c2"}}]'';
+        	public breadthfirstLayout: any = ''{"name":"breadthfirst","directed":true,"fit":true,"padding":24,"spacingFactor":1.2}'';
+        	public breadthfirstHeight: any = ''340px'';
+        	public breadthfirstId: any = ''cy-demo-breadthfirst'';
+        	public presetElements: any = ''[{"data":{"id":"p1","label":"P1"},"position":{"x":40,"y":40}},{"data":{"id":"p2","label":"P2"},"position":{"x":180,"y":40}},{"data":{"id":"p3","label":"P3"},"position":{"x":320,"y":40}},{"data":{"id":"p4","label":"P4"},"position":{"x":80,"y":170}},{"data":{"id":"p5","label":"P5"},"position":{"x":220,"y":170}},{"data":{"id":"p6","label":"P6"},"position":{"x":360,"y":170}},{"data":{"id":"p7","label":"P7"},"position":{"x":220,"y":290}},{"data":{"id":"e1","source":"p1","target":"p4"}},{"data":{"id":"e2","source":"p2","target":"p5"}},{"data":{"id":"e3","source":"p3","target":"p6"}},{"data":{"id":"e4","source":"p4","target":"p7"}},{"data":{"id":"e5","source":"p5","target":"p7"}},{"data":{"id":"e6","source":"p6","target":"p7"}}]'';
+        	public presetLayout: any = ''{"name":"preset","fit":true,"padding":24}'';
+        	public presetHeight: any = ''340px'';
+        	public presetId: any = ''cy-demo-preset'';
         	/*End_c8o_PageDeclaration*/
         /*Begin_c8o_PageConstructor*/
         	/*End_c8o_PageConstructor*/
         /*Begin_c8o_PageFunction*/
-        	/*End_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/'
+segment: path-to-testcygraph
+title: Cy Graph
 ↓Header [ngx.components.UIDynamicElement-1491634212350]: 
   beanData: '{"ionBean":"Header"}'
   comment: Top page header container

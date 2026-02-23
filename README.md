@@ -23,6 +23,7 @@ For more technical informations : [documentation](./project.md)
         - [agGrid](#aggrid)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
+        - [cyGraph](#cygraph)
         - [DropZoneComponent](#dropzonecomponent)
         - [frappeGantt](#frappegantt)
         - [materialDatePicker](#materialdatepicker)
@@ -771,6 +772,78 @@ null
 #### cardIO_sc
 
 CardIO SharedComponent
+
+#### cyGraph
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>autounselectify</td><td>Disables element selection when true</td>
+</tr>
+<tr>
+<td>boxSelectionEnabled</td><td>Enables box selection mode</td>
+</tr>
+<tr>
+<td>elements</td><td>Cytoscape elements array</td>
+</tr>
+<tr>
+<td>height</td><td>Graph container height</td>
+</tr>
+<tr>
+<td>id</td><td>Optional HTML id for the graph container</td>
+</tr>
+<tr>
+<td>layout</td><td>Cytoscape layout object</td>
+</tr>
+<tr>
+<td>maxZoom</td><td>Maximum zoom level</td>
+</tr>
+<tr>
+<td>minZoom</td><td>Minimum zoom level</td>
+</tr>
+<tr>
+<td>options</td><td>Additional Cytoscape options object</td>
+</tr>
+<tr>
+<td>style</td><td>Cytoscape style array (leave empty to use theme-aware defaults)</td>
+</tr>
+<tr>
+<td>userPanningEnabled</td><td>Allows user panning interactions</td>
+</tr>
+<tr>
+<td>userZoomingEnabled</td><td>Allows user zoom interactions</td>
+</tr>
+<tr>
+<td>wheelSensitivity</td><td>Mouse wheel zoom sensitivity</td>
+</tr>
+<tr>
+<td>width</td><td>Graph container width</td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>BackgroundTap</td><td>Fired when graph background is tapped</td>
+</tr>
+<tr>
+<td>CyReady</td><td>Fired when Cytoscape is initialized</td>
+</tr>
+<tr>
+<td>EdgeTap</td><td>Fired when an edge is tapped</td>
+</tr>
+<tr>
+<td>NodeTap</td><td>Fired when a node is tapped</td>
+</tr>
+</table>
 
 #### DropZoneComponent
 
