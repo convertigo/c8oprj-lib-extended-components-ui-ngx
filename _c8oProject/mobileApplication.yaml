@@ -41,6 +41,8 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓ngSelect [ngx.components.UISharedRegularComponent-1741619592591]: 🗏 mobileSharedComponents/ngSelect.yaml
 ↓frappeGantt [ngx.components.UISharedRegularComponent-1801000000020]: 🗏 mobileSharedComponents/frappeGantt.yaml
 ↓cyGraph [ngx.components.UISharedRegularComponent-1801300000001]: 🗏 mobileSharedComponents/cyGraph.yaml
+↓sortableJS [ngx.components.UISharedRegularComponent-1802000000999]: 🗏 mobileSharedComponents/sortableJS.yaml
+↓kanbanBoard [ngx.components.UISharedRegularComponent-1802200000999]: 🗏 mobileSharedComponents/kanbanBoard.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
@@ -52,6 +54,8 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testDropZone [ngx.components.PageComponent-1799911000001]: 🗏 mobilePages/testDropZone.yaml
 ↓testFrappeGantt [ngx.components.PageComponent-1801200000400]: 🗏 mobilePages/testFrappeGantt.yaml
 ↓testCyGraph [ngx.components.PageComponent-1801303000000]: 🗏 mobilePages/testCyGraph.yaml
+↓testSortableJS [ngx.components.PageComponent-1802100000400]: 🗏 mobilePages/testSortableJS.yaml
+↓testKanbanBoard [ngx.components.PageComponent-1802203000400]: 🗏 mobilePages/testKanbanBoard.yaml
 ↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
 ↓testNgSelect [ngx.components.PageComponent-1741619640644]: 🗏 mobilePages/testNgSelect.yaml
 ↓Style [ngx.components.UIStyle-1771498819195]: 

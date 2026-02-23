@@ -667,44 +667,33 @@ title: AgGrid Advanced
     ↓Event5 [ngx.components.UIControlEvent-1628072535093]: 
       attrName: (RowDataChanged)
       eventName: RowDataChanged
-      ↓HandleRowDataChanged [ngx.components.UICustomAction-1799400000106]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		var displayed = event && event.api && event.api.getDisplayedRowCount ? event.api.getDisplayedRowCount() : 0;
-                		page.local["grid:status"] = "Displayed rows: " + displayed;
-                		resolve();
-                '
+      ↓HandleRowDataChanged [ngx.components.UIDynamicAction-1799400000106]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:grid:status",
+           "Value": "script:''Displayed rows: '' + ((event && event.api && event.api.getDisplayedRowCount) ? event.api.getDisplayedRowCount() : 0)"
+          }'
     ↓Event6 [ngx.components.UIControlEvent-1799400000033]: 
       attrName: (CellValueChanged)
       eventName: CellValueChanged
-      ↓SetEditStatus [ngx.components.UICustomAction-1799400000034]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["grid:status"] = "Edited " + event.colDef.field + " => " + event.newValue;
-                		resolve();
-                '
+      ↓SetEditStatus [ngx.components.UIDynamicAction-1799400000034]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:grid:status",
+           "Value": "script:''Edited '' + ((event && event.colDef && event.colDef.field) ? event.colDef.field : '''') + '' => '' + ((event && event.newValue != undefined) ? event.newValue : '''')"
+          }'
     ↓Event7 [ngx.components.UIControlEvent-1799400000035]: 
       attrName: (SelectionChanged)
       eventName: SelectionChanged
-      ↓SetSelectionStatus [ngx.components.UICustomAction-1799400000036]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		var count = event && event.api && event.api.getSelectedRows ? event.api.getSelectedRows().length : 0;
-                		page.local["grid:status"] = "Selected rows: " + count;
-                		resolve();
-                '
+      ↓SetSelectionStatus [ngx.components.UIDynamicAction-1799400000036]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:grid:status",
+           "Value": "script:''Selected rows: '' + ((event && event.api && event.api.getSelectedRows) ? event.api.getSelectedRows().length : 0)"
+          }'
     ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1771506599094]: 
       comment: 'array | boolean: [20,50,100] by default'
       varValue: 

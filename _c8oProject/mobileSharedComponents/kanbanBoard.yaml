@@ -1,0 +1,673 @@
+comment: |
+  Shared component implementing a Kanban board powered by SortableJS.
+  Cards can be dragged across columns and columns can optionally be reordered.
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        declare var window: any;
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	public kanbanElementId: string = "";
+        	public cardSortables: any[] = [];
+        	public boardSortable: any;
+        	public renderedColumns: any[] = [];
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		this.destroyKanban();
+        	/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		if (changes["id"] && this.id && this.id !== "" && this.id !== this.kanbanElementId) {
+        			this.kanbanElementId = this.id;
+        		}
+        		if (this.kanbanElementId && (changes["columns"] || changes["options"] || changes["columnOptions"] || changes["width"] || changes["height"] || changes["id"] || changes["animation"] || changes["disabled"] || changes["sort"] || changes["groupName"] || changes["handle"] || changes["ghostClass"] || changes["chosenClass"] || changes["dragClass"] || changes["emptyColumnText"] || changes["columnSort"] || changes["columnHandle"] || changes["columnAnimation"] || changes["columnGhostClass"] || changes["columnChosenClass"] || changes["columnDragClass"] || changes["cardTitleKey"])) {
+        			setTimeout(() => this.renderKanban(), 0);
+        		}
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	public ensureElementId(): void {
+        		if (this.id != undefined && this.id != null && this.id !== "") {
+        			this.kanbanElementId = this.id;
+        			return;
+        		}
+        		if (!this.kanbanElementId) {
+        			this.kanbanElementId = "kanban-board-" + Date.now();
+        		}
+        	}
+        
+        	public destroyKanban(): void {
+        		for (var i = 0; i < this.cardSortables.length; i++) {
+        			var sortable = this.cardSortables[i];
+        			if (sortable && typeof sortable.destroy === "function") {
+        				sortable.destroy();
+        			}
+        		}
+        		this.cardSortables = [];
+        		if (this.boardSortable && typeof this.boardSortable.destroy === "function") {
+        			this.boardSortable.destroy();
+        		}
+        		this.boardSortable = null;
+        	}
+        
+        	public parseArray(value: any, fallback: any[] = []): any[] {
+        		if (Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string" && value.trim() !== "") {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return Array.isArray(parsed) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn("[MB] kanbanBoard invalid columns JSON: " + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public parseObject(value: any, fallback: any = {}): any {
+        		if (value != null && typeof value === "object" && !Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string" && value.trim() !== "") {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return (parsed != null && typeof parsed === "object" && !Array.isArray(parsed)) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn("[MB] kanbanBoard invalid options JSON: " + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public coerceBoolean(value: any, fallback: boolean): boolean {
+        		if (typeof value === "boolean") {
+        			return value;
+        		}
+        		if (typeof value === "string") {
+        			if (value.toLowerCase() === "true") {
+        				return true;
+        			}
+        			if (value.toLowerCase() === "false") {
+        				return false;
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public toNumber(value: any, fallback: number): number {
+        		if (typeof value === "number" && !isNaN(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string") {
+        			var parsed = parseFloat(value);
+        			if (!isNaN(parsed)) {
+        				return parsed;
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public cloneCard(card: any, index: number): any {
+        		if (card == null) {
+        			return {id: "card-" + (index + 1), title: "Card " + (index + 1)};
+        		}
+        		if (typeof card === "string" || typeof card === "number" || typeof card === "boolean") {
+        			return {id: "card-" + (index + 1), title: "" + card, value: card};
+        		}
+        		if (typeof card === "object") {
+        			return Object.assign({}, card);
+        		}
+        		return {id: "card-" + (index + 1), title: "Card " + (index + 1)};
+        	}
+        
+        	public resolveCardLabel(card: any, index: number): string {
+        		if (card == null) {
+        			return "Card " + (index + 1);
+        		}
+        		if (typeof card === "string" || typeof card === "number" || typeof card === "boolean") {
+        			return "" + card;
+        		}
+        		if (typeof card === "object") {
+        			var titleKey = (this.cardTitleKey != undefined && this.cardTitleKey != null && this.cardTitleKey !== "") ? ("" + this.cardTitleKey) : "title";
+        			if (card[titleKey] != undefined && card[titleKey] != null) {
+        				return "" + card[titleKey];
+        			}
+        			if (card.title != undefined && card.title != null) {
+        				return "" + card.title;
+        			}
+        			if (card.label != undefined && card.label != null) {
+        				return "" + card.label;
+        			}
+        			if (card.name != undefined && card.name != null) {
+        				return "" + card.name;
+        			}
+        			if (card.id != undefined && card.id != null) {
+        				return "" + card.id;
+        			}
+        		}
+        		return "Card " + (index + 1);
+        	}
+        
+        	public normalizeColumns(value: any): any[] {
+        		var inputColumns = this.parseArray(value, []);
+        		var normalized: any[] = [];
+        		for (var i = 0; i < inputColumns.length; i++) {
+        			var source = inputColumns[i];
+        			var column: any = {};
+        			if (source != null && typeof source === "object" && !Array.isArray(source)) {
+        				column = Object.assign({}, source);
+        			} else {
+        				column = {title: "Column " + (i + 1), cards: []};
+        			}
+        			if (column.id == undefined || column.id == null || column.id === "") {
+        				column.id = "column-" + (i + 1);
+        			}
+        			if (column.title == undefined || column.title == null || column.title === "") {
+        				if (column.name != undefined && column.name != null && column.name !== "") {
+        					column.title = "" + column.name;
+        				} else if (column.label != undefined && column.label != null && column.label !== "") {
+        					column.title = "" + column.label;
+        				} else {
+        					column.title = "Column " + (i + 1);
+        				}
+        			}
+        			var rawCards = [];
+        			if (Array.isArray(column.cards)) {
+        				rawCards = column.cards;
+        			} else {
+        				rawCards = this.parseArray(column.cards, []);
+        			}
+        			var cards: any[] = [];
+        			for (var c = 0; c < rawCards.length; c++) {
+        				cards.push(this.cloneCard(rawCards[c], c));
+        			}
+        			column.cards = cards;
+        			normalized.push(column);
+        		}
+        		if (normalized.length === 0) {
+        			normalized = [
+        				{id: "todo", title: "To Do", cards: [{id: "c1", title: "Prepare backlog"}, {id: "c2", title: "Refine stories"}]},
+        				{id: "doing", title: "In Progress", cards: [{id: "c3", title: "Implement feature"}]},
+        				{id: "done", title: "Done", cards: [{id: "c4", title: "Deploy release"}]}
+        			];
+        		}
+        		return normalized;
+        	}
+        
+        	public composeColumnsFromDom(board: any): any[] {
+        		var nextColumns: any[] = [];
+        		if (!board) {
+        			return nextColumns;
+        		}
+        		var columnNodes = board.querySelectorAll(".kanban-column");
+        		for (var i = 0; i < columnNodes.length; i++) {
+        			var columnNode: any = columnNodes[i];
+        			var sourceIndex = parseInt(columnNode.getAttribute("data-column-index"), 10);
+        			var sourceColumn = (!isNaN(sourceIndex) && this.renderedColumns[sourceIndex] != undefined) ? this.renderedColumns[sourceIndex] : {id: "column-" + (i + 1), title: "Column " + (i + 1), cards: []};
+        			var nextColumn: any = Object.assign({}, sourceColumn);
+        			var nextCards: any[] = [];
+        			var listNode: any = columnNode.querySelector(".kanban-list");
+        			var cardNodes = listNode ? listNode.querySelectorAll(".kanban-card") : [];
+        			for (var c = 0; c < cardNodes.length; c++) {
+        				var cardNode: any = cardNodes[c];
+        				var originalColumnIndex = parseInt(cardNode.getAttribute("data-origin-column-index"), 10);
+        				var originalCardIndex = parseInt(cardNode.getAttribute("data-origin-card-index"), 10);
+        				var sourceCard = null;
+        				if (!isNaN(originalColumnIndex) && !isNaN(originalCardIndex) && this.renderedColumns[originalColumnIndex] != undefined && this.renderedColumns[originalColumnIndex].cards != undefined && this.renderedColumns[originalColumnIndex].cards[originalCardIndex] != undefined) {
+        					sourceCard = this.renderedColumns[originalColumnIndex].cards[originalCardIndex];
+        				}
+        				if (sourceCard == null) {
+        					sourceCard = {id: "card-" + (c + 1), title: cardNode.innerText ? cardNode.innerText : "Card " + (c + 1)};
+        				}
+        				nextCards.push(sourceCard);
+        				cardNode.setAttribute("data-origin-column-index", "" + i);
+        				cardNode.setAttribute("data-origin-card-index", "" + c);
+        			}
+        			nextColumn.cards = nextCards;
+        			nextColumns.push(nextColumn);
+        			columnNode.setAttribute("data-column-index", "" + i);
+        			var countNode: any = columnNode.querySelector(".kanban-column-count");
+        			if (countNode) {
+        				countNode.innerText = "" + nextCards.length;
+        			}
+        		}
+        		return nextColumns;
+        	}
+        
+        	public emitCardMoved(evt: any, board: any): void {
+        		var nextColumns = this.composeColumnsFromDom(board);
+        		this.renderedColumns = nextColumns;
+        		var payload = {
+        			fromColumnIndex: (evt && evt.from) ? parseInt(evt.from.getAttribute("data-column-index"), 10) : -1,
+        			toColumnIndex: (evt && evt.to) ? parseInt(evt.to.getAttribute("data-column-index"), 10) : -1,
+        			oldIndex: evt && evt.oldIndex != undefined ? evt.oldIndex : -1,
+        			newIndex: evt && evt.newIndex != undefined ? evt.newIndex : -1,
+        			columns: nextColumns
+        		};
+        		this.CardMoved.emit(payload);
+        		this.BoardChanged.emit(nextColumns);
+        	}
+        
+        	public emitColumnMoved(evt: any, board: any): void {
+        		var nextColumns = this.composeColumnsFromDom(board);
+        		this.renderedColumns = nextColumns;
+        		var payload = {
+        			oldIndex: evt && evt.oldIndex != undefined ? evt.oldIndex : -1,
+        			newIndex: evt && evt.newIndex != undefined ? evt.newIndex : -1,
+        			columns: nextColumns
+        		};
+        		this.ColumnOrderChanged.emit(payload);
+        		this.BoardChanged.emit(nextColumns);
+        	}
+        
+        	public renderKanban(): void {
+        		try {
+        			this.ensureElementId();
+        			var container = document.getElementById(this.kanbanElementId);
+        			if (!container) {
+        				return;
+        			}
+        			this.destroyKanban();
+        			container.innerHTML = "";
+        
+        			var board = document.createElement("div");
+        			board.className = "kanban-board";
+        
+        			this.renderedColumns = this.normalizeColumns(this.columns);
+        			var emptyText = (this.emptyColumnText != undefined && this.emptyColumnText != null && this.emptyColumnText !== "") ? ("" + this.emptyColumnText) : "Drop cards here";
+        
+        			for (var i = 0; i < this.renderedColumns.length; i++) {
+        				var column = this.renderedColumns[i];
+        				var columnNode = document.createElement("div");
+        				columnNode.className = "kanban-column";
+        				columnNode.setAttribute("data-column-index", "" + i);
+        
+        				var headerNode = document.createElement("div");
+        				headerNode.className = "kanban-column-header";
+        
+        				var titleNode = document.createElement("span");
+        				titleNode.className = "kanban-column-title";
+        				titleNode.innerText = column && column.title != undefined ? ("" + column.title) : ("Column " + (i + 1));
+        				headerNode.appendChild(titleNode);
+        
+        				var countNode = document.createElement("span");
+        				countNode.className = "kanban-column-count";
+        				countNode.innerText = "" + (column && Array.isArray(column.cards) ? column.cards.length : 0);
+        				headerNode.appendChild(countNode);
+        
+        				((element: any) => {
+        					element.addEventListener("click", () => {
+        						var currentIndex = parseInt(element.parentElement.getAttribute("data-column-index"), 10);
+        						var payload = (!isNaN(currentIndex) && this.renderedColumns[currentIndex] != undefined) ? this.renderedColumns[currentIndex] : null;
+        						this.ColumnClicked.emit({columnIndex: currentIndex, column: payload});
+        					});
+        				})(headerNode);
+        
+        				var listNode = document.createElement("div");
+        				listNode.className = "kanban-list";
+        				listNode.setAttribute("data-column-index", "" + i);
+        				listNode.setAttribute("data-empty-text", emptyText);
+        
+        				var cards = (column && Array.isArray(column.cards)) ? column.cards : [];
+        				for (var c = 0; c < cards.length; c++) {
+        					var card = cards[c];
+        					var cardNode = document.createElement("div");
+        					cardNode.className = "kanban-card";
+        					cardNode.setAttribute("data-origin-column-index", "" + i);
+        					cardNode.setAttribute("data-origin-card-index", "" + c);
+        					cardNode.innerText = this.resolveCardLabel(card, c);
+        					((element: any) => {
+        						element.addEventListener("click", () => {
+        							var currentColumn = parseInt(element.getAttribute("data-origin-column-index"), 10);
+        							var currentCard = parseInt(element.getAttribute("data-origin-card-index"), 10);
+        							var cardPayload = null;
+        							if (!isNaN(currentColumn) && !isNaN(currentCard) && this.renderedColumns[currentColumn] != undefined && this.renderedColumns[currentColumn].cards != undefined && this.renderedColumns[currentColumn].cards[currentCard] != undefined) {
+        								cardPayload = this.renderedColumns[currentColumn].cards[currentCard];
+        							}
+        							this.CardClicked.emit({columnIndex: currentColumn, cardIndex: currentCard, card: cardPayload});
+        						});
+        					})(cardNode);
+        					listNode.appendChild(cardNode);
+        				}
+        
+        				columnNode.appendChild(headerNode);
+        				columnNode.appendChild(listNode);
+        				board.appendChild(columnNode);
+        			}
+        
+        			container.appendChild(board);
+        
+        			var SortableCtor = window["Sortable"];
+        			if (!SortableCtor) {
+        				this.c8o.log.warn("[MB] kanbanBoard script is not loaded yet");
+        				return;
+        			}
+        
+        			var userOptions = this.parseObject(this.options, {});
+        			var groupName = (this.groupName != undefined && this.groupName != null && this.groupName !== "") ? ("" + this.groupName) : "kanban-board";
+        			var cardOptions = {
+        				group: {name: groupName, pull: true, put: true},
+        				animation: this.toNumber(this.animation, 180),
+        				disabled: this.coerceBoolean(this.disabled, false),
+        				sort: this.coerceBoolean(this.sort, true),
+        				handle: (this.handle != undefined && this.handle != null && this.handle !== "") ? this.handle : undefined,
+        				ghostClass: (this.ghostClass != undefined && this.ghostClass != null && this.ghostClass !== "") ? this.ghostClass : "kanban-card-ghost",
+        				chosenClass: (this.chosenClass != undefined && this.chosenClass != null && this.chosenClass !== "") ? this.chosenClass : "kanban-card-chosen",
+        				dragClass: (this.dragClass != undefined && this.dragClass != null && this.dragClass !== "") ? this.dragClass : "kanban-card-drag",
+        				onEnd: (evt: any) => {
+        					this.emitCardMoved(evt, board);
+        				}
+        			};
+        			cardOptions = {
+        				...cardOptions,
+        				...userOptions
+        			};
+        
+        			var listNodes = board.querySelectorAll(".kanban-list");
+        			for (var l = 0; l < listNodes.length; l++) {
+        				this.cardSortables.push(new SortableCtor(listNodes[l], cardOptions));
+        			}
+        
+        			if (this.coerceBoolean(this.columnSort, false)) {
+        				var userColumnOptions = this.parseObject(this.columnOptions, {});
+        				var columnOptions = {
+        					animation: this.toNumber(this.columnAnimation, this.toNumber(this.animation, 180)),
+        					disabled: this.coerceBoolean(this.disabled, false),
+        					sort: true,
+        					draggable: ".kanban-column",
+        					handle: (this.columnHandle != undefined && this.columnHandle != null && this.columnHandle !== "") ? this.columnHandle : ".kanban-column-header",
+        					ghostClass: (this.columnGhostClass != undefined && this.columnGhostClass != null && this.columnGhostClass !== "") ? this.columnGhostClass : "kanban-column-ghost",
+        					chosenClass: (this.columnChosenClass != undefined && this.columnChosenClass != null && this.columnChosenClass !== "") ? this.columnChosenClass : "kanban-column-chosen",
+        					dragClass: (this.columnDragClass != undefined && this.columnDragClass != null && this.columnDragClass !== "") ? this.columnDragClass : "kanban-column-drag",
+        					onEnd: (evt: any) => {
+        						this.emitColumnMoved(evt, board);
+        					}
+        				};
+        				columnOptions = {
+        					...columnOptions,
+        					...userColumnOptions
+        				};
+        				this.boardSortable = new SortableCtor(board, columnOptions);
+        			}
+        		} catch (e) {
+        			this.c8o.log.warn("[MB] kanbanBoard render failed: " + e);
+        		}
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓columns [ngx.components.UICompVariable-1802200000001]: 
+  comment: <p>Array of Kanban columns (array or JSON string).</p><p><b>Example:</b> <code>[{&quot;id&quot;:&quot;todo&quot;,&quot;title&quot;:&quot;To Do&quot;,&quot;cards&quot;:[{&quot;id&quot;:&quot;c1&quot;,&quot;title&quot;:&quot;Prepare backlog&quot;}]}]</code></p>
+  value: '[{"id":"todo","title":"To Do","cards":[{"id":"c1","title":"Prepare backlog"},{"id":"c2","title":"Refine stories"}]},{"id":"doing","title":"In Progress","cards":[{"id":"c3","title":"Implement feature"}]},{"id":"done","title":"Done","cards":[{"id":"c4","title":"Deploy release"}]}]'
+↓options [ngx.components.UICompVariable-1802200000002]: 
+  comment: <p>Optional SortableJS options for cards (object or JSON string).</p><p><b>Example:</b> <code>{&quot;swapThreshold&quot;:0.7}</code></p>
+  value: '{}'
+↓columnOptions [ngx.components.UICompVariable-1802200000003]: 
+  comment: <p>Optional SortableJS options for column sorting (object or JSON string).</p><p><b>Example:</b> <code>{&quot;delay&quot;:80}</code></p>
+  value: '{}'
+↓width [ngx.components.UICompVariable-1802200000004]: 
+  comment: <p>Container width.</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
+  value: '''100%'''
+↓height [ngx.components.UICompVariable-1802200000005]: 
+  comment: <p>Container height.</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>
+  value: '''auto'''
+↓id [ngx.components.UICompVariable-1802200000006]: 
+  comment: <p>Optional HTML id for the kanban host.</p><p><b>Example:</b> <code>&#x27;my-kanban&#x27;</code></p>
+↓animation [ngx.components.UICompVariable-1802200000007]: 
+  comment: <p>Card drag animation duration in milliseconds.</p><p><b>Example:</b> <code>180</code></p>
+  value: 180
+↓disabled [ngx.components.UICompVariable-1802200000008]: 
+  comment: <p>Disables drag and drop when true.</p><p><b>Example:</b> <code>false</code></p>
+  value: false
+↓sort [ngx.components.UICompVariable-1802200000009]: 
+  comment: <p>Allows card sorting when true.</p><p><b>Example:</b> <code>true</code></p>
+  value: true
+↓groupName [ngx.components.UICompVariable-1802200000010]: 
+  comment: <p>SortableJS group name used between columns.</p><p><b>Example:</b> <code>&#x27;kanban-board&#x27;</code></p>
+  value: '''kanban-board'''
+↓handle [ngx.components.UICompVariable-1802200000011]: 
+  comment: <p>Optional CSS selector for dragging cards by handle.</p><p><b>Example:</b> <code>&#x27;.card-handle&#x27;</code></p>
+↓ghostClass [ngx.components.UICompVariable-1802200000012]: 
+  comment: <p>CSS class applied to card ghost elements.</p><p><b>Example:</b> <code>&#x27;kanban-card-ghost&#x27;</code></p>
+  value: '''kanban-card-ghost'''
+↓chosenClass [ngx.components.UICompVariable-1802200000013]: 
+  comment: <p>CSS class applied to the selected card.</p><p><b>Example:</b> <code>&#x27;kanban-card-chosen&#x27;</code></p>
+  value: '''kanban-card-chosen'''
+↓dragClass [ngx.components.UICompVariable-1802200000014]: 
+  comment: <p>CSS class applied while dragging a card.</p><p><b>Example:</b> <code>&#x27;kanban-card-drag&#x27;</code></p>
+  value: '''kanban-card-drag'''
+↓emptyColumnText [ngx.components.UICompVariable-1802200000015]: 
+  comment: <p>Placeholder text shown when a column has no cards.</p><p><b>Example:</b> <code>&#x27;Drop cards here&#x27;</code></p>
+  value: '''Drop cards here'''
+↓columnSort [ngx.components.UICompVariable-1802200000016]: 
+  comment: <p>Allows column reordering when true.</p><p><b>Example:</b> <code>false</code></p>
+  value: false
+↓columnHandle [ngx.components.UICompVariable-1802200000017]: 
+  comment: <p>CSS selector used as drag handle for columns.</p><p><b>Example:</b> <code>&#x27;.kanban-column-header&#x27;</code></p>
+  value: '''.kanban-column-header'''
+↓columnAnimation [ngx.components.UICompVariable-1802200000018]: 
+  comment: <p>Column drag animation duration in milliseconds.</p><p><b>Example:</b> <code>180</code></p>
+  value: 180
+↓columnGhostClass [ngx.components.UICompVariable-1802200000019]: 
+  comment: <p>CSS class applied to column ghost elements.</p><p><b>Example:</b> <code>&#x27;kanban-column-ghost&#x27;</code></p>
+  value: '''kanban-column-ghost'''
+↓columnChosenClass [ngx.components.UICompVariable-1802200000020]: 
+  comment: <p>CSS class applied to the selected column.</p><p><b>Example:</b> <code>&#x27;kanban-column-chosen&#x27;</code></p>
+  value: '''kanban-column-chosen'''
+↓columnDragClass [ngx.components.UICompVariable-1802200000021]: 
+  comment: <p>CSS class applied while dragging a column.</p><p><b>Example:</b> <code>&#x27;kanban-column-drag&#x27;</code></p>
+  value: '''kanban-column-drag'''
+↓cardTitleKey [ngx.components.UICompVariable-1802200000022]: 
+  comment: <p>Property name used to display card labels when cards are objects.</p><p><b>Example:</b> <code>&#x27;title&#x27;</code></p>
+  value: '''title'''
+↓BoardChanged [ngx.components.UICompEvent-1802200000030]: 
+  attrName: BoardChanged
+  comment: Fired when the board structure changes.
+↓CardMoved [ngx.components.UICompEvent-1802200000031]: 
+  attrName: CardMoved
+  comment: Fired when a card is moved between positions or columns.
+↓CardClicked [ngx.components.UICompEvent-1802200000032]: 
+  attrName: CardClicked
+  comment: Fired when a card is clicked.
+↓ColumnClicked [ngx.components.UICompEvent-1802200000033]: 
+  attrName: ColumnClicked
+  comment: Fired when a column header is clicked.
+↓ColumnOrderChanged [ngx.components.UICompEvent-1802200000034]: 
+  attrName: ColumnOrderChanged
+  comment: Fired when columns are reordered.
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1802200000040]: 
+  comment: Shared Component Event (UISharedComponentEvent).
+  ↓kanbanImports [ngx.components.UICustomAction-1802200000041]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		page.ensureElementId();
+            		page.renderKanban();
+            		resolve();
+            
+    build_scripts: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/sortablejs/Sortable.min.js
+    comment: SortableJS Imports (UICustomAction).
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: sortablejs
+              - java.lang.String: 
+                - ↑value: 1.15.0
+↓KanbanContainer [ngx.components.UIDynamicElement-1802200000050]: 
+  beanData: '{"ionBean":"DivTag"}'
+  comment: Kanban Container (UIDynamicElement).
+  tagName: div
+  ↓Attr [ngx.components.UIAttribute-1802200000051]: 
+    attrName: '[attr.id]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.kanbanElementId
+    comment: Attr (UIAttribute).
+  ↓Attr1 [ngx.components.UIAttribute-1802200000052]: 
+    attrName: '[style.width]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.width
+    comment: Attr1 (UIAttribute).
+  ↓Attr2 [ngx.components.UIAttribute-1802200000053]: 
+    attrName: '[style.height]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.height
+    comment: Attr2 (UIAttribute).
+  ↓Attr3 [ngx.components.UIAttribute-1802200000054]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:kanban-host
+    comment: Attr3 (UIAttribute).
+↓Style [ngx.components.UIStyle-1802200000060]: 
+  comment: Style (UIStyle).
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.kanban-host {
+            display: block;
+            min-height: 220px;
+            overflow: auto;
+          }
+          
+          :host ::ng-deep .kanban-board {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(260px, 1fr);
+            gap: 0.9rem;
+            align-items: start;
+            min-height: 100%;
+            padding-bottom: 4px;
+          }
+          
+          :host ::ng-deep .kanban-column {
+            border: 1px solid color-mix(in srgb, var(--tw-border, #d7d8da) 84%, transparent);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--tw-surface, var(--ion-card-background, #ffffff));
+            box-shadow: var(--tw-shadow-sm, 0 1px 2px rgba(0,0,0,.06));
+            display: flex;
+            flex-direction: column;
+            min-height: 120px;
+          }
+          
+          :host ::ng-deep .kanban-column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 0.8rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--tw-border, #d7d8da) 72%, transparent);
+            font-weight: 650;
+            cursor: pointer;
+            user-select: none;
+            color: var(--tw-text, var(--ion-text-color, #0f172a));
+            background: color-mix(in srgb, var(--tw-surface, #ffffff) 88%, var(--tw-bg, #f8fafc) 12%);
+          }
+          
+          :host ::ng-deep .kanban-column-count {
+            font-size: 0.76rem;
+            padding: 0.12rem 0.42rem;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--ion-color-primary, #2563eb) 16%, transparent);
+            color: color-mix(in srgb, var(--ion-color-primary, #2563eb) 82%, #0f172a 18%);
+          }
+          
+          :host ::ng-deep .kanban-list {
+            min-height: 84px;
+            padding: 0.65rem;
+            display: grid;
+            gap: 0.55rem;
+            align-content: start;
+          }
+          
+          :host ::ng-deep .kanban-list:empty::before {
+            content: attr(data-empty-text);
+            display: block;
+            border: 1px dashed color-mix(in srgb, var(--tw-border, #d7d8da) 78%, transparent);
+            border-radius: 10px;
+            padding: 0.65rem 0.7rem;
+            font-size: 0.84rem;
+            color: color-mix(in srgb, var(--tw-text-muted, #6b7280) 86%, transparent);
+            font-style: italic;
+          }
+          
+          :host ::ng-deep .kanban-card {
+            padding: 0.7rem 0.75rem;
+            border-radius: 10px;
+            border: 1px solid color-mix(in srgb, var(--tw-border, #d7d8da) 82%, transparent);
+            background: color-mix(in srgb, var(--tw-surface, #ffffff) 92%, var(--tw-bg, #f8fafc) 8%);
+            color: var(--tw-text, var(--ion-text-color, #0f172a));
+            cursor: grab;
+            user-select: none;
+            transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+          }
+          
+          :host ::ng-deep .kanban-card:active {
+            cursor: grabbing;
+          }
+          
+          :host ::ng-deep .kanban-card-ghost {
+            opacity: .35;
+          }
+          
+          :host ::ng-deep .kanban-card-chosen {
+            border-color: color-mix(in srgb, var(--ion-color-primary, #2563eb) 56%, transparent);
+            box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb, 37, 99, 235), 0.22);
+          }
+          
+          :host ::ng-deep .kanban-card-drag {
+            transform: scale(1.01);
+            box-shadow: var(--tw-shadow-md, 0 8px 20px rgba(0,0,0,.12));
+          }
+          
+          :host ::ng-deep .kanban-column-ghost {
+            opacity: .42;
+          }
+          
+          :host ::ng-deep .kanban-column-chosen {
+            border-color: color-mix(in srgb, var(--ion-color-primary, #2563eb) 56%, transparent);
+          }
+          
+          :host ::ng-deep .kanban-column-drag {
+            box-shadow: var(--tw-shadow-md, 0 8px 20px rgba(0,0,0,.12));
+          }
+          '

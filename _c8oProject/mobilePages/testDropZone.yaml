@@ -243,23 +243,13 @@ title: Drop Zone
     ↓Event [ngx.components.UIControlEvent-1799910000003]: 
       attrName: (FilesDropped)
       eventName: FilesDropped
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799910000004]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		var files = event ? event : [];
-                		var first = files && files.length ? files[0] : null;
-                		page.local["demo:lastEvent"] = {
-                			type: "FilesDropped",
-                			count: files && files.length ? files.length : 0,
-                			name: first && first.name ? first.name : "",
-                			size: first && first.size ? first.size : 0
-                		};
-                		resolve();
-                '
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1799910000004]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:{type: ''FilesDropped'', count: event && event.length ? event.length : 0, name: event && event.length && event[0] && event[0].name ? event[0].name : '''', size: event && event.length && event[0] && event[0].size ? event[0].size : 0}"
+          }'
   ↓ResultCard [ngx.components.UIDynamicElement-1799910000005]: 
     beanData: '{"ionBean":"Card"}'
     tagName: ion-card

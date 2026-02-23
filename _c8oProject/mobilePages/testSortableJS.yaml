@@ -1,6 +1,6 @@
-comment: Page demonstrating the Frappe Gantt shared component
-segment: path-to-testfrappegantt
-title: Frappe Gantt
+comment: Page demonstrating the SortableJS shared component
+segment: path-to-testsortablejs
+title: SortableJS
 ↓Header [ngx.components.UIDynamicElement-1491634212350]: 
   beanData: '{"ionBean":"Header"}'
   comment: Top page header container
@@ -26,12 +26,11 @@ title: Frappe Gantt
       comment: Title container displayed in the toolbar
       tagName: ion-title
       ↓Text [ngx.components.UIText-1491634275121]: 
-        comment: Translated page title key
         i18n: true
         textValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:Page_FrappeGantt
+            - MobileSmartSourceType: plain:Page_SortableJS
     ↓ButtonSet2 [ngx.components.UIDynamicElement-1588170811054]: 
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       comment: Right toolbar button group
@@ -171,93 +170,92 @@ title: Frappe Gantt
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: plain:Lang_Spanish
-↓Content [ngx.components.UIDynamicElement-1801200000001]: 
+↓Content [ngx.components.UIDynamicElement-1802100000001]: 
   beanData: '{"ionBean":"Content"}'
   tagName: ion-content
-  ↓Style [ngx.components.UIStyle-1801200000002]: 
+  ↓Style [ngx.components.UIStyle-1802100000002]: 
     styleContent: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            '	--background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), .08) 0%, var(--ion-background-color) 320px);
+            '	--background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), .08) 0%, var(--ion-background-color) 300px);
             '
-  ↓DemoOverviewCard [ngx.components.UIDynamicElement-1801200000003]: 
+  ↓DemoOverviewCard [ngx.components.UIDynamicElement-1802100000003]: 
     beanData: '{"ionBean":"Card"}'
-    comment: Demo overview for this page
     tagName: ion-card
-    ↓CardHeader [ngx.components.UIDynamicElement-1801200000004]: 
+    ↓CardHeader [ngx.components.UIDynamicElement-1802100000004]: 
       beanData: '{"ionBean":"CardHeader"}'
       tagName: ion-card-header
-      ↓CardTitle [ngx.components.UIDynamicElement-1801200000005]: 
+      ↓CardTitle [ngx.components.UIDynamicElement-1802100000005]: 
         beanData: '{"ionBean":"CardTitle"}'
         tagName: ion-card-title
-        ↓Text [ngx.components.UIText-1801200000006]: 
+        ↓Text [ngx.components.UIText-1802100000006]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Demo_What_Title
-    ↓CardContent [ngx.components.UIDynamicElement-1801200000007]: 
+    ↓CardContent [ngx.components.UIDynamicElement-1802100000007]: 
       beanData: '{"ionBean":"CardContent"}'
       tagName: ion-card-content
-      ↓ParagraphWhat [ngx.components.UIDynamicElement-1801200000008]: 
+      ↓ParagraphWhat [ngx.components.UIDynamicElement-1802100000008]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
-        ↓Text [ngx.components.UIText-1801200000009]: 
+        ↓Text [ngx.components.UIText-1802100000009]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Demo_What_FrappeGantt
-      ↓ParagraphScenarioTitle [ngx.components.UIDynamicElement-1801200000010]: 
+              - MobileSmartSourceType: plain:Demo_What_SortableJS
+      ↓ParagraphScenarioTitle [ngx.components.UIDynamicElement-1802100000010]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
-        ↓Text [ngx.components.UIText-1801200000011]: 
+        ↓Text [ngx.components.UIText-1802100000011]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Demo_Scenario_Title
-      ↓ParagraphScenario [ngx.components.UIDynamicElement-1801200000012]: 
+      ↓ParagraphScenario [ngx.components.UIDynamicElement-1802100000012]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
-        ↓Text [ngx.components.UIText-1801200000013]: 
+        ↓Text [ngx.components.UIText-1802100000013]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Demo_Scenario_FrappeGantt
-  ↓ControlsCard [ngx.components.UIDynamicElement-1801200000014]: 
+              - MobileSmartSourceType: plain:Demo_Scenario_SortableJS
+  ↓ControlsCard [ngx.components.UIDynamicElement-1802100000014]: 
     beanData: '{"ionBean":"Card"}'
     tagName: ion-card
-    ↓CardHeader [ngx.components.UIDynamicElement-1801200000015]: 
+    ↓CardHeader [ngx.components.UIDynamicElement-1802100000015]: 
       beanData: '{"ionBean":"CardHeader"}'
       tagName: ion-card-header
-      ↓CardTitle [ngx.components.UIDynamicElement-1801200000016]: 
+      ↓CardTitle [ngx.components.UIDynamicElement-1802100000016]: 
         beanData: '{"ionBean":"CardTitle"}'
         tagName: ion-card-title
-        ↓Text [ngx.components.UIText-1801200000017]: 
+        ↓Text [ngx.components.UIText-1802100000017]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Demo_Params_Title
-    ↓CardContent [ngx.components.UIDynamicElement-1801200000018]: 
+    ↓CardContent [ngx.components.UIDynamicElement-1802100000018]: 
       beanData: '{"ionBean":"CardContent"}'
       tagName: ion-card-content
-      ↓CurrentModeText [ngx.components.UIDynamicElement-1801200000019]: 
+      ↓StatusText [ngx.components.UIDynamicElement-1802100000019]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
-        ↓Text [ngx.components.UIText-1801200000020]: 
+        ↓Text [ngx.components.UIText-1802100000020]: 
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'script:"View mode: " + (this.local["gantt:viewMode"] ? this.local["gantt:viewMode"] : "Day")'
-      ↓ActionButtons [ngx.components.UIDynamicElement-1801200000021]: 
+              - MobileSmartSourceType: 'script:this.translate.instant(''SortableJS_Status_DragEnabled'') + '' '' + (this.local["sortable:disabled"] ? this.translate.instant(''SortableJS_No'') : this.translate.instant(''SortableJS_Yes''))'
+      ↓ActionButtons [ngx.components.UIDynamicElement-1802100000021]: 
         beanData: '{"ionBean":"ButtonSet"}'
         tagName: ion-buttons
-        ↓DayButton [ngx.components.UIDynamicElement-1801200000022]: 
+        ↓ShuffleButton [ngx.components.UIDynamicElement-1802100000022]: 
           beanData: |
             '{
              "ionBean": "Button",
@@ -266,97 +264,99 @@ title: Frappe Gantt
              "IonSize": "plain:small"
             }'
           tagName: ion-button
-          ↓Text [ngx.components.UIText-1801200000023]: 
+          ↓Text [ngx.components.UIText-1802100000023]: 
+            i18n: true
             textValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:Day
-          ↓Event [ngx.components.UIControlEvent-1801200000024]: 
-            ↓SetDayMode [ngx.components.UIDynamicAction-1801200000025]: 
-              beanData: |
-                '{
-                 "ionBean": "SetLocalAction",
-                 "Property": "plain:gantt:viewMode",
-                 "Value": "script:(this.local[''demo:lastEvent''] = ''View mode set to Day.'', ''Day'')"
-                }'
-        ↓WeekButton [ngx.components.UIDynamicElement-1801200000026]: 
-          beanData: |
-            '{
-             "ionBean": "Button",
-             "ButtonFormType": "plain",
-             "Disabled": "plain",
-             "IonSize": "plain:small"
-            }'
-          tagName: ion-button
-          ↓Text [ngx.components.UIText-1801200000027]: 
-            textValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:Week
-          ↓Event [ngx.components.UIControlEvent-1801200000028]: 
-            ↓SetWeekMode [ngx.components.UIDynamicAction-1801200000029]: 
-              beanData: |
-                '{
-                 "ionBean": "SetLocalAction",
-                 "Property": "plain:gantt:viewMode",
-                 "Value": "script:(this.local[''demo:lastEvent''] = ''View mode set to Week.'', ''Week'')"
-                }'
-        ↓MonthButton [ngx.components.UIDynamicElement-1801200000030]: 
-          beanData: |
-            '{
-             "ionBean": "Button",
-             "ButtonFormType": "plain",
-             "Disabled": "plain",
-             "IonSize": "plain:small"
-            }'
-          tagName: ion-button
-          ↓Text [ngx.components.UIText-1801200000031]: 
-            textValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:Month
-          ↓Event [ngx.components.UIControlEvent-1801200000032]: 
-            ↓SetMonthMode [ngx.components.UIDynamicAction-1801200000033]: 
-              beanData: |
-                '{
-                 "ionBean": "SetLocalAction",
-                 "Property": "plain:gantt:viewMode",
-                 "Value": "script:(this.local[''demo:lastEvent''] = ''View mode set to Month.'', ''Month'')"
-                }'
-        ↓RandomProgressButton [ngx.components.UIDynamicElement-1801200000034]: 
-          beanData: |
-            '{
-             "ionBean": "Button",
-             "ButtonFormType": "plain",
-             "Disabled": "plain",
-             "IonSize": "plain:small"
-            }'
-          tagName: ion-button
-          ↓Text [ngx.components.UIText-1801200000035]: 
-            textValue: 
-              - xmlizable: 
-                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:Randomize progress
-          ↓Event [ngx.components.UIControlEvent-1801200000036]: 
-            ↓RandomizeProgress [ngx.components.UICustomAction-1801200000037]: 
+                - MobileSmartSourceType: plain:SortableJS_Action_Shuffle
+          ↓Event [ngx.components.UIControlEvent-1802100000024]: 
+            ↓ShuffleItems [ngx.components.UICustomAction-1802100000025]: 
               actionValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
                   - com.twinsoft.convertigo.beans.common.FormatedContent: 
                     →: |
-                      '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                      		var list = Array.isArray(page.local["gantt:tasks"]) ? page.local["gantt:tasks"] : [];
-                      		page.local["gantt:tasks"] = list.map(function(task) {
-                      			var next = Object.assign({}, task);
-                      			next.progress = Math.floor(Math.random() * 101);
-                      			return next;
-                      		});
-                      		page.local["demo:lastEvent"] = "Task progress randomized.";
+                      '		var list = Array.isArray(page.local["sortable:items"]) ? page.local["sortable:items"].slice() : [];
+                      		for (var i = list.length - 1; i > 0; i--) {
+                      			var j = Math.floor(Math.random() * (i + 1));
+                      			var tmp = list[i];
+                      			list[i] = list[j];
+                      			list[j] = tmp;
+                      		}
+                      		var labels = [];
+                      		for (var k = 0; k < list.length; k++) {
+                      			var item = list[k];
+                      			labels.push(item && item.label ? item.label : (page.translate.instant("SortableJS_Item_Label") + " " + (k + 1)));
+                      		}
+                      		page.local["sortable:items"] = list;
+                      		page.local["sortable:orderText"] = labels.join(" > ");
+                      		page.local["demo:lastEvent"] = page.translate.instant("SortableJS_Event_Shuffled");
                       		resolve();
                       '
-  ↓UseSharedComponent [ngx.components.UIUseShared-1801200000038]: 
-    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.frappeGantt
-    ↓Style [ngx.components.UIStyle-1801200000039]: 
+        ↓ToggleDisableButton [ngx.components.UIDynamicElement-1802100000026]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1802100000027]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:this.local["sortable:disabled"] ? this.translate.instant(''SortableJS_Action_EnableDrag'') : this.translate.instant(''SortableJS_Action_DisableDrag'')'
+          ↓Event [ngx.components.UIControlEvent-1802100000028]: 
+            ↓ToggleDisable [ngx.components.UIDynamicAction-1802100000029]: 
+              beanData: |
+                '{
+                 "ionBean": "SetLocalAction",
+                 "Property": "plain:sortable:disabled",
+                 "Value": "script:(function(){var disabled = !(this.local[''sortable:disabled''] === true); this.local[''demo:lastEvent''] = disabled ? this.translate.instant(''SortableJS_Event_Disabled'') : this.translate.instant(''SortableJS_Event_Enabled''); return disabled;}).call(this)"
+                }'
+        ↓ResetButton [ngx.components.UIDynamicElement-1802100000030]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1802100000031]: 
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Demo_Reset
+          ↓Event [ngx.components.UIControlEvent-1802100000032]: 
+            ↓ResetItems [ngx.components.UICustomAction-1802100000033]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		var defaultItems = [
+                      			{id: "todo", label: page.translate.instant("SortableJS_Item_Backlog")},
+                      			{id: "doing", label: page.translate.instant("SortableJS_Item_InProgress")},
+                      			{id: "review", label: page.translate.instant("SortableJS_Item_Review")},
+                      			{id: "done", label: page.translate.instant("SortableJS_Item_Done")}
+                      		];
+                      		var labels = [];
+                      		for (var i = 0; i < defaultItems.length; i++) {
+                      			labels.push(defaultItems[i].label);
+                      		}
+                      		page.local["sortable:items"] = defaultItems;
+                      		page.local["sortable:disabled"] = false;
+                      		page.local["sortable:orderText"] = labels.join(" > ");
+                      		page.local["demo:lastEvent"] = page.translate.instant("SortableJS_Event_Reset");
+                      		resolve();
+                      '
+  ↓SortableDemo [ngx.components.UIUseShared-1802100000034]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.sortableJS
+    ↓Style [ngx.components.UIStyle-1802100000035]: 
       styleContent: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -369,142 +369,149 @@ title: Frappe Gantt
               	border: 1px solid rgba(120, 120, 120, 0.35);
               	background: linear-gradient(160deg, rgba(var(--ion-color-primary-rgb), .08) 0%, rgba(var(--ion-color-tertiary-rgb), .06) 100%);
               '
-    ↓tasks [ngx.components.UIUseVariable-1801200000040]: 
+    ↓items [ngx.components.UIUseVariable-1802100000036]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:this.local['gantt:tasks']
-    ↓options [ngx.components.UIUseVariable-1801200000041]: 
+          - MobileSmartSourceType: script:this.local['sortable:items']
+    ↓options [ngx.components.UIUseVariable-1802100000037]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:this.local['gantt:options']
-    ↓viewMode [ngx.components.UIUseVariable-1801200000042]: 
-      varValue: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:this.local['gantt:viewMode']
-    ↓dateFormat [ngx.components.UIUseVariable-1801200000043]: 
-      varValue: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:'YYYY-MM-DD'
-    ↓width [ngx.components.UIUseVariable-1801200000044]: 
+          - MobileSmartSourceType: script:this.local['sortable:options']
+    ↓width [ngx.components.UIUseVariable-1802100000038]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:'100%'
-    ↓height [ngx.components.UIUseVariable-1801200000045]: 
+    ↓id [ngx.components.UIUseVariable-1802100000039]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:'380px'
-    ↓id [ngx.components.UIUseVariable-1801200000046]: 
+          - MobileSmartSourceType: script:'demo-sortable-js'
+    ↓animation [ngx.components.UIUseVariable-1802100000040]: 
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: script:'demo-frappe-gantt'
-    ↓Event [ngx.components.UIControlEvent-1801200000047]: 
-      attrName: (TaskClicked)
-      eventName: TaskClicked
-      ↓HandleTaskClicked [ngx.components.UIDynamicAction-1801200000048]: 
+          - MobileSmartSourceType: script:180
+    ↓disabled [ngx.components.UIUseVariable-1802100000041]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local['sortable:disabled']
+    ↓emptyText [ngx.components.UIUseVariable-1802100000042]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.translate.instant('SortableJS_Empty_Text')
+    ↓Event [ngx.components.UIControlEvent-1802100000043]: 
+      attrName: (OrderChanged)
+      eventName: OrderChanged
+      ↓HandleOrderChanged [ngx.components.UICustomAction-1802100000044]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		var payload = event ? event : {};
+                		if (payload.items && Array.isArray(payload.items)) {
+                			page.local["sortable:items"] = payload.items;
+                		}
+                		var list = Array.isArray(page.local["sortable:items"]) ? page.local["sortable:items"] : [];
+                		var labels = [];
+                		for (var i = 0; i < list.length; i++) {
+                			var item = list[i];
+                			labels.push(item && item.label ? item.label : (page.translate.instant("SortableJS_Item_Label") + " " + (i + 1)));
+                		}
+                		page.local["sortable:orderText"] = labels.join(" > ");
+                		page.local["demo:lastEvent"] = page.translate.instant("SortableJS_Event_OrderChanged") + " " + payload.oldIndex + " -> " + payload.newIndex;
+                		resolve();
+                '
+    ↓Event1 [ngx.components.UIControlEvent-1802100000045]: 
+      attrName: (ItemClicked)
+      eventName: ItemClicked
+      ↓HandleItemClicked [ngx.components.UIDynamicAction-1802100000046]: 
         beanData: |
           '{
            "ionBean": "SetLocalAction",
            "Property": "plain:demo:lastEvent",
-           "Value": "script:''TaskClicked: '' + ((event && event.name) ? event.name : ''n\/a'')"
+           "Value": "script:this.translate.instant(''SortableJS_Event_ItemClicked'') + '' '' + ((event && event.item && event.item.label) ? event.item.label : this.translate.instant(''SortableJS_NotAvailable''))"
           }'
-    ↓Event1 [ngx.components.UIControlEvent-1801200000049]: 
-      attrName: (DateChanged)
-      eventName: DateChanged
-      ↓HandleDateChanged [ngx.components.UIDynamicAction-1801200000050]: 
+    ↓Event2 [ngx.components.UIControlEvent-1802100000047]: 
+      attrName: (DragStarted)
+      eventName: DragStarted
+      ↓HandleDragStarted [ngx.components.UIDynamicAction-1802100000048]: 
         beanData: |
           '{
            "ionBean": "SetLocalAction",
            "Property": "plain:demo:lastEvent",
-           "Value": "script:''DateChanged: '' + ((event && event.task && event.task.name) ? event.task.name : ''n\/a'')"
+           "Value": "script:this.translate.instant(''SortableJS_Event_DragStarted'') + '' '' + ((event && event.oldIndex != undefined) ? event.oldIndex : '''')"
           }'
-    ↓Event2 [ngx.components.UIControlEvent-1801200000051]: 
-      attrName: (ProgressChanged)
-      eventName: ProgressChanged
-      ↓HandleProgressChanged [ngx.components.UIDynamicAction-1801200000052]: 
+    ↓Event3 [ngx.components.UIControlEvent-1802100000049]: 
+      attrName: (DragEnded)
+      eventName: DragEnded
+      ↓HandleDragEnded [ngx.components.UIDynamicAction-1802100000050]: 
         beanData: |
           '{
            "ionBean": "SetLocalAction",
            "Property": "plain:demo:lastEvent",
-           "Value": "script:''ProgressChanged: '' + ((event && event.task && event.task.name) ? event.task.name : ''n\/a'') + '' -> '' + ((event && event.progress != undefined) ? event.progress : '''') + ''%''"
+           "Value": "script:this.translate.instant(''SortableJS_Event_DragEnded'') + '' '' + ((event && event.newIndex != undefined) ? event.newIndex : '''')"
           }'
-    ↓Event3 [ngx.components.UIControlEvent-1801200000053]: 
-      attrName: (ViewChanged)
-      eventName: ViewChanged
-      ↓HandleViewChanged [ngx.components.UIDynamicAction-1801200000054]: 
-        beanData: |
-          '{
-           "ionBean": "SetLocalAction",
-           "Property": "plain:gantt:viewMode",
-           "Value": "script:(function(){var mode = ''Day''; if (typeof event === ''string'') {mode = event;} else if (event && event.name) {mode = event.name;} this.local[''demo:lastEvent''] = ''ViewChanged: '' + mode; return mode;}).call(this)"
-          }'
-  ↓ResultCard [ngx.components.UIDynamicElement-1801200000055]: 
+  ↓ResultCard [ngx.components.UIDynamicElement-1802100000051]: 
     beanData: '{"ionBean":"Card"}'
     tagName: ion-card
-    ↓CardHeader [ngx.components.UIDynamicElement-1801200000056]: 
+    ↓CardHeader [ngx.components.UIDynamicElement-1802100000052]: 
       beanData: '{"ionBean":"CardHeader"}'
       tagName: ion-card-header
-      ↓CardTitle [ngx.components.UIDynamicElement-1801200000057]: 
+      ↓CardTitle [ngx.components.UIDynamicElement-1802100000053]: 
         beanData: '{"ionBean":"CardTitle"}'
         tagName: ion-card-title
-        ↓Text [ngx.components.UIText-1801200000058]: 
+        ↓Text [ngx.components.UIText-1802100000054]: 
           i18n: true
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Demo_Events_Title
-    ↓CardContent [ngx.components.UIDynamicElement-1801200000059]: 
+    ↓CardContent [ngx.components.UIDynamicElement-1802100000055]: 
       beanData: '{"ionBean":"CardContent"}'
       tagName: ion-card-content
-      ↓ResultSummary [ngx.components.UIDynamicElement-1801200000060]: 
+      ↓ResultSummary [ngx.components.UIDynamicElement-1802100000056]: 
         beanData: '{"ionBean":"Paragraph"}'
         tagName: p
-        ↓Text [ngx.components.UIText-1801200000061]: 
+        ↓Text [ngx.components.UIText-1802100000057]: 
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'script:this.local["demo:lastEvent"] ? this.local["demo:lastEvent"] : "Interact with the chart to see emitted events."'
-↓PageEvent [ngx.components.UIPageEvent-1801200000062]: 
-  ↓InitializeDemo [ngx.components.UICustomAction-1801200000063]: 
+              - MobileSmartSourceType: 'script:this.local["demo:lastEvent"] ? this.local["demo:lastEvent"] : this.translate.instant(''SortableJS_Event_Hint'')'
+      ↓OrderSummary [ngx.components.UIDynamicElement-1802100000058]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1802100000059]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:this.local["sortable:orderText"] ? (this.translate.instant(''SortableJS_Order_Label'') + this.local["sortable:orderText"]) : ""'
+↓PageEvent [ngx.components.UIPageEvent-1802100000060]: 
+  ↓InitializeDemo [ngx.components.UICustomAction-1802100000061]: 
     actionValue: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		page.local["gantt:viewMode"] = "Day";
-            		var addDays = function(date, days) {
-            			var next = new Date(date.getTime());
-            			next.setDate(next.getDate() + days);
-            			return next;
-            		};
-            		var toIsoDate = function(date) {
-            			var month = date.getMonth() + 1;
-            			var day = date.getDate();
-            			var mm = month < 10 ? "0" + month : "" + month;
-            			var dd = day < 10 ? "0" + day : "" + day;
-            			return date.getFullYear() + "-" + mm + "-" + dd;
-            		};
-            		var today = new Date();
-            		today.setHours(0, 0, 0, 0);
-            		page.local["gantt:options"] = {
-            			readonly: false,
-            			popup_on: "click",
-            			bar_height: 26,
-            			view_mode_select: false
-            		};
-            		page.local["gantt:tasks"] = [
-            			{id: "task-1", name: "Discovery", start: toIsoDate(addDays(today, -4)), end: toIsoDate(addDays(today, -1)), progress: 100},
-            			{id: "task-2", name: "Implementation", start: toIsoDate(addDays(today, 0)), end: toIsoDate(addDays(today, 6)), progress: 55, dependencies: "task-1"},
-            			{id: "task-3", name: "QA", start: toIsoDate(addDays(today, 5)), end: toIsoDate(addDays(today, 10)), progress: 20, dependencies: "task-2"},
-            			{id: "task-4", name: "Release", start: toIsoDate(addDays(today, 11)), end: toIsoDate(addDays(today, 13)), progress: 0, dependencies: "task-3"}
+            '		var defaultItems = [
+            			{id: "todo", label: page.translate.instant("SortableJS_Item_Backlog")},
+            			{id: "doing", label: page.translate.instant("SortableJS_Item_InProgress")},
+            			{id: "review", label: page.translate.instant("SortableJS_Item_Review")},
+            			{id: "done", label: page.translate.instant("SortableJS_Item_Done")}
             		];
-            		page.local["demo:lastEvent"] = "Ready. Timeline refreshed around today (" + toIsoDate(today) + ").";
+            		var labels = [];
+            		for (var i = 0; i < defaultItems.length; i++) {
+            			labels.push(defaultItems[i].label);
+            		}
+            		page.local["sortable:items"] = defaultItems;
+            		page.local["sortable:options"] = {};
+            		page.local["sortable:disabled"] = false;
+            		page.local["sortable:orderText"] = labels.join(" > ");
+            		page.local["demo:lastEvent"] = page.translate.instant("SortableJS_Event_Ready");
             		resolve();
             '

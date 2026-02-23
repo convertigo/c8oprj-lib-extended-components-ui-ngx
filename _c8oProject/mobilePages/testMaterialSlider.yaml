@@ -229,16 +229,13 @@ title: Material Slider
     ↓Event [ngx.components.UIControlEvent-1799200000044]: 
       attrName: (ModelChange)
       eventName: ModelChange
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000045]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "ModelChange", value: event};
-                		resolve();
-                '
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1799200000045]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:{type: ''ModelChange'', value: event}"
+          }'
   ↓Style [ngx.components.UIStyle-1662727634956]: 
     styleContent: 
       - xmlizable: 

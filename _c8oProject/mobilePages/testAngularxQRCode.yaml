@@ -324,17 +324,13 @@ title: Angularx QRCode
       ↓Event [ngx.components.UIControlEvent-1799900000017]: 
         attrName: (ionInput)
         eventName: ionInput
-        ↓SetQrData [ngx.components.UICustomAction-1799900000018]: 
-          actionValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                  		var value = event && event.detail ? event.detail.value : "";
-                  		page.local["demo:param"] = value;
-                  		resolve();
-                  '
+        ↓SetQrData [ngx.components.UIDynamicAction-1799900000018]: 
+          beanData: |
+            '{
+             "ionBean": "SetLocalAction",
+             "Property": "plain:demo:param",
+             "Value": "script:event && event.detail ? event.detail.value : ''''"
+            }'
   ↓UseSharedComponent [ngx.components.UIUseShared-1614267464226]: 
     sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.angularxQRCode
     ↓Style [ngx.components.UIStyle-1799900000006]: 

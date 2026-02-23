@@ -242,26 +242,20 @@ title: TinyMCE
            "message": "script:out",
            "level": "plain:warn"
           }'
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000001]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "onChange", value: event};
-                		resolve();
-                '
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1799200000001]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:{type: ''onChange'', value: event}"
+          }'
     ↓Event1 [ngx.components.UIControlEvent-1645465765592]: 
       attrName: (onBlur)
       eventName: onBlur
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000002]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "onBlur"};
-                		resolve();
-                '
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1799200000002]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:{type: ''onBlur''}"
+          }'

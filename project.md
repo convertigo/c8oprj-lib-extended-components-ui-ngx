@@ -90,6 +90,14 @@ Page demonstrating multiple Cytoscape cyGraph configurations
 Page demonstrating the Frappe Gantt shared component
 </p></blockquote></details>
 
+<details><summary><b>testKanbanBoard</b> : Page demonstrating the Kanban shared component based on SortableJS</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testKanbanBoard
+
+Page demonstrating the Kanban shared component based on SortableJS
+</p></blockquote></details>
+
 <details><summary><b>testMaterialDatePicker</b></summary><blockquote><p>
 
 
@@ -112,6 +120,14 @@ Page demonstrating the Frappe Gantt shared component
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testNgSelect
 
 
+</p></blockquote></details>
+
+<details><summary><b>testSortableJS</b> : Page demonstrating the SortableJS shared component</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testSortableJS
+
+Page demonstrating the SortableJS shared component
 </p></blockquote></details>
 
 <details><summary><b>testTinyMce</b> : Page with a tinyMCE rich text editor</summary><blockquote><p>
@@ -1788,6 +1804,391 @@ Fired when the gantt view mode changes.
 
 </p></blockquote></details>
 
+<details><summary><b>kanbanBoard</b> : Shared component implementing a Kanban board powered by SortableJS</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") kanbanBoard
+
+Shared component implementing a Kanban board powered by SortableJS.
+Cards can be dragged across columns and columns can optionally be reordered.
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;animation
+</td>
+<td>
+<p>Card drag animation duration in milliseconds.</p><p><b>Example:</b> 
+
+```
+180
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cardTitleKey
+</td>
+<td>
+<p>Property name used to display card labels when cards are objects.</p><p><b>Example:</b> 
+
+```
+&#x27;title&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;chosenClass
+</td>
+<td>
+<p>CSS class applied to the selected card.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-card-chosen&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnAnimation
+</td>
+<td>
+<p>Column drag animation duration in milliseconds.</p><p><b>Example:</b> 
+
+```
+180
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnChosenClass
+</td>
+<td>
+<p>CSS class applied to the selected column.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-column-chosen&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnDragClass
+</td>
+<td>
+<p>CSS class applied while dragging a column.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-column-drag&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnGhostClass
+</td>
+<td>
+<p>CSS class applied to column ghost elements.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-column-ghost&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnHandle
+</td>
+<td>
+<p>CSS selector used as drag handle for columns.</p><p><b>Example:</b> 
+
+```
+&#x27;.kanban-column-header&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnOptions
+</td>
+<td>
+<p>Optional SortableJS options for column sorting (object or JSON string).</p><p><b>Example:</b> 
+
+```
+{&quot;delay&quot;:80}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columns
+</td>
+<td>
+<p>Array of Kanban columns (array or JSON string).</p><p><b>Example:</b> 
+
+```
+[{&quot;id&quot;:&quot;todo&quot;,&quot;title&quot;:&quot;To Do&quot;,&quot;cards&quot;:[{&quot;id&quot;:&quot;c1&quot;,&quot;title&quot;:&quot;Prepare backlog&quot;}]}]
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;columnSort
+</td>
+<td>
+<p>Allows column reordering when true.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;disabled
+</td>
+<td>
+<p>Disables drag and drop when true.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;dragClass
+</td>
+<td>
+<p>CSS class applied while dragging a card.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-card-drag&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;emptyColumnText
+</td>
+<td>
+<p>Placeholder text shown when a column has no cards.</p><p><b>Example:</b> 
+
+```
+&#x27;Drop cards here&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ghostClass
+</td>
+<td>
+<p>CSS class applied to card ghost elements.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-card-ghost&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;groupName
+</td>
+<td>
+<p>SortableJS group name used between columns.</p><p><b>Example:</b> 
+
+```
+&#x27;kanban-board&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;handle
+</td>
+<td>
+<p>Optional CSS selector for dragging cards by handle.</p><p><b>Example:</b> 
+
+```
+&#x27;.card-handle&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
+</td>
+<td>
+<p>Container height.</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+</td>
+<td>
+<p>Optional HTML id for the kanban host.</p><p><b>Example:</b> 
+
+```
+&#x27;my-kanban&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;options
+</td>
+<td>
+<p>Optional SortableJS options for cards (object or JSON string).</p><p><b>Example:</b> 
+
+```
+{&quot;swapThreshold&quot;:0.7}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;sort
+</td>
+<td>
+<p>Allows card sorting when true.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
+</td>
+<td>
+<p>Container width.</p><p><b>Example:</b> 
+
+```
+&#x27;100%&#x27;
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;BoardChanged
+</td>
+<td>
+Fired when the board structure changes.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CardClicked
+</td>
+<td>
+Fired when a card is clicked.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;CardMoved
+</td>
+<td>
+Fired when a card is moved between positions or columns.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ColumnClicked
+</td>
+<td>
+Fired when a column header is clicked.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ColumnOrderChanged
+</td>
+<td>
+Fired when columns are reordered.
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
 <details><summary><b>materialDatePicker</b></summary><blockquote><p>
 
 
@@ -2775,6 +3176,285 @@ Fired when scrolled to the end of items. Can be used for loading more items in c
 </td>
 <td>
 Fired while typing search term. Outputs search term with filtered items
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>sortableJS</b> : Shared component wrapping SortableJS for drag-and-drop list ordering</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") sortableJS
+
+Shared component wrapping SortableJS for drag-and-drop list ordering.
+Pass items as an array or as a JSON string.
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;animation
+</td>
+<td>
+<p>Animation duration in milliseconds.</p><p><b>Example:</b> 
+
+```
+180
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;chosenClass
+</td>
+<td>
+<p>CSS class applied to the chosen element.</p><p><b>Example:</b> 
+
+```
+&#x27;sortablejs-chosen&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;disabled
+</td>
+<td>
+<p>Disables drag and drop when true.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;dragClass
+</td>
+<td>
+<p>CSS class applied while dragging.</p><p><b>Example:</b> 
+
+```
+&#x27;sortablejs-drag&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;emitItemsOnChange
+</td>
+<td>
+<p>Emits 
+
+```
+ItemsChanged
+```
+
+ after each drop event when true.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;emptyText
+</td>
+<td>
+<p>Placeholder text when the list is empty.</p><p><b>Example:</b> 
+
+```
+&#x27;Drop items here&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ghostClass
+</td>
+<td>
+<p>CSS class applied to the ghost element.</p><p><b>Example:</b> 
+
+```
+&#x27;sortablejs-ghost&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;handle
+</td>
+<td>
+<p>Optional CSS selector for drag handles.</p><p><b>Example:</b> 
+
+```
+&#x27;.drag-handle&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
+</td>
+<td>
+<p>Container height.</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
+</td>
+<td>
+<p>Optional HTML id for the sortable container.</p><p><b>Example:</b> 
+
+```
+&#x27;my-sortable&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;items
+</td>
+<td>
+<p>Array of draggable items (array or JSON string).</p><p><b>Example:</b> 
+
+```
+[{&quot;label&quot;:&quot;Backlog&quot;},{&quot;label&quot;:&quot;In Progress&quot;},{&quot;label&quot;:&quot;Done&quot;}]
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;options
+</td>
+<td>
+<p>Optional SortableJS options object (object or JSON string).</p><p><b>Example:</b> 
+
+```
+{&quot;swapThreshold&quot;:0.65}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;sort
+</td>
+<td>
+<p>Allows sorting when true.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;width
+</td>
+<td>
+<p>Container width.</p><p><b>Example:</b> 
+
+```
+&#x27;100%&#x27;
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;DragEnded
+</td>
+<td>
+Fired when a drag operation ends.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;DragStarted
+</td>
+<td>
+Fired when a drag operation starts.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ItemClicked
+</td>
+<td>
+Fired when an item is clicked.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;ItemsChanged
+</td>
+<td>
+Fired with the reordered items array.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;OrderChanged
+</td>
+<td>
+Fired when the list order changes.
 </td>
 </tr>
 </table>

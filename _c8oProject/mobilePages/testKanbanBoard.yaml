@@ -1,0 +1,649 @@
+comment: Page demonstrating the Kanban shared component based on SortableJS
+segment: path-to-testkanbanboard
+title: Kanban Board
+↓Header [ngx.components.UIDynamicElement-1807000000001]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Top page header container
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1807000000002]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    comment: Main toolbar displayed in the header
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1807000000003]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      comment: Left toolbar button group
+      tagName: ion-buttons
+      ↓BackButton [ngx.components.UIDynamicElement-1807000000004]: 
+        beanData: '{"ionBean":"BackButton"}'
+        comment: Navigates to the previous page when available
+        tagName: ion-back-button
+      ↓MenuButton [ngx.components.UIDynamicElement-1807000000005]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        comment: Toggles the side navigation menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1807000000006]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      comment: Title container displayed in the toolbar
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1807000000007]: 
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Page_KanbanBoard
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1807000000008]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      comment: Right toolbar button group
+      tagName: ion-buttons
+      ↓ThemeSwitchButton [ngx.components.UIDynamicElement-1807000000009]: 
+        beanData: '{"ionBean":"Button","IonFill":"plain:clear"}'
+        comment: Toggles between light and dark themes
+        tagName: ion-button
+        ↓Class [ngx.components.UIAttribute-1807000000010]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-theme-button
+          comment: CSS class used to style the theme button
+        ↓Aria [ngx.components.UIAttribute-1807000000011]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? this.translate.instant(''Theme_Switch_To_Light'') : this.translate.instant(''Theme_Switch_To_Dark'')'
+          comment: Accessibility label describing the next theme action
+        ↓Event [ngx.components.UIControlEvent-1807000000012]: 
+          comment: Click handler for theme switching
+          ↓SetTheme [ngx.components.UIDynamicAction-1807000000013]: 
+            beanData: '{"ionBean":"SetThemeAction","dark":"script:!(this.global && this.global.themeDark)"}'
+            comment: Applies the opposite theme mode
+        ↓ThemeIcon [ngx.components.UIDynamicElement-1807000000014]: 
+          beanData: '{"ionBean":"Icon","IconName":"script:this?.global?.themeDark ? ''sunny-outline'' : ''moon-outline''"}'
+          comment: Dynamic icon reflecting the active theme
+          tagName: ion-icon
+          ↓IconName [ngx.components.UIAttribute-1807000000015]: 
+            attrName: '[name]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? ''sunny-outline'' : ''moon-outline'''
+            comment: Binds the icon name to the current theme state
+      ↓LanguageSelector [ngx.components.UIDynamicElement-1807000000016]: 
+        beanData: |
+          '{
+           "ionBean": "Select",
+           "ControlName": "plain:name1770915137820",
+           "Justify": "plain:start"
+          }'
+        comment: Language selector displayed in the toolbar
+        tagName: ion-select
+        ↓Class [ngx.components.UIAttribute-1807000000017]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-lang-select
+          comment: CSS class used to style the language selector
+        ↓Aria [ngx.components.UIAttribute-1807000000018]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'Language' | translate
+          comment: Accessibility label for language selection
+        ↓Interface [ngx.components.UIAttribute-1807000000019]: 
+          attrName: '[interface]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'popover'
+          comment: Uses popover mode for option rendering
+        ↓Value [ngx.components.UIAttribute-1807000000020]: 
+          attrName: '[value]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.global.currentLanguage() ?? 'en'
+          comment: Current selected language bound to global state
+        ↓SelectedText [ngx.components.UIAttribute-1807000000021]: 
+          attrName: '[selectedText]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:(this.global?.getLanguageLabelKey() ??  'Lang_English') | translate
+          comment: Localized label shown for the selected language
+        ↓ChangeEvent [ngx.components.UIControlEvent-1807000000022]: 
+          attrName: (ionChange)
+          comment: Triggered when the selected language changes
+          eventName: ionChange
+          ↓SetLanguage [ngx.components.UIDynamicAction-1807000000023]: 
+            beanData: |
+              '{
+               "ionBean": "SetLanguageAction",
+               "language": "script:event.detail.value",
+               "storageKey": "plain:c8o-lang",
+               "globalProperty": "plain:currentLanguage"
+              }'
+            comment: Persists and applies the selected language
+        ↓LangEN [ngx.components.UIDynamicElement-1807000000024]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:en"}'
+          comment: English language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1807000000025]: 
+            comment: Translation key for the English option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_English
+        ↓LangFR [ngx.components.UIDynamicElement-1807000000026]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:fr"}'
+          comment: French language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1807000000027]: 
+            comment: Translation key for the French option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_French
+        ↓LangIT [ngx.components.UIDynamicElement-1807000000028]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:it"}'
+          comment: Italian language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1807000000029]: 
+            comment: Translation key for the Italian option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Italian
+        ↓LangES [ngx.components.UIDynamicElement-1807000000030]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:es"}'
+          comment: Spanish language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1807000000031]: 
+            comment: Translation key for the Spanish option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Spanish
+↓Content [ngx.components.UIDynamicElement-1807000000032]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓Style [ngx.components.UIStyle-1807000000033]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            '	--background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), .08) 0%, var(--ion-background-color) 300px);
+            '
+  ↓DemoOverviewCard [ngx.components.UIDynamicElement-1807000000034]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1807000000035]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1807000000036]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1807000000037]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1807000000038]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓ParagraphWhat [ngx.components.UIDynamicElement-1807000000039]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000040]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_KanbanBoard
+      ↓ParagraphScenarioTitle [ngx.components.UIDynamicElement-1807000000041]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000042]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Scenario_Title
+      ↓ParagraphScenario [ngx.components.UIDynamicElement-1807000000043]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000044]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Scenario_KanbanBoard
+  ↓ControlsCard [ngx.components.UIDynamicElement-1807000000045]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1807000000046]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1807000000047]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1807000000048]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Params_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1807000000049]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓StatusText [ngx.components.UIDynamicElement-1807000000050]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000051]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:this.translate.instant(''Kanban_Status_DragEnabled'') + '' '' + (this.local["kanban:disabled"] ? this.translate.instant(''Kanban_No'') : this.translate.instant(''Kanban_Yes'')) + '' | '' + this.translate.instant(''Kanban_Status_ColumnSortEnabled'') + '' '' + (this.local["kanban:columnSort"] ? this.translate.instant(''Kanban_Yes'') : this.translate.instant(''Kanban_No''))'
+      ↓ActionButtons [ngx.components.UIDynamicElement-1807000000052]: 
+        beanData: '{"ionBean":"ButtonSet"}'
+        tagName: ion-buttons
+        ↓ShuffleButton [ngx.components.UIDynamicElement-1807000000053]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1807000000054]: 
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Kanban_Action_Shuffle
+          ↓Event [ngx.components.UIControlEvent-1807000000055]: 
+            ↓ShuffleItems [ngx.components.UICustomAction-1807000000056]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		var columns = Array.isArray(page.local["kanban:columns"]) ? page.local["kanban:columns"] : [];
+                      		var copy = [];
+                      		for (var i = 0; i < columns.length; i++) {
+                      			var col = columns[i] ? Object.assign({}, columns[i]) : {};
+                      			var cards = Array.isArray(col.cards) ? col.cards.slice() : [];
+                      			col.cards = cards;
+                      			copy.push(col);
+                      		}
+                      		var backlogIndex = 0;
+                      		for (var c = 0; c < copy.length; c++) {
+                      			if (copy[c] && Array.isArray(copy[c].cards) && copy[c].cards.length > 1) {
+                      				backlogIndex = c;
+                      				break;
+                      			}
+                      		}
+                      		var list = (copy[backlogIndex] && Array.isArray(copy[backlogIndex].cards)) ? copy[backlogIndex].cards : [];
+                      		for (var j = list.length - 1; j > 0; j--) {
+                      			var k = Math.floor(Math.random() * (j + 1));
+                      			var tmp = list[j];
+                      			list[j] = list[k];
+                      			list[k] = tmp;
+                      		}
+                      		page.local["kanban:columns"] = copy;
+                      		var labels = [];
+                      		for (var l = 0; l < copy.length; l++) {
+                      			var title = copy[l] && copy[l].title ? copy[l].title : (page.translate.instant("Kanban_Column_Label") + " " + (l + 1));
+                      			var count = copy[l] && Array.isArray(copy[l].cards) ? copy[l].cards.length : 0;
+                      			labels.push(title + " (" + count + ")");
+                      		}
+                      		page.local["kanban:summary"] = labels.join(" | ");
+                      		page.local["demo:lastEvent"] = page.translate.instant("Kanban_Event_Shuffled");
+                      		resolve();
+                      '
+        ↓ToggleDisableButton [ngx.components.UIDynamicElement-1807000000057]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1807000000058]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:this.local["kanban:disabled"] ? this.translate.instant(''Kanban_Action_EnableDrag'') : this.translate.instant(''Kanban_Action_DisableDrag'')'
+          ↓Event [ngx.components.UIControlEvent-1807000000059]: 
+            ↓ToggleDisable [ngx.components.UIDynamicAction-1807000000060]: 
+              beanData: |
+                '{
+                 "ionBean": "SetLocalAction",
+                 "Property": "plain:kanban:disabled",
+                 "Value": "script:!(this.local[''kanban:disabled''] === true)"
+                }'
+              ↓SetToggleDisableResult [ngx.components.UIDynamicAction-1807000000061]: 
+                beanData: |
+                  '{
+                   "ionBean": "SetLocalAction",
+                   "Property": "plain:demo:lastEvent",
+                   "Value": "script:this.local[''kanban:disabled''] ? this.translate.instant(''Kanban_Event_Disabled'') : this.translate.instant(''Kanban_Event_Enabled'')"
+                  }'
+        ↓ToggleColumnSortButton [ngx.components.UIDynamicElement-1807000000062]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1807000000063]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:this.local["kanban:columnSort"] ? this.translate.instant(''Kanban_Action_DisableColumnSort'') : this.translate.instant(''Kanban_Action_EnableColumnSort'')'
+          ↓Event [ngx.components.UIControlEvent-1807000000064]: 
+            ↓ToggleColumnSort [ngx.components.UIDynamicAction-1807000000065]: 
+              beanData: |
+                '{
+                 "ionBean": "SetLocalAction",
+                 "Property": "plain:kanban:columnSort",
+                 "Value": "script:!(this.local[''kanban:columnSort''] === true)"
+                }'
+              ↓SetToggleColumnSortResult [ngx.components.UIDynamicAction-1807000000066]: 
+                beanData: |
+                  '{
+                   "ionBean": "SetLocalAction",
+                   "Property": "plain:demo:lastEvent",
+                   "Value": "script:this.local[''kanban:columnSort''] ? this.translate.instant(''Kanban_Event_ColumnSortEnabled'') : this.translate.instant(''Kanban_Event_ColumnSortDisabled'')"
+                  }'
+        ↓ResetButton [ngx.components.UIDynamicElement-1807000000067]: 
+          beanData: |
+            '{
+             "ionBean": "Button",
+             "ButtonFormType": "plain",
+             "Disabled": "plain",
+             "IonSize": "plain:small"
+            }'
+          tagName: ion-button
+          ↓Text [ngx.components.UIText-1807000000068]: 
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Demo_Reset
+          ↓Event [ngx.components.UIControlEvent-1807000000069]: 
+            ↓ResetItems [ngx.components.UICustomAction-1807000000070]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		var defaultColumns = [
+                      			{
+                      				id: "backlog",
+                      				title: page.translate.instant("Kanban_Column_Backlog"),
+                      				cards: [
+                      					{id: "k1", title: page.translate.instant("Kanban_Card_Discovery")},
+                      					{id: "k2", title: page.translate.instant("Kanban_Card_Design")},
+                      					{id: "k3", title: page.translate.instant("Kanban_Card_APIs")}
+                      				]
+                      			},
+                      			{
+                      				id: "progress",
+                      				title: page.translate.instant("Kanban_Column_InProgress"),
+                      				cards: [
+                      					{id: "k4", title: page.translate.instant("Kanban_Card_Implement")},
+                      					{id: "k5", title: page.translate.instant("Kanban_Card_Tests")}
+                      				]
+                      			},
+                      			{
+                      				id: "review",
+                      				title: page.translate.instant("Kanban_Column_Review"),
+                      				cards: [
+                      					{id: "k6", title: page.translate.instant("Kanban_Card_Review")}
+                      				]
+                      			},
+                      			{
+                      				id: "done",
+                      				title: page.translate.instant("Kanban_Column_Done"),
+                      				cards: [
+                      					{id: "k7", title: page.translate.instant("Kanban_Card_Release")}
+                      				]
+                      			}
+                      		];
+                      		var labels = [];
+                      		for (var i = 0; i < defaultColumns.length; i++) {
+                      			var title = defaultColumns[i].title;
+                      			var count = defaultColumns[i].cards.length;
+                      			labels.push(title + " (" + count + ")");
+                      		}
+                      		page.local["kanban:columns"] = defaultColumns;
+                      		page.local["kanban:options"] = {swapThreshold: 0.65};
+                      		page.local["kanban:disabled"] = false;
+                      		page.local["kanban:columnSort"] = true;
+                      		page.local["kanban:summary"] = labels.join(" | ");
+                      		page.local["demo:lastEvent"] = page.translate.instant("Kanban_Event_Reset");
+                      		resolve();
+                      '
+  ↓KanbanDemo [ngx.components.UIUseShared-1807000000071]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.kanbanBoard
+    ↓Style [ngx.components.UIStyle-1807000000072]: 
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '	display: block;
+              	padding: 10px;
+              	margin-bottom: 14px;
+              	border-radius: 16px;
+              	border: 1px solid rgba(120, 120, 120, 0.35);
+              	background: linear-gradient(160deg, rgba(var(--ion-color-primary-rgb), .08) 0%, rgba(var(--ion-color-tertiary-rgb), .06) 100%);
+              '
+    ↓columns [ngx.components.UIUseVariable-1807000000073]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local['kanban:columns']
+    ↓options [ngx.components.UIUseVariable-1807000000074]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local['kanban:options']
+    ↓width [ngx.components.UIUseVariable-1807000000075]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'100%'
+    ↓id [ngx.components.UIUseVariable-1807000000076]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'demo-kanban-board'
+    ↓animation [ngx.components.UIUseVariable-1807000000077]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:180
+    ↓disabled [ngx.components.UIUseVariable-1807000000078]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local['kanban:disabled']
+    ↓emptyColumnText [ngx.components.UIUseVariable-1807000000079]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.translate.instant('Kanban_Empty_Text')
+    ↓columnSort [ngx.components.UIUseVariable-1807000000080]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.local['kanban:columnSort']
+    ↓Event [ngx.components.UIControlEvent-1807000000081]: 
+      attrName: (BoardChanged)
+      eventName: BoardChanged
+      ↓HandleBoardChanged [ngx.components.UICustomAction-1807000000082]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		var payload = event ? event : {};
+                		if (Array.isArray(payload)) {
+                			page.local["kanban:columns"] = payload;
+                		}
+                		var columns = Array.isArray(page.local["kanban:columns"]) ? page.local["kanban:columns"] : [];
+                		var summary = [];
+                		for (var i = 0; i < columns.length; i++) {
+                			var title = columns[i] && columns[i].title ? columns[i].title : (page.translate.instant("Kanban_Column_Label") + " " + (i + 1));
+                			var count = columns[i] && Array.isArray(columns[i].cards) ? columns[i].cards.length : 0;
+                			summary.push(title + " (" + count + ")");
+                		}
+                		page.local["kanban:summary"] = summary.join(" | ");
+                		page.local["demo:lastEvent"] = page.translate.instant("Kanban_Event_BoardChanged") + " " + columns.length;
+                		resolve();
+                '
+    ↓Event1 [ngx.components.UIControlEvent-1807000000083]: 
+      attrName: (CardClicked)
+      eventName: CardClicked
+      ↓HandleCardClicked [ngx.components.UIDynamicAction-1807000000084]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:this.translate.instant(''Kanban_Event_CardClicked'') + '' '' + ((event && event.card && event.card.title) ? event.card.title : this.translate.instant(''Kanban_NotAvailable''))"
+          }'
+    ↓Event2 [ngx.components.UIControlEvent-1807000000085]: 
+      attrName: (CardMoved)
+      eventName: CardMoved
+      ↓HandleCardMoved [ngx.components.UIDynamicAction-1807000000086]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:kanban:columns",
+           "Value": "script:(event && event.columns && Array.isArray(event.columns)) ? event.columns : this.local[''kanban:columns'']"
+          }'
+        ↓SetCardMovedResult [ngx.components.UIDynamicAction-1807000000087]: 
+          beanData: |
+            '{
+             "ionBean": "SetLocalAction",
+             "Property": "plain:demo:lastEvent",
+             "Value": "script:this.translate.instant(''Kanban_Event_CardMoved'') + '' '' + ((event && event.fromColumnIndex != undefined) ? event.fromColumnIndex : ''?'') + '' -> '' + ((event && event.toColumnIndex != undefined) ? event.toColumnIndex : ''?'')"
+            }'
+    ↓Event3 [ngx.components.UIControlEvent-1807000000088]: 
+      attrName: (ColumnOrderChanged)
+      eventName: ColumnOrderChanged
+      ↓HandleColumnOrderChanged [ngx.components.UIDynamicAction-1807000000089]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:kanban:columns",
+           "Value": "script:(event && event.columns && Array.isArray(event.columns)) ? event.columns : this.local[''kanban:columns'']"
+          }'
+        ↓SetColumnOrderResult [ngx.components.UIDynamicAction-1807000000090]: 
+          beanData: |
+            '{
+             "ionBean": "SetLocalAction",
+             "Property": "plain:demo:lastEvent",
+             "Value": "script:this.translate.instant(''Kanban_Event_ColumnOrderChanged'') + '' '' + ((event && event.oldIndex != undefined) ? event.oldIndex : ''?'') + '' -> '' + ((event && event.newIndex != undefined) ? event.newIndex : ''?'')"
+            }'
+    ↓Event4 [ngx.components.UIControlEvent-1807000000091]: 
+      attrName: (ColumnClicked)
+      eventName: ColumnClicked
+      ↓HandleColumnClicked [ngx.components.UIDynamicAction-1807000000092]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:this.translate.instant(''Kanban_Event_ColumnClicked'') + '' '' + ((event && event.column && event.column.title) ? event.column.title : this.translate.instant(''Kanban_NotAvailable''))"
+          }'
+  ↓ResultCard [ngx.components.UIDynamicElement-1807000000093]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1807000000094]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1807000000095]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1807000000096]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Events_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1807000000097]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓ResultSummary [ngx.components.UIDynamicElement-1807000000098]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000099]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:this.local["demo:lastEvent"] ? this.local["demo:lastEvent"] : this.translate.instant(''Kanban_Event_Hint'')'
+      ↓OrderSummary [ngx.components.UIDynamicElement-1807000000100]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1807000000101]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:this.local["kanban:summary"] ? (this.translate.instant(''Kanban_Columns_Label'') + this.local["kanban:summary"]) : ""'
+↓PageEvent [ngx.components.UIPageEvent-1807000000102]: 
+  ↓InitializeDemo [ngx.components.UIDynamicAction-1807000000103]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:kanban:columns",
+       "Value": "script:[{id:''backlog'', title:this.translate.instant(''Kanban_Column_Backlog''), cards:[{id:''k1'', title:this.translate.instant(''Kanban_Card_Discovery'')}, {id:''k2'', title:this.translate.instant(''Kanban_Card_Design'')}, {id:''k3'', title:this.translate.instant(''Kanban_Card_APIs'')}]}, {id:''progress'', title:this.translate.instant(''Kanban_Column_InProgress''), cards:[{id:''k4'', title:this.translate.instant(''Kanban_Card_Implement'')}, {id:''k5'', title:this.translate.instant(''Kanban_Card_Tests'')}]}, {id:''review'', title:this.translate.instant(''Kanban_Column_Review''), cards:[{id:''k6'', title:this.translate.instant(''Kanban_Card_Review'')}]}, {id:''done'', title:this.translate.instant(''Kanban_Column_Done''), cards:[{id:''k7'', title:this.translate.instant(''Kanban_Card_Release'')}] }]"
+      }'
+    ↓SetOptions [ngx.components.UIDynamicAction-1807000000104]: 
+      beanData: |
+        '{
+         "ionBean": "SetLocalAction",
+         "Property": "plain:kanban:options",
+         "Value": "script:{swapThreshold: 0.65}"
+        }'
+      ↓SetDisabled [ngx.components.UIDynamicAction-1807000000105]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:kanban:disabled",
+           "Value": "script:false"
+          }'
+        ↓SetColumnSort [ngx.components.UIDynamicAction-1807000000106]: 
+          beanData: |
+            '{
+             "ionBean": "SetLocalAction",
+             "Property": "plain:kanban:columnSort",
+             "Value": "script:true"
+            }'
+          ↓SetSummary [ngx.components.UIDynamicAction-1807000000107]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:kanban:summary",
+               "Value": "script:[this.translate.instant(''Kanban_Column_Backlog'') + '' (3)'', this.translate.instant(''Kanban_Column_InProgress'') + '' (2)'', this.translate.instant(''Kanban_Column_Review'') + '' (1)'', this.translate.instant(''Kanban_Column_Done'') + '' (1)''].join('' | '')"
+              }'
+            ↓SetReadyText [ngx.components.UIDynamicAction-1807000000108]: 
+              beanData: |
+                '{
+                 "ionBean": "SetLocalAction",
+                 "Property": "plain:demo:lastEvent",
+                 "Value": "script:this.translate.instant(''Kanban_Event_Ready'')"
+                }'

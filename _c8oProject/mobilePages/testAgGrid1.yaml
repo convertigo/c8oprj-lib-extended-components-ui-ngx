@@ -332,13 +332,10 @@ title: AgGrid Editors
     ↓Event [ngx.components.UIControlEvent-1799200000030]: 
       attrName: (CellClicked)
       eventName: CellClicked
-      ↓SetDemoEvent [ngx.components.UICustomAction-1799200000031]: 
-        actionValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-                		page.local["demo:lastEvent"] = {type: "CellClicked", rowIndex: event.rowIndex, column: event.column && event.column.colId ? event.column.colId : ""};
-                		resolve();
-                '
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1799200000031]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:{type: ''CellClicked'', rowIndex: event && event.rowIndex != undefined ? event.rowIndex : '''', column: event && event.column && event.column.colId ? event.column.colId : ''''}"
+          }'

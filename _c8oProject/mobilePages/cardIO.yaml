@@ -280,21 +280,10 @@ title: CardIO
        "message": "script:stack[''root''].out && stack[''root''].out.error ? stack[''root''].out.error : (''Card detected: '' + (stack[''root''].out && stack[''root''].out.cardNumber ? stack[''root''].out.cardNumber : ''n\/a''))",
        "cssClass": "plain:"
       }'
-  ↓SetDemoEvent [ngx.components.UICustomAction-1799200000010]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
-            		var out = props.out || {};
-            		page.local["demo:lastEvent"] = {
-            			type: out.type ? out.type : "card_scan",
-            			mode: out.type == "web_fallback" ? "web" : "device",
-            			cardNumber: out.cardNumber ? out.cardNumber : "",
-            			expiryDate: out.expiryDate ? out.expiryDate : "",
-            			error: out.error ? out.error : "",
-            			message: out.error ? out.error : "Card scan completed"
-            		};
-            		resolve();
-            '
+  ↓SetDemoEvent [ngx.components.UIDynamicAction-1799200000010]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:demo:lastEvent",
+       "Value": "script:{type: stack[''root''] && stack[''root''].out && stack[''root''].out.type ? stack[''root''].out.type : ''card_scan'', mode: stack[''root''] && stack[''root''].out && stack[''root''].out.type == ''web_fallback'' ? ''web'' : ''device'', cardNumber: stack[''root''] && stack[''root''].out && stack[''root''].out.cardNumber ? stack[''root''].out.cardNumber : '''', expiryDate: stack[''root''] && stack[''root''].out && stack[''root''].out.expiryDate ? stack[''root''].out.expiryDate : '''', error: stack[''root''] && stack[''root''].out && stack[''root''].out.error ? stack[''root''].out.error : '''', message: stack[''root''] && stack[''root''].out && stack[''root''].out.error ? stack[''root''].out.error : ''Card scan completed''}"
+      }'

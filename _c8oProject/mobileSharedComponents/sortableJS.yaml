@@ -1,0 +1,419 @@
+comment: |
+  Shared component wrapping SortableJS for drag-and-drop list ordering.
+  Pass items as an array or as a JSON string.
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        declare var window: any;
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	public sortableInstance: any;
+        	public sortableElementId: string = "";
+        	public renderedItems: any[] = [];
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		this.destroySortable();
+        	/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		if (changes["id"] && this.id && this.id !== "" && this.id !== this.sortableElementId) {
+        			this.sortableElementId = this.id;
+        		}
+        		if (this.sortableElementId && (changes["items"] || changes["options"] || changes["width"] || changes["height"] || changes["id"] || changes["animation"] || changes["disabled"] || changes["sort"] || changes["handle"] || changes["ghostClass"] || changes["chosenClass"] || changes["dragClass"] || changes["emptyText"] || changes["emitItemsOnChange"])) {
+        			setTimeout(() => this.renderSortable(), 0);
+        		}
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	public ensureElementId(): void {
+        		if (this.id != undefined && this.id != null && this.id !== "") {
+        			this.sortableElementId = this.id;
+        			return;
+        		}
+        		if (!this.sortableElementId) {
+        			this.sortableElementId = "sortablejs-" + Date.now();
+        		}
+        	}
+        
+        	public destroySortable(): void {
+        		if (this.sortableInstance && typeof this.sortableInstance.destroy === "function") {
+        			this.sortableInstance.destroy();
+        		}
+        		this.sortableInstance = null;
+        	}
+        
+        	public parseArray(value: any, fallback: any[] = []): any[] {
+        		if (Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string" && value.trim() !== "") {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return Array.isArray(parsed) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn("[MB] sortableJS invalid items JSON: " + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public parseObject(value: any, fallback: any = {}): any {
+        		if (value != null && typeof value === "object" && !Array.isArray(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string" && value.trim() !== "") {
+        			try {
+        				var parsed = JSON.parse(value);
+        				return (parsed != null && typeof parsed === "object" && !Array.isArray(parsed)) ? parsed : fallback;
+        			} catch (e) {
+        				this.c8o.log.warn("[MB] sortableJS invalid options JSON: " + e);
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public coerceBoolean(value: any, fallback: boolean): boolean {
+        		if (typeof value === "boolean") {
+        			return value;
+        		}
+        		if (typeof value === "string") {
+        			if (value.toLowerCase() === "true") {
+        				return true;
+        			}
+        			if (value.toLowerCase() === "false") {
+        				return false;
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public toNumber(value: any, fallback: number): number {
+        		if (typeof value === "number" && !isNaN(value)) {
+        			return value;
+        		}
+        		if (typeof value === "string") {
+        			var parsed = parseFloat(value);
+        			if (!isNaN(parsed)) {
+        				return parsed;
+        			}
+        		}
+        		return fallback;
+        	}
+        
+        	public resolveItemLabel(item: any, index: number): string {
+        		if (item == null) {
+        			return "Item " + (index + 1);
+        		}
+        		if (typeof item === "string" || typeof item === "number" || typeof item === "boolean") {
+        			return "" + item;
+        		}
+        		if (typeof item === "object") {
+        			if (item.label != undefined && item.label != null) {
+        				return "" + item.label;
+        			}
+        			if (item.name != undefined && item.name != null) {
+        				return "" + item.name;
+        			}
+        			if (item.title != undefined && item.title != null) {
+        				return "" + item.title;
+        			}
+        		}
+        		return "Item " + (index + 1);
+        	}
+        
+        	public getCurrentOrder(list: any): any[] {
+        		var ordered: any[] = [];
+        		if (!list) {
+        			return ordered;
+        		}
+        		var nodes = list.querySelectorAll(".sortablejs-item");
+        		for (var i = 0; i < nodes.length; i++) {
+        			var node: any = nodes[i];
+        			var originalIndex = parseInt(node.getAttribute("data-index"), 10);
+        			if (!isNaN(originalIndex) && this.renderedItems[originalIndex] != undefined) {
+        				ordered.push(this.renderedItems[originalIndex]);
+        				node.setAttribute("data-index", "" + (ordered.length - 1));
+        			}
+        		}
+        		return ordered;
+        	}
+        
+        	public renderSortable(): void {
+        		try {
+        			this.ensureElementId();
+        			var container = document.getElementById(this.sortableElementId);
+        			if (!container) {
+        				return;
+        			}
+        			this.destroySortable();
+        			container.innerHTML = "";
+        			var list = document.createElement("div");
+        			list.className = "sortablejs-list";
+        			var sourceItems = this.parseArray(this.items, []);
+        			this.renderedItems = sourceItems.slice();
+        
+        			if (this.renderedItems.length === 0) {
+        				var empty = document.createElement("div");
+        				empty.className = "sortablejs-empty";
+        				empty.innerText = (this.emptyText != undefined && this.emptyText != null && this.emptyText !== "") ? ("" + this.emptyText) : "Drop items here";
+        				list.appendChild(empty);
+        			} else {
+        				for (var i = 0; i < this.renderedItems.length; i++) {
+        					var item = this.renderedItems[i];
+        					var row = document.createElement("div");
+        					row.className = "sortablejs-item";
+        					row.setAttribute("data-index", "" + i);
+        					row.innerText = this.resolveItemLabel(item, i);
+        					((itemIndex: number, payload: any, element: any) => {
+        						element.addEventListener("click", () => {
+        							this.ItemClicked.emit({index: itemIndex, item: payload});
+        						});
+        					})(i, item, row);
+        					list.appendChild(row);
+        				}
+        			}
+        			container.appendChild(list);
+        
+        			var SortableCtor = window["Sortable"];
+        			if (!SortableCtor) {
+        				this.c8o.log.warn("[MB] sortableJS script is not loaded yet");
+        				return;
+        			}
+        
+        			var userOptions = this.parseObject(this.options, {});
+        			var mergedOptions = {
+        				animation: this.toNumber(this.animation, 150),
+        				disabled: this.coerceBoolean(this.disabled, false),
+        				sort: this.coerceBoolean(this.sort, true),
+        				handle: (this.handle != undefined && this.handle != null && this.handle !== "") ? this.handle : undefined,
+        				ghostClass: (this.ghostClass != undefined && this.ghostClass != null && this.ghostClass !== "") ? this.ghostClass : "sortablejs-ghost",
+        				chosenClass: (this.chosenClass != undefined && this.chosenClass != null && this.chosenClass !== "") ? this.chosenClass : "sortablejs-chosen",
+        				dragClass: (this.dragClass != undefined && this.dragClass != null && this.dragClass !== "") ? this.dragClass : "sortablejs-drag",
+        				onStart: (evt: any) => {
+        					var idx = evt && evt.oldIndex != undefined ? evt.oldIndex : -1;
+        					var startItem = (idx >= 0 && idx < this.renderedItems.length) ? this.renderedItems[idx] : null;
+        					this.DragStarted.emit({oldIndex: idx, item: startItem, items: this.renderedItems.slice()});
+        				},
+        				onEnd: (evt: any) => {
+        					var ordered = this.getCurrentOrder(list);
+        					if (ordered.length > 0 || this.renderedItems.length === 0) {
+        						this.renderedItems = ordered.slice();
+        					}
+        					var payload = {
+        						oldIndex: evt && evt.oldIndex != undefined ? evt.oldIndex : -1,
+        						newIndex: evt && evt.newIndex != undefined ? evt.newIndex : -1,
+        						items: this.renderedItems.slice()
+        					};
+        					this.OrderChanged.emit(payload);
+        					this.DragEnded.emit(payload);
+        					if (this.coerceBoolean(this.emitItemsOnChange, true)) {
+        						this.ItemsChanged.emit(this.renderedItems.slice());
+        					}
+        				}
+        			};
+        
+        			mergedOptions = {
+        				...mergedOptions,
+        				...userOptions
+        			};
+        
+        			this.sortableInstance = new SortableCtor(list, mergedOptions);
+        		} catch (e) {
+        			this.c8o.log.warn("[MB] sortableJS render failed: " + e);
+        		}
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓items [ngx.components.UICompVariable-1802000000001]: 
+  comment: <p>Array of draggable items (array or JSON string).</p><p><b>Example:</b> <code>[{&quot;label&quot;:&quot;Backlog&quot;},{&quot;label&quot;:&quot;In Progress&quot;},{&quot;label&quot;:&quot;Done&quot;}]</code></p>
+  value: '[{"label":"Backlog"},{"label":"In Progress"},{"label":"Review"},{"label":"Done"}]'
+↓options [ngx.components.UICompVariable-1802000000002]: 
+  comment: <p>Optional SortableJS options object (object or JSON string).</p><p><b>Example:</b> <code>{&quot;swapThreshold&quot;:0.65}</code></p>
+  value: '{}'
+↓width [ngx.components.UICompVariable-1802000000003]: 
+  comment: <p>Container width.</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
+  value: '''100%'''
+↓height [ngx.components.UICompVariable-1802000000004]: 
+  comment: <p>Container height.</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>
+  value: '''auto'''
+↓id [ngx.components.UICompVariable-1802000000005]: 
+  comment: <p>Optional HTML id for the sortable container.</p><p><b>Example:</b> <code>&#x27;my-sortable&#x27;</code></p>
+↓animation [ngx.components.UICompVariable-1802000000006]: 
+  comment: <p>Animation duration in milliseconds.</p><p><b>Example:</b> <code>180</code></p>
+  value: 150
+↓disabled [ngx.components.UICompVariable-1802000000007]: 
+  comment: <p>Disables drag and drop when true.</p><p><b>Example:</b> <code>false</code></p>
+  value: false
+↓sort [ngx.components.UICompVariable-1802000000008]: 
+  comment: <p>Allows sorting when true.</p><p><b>Example:</b> <code>true</code></p>
+  value: true
+↓handle [ngx.components.UICompVariable-1802000000009]: 
+  comment: <p>Optional CSS selector for drag handles.</p><p><b>Example:</b> <code>&#x27;.drag-handle&#x27;</code></p>
+↓ghostClass [ngx.components.UICompVariable-1802000000010]: 
+  comment: <p>CSS class applied to the ghost element.</p><p><b>Example:</b> <code>&#x27;sortablejs-ghost&#x27;</code></p>
+  value: '''sortablejs-ghost'''
+↓chosenClass [ngx.components.UICompVariable-1802000000011]: 
+  comment: <p>CSS class applied to the chosen element.</p><p><b>Example:</b> <code>&#x27;sortablejs-chosen&#x27;</code></p>
+  value: '''sortablejs-chosen'''
+↓dragClass [ngx.components.UICompVariable-1802000000012]: 
+  comment: <p>CSS class applied while dragging.</p><p><b>Example:</b> <code>&#x27;sortablejs-drag&#x27;</code></p>
+  value: '''sortablejs-drag'''
+↓emptyText [ngx.components.UICompVariable-1802000000013]: 
+  comment: <p>Placeholder text when the list is empty.</p><p><b>Example:</b> <code>&#x27;Drop items here&#x27;</code></p>
+  value: '''Drop items here'''
+↓emitItemsOnChange [ngx.components.UICompVariable-1802000000014]: 
+  comment: <p>Emits <code>ItemsChanged</code> after each drop event when true.</p><p><b>Example:</b> <code>true</code></p>
+  value: true
+↓OrderChanged [ngx.components.UICompEvent-1802000000015]: 
+  attrName: OrderChanged
+  comment: Fired when the list order changes.
+↓DragStarted [ngx.components.UICompEvent-1802000000016]: 
+  attrName: DragStarted
+  comment: Fired when a drag operation starts.
+↓DragEnded [ngx.components.UICompEvent-1802000000017]: 
+  attrName: DragEnded
+  comment: Fired when a drag operation ends.
+↓ItemsChanged [ngx.components.UICompEvent-1802000000018]: 
+  attrName: ItemsChanged
+  comment: Fired with the reordered items array.
+↓ItemClicked [ngx.components.UICompEvent-1802000000019]: 
+  attrName: ItemClicked
+  comment: Fired when an item is clicked.
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1802000000020]: 
+  comment: Shared Component Event (UISharedComponentEvent).
+  ↓sortableJsImports [ngx.components.UICustomAction-1802000000021]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		page.ensureElementId();
+            		page.renderSortable();
+            		resolve();
+            
+    build_scripts: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/sortablejs/Sortable.min.js
+    comment: SortableJS Imports (UICustomAction).
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: sortablejs
+              - java.lang.String: 
+                - ↑value: 1.15.0
+↓SortableContainer [ngx.components.UIDynamicElement-1802000000022]: 
+  beanData: '{"ionBean":"DivTag"}'
+  comment: SortableJS Container (UIDynamicElement).
+  tagName: div
+  ↓Attr [ngx.components.UIAttribute-1802000000023]: 
+    attrName: '[attr.id]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.sortableElementId
+    comment: Attr (UIAttribute).
+  ↓Attr1 [ngx.components.UIAttribute-1802000000024]: 
+    attrName: '[style.width]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.width
+    comment: Attr1 (UIAttribute).
+  ↓Attr2 [ngx.components.UIAttribute-1802000000025]: 
+    attrName: '[style.height]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.height
+    comment: Attr2 (UIAttribute).
+  ↓Attr3 [ngx.components.UIAttribute-1802000000026]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:sortablejs-host
+    comment: Attr3 (UIAttribute).
+↓Style [ngx.components.UIStyle-1802000000027]: 
+  comment: Style (UIStyle).
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.sortablejs-host {
+            display: block;
+            min-height: 120px;
+            padding: 2px;
+          }
+          
+          :host ::ng-deep .sortablejs-list {
+            display: grid;
+            gap: 0.5rem;
+            align-content: start;
+          }
+          
+          :host ::ng-deep .sortablejs-item {
+            padding: 0.72rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid color-mix(in srgb, var(--tw-border, #d7d8da) 86%, transparent);
+            background: var(--tw-surface, var(--ion-card-background, #ffffff));
+            box-shadow: var(--tw-shadow-sm, 0 1px 2px rgba(0,0,0,.06));
+            color: var(--tw-text, var(--ion-text-color, #0f172a));
+            cursor: grab;
+            user-select: none;
+            transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+          }
+          
+          :host ::ng-deep .sortablejs-item:active {
+            cursor: grabbing;
+          }
+          
+          :host ::ng-deep .sortablejs-ghost {
+            opacity: .35;
+          }
+          
+          :host ::ng-deep .sortablejs-chosen {
+            border-color: color-mix(in srgb, var(--ion-color-primary, #2563eb) 58%, transparent);
+            box-shadow: 0 0 0 2px color-mix(in srgb, rgba(var(--ion-color-primary-rgb, 37,99,235), 0.22) 100%, transparent);
+          }
+          
+          :host ::ng-deep .sortablejs-drag {
+            opacity: .95;
+            transform: scale(1.01);
+            box-shadow: var(--tw-shadow-md, 0 8px 20px rgba(0,0,0,.12));
+          }
+          
+          :host ::ng-deep .sortablejs-empty {
+            padding: 0.75rem 0.9rem;
+            border: 1px dashed color-mix(in srgb, var(--tw-border, #d7d8da) 82%, transparent);
+            border-radius: 10px;
+            color: color-mix(in srgb, var(--tw-text-muted, #6b7280) 86%, transparent);
+            font-style: italic;
+          }
+          '
