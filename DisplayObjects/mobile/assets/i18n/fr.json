@@ -56,6 +56,13 @@
   "Demo_What_NgSelect": "ng-select demontre recherche sur gros jeu de donnees et virtual scroll.",
   "Demo_Scenario_NgSelect": "Recherchez dans 1000 elements et validez la selection.",
   "Page_FrappeGantt": "Frappe Gantt",
+  "Page_CyGraph": "Cy Graph",
+  "CyGraph_Demo_Title": "Demos CyGraph",
+  "CyGraph_Demo_Description": "Meme composant, layouts et jeux de donnees differents.",
+  "CyGraph_Layout_Grid": "Layout grille",
+  "CyGraph_Layout_Circle": "Layout cercle",
+  "CyGraph_Layout_Breadthfirst": "Layout breadthfirst",
+  "CyGraph_Layout_Preset": "Layout preset (positions fixes)",
   "Demo_What_FrappeGantt": "Frappe Gantt visualise un planning avec dependances et progression.",
   "Demo_Scenario_FrappeGantt": "Changez le mode de vue, randomisez la progression puis deplacez les barres pour voir les evenements."
 }

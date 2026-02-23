@@ -40,6 +40,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓tuiImageEditor [ngx.components.UISharedRegularComponent-1733927373662]: 🗏 mobileSharedComponents/tuiImageEditor.yaml
 ↓ngSelect [ngx.components.UISharedRegularComponent-1741619592591]: 🗏 mobileSharedComponents/ngSelect.yaml
 ↓frappeGantt [ngx.components.UISharedRegularComponent-1801000000020]: 🗏 mobileSharedComponents/frappeGantt.yaml
+↓cyGraph [ngx.components.UISharedRegularComponent-1801300000001]: 🗏 mobileSharedComponents/cyGraph.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
@@ -50,6 +51,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testMaterialSlider [ngx.components.PageComponent-1799901000001]: 🗏 mobilePages/testMaterialSlider.yaml
 ↓testDropZone [ngx.components.PageComponent-1799911000001]: 🗏 mobilePages/testDropZone.yaml
 ↓testFrappeGantt [ngx.components.PageComponent-1801200000400]: 🗏 mobilePages/testFrappeGantt.yaml
+↓testCyGraph [ngx.components.PageComponent-1801303000000]: 🗏 mobilePages/testCyGraph.yaml
 ↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
 ↓testNgSelect [ngx.components.PageComponent-1741619640644]: 🗏 mobilePages/testNgSelect.yaml
 ↓Style [ngx.components.UIStyle-1771498819195]: 
@@ -594,7 +596,14 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
             --tw-success: var(--ion-color-success, #2dd36f);
             --tw-warning: var(--ion-color-warning, #ffc409);
             --tw-danger: var(--ion-color-danger, #eb445a);
-          
+            /* Cytoscape graph tokens */
+            --tw-graph-bg: var(--tw-surface, #ffffff);
+            --tw-graph-border: var(--tw-border, #d7d8da);
+            --tw-graph-node-bg: var(--tw-primary, #3880ff);
+            --tw-graph-node-border: color-mix(in srgb, var(--tw-primary, #3880ff) 82%, #1e293b 18%);
+            --tw-graph-node-text: var(--tw-primary-contrast, #ffffff);
+            --tw-graph-edge: var(--tw-text-muted, #64748b);
+            --tw-graph-edge-arrow: var(--tw-graph-edge, #64748b);
             /* Focus ring */
             --tw-ring: 0 0 0 3px rgba(var(--ion-color-primary-rgb, 56, 128, 255), .25);
           }
@@ -613,7 +622,13 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
             --tw-shadow-sm: 0 1px 2px rgba(0,0,0,.35);
             --tw-shadow-md: 0 8px 20px rgba(0,0,0,.45);
             --tw-shadow-lg: 0 16px 40px rgba(0,0,0,.55);
-          
+            --tw-graph-bg: #0f172a;
+            --tw-graph-border: #334155;
+            --tw-graph-node-bg: #60a5fa;
+            --tw-graph-node-border: #3b82f6;
+            --tw-graph-node-text: #0f172a;
+            --tw-graph-edge: #64748b;
+            --tw-graph-edge-arrow: #64748b;
             --tw-ring: 0 0 0 3px rgba(var(--ion-color-primary-rgb, 66,140,255), .28);
             color-scheme: dark;
           }

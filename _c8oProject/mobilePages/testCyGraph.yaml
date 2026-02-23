@@ -1,0 +1,402 @@
+comment: Page demonstrating multiple Cytoscape cyGraph configurations
+segment: path-to-testcygraph
+title: Cy Graph
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	public gridElements: any = '[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"n9","label":"N9"}},{"data":{"id":"n10","label":"N10"}},{"data":{"id":"n11","label":"N11"}},{"data":{"id":"n12","label":"N12"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n4","target":"n5"}},{"data":{"id":"e4","source":"n5","target":"n6"}},{"data":{"id":"e5","source":"n7","target":"n8"}},{"data":{"id":"e6","source":"n8","target":"n9"}},{"data":{"id":"e7","source":"n10","target":"n11"}},{"data":{"id":"e8","source":"n11","target":"n12"}}]';
+        	public gridLayout: any = '{"name":"grid","fit":true,"padding":24,"rows":3}';
+        	public gridHeight: any = '300px';
+        	public gridId: any = 'cy-demo-grid';
+        	public circleElements: any = '[{"data":{"id":"n1","label":"N1"}},{"data":{"id":"n2","label":"N2"}},{"data":{"id":"n3","label":"N3"}},{"data":{"id":"n4","label":"N4"}},{"data":{"id":"n5","label":"N5"}},{"data":{"id":"n6","label":"N6"}},{"data":{"id":"n7","label":"N7"}},{"data":{"id":"n8","label":"N8"}},{"data":{"id":"e1","source":"n1","target":"n2"}},{"data":{"id":"e2","source":"n2","target":"n3"}},{"data":{"id":"e3","source":"n3","target":"n4"}},{"data":{"id":"e4","source":"n4","target":"n5"}},{"data":{"id":"e5","source":"n5","target":"n6"}},{"data":{"id":"e6","source":"n6","target":"n7"}},{"data":{"id":"e7","source":"n7","target":"n8"}},{"data":{"id":"e8","source":"n8","target":"n1"}}]';
+        	public circleLayout: any = '{"name":"circle","fit":true,"padding":24,"startAngle":-1.5708,"clockwise":true}';
+        	public circleHeight: any = '320px';
+        	public circleId: any = 'cy-demo-circle';
+        	public breadthfirstElements: any = '[{"data":{"id":"r","label":"Root"}},{"data":{"id":"a","label":"A"}},{"data":{"id":"b","label":"B"}},{"data":{"id":"c","label":"C"}},{"data":{"id":"a1","label":"A1"}},{"data":{"id":"a2","label":"A2"}},{"data":{"id":"b1","label":"B1"}},{"data":{"id":"b2","label":"B2"}},{"data":{"id":"c1","label":"C1"}},{"data":{"id":"c2","label":"C2"}},{"data":{"id":"e1","source":"r","target":"a"}},{"data":{"id":"e2","source":"r","target":"b"}},{"data":{"id":"e3","source":"r","target":"c"}},{"data":{"id":"e4","source":"a","target":"a1"}},{"data":{"id":"e5","source":"a","target":"a2"}},{"data":{"id":"e6","source":"b","target":"b1"}},{"data":{"id":"e7","source":"b","target":"b2"}},{"data":{"id":"e8","source":"c","target":"c1"}},{"data":{"id":"e9","source":"c","target":"c2"}}]';
+        	public breadthfirstLayout: any = '{"name":"breadthfirst","directed":true,"fit":true,"padding":24,"spacingFactor":1.2}';
+        	public breadthfirstHeight: any = '340px';
+        	public breadthfirstId: any = 'cy-demo-breadthfirst';
+        	public presetElements: any = '[{"data":{"id":"p1","label":"P1"},"position":{"x":40,"y":40}},{"data":{"id":"p2","label":"P2"},"position":{"x":180,"y":40}},{"data":{"id":"p3","label":"P3"},"position":{"x":320,"y":40}},{"data":{"id":"p4","label":"P4"},"position":{"x":80,"y":170}},{"data":{"id":"p5","label":"P5"},"position":{"x":220,"y":170}},{"data":{"id":"p6","label":"P6"},"position":{"x":360,"y":170}},{"data":{"id":"p7","label":"P7"},"position":{"x":220,"y":290}},{"data":{"id":"e1","source":"p1","target":"p4"}},{"data":{"id":"e2","source":"p2","target":"p5"}},{"data":{"id":"e3","source":"p3","target":"p6"}},{"data":{"id":"e4","source":"p4","target":"p7"}},{"data":{"id":"e5","source":"p5","target":"p7"}},{"data":{"id":"e6","source":"p6","target":"p7"}}]';
+        	public presetLayout: any = '{"name":"preset","fit":true,"padding":24}';
+        	public presetHeight: any = '340px';
+        	public presetId: any = 'cy-demo-preset';
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        	/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+↓Header [ngx.components.UIDynamicElement-1491634212350]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Top page header container
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1491634231108]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    comment: Main toolbar displayed in the header
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1588171103814]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      comment: Left toolbar button group
+      tagName: ion-buttons
+      ↓BackButton [ngx.components.UIDynamicElement-1643993281257]: 
+        beanData: '{"ionBean":"BackButton"}'
+        comment: Navigates to the previous page when available
+        tagName: ion-back-button
+      ↓MenuButton [ngx.components.UIDynamicElement-1588172846908]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        comment: Toggles the side navigation menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1491634265317]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      comment: Title container displayed in the toolbar
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1491634275121]: 
+        comment: Translated page title key
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Page_CyGraph
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1588170811054]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      comment: Right toolbar button group
+      tagName: ion-buttons
+      ↓ThemeSwitchButton [ngx.components.UIDynamicElement-1770984415378]: 
+        beanData: '{"ionBean":"Button","IonFill":"plain:clear"}'
+        comment: Toggles between light and dark themes
+        tagName: ion-button
+        ↓Class [ngx.components.UIAttribute-1770984415381]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-theme-button
+          comment: CSS class used to style the theme button
+        ↓Aria [ngx.components.UIAttribute-1770984415384]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? this.translate.instant(''Theme_Switch_To_Light'') : this.translate.instant(''Theme_Switch_To_Dark'')'
+          comment: Accessibility label describing the next theme action
+        ↓Event [ngx.components.UIControlEvent-1770984415387]: 
+          comment: Click handler for theme switching
+          ↓SetTheme [ngx.components.UIDynamicAction-1770984415390]: 
+            beanData: '{"ionBean":"SetThemeAction","dark":"script:!(this.global && this.global.themeDark)"}'
+            comment: Applies the opposite theme mode
+        ↓ThemeIcon [ngx.components.UIDynamicElement-1770984415393]: 
+          beanData: '{"ionBean":"Icon","IconName":"script:this?.global?.themeDark ? ''sunny-outline'' : ''moon-outline''"}'
+          comment: Dynamic icon reflecting the active theme
+          tagName: ion-icon
+          ↓IconName [ngx.components.UIAttribute-1770984415396]: 
+            attrName: '[name]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? ''sunny-outline'' : ''moon-outline'''
+            comment: Binds the icon name to the current theme state
+      ↓LanguageSelector [ngx.components.UIDynamicElement-1770984415399]: 
+        beanData: |
+          '{
+           "ionBean": "Select",
+           "ControlName": "plain:name1770915137820",
+           "Justify": "plain:start"
+          }'
+        comment: Language selector displayed in the toolbar
+        tagName: ion-select
+        ↓Class [ngx.components.UIAttribute-1770984415402]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-lang-select
+          comment: CSS class used to style the language selector
+        ↓Aria [ngx.components.UIAttribute-1770984415405]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'Language' | translate
+          comment: Accessibility label for language selection
+        ↓Interface [ngx.components.UIAttribute-1770984415408]: 
+          attrName: '[interface]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'popover'
+          comment: Uses popover mode for option rendering
+        ↓Value [ngx.components.UIAttribute-1770984415411]: 
+          attrName: '[value]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.global.currentLanguage() ?? 'en'
+          comment: Current selected language bound to global state
+        ↓SelectedText [ngx.components.UIAttribute-1771328000001]: 
+          attrName: '[selectedText]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:(this.global?.getLanguageLabelKey() ??  'Lang_English') | translate
+          comment: Localized label shown for the selected language
+        ↓ChangeEvent [ngx.components.UIControlEvent-1770984415414]: 
+          attrName: (ionChange)
+          comment: Triggered when the selected language changes
+          eventName: ionChange
+          ↓SetLanguage [ngx.components.UIDynamicAction-1770984415417]: 
+            beanData: |
+              '{
+               "ionBean": "SetLanguageAction",
+               "language": "script:event.detail.value",
+               "storageKey": "plain:c8o-lang",
+               "globalProperty": "plain:currentLanguage"
+              }'
+            comment: Persists and applies the selected language
+        ↓LangEN [ngx.components.UIDynamicElement-1770984415420]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:en"}'
+          comment: English language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1770984415423]: 
+            comment: Translation key for the English option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_English
+        ↓LangFR [ngx.components.UIDynamicElement-1770984415426]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:fr"}'
+          comment: French language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1770984415429]: 
+            comment: Translation key for the French option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_French
+        ↓LangIT [ngx.components.UIDynamicElement-1770984415432]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:it"}'
+          comment: Italian language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1770984415435]: 
+            comment: Translation key for the Italian option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Italian
+        ↓LangES [ngx.components.UIDynamicElement-1770984415438]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:es"}'
+          comment: Spanish language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1770984415441]: 
+            comment: Translation key for the Spanish option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Spanish
+↓Content [ngx.components.UIDynamicElement-1801303000001]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓Style [ngx.components.UIStyle-1801303000002]: 
+    styleContent: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            'ion-card {
+              margin-bottom: 16px;
+            }
+            '
+  ↓IntroCard [ngx.components.UIDynamicElement-1801303000003]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1801303000004]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1801303000005]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1801303000006]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Demo_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1801303000007]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓Paragraph [ngx.components.UIDynamicElement-1801303000008]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1801303000009]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Demo_Description
+  ↓GridCard [ngx.components.UIDynamicElement-1801303000010]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1801303000011]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1801303000012]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1801303000013]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Layout_Grid
+    ↓CardContent [ngx.components.UIDynamicElement-1801303000014]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓CyGrid [ngx.components.UIUseShared-1801303000015]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cyGraph
+        ↓elements [ngx.components.UIUseVariable-1801303000016]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.gridElements
+        ↓layout [ngx.components.UIUseVariable-1801303000017]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.gridLayout
+        ↓height [ngx.components.UIUseVariable-1801303000018]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.gridHeight
+        ↓id [ngx.components.UIUseVariable-1801303000019]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.gridId
+  ↓CircleCard [ngx.components.UIDynamicElement-1801303000020]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1801303000021]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1801303000022]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1801303000023]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Layout_Circle
+    ↓CardContent [ngx.components.UIDynamicElement-1801303000024]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓CyCircle [ngx.components.UIUseShared-1801303000025]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cyGraph
+        ↓elements [ngx.components.UIUseVariable-1801303000026]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.circleElements
+        ↓layout [ngx.components.UIUseVariable-1801303000027]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.circleLayout
+        ↓height [ngx.components.UIUseVariable-1801303000028]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.circleHeight
+        ↓id [ngx.components.UIUseVariable-1801303000029]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.circleId
+  ↓BreadthfirstCard [ngx.components.UIDynamicElement-1801303000030]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1801303000031]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1801303000032]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1801303000033]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Layout_Breadthfirst
+    ↓CardContent [ngx.components.UIDynamicElement-1801303000034]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓CyBreadthfirst [ngx.components.UIUseShared-1801303000035]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cyGraph
+        ↓elements [ngx.components.UIUseVariable-1801303000036]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.breadthfirstElements
+        ↓layout [ngx.components.UIUseVariable-1801303000037]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.breadthfirstLayout
+        ↓height [ngx.components.UIUseVariable-1801303000038]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.breadthfirstHeight
+        ↓id [ngx.components.UIUseVariable-1801303000039]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.breadthfirstId
+  ↓PresetCard [ngx.components.UIDynamicElement-1801303000040]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1801303000041]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1801303000042]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1801303000043]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:CyGraph_Layout_Preset
+    ↓CardContent [ngx.components.UIDynamicElement-1801303000044]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓CyPreset [ngx.components.UIUseShared-1801303000045]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.cyGraph
+        ↓elements [ngx.components.UIUseVariable-1801303000046]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.presetElements
+        ↓layout [ngx.components.UIUseVariable-1801303000047]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.presetLayout
+        ↓height [ngx.components.UIUseVariable-1801303000048]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.presetHeight
+        ↓id [ngx.components.UIUseVariable-1801303000049]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.presetId

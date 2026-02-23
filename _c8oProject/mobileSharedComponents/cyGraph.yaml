@@ -1,0 +1,387 @@
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        declare var window: any;
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        public cyInstance: any;
+        public cyRenderTimer: any;
+        public cyRenderRetry: any;
+        public cyThemeObserver: any;
+        /*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        /*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        this.cyRenderTimer = null;
+        this.cyRenderRetry = 0;
+        this.cyThemeObserver = null;
+        /*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        if (this.cyRenderTimer != null) {
+        	clearTimeout(this.cyRenderTimer);
+        	this.cyRenderTimer = null;
+        }
+        if (this.cyInstance && typeof this.cyInstance.destroy === "function") {
+        	this.cyInstance.destroy();
+        }
+        if (this.cyThemeObserver && typeof this.cyThemeObserver.disconnect === "function") {
+        	this.cyThemeObserver.disconnect();
+        }
+        this.cyThemeObserver = null;
+        this.cyInstance = null;
+        this.cyRenderRetry = 0;
+        /*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        this.queueCyRender();
+        /*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        /*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        /*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        /*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        this.setupThemeObserver();
+        this.queueCyRender();
+        /*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        /*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        queueCyRender() {
+        	if (this.cyRenderTimer != null) {
+        		clearTimeout(this.cyRenderTimer);
+        		this.cyRenderTimer = null;
+        	}
+        	var self = this;
+        	this.cyRenderTimer = setTimeout(function() {
+        		self.cyRenderTimer = null;
+        		self.renderCyGraph();
+        	}, 0);
+        }
+        parseCyValue(value, fallback) {
+        	if (value == null) {
+        		return fallback;
+        	}
+        	if (typeof value === "string" && value.trim() !== "") {
+        		try {
+        			return JSON.parse(value);
+        		} catch (e) {
+        			return fallback;
+        		}
+        	}
+        	return value;
+        }
+        coerceCyBoolean(value, fallback) {
+        	if (typeof value === "boolean") {
+        		return value;
+        	}
+        	if (typeof value === "string") {
+        		return value.toLowerCase() === "true";
+        	}
+        	return fallback;
+        }
+        readCssVar(name, fallback) {
+        	try {
+        		var value = "";
+        		if (this.cyHost && this.cyHost.nativeElement) {
+        			value = getComputedStyle(this.cyHost.nativeElement).getPropertyValue(name) || "";
+        		}
+        		if ((value == null || String(value).trim() === "") && typeof document !== "undefined" && document.documentElement) {
+        			value = getComputedStyle(document.documentElement).getPropertyValue(name) || "";
+        		}
+        		value = value == null ? "" : String(value).trim();
+        		return value !== "" ? value : fallback;
+        	} catch (e) {
+        		return fallback;
+        	}
+        }
+        getDefaultStyle() {
+        	var nodeColor = this.readCssVar("--tw-graph-node-bg", this.readCssVar("--ion-color-primary", "#1d4ed8"));
+        	var nodeBorderColor = this.readCssVar("--tw-graph-node-border", nodeColor);
+        	var nodeTextColor = this.readCssVar("--tw-graph-node-text", this.readCssVar("--ion-color-primary-contrast", "#ffffff"));
+        	var edgeColor = this.readCssVar("--tw-graph-edge", this.readCssVar("--ion-color-medium", "#94a3b8"));
+        	var edgeArrowColor = this.readCssVar("--tw-graph-edge-arrow", edgeColor);
+        	return [
+        		{
+        			selector: "node",
+        			style: {
+        				label: "data(label)",
+        				"background-color": nodeColor,
+        				"border-width": 1,
+        				"border-color": nodeBorderColor,
+        				color: nodeTextColor,
+        				"text-valign": "center",
+        				"text-halign": "center",
+        				"font-size": 11
+        			}
+        		},
+        		{
+        			selector: "edge",
+        			style: {
+        				width: 2,
+        				"line-color": edgeColor,
+        				"target-arrow-color": edgeArrowColor,
+        				"target-arrow-shape": "triangle",
+        				"curve-style": "bezier"
+        			}
+        		}
+        	];
+        }
+        setupThemeObserver() {
+        	try {
+        		if (typeof MutationObserver === "undefined" || typeof document === "undefined" || !document.documentElement) {
+        			return;
+        		}
+        		if (this.cyThemeObserver && typeof this.cyThemeObserver.disconnect === "function") {
+        			this.cyThemeObserver.disconnect();
+        		}
+        		var self = this;
+        		this.cyThemeObserver = new MutationObserver(function(mutations) {
+        			var shouldRender = false;
+        			for (var i = 0; i < mutations.length; i++) {
+        				var mutation = mutations[i];
+        				if (mutation && (mutation.attributeName === "class" || mutation.attributeName === "style")) {
+        					shouldRender = true;
+        					break;
+        				}
+        			}
+        			if (shouldRender) {
+        				self.queueCyRender();
+        			}
+        		});
+        		this.cyThemeObserver.observe(document.documentElement, {
+        			attributes: true,
+        			attributeFilter: ["class", "style"]
+        		});
+        	} catch (e) {
+        	}
+        }
+        renderCyGraph() {
+        	try {
+        		if (!this.cyHost || !this.cyHost.nativeElement) {
+        			return;
+        		}
+        		var cyFactory = window["cytoscape"];
+        		if (typeof cyFactory !== "function") {
+        			var retry = this.cyRenderRetry == null ? 0 : this.cyRenderRetry;
+        			if (retry < 20) {
+        				this.cyRenderRetry = retry + 1;
+        				var self = this;
+        				this.cyRenderTimer = setTimeout(function() {
+        					self.cyRenderTimer = null;
+        					self.renderCyGraph();
+        				}, 100);
+        			} else {
+        				this.c8o.log.warn("[MB] cyGraph: cytoscape runtime is not available");
+        			}
+        			return;
+        		}
+        		this.cyRenderRetry = 0;
+        		var elements = this.parseCyValue(this.elements, []);
+        		if (!Array.isArray(elements)) {
+        			elements = [];
+        		}
+        		if (elements.length === 0) {
+        			elements = [{data: {id: "n1", label: "Node 1"}}, {data: {id: "n2", label: "Node 2"}}, {data: {id: "e1", source: "n1", target: "n2"}}];
+        		}
+        		var style = this.parseCyValue(this.style, []);
+        		if (!Array.isArray(style)) {
+        			style = [];
+        		}
+        		if (style.length === 0) {
+        			style = this.getDefaultStyle();
+        		}
+        		var layout = this.parseCyValue(this.layout, null);
+        		if (!layout || typeof layout !== "object" || Array.isArray(layout)) {
+        			layout = {name: "grid", fit: true, padding: 24};
+        		}
+        		var extraOptions = this.parseCyValue(this.options, null);
+        		if (!extraOptions || typeof extraOptions !== "object" || Array.isArray(extraOptions)) {
+        			extraOptions = {};
+        		}
+        		if (this.cyInstance && typeof this.cyInstance.destroy === "function") {
+        			this.cyInstance.destroy();
+        		}
+        		var container = this.cyHost.nativeElement;
+        		container.innerHTML = "";
+        		var baseOptions = {
+        			container: container,
+        			elements: elements,
+        			style: style,
+        			layout: layout,
+        			minZoom: this.minZoom,
+        			maxZoom: this.maxZoom,
+        			wheelSensitivity: this.wheelSensitivity,
+        			boxSelectionEnabled: this.coerceCyBoolean(this.boxSelectionEnabled, false),
+        			autounselectify: this.coerceCyBoolean(this.autounselectify, false),
+        			userZoomingEnabled: this.coerceCyBoolean(this.userZoomingEnabled, true),
+        			userPanningEnabled: this.coerceCyBoolean(this.userPanningEnabled, true)
+        		};
+        		var options = Object.assign(baseOptions, extraOptions);
+        		this.cyInstance = cyFactory(options);
+        		var self = this;
+        		this.cyInstance.ready(function() {
+        			self.CyReady.emit(self.cyInstance);
+        		});
+        		this.cyInstance.on("tap", "node", function(evt) {
+        			try {
+        				self.NodeTap.emit(evt && evt.target ? evt.target.data() : null);
+        			} catch (e) {
+        			}
+        		});
+        		this.cyInstance.on("tap", "edge", function(evt) {
+        			try {
+        				self.EdgeTap.emit(evt && evt.target ? evt.target.data() : null);
+        			} catch (e) {
+        			}
+        		});
+        		this.cyInstance.on("tap", function(evt) {
+        			try {
+        				if (evt && evt.target === self.cyInstance) {
+        					self.BackgroundTap.emit(evt.position ? evt.position : null);
+        				}
+        			} catch (e) {
+        			}
+        		});
+        	} catch (e) {
+        		this.c8o.log.warn("[MB] cyGraph render failed: " + e);
+        	}
+        }
+        /*End_c8o_CompFunction*/
+        '
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1806000000010]: 
+  comment: Declares Cytoscape.js dependency for this shared component
+  ↓InstallDependencies [ngx.components.UICustomAsyncAction-1806000000011]: 
+    actionValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+        - com.twinsoft.convertigo.beans.common.FormatedContent: 
+          →: |
+            		try {
+            			
+            		} catch (e) {
+            			
+            		} finally {
+            			return;
+            		}
+            
+    build_scripts: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: node_modules/cytoscape/dist/cytoscape.min.js
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: cytoscape
+              - java.lang.String: 
+                - ↑value: 3.33.1
+↓elements [ngx.components.UICompVariable-1806000000020]: 
+  comment: Cytoscape elements array
+  value: '[{"data":{"id":"n1","label":"Node 1"}},{"data":{"id":"n2","label":"Node 2"}},{"data":{"id":"e1","source":"n1","target":"n2"}}]'
+↓style [ngx.components.UICompVariable-1806000000021]: 
+  comment: Cytoscape style array (leave empty to use theme-aware defaults)
+  value: '[]'
+↓layout [ngx.components.UICompVariable-1806000000022]: 
+  comment: Cytoscape layout object
+  value: '{"name":"grid","fit":true,"padding":24}'
+↓options [ngx.components.UICompVariable-1806000000023]: 
+  comment: Additional Cytoscape options object
+  value: '{}'
+↓width [ngx.components.UICompVariable-1806000000024]: 
+  comment: Graph container width
+  value: '''100%'''
+↓height [ngx.components.UICompVariable-1806000000025]: 
+  comment: Graph container height
+  value: '''420px'''
+↓id [ngx.components.UICompVariable-1806000000026]: 
+  comment: Optional HTML id for the graph container
+↓minZoom [ngx.components.UICompVariable-1806000000027]: 
+  comment: Minimum zoom level
+  value: 0.1
+↓maxZoom [ngx.components.UICompVariable-1806000000028]: 
+  comment: Maximum zoom level
+  value: 3
+↓wheelSensitivity [ngx.components.UICompVariable-1806000000029]: 
+  comment: Mouse wheel zoom sensitivity
+  value: 0.2
+↓boxSelectionEnabled [ngx.components.UICompVariable-1806000000060]: 
+  comment: Enables box selection mode
+  value: false
+↓autounselectify [ngx.components.UICompVariable-1806000000061]: 
+  comment: Disables element selection when true
+  value: false
+↓userZoomingEnabled [ngx.components.UICompVariable-1806000000062]: 
+  comment: Allows user zoom interactions
+  value: true
+↓userPanningEnabled [ngx.components.UICompVariable-1806000000063]: 
+  comment: Allows user panning interactions
+  value: true
+↓CyReady [ngx.components.UICompEvent-1806000000064]: 
+  attrName: CyReady
+  comment: Fired when Cytoscape is initialized
+↓NodeTap [ngx.components.UICompEvent-1806000000065]: 
+  attrName: NodeTap
+  comment: Fired when a node is tapped
+↓EdgeTap [ngx.components.UICompEvent-1806000000066]: 
+  attrName: EdgeTap
+  comment: Fired when an edge is tapped
+↓BackgroundTap [ngx.components.UICompEvent-1806000000067]: 
+  attrName: BackgroundTap
+  comment: Fired when graph background is tapped
+↓tag [ngx.components.UIElement-1806000000030]: 
+  comment: Cytoscape host element
+  identifier: cyHost
+  tagName: div
+  ↓attrClass [ngx.components.UIAttribute-1806000000031]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:cytoscape-host
+  ↓attrId [ngx.components.UIAttribute-1806000000032]: 
+    attrName: '[attr.id]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.id
+  ↓attrWidth [ngx.components.UIAttribute-1806000000033]: 
+    attrName: '[style.width]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.width
+  ↓attrHeight [ngx.components.UIAttribute-1806000000034]: 
+    attrName: '[style.height]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.height
+↓Style [ngx.components.UIStyle-1806000000040]: 
+  comment: Basic styles for the graph host
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.cytoscape-host {
+          min-height: 220px;
+          border: 1px solid var(--tw-graph-border, var(--ion-color-step-150, #d7d8da));
+          border-radius: 8px;
+          overflow: hidden;
+          background: var(--tw-graph-bg, var(--ion-card-background, #ffffff));
+          transition: background-color .2s ease, border-color .2s ease;
+          }
+          '
