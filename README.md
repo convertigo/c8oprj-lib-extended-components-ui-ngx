@@ -30,6 +30,7 @@ For more technical informations : [documentation](./project.md)
         - [materialDatePicker](#materialdatepicker)
         - [materialSlider](#materialslider)
         - [ngSelect](#ngselect)
+        - [ngxTagInput](#ngxtaginput)
         - [sortableJS](#sortablejs)
         - [tinyMce](#tinymce)
         - [tuiImageEditor](#tuiimageeditor)
@@ -1813,6 +1814,98 @@ false
 </tr>
 <tr>
 <td>search</td><td>Fired while typing search term. Outputs search term with filtered items</td>
+</tr>
+</table>
+
+#### ngxTagInput
+
+This component provides Chips management for your apps
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>addOnBlur</td><td></td>
+</tr>
+<tr>
+<td>autocompleteItems</td><td></td>
+</tr>
+<tr>
+<td>editableTag</td><td></td>
+</tr>
+<tr>
+<td>inputtext</td><td></td>
+</tr>
+<tr>
+<td>itemDisplayBy</td><td></td>
+</tr>
+<tr>
+<td>itemIdentifyBy</td><td></td>
+</tr>
+<tr>
+<td>items</td><td></td>
+</tr>
+<tr>
+<td>maxItems</td><td></td>
+</tr>
+<tr>
+<td>onlyFromAutocomplete</td><td></td>
+</tr>
+<tr>
+<td>placeholder</td><td></td>
+</tr>
+<tr>
+<td>removableTag</td><td></td>
+</tr>
+<tr>
+<td>secondaryPlaceholder</td><td></td>
+</tr>
+<tr>
+<td>showAutoCompleteDropdownIfEmpty</td><td></td>
+</tr>
+<tr>
+<td>theme</td><td></td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>Add</td><td></td>
+</tr>
+<tr>
+<td>Blur</td><td></td>
+</tr>
+<tr>
+<td>Focus</td><td></td>
+</tr>
+<tr>
+<td>ModelChange</td><td></td>
+</tr>
+<tr>
+<td>Paste</td><td></td>
+</tr>
+<tr>
+<td>Remove</td><td></td>
+</tr>
+<tr>
+<td>Select</td><td></td>
+</tr>
+<tr>
+<td>TagEdited</td><td></td>
+</tr>
+<tr>
+<td>TextChange</td><td></td>
+</tr>
+<tr>
+<td>ValidationError</td><td></td>
 </tr>
 </table>
 

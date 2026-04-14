@@ -31,6 +31,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
 ↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
+↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
 ↓cardIO_sc [ngx.components.UISharedRegularComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
@@ -58,6 +59,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testKanbanBoard [ngx.components.PageComponent-1802203000400]: 🗏 mobilePages/testKanbanBoard.yaml
 ↓testTUIImageEditor [ngx.components.PageComponent-1733928704116]: 🗏 mobilePages/testTUIImageEditor.yaml
 ↓testNgSelect [ngx.components.PageComponent-1741619640644]: 🗏 mobilePages/testNgSelect.yaml
+↓Page [ngx.components.PageComponent-1776162209877]: 🗏 mobilePages/Page.yaml
 ↓Style [ngx.components.UIStyle-1771498819195]: 
   comment: You can add some global application styles here
   styleContent: 
