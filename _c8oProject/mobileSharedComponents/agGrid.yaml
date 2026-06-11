@@ -10,14 +10,22 @@ scriptContent:
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
         	public api: any;
+        	public agGridResizeObserver: any = null;
+        	public agGridResizePending: boolean = false;
+        	public agGridLastSizedWidth: number = 0;
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
         /*Begin_c8o_CompInitialization*/
         		/*End_c8o_CompInitialization*/
         /*Begin_c8o_CompFinalization*/
+        		if (this.agGridResizeObserver != null) {
+        			this.agGridResizeObserver.disconnect();
+        			this.agGridResizeObserver = null;
+        		}
         		/*End_c8o_CompFinalization*/
         /*Begin_c8o_CompChanges*/
+        		this.scheduleAgGridSizing(undefined, 4);
         		/*End_c8o_CompChanges*/
         /*Begin_c8o_CompDoCheck*/
         		/*End_c8o_CompDoCheck*/
@@ -28,8 +36,77 @@ scriptContent:
         /*Begin_c8o_CompAfterViewInit*/
         		/*End_c8o_CompAfterViewInit*/
         /*Begin_c8o_CompAfterViewChecked*/
+        		const gridElement = this.getAgGridElement();
+        		const gridWidth = gridElement != null ? Math.round(gridElement.getBoundingClientRect().width) : 0;
+        		if (this.api != null && gridWidth > 0 && Math.abs(gridWidth - this.agGridLastSizedWidth) > 1) {
+        			this.scheduleAgGridSizing(this.api, 2);
+        		}
         		/*End_c8o_CompAfterViewChecked*/
         /*Begin_c8o_CompFunction*/
+        	getAgGridElement(): any {
+        		const grid: any = this.agGrid;
+        		if (grid != null && grid._nativeElement != null) {
+        			return grid._nativeElement;
+        		}
+        		if (this.elementRef != null && (this.elementRef as any).nativeElement != null) {
+        			return (this.elementRef as any).nativeElement.querySelector("ag-grid-angular");
+        		}
+        		return null;
+        	}
+        
+        	applyAgGridSizing(api?: any): boolean {
+        		const gridApi = api || this.api || (this.agGrid as any)?.api;
+        		const gridElement = this.getAgGridElement();
+        		const gridWidth = gridElement != null ? Math.round(gridElement.getBoundingClientRect().width) : 0;
+        		if (gridApi == null || gridWidth <= 0) {
+        			return false;
+        		}
+        		if (this.autoSizeColumns) {
+        			gridApi.autoSizeAllColumns?.();
+        		}
+        		else {
+        			gridApi.sizeColumnsToFit?.();
+        		}
+        		gridApi.resetRowHeights?.();
+        		this.agGridLastSizedWidth = gridWidth;
+        		return true;
+        	}
+        
+        	scheduleAgGridSizing(api?: any, attempts: number = 6): void {
+        		if (api != null) {
+        			this.api = api;
+        		}
+        		if (this.agGridResizePending) {
+        			return;
+        		}
+        		this.agGridResizePending = true;
+        		const requestFrame = typeof requestAnimationFrame === "function" ? requestAnimationFrame : (callback) => setTimeout(callback, 16);
+        		requestFrame(() => {
+        			this.agGridResizePending = false;
+        			this.applyAgGridSizing(api);
+        			if (attempts > 0) {
+        				setTimeout(() => this.scheduleAgGridSizing(api, attempts - 1), 120);
+        			}
+        		});
+        	}
+        
+        	watchAgGridSize(grid?: any): void {
+        		const gridElement = grid?._nativeElement || this.getAgGridElement();
+        		if (gridElement == null || typeof ResizeObserver === "undefined") {
+        			return;
+        		}
+        		if (this.agGridResizeObserver != null) {
+        			this.agGridResizeObserver.disconnect();
+        		}
+        		this.agGridResizeObserver = new ResizeObserver((entries) => {
+        			const gridWidth = Math.round(entries[0]?.contentRect?.width || 0);
+        			if (this.api != null && gridWidth > 0 && Math.abs(gridWidth - this.agGridLastSizedWidth) > 1) {
+        				this.scheduleAgGridSizing(this.api, 4);
+        			}
+        		});
+        		this.agGridResizeObserver.observe(gridElement);
+        	}
+        
         	computeColumnDef() {
         		if (this.columnDefs == undefined ||  this.columnDefs.length == 0 || this.columnDefs == null) {
         			// extract columnDefs from this.rowData knwing that each element of the array is an object with each key being a column
@@ -619,6 +696,9 @@ scriptContent:
                           				grid.api.setDomLayout(autoHeight ? "autoHeight":"normal");
                           				(grid as any)._nativeElement.style.height = autoHeight ? "" : height;
                           				(grid as any)._nativeElement.style.width = width;
+                          				page["api"] = grid.api;
+                          				page.watchAgGridSize(grid);
+                          				page.scheduleAgGridSizing(grid.api, 8);
                           				page.c8o.log.debug(''[MB] gridApi sizing done'');
                           				if (grid.rowModelType == "infinite") {
                           					if (typeof grid.context != "object") {
@@ -750,27 +830,11 @@ scriptContent:
                     - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
                     - com.twinsoft.convertigo.beans.common.FormatedContent: 
                       →: |
-                        		const grid = props.stack["root"].scope.agGrid
-                        		if(grid != undefined){
-                        			if(page.autoSizeColumns){
-                        					event?.api?.autoSizeAllColumns();
-                        					//grid.api.autoSizeAllColumns();
-                        			}
-                        			else{
-                        				event?.api?.sizeColumnsToFit();
-                        			}
-                        				event?.api?.resetRowHeights();
-                        			setTimeout(()=>{
-                        				if(page.autoSizeColumns){
-                        					event?.api?.autoSizeAllColumns();
-                        					//grid.api.autoSizeAllColumns();
-                        				}
-                        				else{
-                        					event?.api?.sizeColumnsToFit();
-                        				}
-                        				event?.api?.resetRowHeights();
-                        				page.c8o.log.debug('[MB] gridApi.sizeColumnsToFit() and gridApi.resetRowHeights() done');
-                        			}, 500)
+                        		const grid = props.stack["root"].scope.agGrid;
+                        		if (grid != undefined) {
+                        			page.watchAgGridSize(grid);
+                        			page.scheduleAgGridSizing(event?.api || grid.api, 8);
+                        			page.c8o.log.debug('[MB] gridApi sizing scheduled');
                         		}
                         		resolve();
                         
