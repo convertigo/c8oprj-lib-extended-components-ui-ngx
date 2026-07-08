@@ -1908,12 +1908,12 @@ comment
 
 </p></blockquote></details>
 
-<details><summary><b>tinyMce</b> : This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps</summary><blockquote><p>
+<details><summary><b>tinyMce</b> : This is the HugeRTE WYSIWIG HTML editor you can use to provide rich text editing in your apps</summary><blockquote><p>
 
 
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") tinyMce
 
-This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
+This is the HugeRTE WYSIWIG HTML editor you can use to provide rich text editing in your apps
 
 <span style="color:DarkGoldenRod">Variables</span>
 

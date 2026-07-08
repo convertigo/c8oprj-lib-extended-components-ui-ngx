@@ -223,21 +223,21 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: ag-grid-community
               - java.lang.String: 
-                - ↑value: 31.2.0
+                - ↑value: 31.3.4
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: ag-grid-angular
               - java.lang.String: 
-                - ↑value: 31.2.0
+                - ↑value: 31.3.4
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
                 - ↑value: '@ag-grid-community/csv-export'
               - java.lang.String: 
-                - ↑value: 31.2.1
+                - ↑value: 31.3.4
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
