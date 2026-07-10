@@ -2079,7 +2079,7 @@ true
 
 #### tinyMce
 
-This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
+This is the HugeRTE WYSIWIG HTML editor you can use to provide rich text editing in your apps
 
 **variables**
 

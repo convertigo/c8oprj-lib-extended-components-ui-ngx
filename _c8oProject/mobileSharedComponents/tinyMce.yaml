@@ -1,4 +1,4 @@
-comment: This is the TinyMCE WYSIWIG HTML editor you can use to provide rich text editing in your apps
+comment: This is the HugeRTE WYSIWIG HTML editor you can use to provide rich text editing in your apps
 scriptContent: 
   - xmlizable: 
     - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -8,7 +8,7 @@ scriptContent:
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
         	public initOffline: any =  {
-        	    base_url: document.head.baseURI + "tinymce", // Root for resources
+                    base_url: document.head.baseURI + "hugerte", // Root for resources
         	    suffix: ''.min'',        // Suffix to use when loading resources
         		promotion: false
           	}
@@ -319,7 +319,7 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '{ "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }'
+                - ↑value: '{ "glob": "**/*", "input": "node_modules/hugerte", "output": "/hugerte/" }'
     build_scripts: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -328,7 +328,7 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: node_modules/tinymce/tinymce.min.js
+                - ↑value: node_modules/hugerte/hugerte.min.js
     comment: tiny Mce Imports (UICustomAction).
     local_module_ng_imports: 
       - xmlizable: 
@@ -347,7 +347,7 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '{ provide: TINYMCE_SCRIPT_SRC, useValue: ''tinymce/tinymce.min.js'' }'
+                - ↑value: '{ provide: HUGERTE_SCRIPT_SRC, useValue: ''hugerte/hugerte.min.js'' }'
     local_module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -358,14 +358,14 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: '{ EditorModule }'
               - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
+                - ↑value: '@hugerte/hugerte-angular'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '{ TINYMCE_SCRIPT_SRC }'
+                - ↑value: '{ HUGERTE_SCRIPT_SRC }'
               - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
+                - ↑value: '@hugerte/hugerte-angular'
     module_ng_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -383,7 +383,7 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '{ provide: TINYMCE_SCRIPT_SRC, useValue: ''tinymce/tinymce.min.js'' }'
+                - ↑value: '{ provide: HUGERTE_SCRIPT_SRC, useValue: ''hugerte/hugerte.min.js'' }'
     module_ts_imports: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -394,14 +394,14 @@ scriptContent:
               - java.lang.String: 
                 - ↑value: '{ EditorModule }'
               - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
+                - ↑value: '@hugerte/hugerte-angular'
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '{ TINYMCE_SCRIPT_SRC }'
+                - ↑value: '{ HUGERTE_SCRIPT_SRC }'
               - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
+                - ↑value: '@hugerte/hugerte-angular'
     package_dependencies: 
       - xmlizable: 
         - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -410,13 +410,13 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '@tinymce/tinymce-angular'
+                - ↑value: '@hugerte/hugerte-angular'
               - java.lang.String: 
-                - ↑value: 5.0.1
+                - ↑value: 1.1.1
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: tinymce
+                - ↑value: hugerte
               - java.lang.String: 
-                - ↑value: 6.8.5
+                - ↑value: 1.0.12
