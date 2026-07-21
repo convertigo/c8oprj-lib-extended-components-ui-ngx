@@ -35,6 +35,9 @@ scriptContent:
         	public mergeInitObject(init: any){
         		return {...init, ...this.initOffline}
         	}
+        public isDisabled(value: any){
+            return value === true || value === "true" || value === 1 || value === "1";
+        }
         	/*End_c8o_CompFunction*/
         '
 ↓model [ngx.components.UICompVariable-1584094766604]: 
@@ -125,7 +128,7 @@ scriptContent:
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this.isDisabled(this.disabled)
       comment: Attr3 (UIAttribute).
     ↓Attr12 [ngx.components.UIAttribute-1584115479182]: 
       attrName: '[attr.id]'
@@ -260,7 +263,7 @@ scriptContent:
       attrValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1584094766586,"regular":true}],"path":"?.disabled","prefix":"","suffix":"","custom":"","useCustom":false}}
+          - MobileSmartSourceType: script:this.isDisabled(this.disabled)
       comment: Attr3 (UIAttribute).
     ↓Attr12 [ngx.components.UIAttribute-1645258496108]: 
       attrName: '[attr.id]'
