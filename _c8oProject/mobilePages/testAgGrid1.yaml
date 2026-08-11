@@ -339,3 +339,138 @@ title: AgGrid Editors
            "Property": "plain:demo:lastEvent",
            "Value": "script:{type: ''CellClicked'', rowIndex: event && event.rowIndex != undefined ? event.rowIndex : '''', column: event && event.column && event.column.colId ? event.column.colId : ''''}"
           }'
+    ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1786460727249]: 
+      comment: '<p>array | boolean: [20,50,100] by default</p><p><b>Example:</b> <code>true</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓width [ngx.components.UIUseVariable-1786460727251]: 
+      comment: <p>width value in % or px</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'100%'
+    ↓height [ngx.components.UIUseVariable-1786460727253]: 
+      comment: <p>height is &#x27;auto&#x27; or value in % or px</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'auto'
+    ↓class [ngx.components.UIUseVariable-1786460727255]: 
+      comment: <p>One of the themes provided by AG Grid. See https://www.ag-grid.com/javascript-grid-themes-provided/ and import the matching theme stylesheet in the app theme.</p><p><b>Example:</b> <code>&#x27;ag-theme-quartz&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'ag-theme-quartz'
+    ↓id [ngx.components.UIUseVariable-1786460727257]: 
+      comment: <p>An Optional ID</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓suppressCellSelection [ngx.components.UIUseVariable-1786460727259]: 
+      comment: <p>Variable suppress Cell Selection.</p><p><b>Example:</b> <code>false</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓suppressRowClickSelection [ngx.components.UIUseVariable-1786460727261]: 
+      comment: <p>Variable suppress Row Click Selection.</p><p><b>Example:</b> <code>false</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓overlayLoadingTemplate [ngx.components.UIUseVariable-1786460727263]: 
+      comment: <p>Variable overlay Loading Template.</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓overlayNoRowsTemplate [ngx.components.UIUseVariable-1786460727265]: 
+      comment: <p>Variable overlay No Rows Template.</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓rowHeight [ngx.components.UIUseVariable-1786460727267]: 
+      comment: <p>Height of the row in pixels as a string</p><p><b>Example:</b> <code>&#x27;25&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'25'
+    ↓wrapperClass [ngx.components.UIUseVariable-1786460727269]: 
+      comment: <p>Height of the row in pixels as a string</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓rowModelType [ngx.components.UIUseVariable-1786460727271]: 
+      comment: <p>Row model type</p><p><b>Example:</b> <code>&#x27;clientSide&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'clientSide'
+    ↓maxBlocksInCache [ngx.components.UIUseVariable-1786460727273]: 
+      comment: <p>How many blocks to keep in the store. Default is no limit, so every requested block is kept</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓accessibility [ngx.components.UIUseVariable-1786460727275]: 
+      comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>false</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓ariaLabel [ngx.components.UIUseVariable-1786460727277]: 
+      comment: <p>Variable aria Label.</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓getLocaleText [ngx.components.UIUseVariable-1786460727279]: 
+      comment: <p>Variable get Locale Text.</p><p><b>Example:</b> <code>null</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:null
+    ↓suppressFieldDotNotation [ngx.components.UIUseVariable-1786460727281]: 
+      comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>false</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓domLayout [ngx.components.UIUseVariable-1786460727283]: 
+      comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>&#x27;autoHeight&#x27;</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'autoHeight'
+    ↓datasource [ngx.components.UIUseVariable-1786460727285]: 
+      comment: <p>Variable datasource.</p><p><b>Example:</b> <code>null</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:null
+    ↓cacheBlockSize [ngx.components.UIUseVariable-1786460727287]: 
+      comment: <p>Variable cache Block Size.</p><p><b>Example:</b> <code>100</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:100
+    ↓suppressMenuHide [ngx.components.UIUseVariable-1786460727289]: 
+      comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓icons [ngx.components.UIUseVariable-1786460727291]: 
+      comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: |
+              'script:{
+                  menu: `<span class=''ag-icon ag-icon-filter''></span>`
+              }'

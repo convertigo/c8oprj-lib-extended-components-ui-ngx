@@ -998,6 +998,20 @@ scriptContent:
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.cacheBlockSize
               comment: Attr22 (UIAttribute).
+            ↓Attr23 [ngx.components.UIAttribute-1786460748512]: 
+              attrName: '[suppressMenuHide]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.suppressMenuHide
+              comment: Attr22 (UIAttribute).
+            ↓Attr24 [ngx.components.UIAttribute-1786460770509]: 
+              attrName: '[icons]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.icons
+              comment: Attr22 (UIAttribute).
           ↓height100 [ngx.components.UIStyle-1741629457874]: 
             comment: height100 (UIStyle).
             styleContent: 
@@ -1075,3 +1089,9 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.agGrid
+↓suppressMenuHide [ngx.components.UICompVariable-1786460434726]: 
+  comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+  value: false
+↓icons [ngx.components.UICompVariable-1786460482508]: 
+  comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+  value: '{}'

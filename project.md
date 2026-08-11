@@ -663,6 +663,20 @@ null
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;icons
+</td>
+<td>
+<p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> 
+
+```
+{}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;id
 </td>
 <td>
@@ -908,6 +922,20 @@ false
 
 ```
 false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressMenuHide
+</td>
+<td>
+<p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> 
+
+```
+{}
 ```
 
 </p>
