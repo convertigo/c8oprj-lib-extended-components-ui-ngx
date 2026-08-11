@@ -666,10 +666,12 @@ null
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;icons
 </td>
 <td>
-<p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> 
+<p>Replaces AG Grid's default legacy "menu" icon with a custom icon, for example a filter/funnel icon.</p><p><b>Example:</b> 
 
 ```
-{}
+{
+    menu: `<span class='ag-icon ag-icon-filter'></span>`
+}
 ```
 
 </p>
@@ -932,10 +934,10 @@ false
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressMenuHide
 </td>
 <td>
-<p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> 
+<p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> 
 
 ```
-{}
+false
 ```
 
 </p>

@@ -1004,14 +1004,14 @@ scriptContent:
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.suppressMenuHide
-              comment: Attr22 (UIAttribute).
+              comment: Attr23 (UIAttribute).
             ↓Attr24 [ngx.components.UIAttribute-1786460770509]: 
               attrName: '[icons]'
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.icons
-              comment: Attr22 (UIAttribute).
+              comment: Attr24 (UIAttribute).
           ↓height100 [ngx.components.UIStyle-1741629457874]: 
             comment: height100 (UIStyle).
             styleContent: 
@@ -1090,8 +1090,11 @@ scriptContent:
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.agGrid
 ↓suppressMenuHide [ngx.components.UICompVariable-1786460434726]: 
-  comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+  comment: <p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> <code>false</code></p>
   value: false
 ↓icons [ngx.components.UICompVariable-1786460482508]: 
-  comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+  comment: |
+    '<p>Replaces AG Grid''s default legacy "menu" icon with a custom icon, for example a filter/funnel icon.</p><p><b>Example:</b> <code>{
+        menu: `<span class=''ag-icon ag-icon-filter''></span>`
+    }</code></p>'
   value: '{}'
