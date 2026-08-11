@@ -461,12 +461,14 @@ title: AgGrid Editors
           - MobileSmartSourceType: script:100
     ↓suppressMenuHide [ngx.components.UIUseVariable-1786460727289]: 
       comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+      isEnabled: false
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:true
     ↓icons [ngx.components.UIUseVariable-1786460727291]: 
       comment: <p>Adds or overrides grid localization entries by language key.</p><p><b>Example:</b> <code>{}</code></p>
+      isEnabled: false
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
