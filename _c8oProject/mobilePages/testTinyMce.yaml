@@ -1,4 +1,32 @@
 comment: Page with a tinyMCE rich text editor
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		this.local['demo:param'] = `
+        		<p>测试 HugeRTE 中文界面</p>
+        		<p><strong>Bold text</strong> — texte français — italiano — español</p>
+        		<ul>
+        		  <li>第一项</li>
+        		  <li>第二项</li>
+        		</ul>
+        		`;
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageInitialization*/
+        		/*End_c8o_PageInitialization*/
+        /*Begin_c8o_PageAfterViewInit*/
+        		/*End_c8o_PageAfterViewInit*/
+        /*Begin_c8o_PageFinalization*/
+        		/*End_c8o_PageFinalization*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        
 segment: path-to-testtinymce
 title: TinyMCE
 ↓Header [ngx.components.UIDynamicElement-1491634212350]: 
@@ -231,7 +259,7 @@ title: TinyMCE
       varValue: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-          - MobileSmartSourceType: 'script:{height: 500}'
+          - MobileSmartSourceType: 'script:{height: 500, language: ''fr''}'
     ↓Event [ngx.components.UIControlEvent-1645465765590]: 
       attrName: (onChange)
       eventName: onChange
@@ -259,3 +287,57 @@ title: TinyMCE
            "Property": "plain:demo:lastEvent",
            "Value": "script:{type: ''onBlur''}"
           }'
+    ↓disabled [ngx.components.UIUseVariable-1789125602314]: 
+      comment: '<p>boolean: disable or enable editor interactions</p><p><b>Example:</b> <code>n/a</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓apiKey [ngx.components.UIUseVariable-1789125602316]: 
+      comment: <p>Tiny Cloud API key (optional when using local assets)</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:
+    ↓cloudChannel [ngx.components.UIUseVariable-1789125602318]: 
+      comment: <p>Tiny Cloud channel version (used when loading cloud resources)</p><p><b>Example:</b> <code>&#x27;5-dev&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'5-dev'
+    ↓id [ngx.components.UIUseVariable-1789125602320]: 
+      comment: <p>Optional HTML id applied to the editor element</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓initialValue [ngx.components.UIUseVariable-1789125602322]: 
+      comment: <p>Initial editor content when ngModel is null</p><p><b>Example:</b> <code>n/a</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:''
+    ↓inline [ngx.components.UIUseVariable-1789125602324]: 
+      comment: '<p>boolean: use TinyMCE inline mode</p><p><b>Example:</b> <code>false</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓tagName [ngx.components.UIUseVariable-1789125602326]: 
+      comment: <p>HTML tag name used as editor root element in inline mode</p><p><b>Example:</b> <code>&#x27;div&#x27;</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'div'
+    ↓plugins [ngx.components.UIUseVariable-1789125602328]: 
+      comment: <p>List of TinyMCE plugins to load</p><p><b>Example:</b> <code>[&#x27;advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code hel...</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:['advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount']
+    ↓toolbar [ngx.components.UIUseVariable-1789125602330]: 
+      comment: <p>TinyMCE toolbar configuration string</p><p><b>Example:</b> <code>&#x27;undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | rem...</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | \bullist numlist outdent indent | removeformat | link image | help'
