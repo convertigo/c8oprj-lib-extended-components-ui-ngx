@@ -476,3 +476,21 @@ title: AgGrid Editors
               'script:{
                   menu: `<span class=''ag-icon ag-icon-filter''></span>`
               }'
+    ↓showXlsxDownload [ngx.components.UIUseVariable-1789567535687]: 
+      comment: <p>If true, displays a XLSX download button/menu around the grid.</p><p><b>Example:</b> <code>false</code></p>
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓showXlsxDownloadPosition [ngx.components.UIUseVariable-1789567535689]: 
+      comment: '<p>If showXlsxDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> <code>&#x27;top&#x27;</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'top'
+    ↓showXlsxDownloadAlignment [ngx.components.UIUseVariable-1789567535691]: 
+      comment: '<p>If showXlsxDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>'
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'end'

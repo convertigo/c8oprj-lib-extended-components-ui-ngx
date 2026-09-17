@@ -1,0 +1,153 @@
+exposed: false
+↓GridCol1 [ngx.components.UIDynamicElement-1789565499330]: 
+  beanData: '{"ionBean":"GridCol","Size":"plain:35px"}'
+  comment: Grid Col1 (UIDynamicElement).
+  tagName: ion-col
+  ↓Button [ngx.components.UIDynamicElement-1789565499333]: 
+    beanData: |
+      '{
+       "ionBean": "Button",
+       "IonColor": "plain:light",
+       "IonSize": "plain:small"
+      }'
+    comment: Button (UIDynamicElement).
+    tagName: ion-button
+    ↓Event [ngx.components.UIControlEvent-1789565499336]: 
+      comment: Event (UIControlEvent).
+      ↓DoDownload [ngx.components.UICustomAction-1789565499339]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		if(vars.agGrid && vars.agGrid != ''''){
+                //			vars.agGrid.api.exportDataAsCsv(props);
+                			try {
+                				vars.agGrid.api.exportDataAsExcel(props);
+                				
+                			} catch(e) {
+                				console.error(e);
+                			}
+                		}
+                		
+                		resolve(null);
+                '
+        comment: Do Download (UICustomAction).
+        isEnabled: false
+        ↓agGrid [ngx.components.UIControlVariable-1789565499342]: 
+          comment: <p>Variable ag Grid.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1741622230172,&quot;regular&quot;:true}...</code></p>
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1789565499327,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+      ↓PrepareData [ngx.components.UICustomAction-1789568169191]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                		const api = vars.agGrid.api;
+                
+                		// Colonnes actuellement affichées, dans l''ordre du Grid
+                		const columns = api.getAllDisplayedColumns();
+                
+                		const exportData = [];
+                
+                		api.forEachNodeAfterFilterAndSort((node) => {
+                			const row: any = {};
+                
+                			columns.forEach((column) => {
+                				const colDef = column.getColDef();
+                
+                				// Header réellement affiché dans AG Grid
+                				const header =
+                					api.getDisplayNameForColumn(column, "csv") ||
+                					colDef.headerName ||
+                					colDef.field ||
+                					column.getColId();
+                
+                				// Valeur du Grid
+                				const value = api.getValue(
+                					column.getColId(),
+                					node
+                				);
+                
+                				row[header] = value;
+                			});
+                
+                			exportData.push(row);
+                		});
+                		resolve(exportData);
+                '
+        ↓agGrid [ngx.components.UIControlVariable-1789568203109]: 
+          comment: <p>Variable ag Grid.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1741622230172,&quot;regular&quot;:true}...</code></p>
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1789565499327,"regular":true}],"path":"?.ag_grid","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓CallSequence [ngx.components.UIDynamicAction-1789567724245]: 
+          beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_MicrosoftExcel.ExportDataToSheet"}'
+          ↓data [ngx.components.UIControlVariable-1789567755226]: 
+            comment: Data source. Can be a Convertigo Complex variable or a JSON String. It must be an array of objects.
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:JSON.stringify(parent.out)
+          ↓file_name [ngx.components.UIControlVariable-1789567755228]: 
+            comment: Name of the output file with extension.
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:export.xlsx
+          ↓sheet_name [ngx.components.UIControlVariable-1789567755230]: 
+            comment: Name of the XLSX Sheet if applicable.
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Export
+          ↓book_type [ngx.components.UIControlVariable-1789567755232]: 
+            comment: Type of workbook to export to. Default is XLSX.
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:xlsx
+          ↓download [ngx.components.UICustomAction-1789569398648]: 
+            actionValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                    		const url = vars.url_path;
+                    
+                    		if (url) {
+                    			const link = document.createElement("a");
+                    			link.href = url;
+                    			link.target = "_self";
+                    
+                    			document.body.appendChild(link);
+                    			link.click();
+                    			document.body.removeChild(link);
+                    		}
+                    		resolve();
+                    '
+            ↓url_path [ngx.components.UIControlVariable-1789569411961]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:parent.out?.file?.url_path
+    ↓Attr [ngx.components.UIAttribute-1789565499345]: 
+      attrName: title
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:Download CSV
+      comment: Attr (UIAttribute).
+    ↓Icon [ngx.components.UIDynamicElement-1789565499348]: 
+      beanData: '{"ionBean":"Icon","IconName":"script:''download-outline''"}'
+      comment: Icon (UIDynamicElement).
+      tagName: ion-icon
+↓ag_grid [ngx.components.UICompVariable-1789565499351]: 
+  comment: <p>Reference to the agGrid instance used to trigger XLSX export</p><p><b>Example:</b> <code>n/a</code></p>

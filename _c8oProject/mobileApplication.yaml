@@ -30,7 +30,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGridUpdateRows [ngx.components.UIActionStack-1652954574813]: 🗏 mobileSharedActions/agGridUpdateRows.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
-↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
+↓agGrid_CsvXlsxDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvXlsxDownload_Row.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
@@ -44,6 +44,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓cyGraph [ngx.components.UISharedRegularComponent-1801300000001]: 🗏 mobileSharedComponents/cyGraph.yaml
 ↓sortableJS [ngx.components.UISharedRegularComponent-1802000000999]: 🗏 mobileSharedComponents/sortableJS.yaml
 ↓kanbanBoard [ngx.components.UISharedRegularComponent-1802200000999]: 🗏 mobileSharedComponents/kanbanBoard.yaml
+↓agGrid_XlsxDownload [ngx.components.UISharedRegularComponent-1789565499327]: 🗏 mobileSharedComponents/agGrid_XlsxDownload.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml

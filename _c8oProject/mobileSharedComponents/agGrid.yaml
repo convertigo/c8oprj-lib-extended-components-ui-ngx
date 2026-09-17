@@ -553,22 +553,39 @@ scriptContent:
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'top' || this?.showCsvDownloadPosition == 'both_row')
+            - MobileSmartSourceType: script:(this?.showXlsxDownload && (this?.showXlsxDownloadPosition == 'top' || this?.showXlsxDownloadPosition == 'both_row')) || (this?.showCsvDownload && (this?.showCsvDownloadPosition == 'top' || this?.showCsvDownloadPosition == 'both_row'))
         ↓UseSharedComponent [ngx.components.UIUseShared-1741622178216]: 
           comment: Use Shared Component (UIUseShared).
-          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
+          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvXlsxDownload_Row
           ↓alignment [ngx.components.UIUseVariable-1741622178219]: 
             comment: <p>Variable alignment.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1710934918899,&quot;regular&quot;:true}...</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
+                - MobileSmartSourceType: 'script:this?.showCsvDownload ? this?.showCsvDownloadAlignment : this?.showXlsxDownloadAlignment'
           ↓ag_grid [ngx.components.UIUseVariable-1741622178222]: 
             comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.agGrid
+          ↓xlsx_button [ngx.components.UIUseVariable-1789566298244]: 
+            comment: <p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.showXlsxDownload
+          ↓csv_button [ngx.components.UIUseVariable-1789566298246]: 
+            comment: <p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.showCsvDownload
+          ↓file_prefix [ngx.components.UIUseVariable-1789570981749]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.id
       ↓GridRow [ngx.components.UIDynamicElement-1714061566704]: 
         beanData: '{"ionBean":"GridRow"}'
         comment: Grid Row (UIDynamicElement).
@@ -579,16 +596,34 @@ scriptContent:
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'left' || this?.showCsvDownloadPosition == 'both_col')
-          ↓UseSharedComponent [ngx.components.UIUseShared-1741622362245]: 
-            comment: Use Shared Component (UIUseShared).
-            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
-            ↓ag_grid [ngx.components.UIUseVariable-1741622362248]: 
-              comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
+              - MobileSmartSourceType: script:(this?.showXlsxDownload && (this?.showXlsxDownloadPosition == 'left' || this?.showXlsxDownloadPosition == 'both_col')) || (this?.showCsvDownload && (this?.showCsvDownloadPosition == 'left' || this?.showCsvDownloadPosition == 'both_col'))
+          ↓ExportMenu [ngx.components.UIUseShared-1789571065794]: 
+            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvXlsxDownload_Row
+            ↓alignment [ngx.components.UIUseVariable-1789571068222]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: 'script:this?.showCsvDownload ? this?.showCsvDownloadAlignment : this?.showXlsxDownloadAlignment'
+            ↓ag_grid [ngx.components.UIUseVariable-1789571068224]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this?.agGrid
+            ↓xlsx_button [ngx.components.UIUseVariable-1789571068226]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showXlsxDownload
+            ↓csv_button [ngx.components.UIUseVariable-1789571068228]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+            ↓file_prefix [ngx.components.UIUseVariable-1789571068230]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.id
         ↓GridCol [ngx.components.UIDynamicElement-1714061566706]: 
           beanData: '{"ionBean":"GridCol"}'
           comment: Grid Col (UIDynamicElement).
@@ -1050,16 +1085,34 @@ scriptContent:
           directiveSource: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'right' || this?.showCsvDownloadPosition == 'both_col')
-          ↓UseSharedComponent [ngx.components.UIUseShared-1741622375553]: 
-            comment: Use Shared Component (UIUseShared).
-            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload
-            ↓ag_grid [ngx.components.UIUseVariable-1741622375556]: 
-              comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
+              - MobileSmartSourceType: script:(this?.showXlsxDownload && (this?.showXlsxDownloadPosition == 'right' || this?.showXlsxDownloadPosition == 'both_col')) || (this?.showCsvDownload && (this?.showCsvDownloadPosition == 'right' || this?.showCsvDownloadPosition == 'both_col'))
+          ↓ExportMenu [ngx.components.UIUseShared-1789571050881]: 
+            sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvXlsxDownload_Row
+            ↓alignment [ngx.components.UIUseVariable-1789571053309]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: 'script:this?.showCsvDownload ? this?.showCsvDownloadAlignment : this?.showXlsxDownloadAlignment'
+            ↓ag_grid [ngx.components.UIUseVariable-1789571053311]: 
               varValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this?.agGrid
+            ↓xlsx_button [ngx.components.UIUseVariable-1789571053313]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showXlsxDownload
+            ↓csv_button [ngx.components.UIUseVariable-1789571053315]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.showCsvDownload
+            ↓file_prefix [ngx.components.UIUseVariable-1789571053317]: 
+              varValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this?.id
       ↓class [ngx.components.UIAttribute-1719501022201]: 
         attrName: class
         attrValue: 
@@ -1073,22 +1126,39 @@ scriptContent:
         directiveSource: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: script:this?.showCsvDownload && (this?.showCsvDownloadPosition == 'bottom' || this?.showCsvDownloadPosition == 'both_row')
+            - MobileSmartSourceType: script:(this?.showXlsxDownload && (this?.showXlsxDownloadPosition == 'bottom' || this?.showXlsxDownloadPosition == 'both_row')) || (this?.showCsvDownload && (this?.showCsvDownloadPosition == 'bottom' || this?.showCsvDownloadPosition == 'both_row'))
         ↓UseSharedComponent [ngx.components.UIUseShared-1741622295423]: 
           comment: Use Shared Component (UIUseShared).
-          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvDownload_Row
+          sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid_CsvXlsxDownload_Row
           ↓alignment [ngx.components.UIUseVariable-1741622295426]: 
             comment: <p>Variable alignment.</p><p><b>Example:</b> <code>source:{&quot;filter&quot;:&quot;Shared&quot;,&quot;project&quot;:&quot;lib_ExtendedComponents_ui_ngx&quot;,&quot;input&quot;:&quot;&quot;,&quot;model&quot;:{&quot;data&quot;:[{&quot;priority&quot;:1710934918899,&quot;regular&quot;:true}...</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.showCsvDownloadAlignment","prefix":"","suffix":"","custom":"","useCustom":false}}
+                - MobileSmartSourceType: 'script:this?.showCsvDownload ? this?.showCsvDownloadAlignment : this?.showXlsxDownloadAlignment'
           ↓ag_grid [ngx.components.UIUseVariable-1741622295429]: 
             comment: <p>Variable ag grid.</p><p><b>Example:</b> <code>script:this?.agGrid</code></p>
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.agGrid
+          ↓xlsx_button [ngx.components.UIUseVariable-1789566304669]: 
+            comment: <p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.showXlsxDownload
+          ↓csv_button [ngx.components.UIUseVariable-1789566304671]: 
+            comment: <p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.showCsvDownload
+          ↓file_prefix [ngx.components.UIUseVariable-1789570985276]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this?.id
 ↓suppressMenuHide [ngx.components.UICompVariable-1786460434726]: 
   comment: <p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> <code>false</code></p>
   value: false
@@ -1098,3 +1168,12 @@ scriptContent:
         menu: `<span class=''ag-icon ag-icon-filter''></span>`
     }</code></p>'
   value: '{}'
+↓showXlsxDownload [ngx.components.UICompVariable-1789565744124]: 
+  comment: <p>If true, displays a XLSX download button/menu around the grid.</p><p><b>Example:</b> <code>false</code></p>
+  value: false
+↓showXlsxDownloadPosition [ngx.components.UICompVariable-1789565844862]: 
+  comment: '<p>If showXlsxDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> <code>&#x27;top&#x27;</code></p>'
+  value: '''top'''
+↓showXlsxDownloadAlignment [ngx.components.UICompVariable-1789565844865]: 
+  comment: '<p>If showXlsxDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>'
+  value: '''end'''

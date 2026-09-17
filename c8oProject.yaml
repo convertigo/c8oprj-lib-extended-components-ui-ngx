@@ -8,8 +8,10 @@
     
     '
   corsOrigin: =Origin
-  version: 8.4.0.42
+  version: 8.4.0.44
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  ↓lib_MicrosoftExcel [references.ProjectSchemaReference]: 
+    projectName: lib_MicrosoftExcel=https://github.com/convertigo/c8oprj-lib-excel.git:branch=8.2.X
   ↓project1 [references.ProjectSchemaReference]: 
     projectName: mobilebuilder_tpl_8_4_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_4_0_ngx.zip
   ↓MobileApplication [core.MobileApplication]: 

@@ -8,6 +8,15 @@ Set of shared components you can use in your projects :
 
 
 
+<details><summary><span style="color:DarkGoldenRod"><i>References</i></span></summary><blockquote><p>
+
+
+## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/references/images/ProjectSchemaReference_16x16.png?raw=true "ProjectSchemaReference") lib_MicrosoftExcel
+
+
+see [readme](https://github.com/convertigo/c8oprj-lib-excel/tree/8.2.X#readme)
+</p></blockquote></details>
+
 <details><summary><span style="color:DarkGoldenRod"><i>Connectors</i></span></summary><blockquote><p>
 
 
@@ -903,6 +912,48 @@ false
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showXlsxDownload
+</td>
+<td>
+<p>If true, displays a XLSX download button/menu around the grid.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showXlsxDownloadAlignment
+</td>
+<td>
+<p>If showXlsxDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> 
+
+```
+&#x27;end&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;showXlsxDownloadPosition
+</td>
+<td>
+<p>If showXlsxDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> 
+
+```
+&#x27;top&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressCellSelection
 </td>
 <td>
@@ -1119,10 +1170,72 @@ n/a
 
 </p></blockquote></details>
 
-<details><summary><b>agGrid_CsvDownload_Row</b></summary><blockquote><p>
+<details><summary><b>agGrid_CsvXlsxDownload_Row</b> : Compact CSV and Excel export menu for an AG Grid instance</summary><blockquote><p>
 
 
-### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_CsvDownload_Row
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_CsvXlsxDownload_Row
+
+Compact CSV and Excel export menu for an AG Grid instance.
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ag_grid
+</td>
+<td>
+Reference to the AG Grid Angular component.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;alignment
+</td>
+<td>
+Export action alignment: start, center or end.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;csv_button
+</td>
+<td>
+Whether the CSV menu item is visible.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;file_prefix
+</td>
+<td>
+Safe readable prefix used for generated XLSX filenames.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;xlsx_button
+</td>
+<td>
+Whether the Excel (.xlsx) menu item is visible.
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>agGrid_XlsxDownload</b></summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_XlsxDownload
 
 
 
@@ -1142,24 +1255,10 @@ comment
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ag_grid
 </td>
 <td>
-<p>Reference to the agGrid instance used to trigger CSV export</p><p><b>Example:</b> 
+<p>Reference to the agGrid instance used to trigger XLSX export</p><p><b>Example:</b> 
 
 ```
 n/a
-```
-
-</p>
-</td>
-</tr>
-<tr>
-<td>
-<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;alignment
-</td>
-<td>
-<p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> 
-
-```
-&#x27;end&#x27;
 ```
 
 </p>
