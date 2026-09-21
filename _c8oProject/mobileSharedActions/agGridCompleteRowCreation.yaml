@@ -1,0 +1,32 @@
+comment: agGrid Complete Row Creation, must be called in a RowCreate Control once the backend call that creates the row is over
+↓agGridEvent [ngx.components.UIStackVariable-1808000000081]: 
+  comment: <p>map agGridEvent to the TS &#x27;event&#x27; parameter from the RowCreate Control</p><p><b>Example:</b> <code>n/a</code></p>
+↓data [ngx.components.UIStackVariable-1808000000082]: 
+  comment: '<p>the created row as the backend returned it (with its id, computed fields...). Optional: the submitted row is used when empty</p><p><b>Example:</b> <code>n/a</code></p>'
+↓error [ngx.components.UIStackVariable-1808000000083]: 
+  comment: '<p>set it when the creation failed (message or error object): the draft row stays open and shows the message. Leave empty on success</p><p><b>Example:</b> <code>n/a</code></p>'
+↓agGridCompleteRowCreation [ngx.components.UICustomAction-1808000000084]: 
+  actionValue: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '		try {
+          			page.c8o.log.debug("[MB] " + props.actionFunction + ": " + props.actionName);
+          			const agGridEvent = vars.agGridEvent;
+          			if (agGridEvent == null || typeof agGridEvent.success !== "function" || typeof agGridEvent.fail !== "function") {
+          				throw new Error("agGridEvent must be the event of the RowCreate Control");
+          			}
+          			const failed = vars.error != null && vars.error !== "" && vars.error !== false;
+          			if (failed) {
+          				agGridEvent.fail(vars.error);
+          			}
+          			else {
+          				agGridEvent.success(vars.data != null && vars.data !== "" ? vars.data : undefined);
+          			}
+          			resolve(!failed);
+          		} catch (e) {
+          			reject(e);
+          		}
+          '
+  comment: ag Grid Complete Row Creation (UICustomAction).

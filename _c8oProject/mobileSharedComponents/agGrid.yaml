@@ -1,6 +1,8 @@
 comment: |
-  This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
+  'This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
   
+  Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
+  '
 scriptContent: 
   - xmlizable: 
     - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -23,6 +25,19 @@ scriptContent:
         	public agGridCheckCount: number = 0;
         	public agGridLastUncertainPass: number = -2;
         	public agGridUncertainStreak: number = 0;
+        	// Row creation (enableRowCreation): the draft row object (null when no draft is open), the fields the user edited,
+        	// the {field: message} errors, the submit state, the cached column definitions and the multi select editor class.
+        	public agGridDraftRow: any = null;
+        	public agGridDraftTouched: any = {};
+        	public agGridDraftErrors: any = {};
+        	public agGridDraftSubmitting: boolean = false;
+        	public agGridDraftSubmitError: string = "";
+        	public agGridDraftColumnDefs: any = null;
+        	public agGridDraftColumnDefsSource: any = null;
+        	public agGridDraftColumnDefsSignature: string = "";
+        	public agGridDraftMultiSelectEditor: any = null;
+        	public agGridDraftOverlayListener: any = null;
+        	public agGridDraftOverlayApi: any = null;
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
@@ -412,7 +427,825 @@ scriptContent:
         			});
         			this.columnDefs = columnDefs;
         		}
-        		return this.columnDefs;
+        		// row creation disabled (default): the application column definitions, untouched, as before
+        		return this.isAgGridRowCreationEnabled() ? this.getAgGridRowCreationColumnDefs(this.columnDefs) : this.columnDefs;
+        	}
+        
+        	// ---------------------------------------------------------------------------------------------------------------
+        	// Row creation (enableRowCreation). Everything below is inert while enableRowCreation is not true.
+        	// The draft row is a pinned top row: it lives in the UI only, pagination, sorting and filtering never hide it,
+        	// and nothing reaches the backend before submitAgGridRowCreation.
+        	// ---------------------------------------------------------------------------------------------------------------
+        	agGridRowCreationText(key: string, args?: any): string {
+        		const translations: any = {
+        			en: {Grid_RowCreation_Add: "Add row", Grid_RowCreation_Submit: "Save", Grid_RowCreation_Cancel: "Cancel", Grid_RowCreation_Saving: "Saving…", Grid_RowCreation_Invalid: "{{count}} invalid field(s)", Grid_RowCreation_Failed: "The row could not be created", Grid_RowCreation_Required: "This field is required", Grid_RowCreation_Number: "A number is expected", Grid_RowCreation_Integer: "An integer is expected", Grid_RowCreation_Min: "The value must be at least {{min}}", Grid_RowCreation_Max: "The value must be at most {{max}}", Grid_RowCreation_MinLength: "At least {{min}} character(s) expected", Grid_RowCreation_MaxLength: "At most {{max}} character(s) expected", Grid_RowCreation_Date: "A valid date is expected", Grid_RowCreation_Boolean: "True or false is expected", Grid_RowCreation_Select: "The value is not in the list", Grid_RowCreation_Pattern: "The format is invalid", Grid_RowCreation_Custom: "The value is invalid"},
+        			fr: {Grid_RowCreation_Add: "Ajouter une ligne", Grid_RowCreation_Submit: "Enregistrer", Grid_RowCreation_Cancel: "Annuler", Grid_RowCreation_Saving: "Enregistrement…", Grid_RowCreation_Invalid: "{{count}} champ(s) invalide(s)", Grid_RowCreation_Failed: "La ligne n’a pas pu être créée", Grid_RowCreation_Required: "Ce champ est obligatoire", Grid_RowCreation_Number: "Un nombre est attendu", Grid_RowCreation_Integer: "Un entier est attendu", Grid_RowCreation_Min: "La valeur doit être au moins {{min}}", Grid_RowCreation_Max: "La valeur doit être au plus {{max}}", Grid_RowCreation_MinLength: "Au moins {{min}} caractère(s) attendu(s)", Grid_RowCreation_MaxLength: "Au plus {{max}} caractère(s) attendu(s)", Grid_RowCreation_Date: "Une date valide est attendue", Grid_RowCreation_Boolean: "Vrai ou faux est attendu", Grid_RowCreation_Select: "La valeur n’est pas dans la liste", Grid_RowCreation_Pattern: "Le format est invalide", Grid_RowCreation_Custom: "La valeur est invalide"},
+        			es: {Grid_RowCreation_Add: "Añadir fila", Grid_RowCreation_Submit: "Guardar", Grid_RowCreation_Cancel: "Cancelar", Grid_RowCreation_Saving: "Guardando…", Grid_RowCreation_Invalid: "{{count}} campo(s) no válido(s)", Grid_RowCreation_Failed: "No se pudo crear la fila", Grid_RowCreation_Required: "Este campo es obligatorio", Grid_RowCreation_Number: "Se espera un número", Grid_RowCreation_Integer: "Se espera un número entero", Grid_RowCreation_Min: "El valor debe ser como mínimo {{min}}", Grid_RowCreation_Max: "El valor debe ser como máximo {{max}}", Grid_RowCreation_MinLength: "Se esperan al menos {{min}} carácter(es)", Grid_RowCreation_MaxLength: "Se esperan como máximo {{max}} carácter(es)", Grid_RowCreation_Date: "Se espera una fecha válida", Grid_RowCreation_Boolean: "Se espera verdadero o falso", Grid_RowCreation_Select: "El valor no está en la lista", Grid_RowCreation_Pattern: "El formato no es válido", Grid_RowCreation_Custom: "El valor no es válido"},
+        			it: {Grid_RowCreation_Add: "Aggiungi riga", Grid_RowCreation_Submit: "Salva", Grid_RowCreation_Cancel: "Annulla", Grid_RowCreation_Saving: "Salvataggio…", Grid_RowCreation_Invalid: "{{count}} campo/i non valido/i", Grid_RowCreation_Failed: "Impossibile creare la riga", Grid_RowCreation_Required: "Questo campo è obbligatorio", Grid_RowCreation_Number: "È atteso un numero", Grid_RowCreation_Integer: "È atteso un numero intero", Grid_RowCreation_Min: "Il valore deve essere almeno {{min}}", Grid_RowCreation_Max: "Il valore deve essere al massimo {{max}}", Grid_RowCreation_MinLength: "Sono attesi almeno {{min}} carattere/i", Grid_RowCreation_MaxLength: "Sono attesi al massimo {{max}} carattere/i", Grid_RowCreation_Date: "È attesa una data valida", Grid_RowCreation_Boolean: "È atteso vero o falso", Grid_RowCreation_Select: "Il valore non è nell’elenco", Grid_RowCreation_Pattern: "Il formato non è valido", Grid_RowCreation_Custom: "Il valore non è valido"}
+        		};
+        		let text: any = null;
+        		try {
+        			const translated = this.translate?.instant?.(key);
+        			if (translated != null && translated !== "" && translated !== key) {
+        				text = translated;
+        			}
+        		} catch (e) {
+        		}
+        		if (text == null) {
+        			const current = String(this.translate?.currentLang || this.translate?.defaultLang || "en").toLowerCase();
+        			text = translations[current.split("-")[0]]?.[key] || translations.en[key] || key;
+        		}
+        		const values = args || {};
+        		return String(text).replace(/\{\{\s*(\w+)\s*\}\}/g, (match: string, name: string) => values[name] != null ? String(values[name]) : "");
+        	}
+        
+        	isAgGridRowCreationEnabled(): boolean {
+        		return this.enableRowCreation === true || this.enableRowCreation === "true";
+        	}
+        
+        	// Rule of a field: rowCreationColumns[field], or {} when the field has none.
+        	getAgGridDraftRule(field: any): any {
+        		const rules: any = this.rowCreationColumns;
+        		const rule = rules != null && typeof rules === "object" && field != null ? rules[field] : null;
+        		return rule != null && typeof rule === "object" ? rule : {};
+        	}
+        
+        	isAgGridDraftNode(node: any): boolean {
+        		return this.agGridDraftRow != null && node != null && node.data === this.agGridDraftRow;
+        	}
+        
+        	// True for a grid event raised by the draft row: those are not forwarded to the application (no CellValueChanged,
+        	// CellClicked, RowClicked, RowDoubleClicked for a row that does not exist yet). Always false without a draft.
+        	isAgGridDraftEvent(event: any): boolean {
+        		return this.agGridDraftRow != null && event != null && (event.data === this.agGridDraftRow || (event.node != null && event.node.data === this.agGridDraftRow));
+        	}
+        
+        	isAgGridDraftDotNotation(field: any): boolean {
+        		return typeof field === "string" && field.indexOf(".") >= 0 && this.suppressFieldDotNotation !== true;
+        	}
+        
+        	getAgGridDraftValue(row: any, field: any): any {
+        		if (row == null || field == null) {
+        			return undefined;
+        		}
+        		if (!this.isAgGridDraftDotNotation(field)) {
+        			return row[field];
+        		}
+        		let current: any = row;
+        		const parts = String(field).split(".");
+        		for (let i = 0; i < parts.length && current != null; i++) {
+        			current = current[parts[i]];
+        		}
+        		return current;
+        	}
+        
+        	setAgGridDraftValue(row: any, field: any, value: any): void {
+        		if (row == null || field == null) {
+        			return;
+        		}
+        		if (!this.isAgGridDraftDotNotation(field)) {
+        			row[field] = value;
+        			return;
+        		}
+        		let current: any = row;
+        		const parts = String(field).split(".");
+        		for (let i = 0; i < parts.length - 1; i++) {
+        			if (current[parts[i]] == null || typeof current[parts[i]] !== "object") {
+        				current[parts[i]] = {};
+        			}
+        			current = current[parts[i]];
+        		}
+        		current[parts[parts.length - 1]] = value;
+        	}
+        
+        	isAgGridDraftEmpty(value: any): boolean {
+        		return value == null || (typeof value === "string" && value.trim() === "") || (Array.isArray(value) && value.length === 0);
+        	}
+        
+        	// Options of a select / multiselect rule as [{value, label}]. Accepts primitives or {value, label} objects.
+        	getAgGridDraftOptions(rule: any): any[] {
+        		const options = Array.isArray(rule?.options) ? rule.options : (Array.isArray(rule?.values) ? rule.values : []);
+        		return options.map((option: any) => option != null && typeof option === "object" ? {value: option.value, label: option.label != null ? option.label : option.value} : {value: option, label: option});
+        	}
+        
+        	parseAgGridDraftDate(value: any): any {
+        		if (value instanceof Date) {
+        			return isNaN(value.getTime()) ? null : value;
+        		}
+        		if (typeof value === "number" && isFinite(value)) {
+        			return new Date(value);
+        		}
+        		if (typeof value !== "string") {
+        			return null;
+        		}
+        		const text = value.trim();
+        		// day only: built from its parts so that the local day is kept whatever the time zone
+        		const day = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
+        		if (day != null) {
+        			const date = new Date(Number(day[1]), Number(day[2]) - 1, Number(day[3]));
+        			return date.getFullYear() === Number(day[1]) && date.getMonth() === Number(day[2]) - 1 && date.getDate() === Number(day[3]) ? date : null;
+        		}
+        		if (!/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}/.test(text)) {
+        			return null;
+        		}
+        		const date = new Date(text.replace(" ", "T"));
+        		return isNaN(date.getTime()) ? null : date;
+        	}
+        
+        	formatAgGridDraftDay(date: Date): string {
+        		return date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0");
+        	}
+        
+        	// Validates and normalizes one value against a rule. Returns {valid, value, message}: value is the normalized
+        	// value when valid (number, boolean, "YYYY-MM-DD", option value, array of option values, trimmed text).
+        	checkAgGridDraftValue(field: any, raw: any, row: any): any {
+        		const rule = this.getAgGridDraftRule(field);
+        		const fail = (key: string, args?: any) => ({valid: false, value: raw, message: typeof rule.message === "string" && rule.message !== "" ? rule.message : this.agGridRowCreationText(key, args)});
+        		const type = String(rule.type || "").toLowerCase();
+        		let value: any = raw;
+        		if (type === "multiselect" && typeof value === "string") {
+        			value = value.trim() === "" ? [] : value.split(",").map((item: string) => item.trim());
+        		}
+        		if (this.isAgGridDraftEmpty(value)) {
+        			if (rule.required === true) {
+        				return fail("Grid_RowCreation_Required");
+        			}
+        			return {valid: true, value: type === "multiselect" ? [] : (value === undefined || typeof value === "string" ? null : value), message: ""};
+        		}
+        		if (type === "number" || type === "integer") {
+        			let parsed: any = value;
+        			if (typeof parsed === "string") {
+        				let text = parsed.trim().replace(/\s/g, "");
+        				if (text.indexOf(",") >= 0 && text.indexOf(".") < 0) {
+        					text = text.replace(",", ".");
+        				}
+        				parsed = /^[-+]?(\d+\.?\d*|\.\d+)([eE][-+]?\d+)?$/.test(text) ? Number(text) : NaN;
+        			}
+        			if (typeof parsed !== "number" || !isFinite(parsed)) {
+        				return fail("Grid_RowCreation_Number");
+        			}
+        			if ((type === "integer" || rule.integer === true) && Math.floor(parsed) !== parsed) {
+        				return fail("Grid_RowCreation_Integer");
+        			}
+        			if (rule.min != null && parsed < Number(rule.min)) {
+        				return fail("Grid_RowCreation_Min", {min: rule.min});
+        			}
+        			if (rule.max != null && parsed > Number(rule.max)) {
+        				return fail("Grid_RowCreation_Max", {max: rule.max});
+        			}
+        			value = parsed;
+        		}
+        		else if (type === "date") {
+        			const date = this.parseAgGridDraftDate(value);
+        			if (date == null) {
+        				return fail("Grid_RowCreation_Date");
+        			}
+        			const min = rule.min != null ? this.parseAgGridDraftDate(rule.min) : null;
+        			const max = rule.max != null ? this.parseAgGridDraftDate(rule.max) : null;
+        			if (min != null && date.getTime() < min.getTime()) {
+        				return fail("Grid_RowCreation_Min", {min: this.formatAgGridDraftDay(min)});
+        			}
+        			if (max != null && date.getTime() > max.getTime()) {
+        				return fail("Grid_RowCreation_Max", {max: this.formatAgGridDraftDay(max)});
+        			}
+        			const output = String(rule.dateOutput || "day").toLowerCase();
+        			value = output === "iso" ? date.toISOString() : (output === "timestamp" ? date.getTime() : (output === "date" ? date : this.formatAgGridDraftDay(date)));
+        		}
+        		else if (type === "boolean") {
+        			const text = String(value).trim().toLowerCase();
+        			if (value === true || value === 1 || ["true", "1", "yes", "y", "on", "oui", "si", "sì"].indexOf(text) >= 0) {
+        				value = true;
+        			}
+        			else if (value === false || value === 0 || ["false", "0", "no", "n", "off", "non"].indexOf(text) >= 0) {
+        				value = false;
+        			}
+        			else {
+        				return fail("Grid_RowCreation_Boolean");
+        			}
+        		}
+        		else if (type === "select") {
+        			const options = this.getAgGridDraftOptions(rule);
+        			const found = options.filter((option: any) => option.value === value || String(option.value) === String(value) || String(option.label) === String(value));
+        			if (found.length === 0) {
+        				return fail("Grid_RowCreation_Select");
+        			}
+        			value = found[0].value;
+        		}
+        		else if (type === "multiselect") {
+        			const options = this.getAgGridDraftOptions(rule);
+        			const items: any[] = Array.isArray(value) ? value : [value];
+        			const selected: any[] = [];
+        			for (let i = 0; i < items.length; i++) {
+        				const found = options.filter((option: any) => option.value === items[i] || String(option.value) === String(items[i]) || String(option.label) === String(items[i]));
+        				if (found.length === 0) {
+        					return fail("Grid_RowCreation_Select");
+        				}
+        				if (selected.indexOf(found[0].value) < 0) {
+        					selected.push(found[0].value);
+        				}
+        			}
+        			if (rule.min != null && selected.length < Number(rule.min)) {
+        				return fail("Grid_RowCreation_Min", {min: rule.min});
+        			}
+        			if (rule.max != null && selected.length > Number(rule.max)) {
+        				return fail("Grid_RowCreation_Max", {max: rule.max});
+        			}
+        			value = selected;
+        		}
+        		else if (type === "text" || type === "string") {
+        			value = typeof value === "string" ? (rule.trim === false ? value : value.trim()) : String(value);
+        		}
+        		if (typeof value === "string") {
+        			if (rule.minLength != null && value.length < Number(rule.minLength)) {
+        				return fail("Grid_RowCreation_MinLength", {min: rule.minLength});
+        			}
+        			if (rule.maxLength != null && value.length > Number(rule.maxLength)) {
+        				return fail("Grid_RowCreation_MaxLength", {max: rule.maxLength});
+        			}
+        		}
+        		if (rule.pattern != null && rule.pattern !== "") {
+        			let matches = false;
+        			try {
+        				const pattern = rule.pattern instanceof RegExp ? new RegExp(rule.pattern.source, rule.pattern.flags.replace("g", "")) : new RegExp(String(rule.pattern));
+        				matches = pattern.test(String(value));
+        			} catch (e) {
+        				matches = false;
+        			}
+        			if (!matches) {
+        				return fail("Grid_RowCreation_Pattern");
+        			}
+        		}
+        		if (rule.validator != null && rule.validator !== "") {
+        			// function (value, row, field) or expression using value, row and field. true / undefined: valid,
+        			// false: invalid, string: invalid with that message. An error in the validator is an invalid value.
+        			let verdict: any;
+        			try {
+        				const validator = typeof rule.validator === "function" ? rule.validator : new Function("value", "row", "field", "return (" + String(rule.validator) + ");");
+        				verdict = validator(value, row, field);
+        			} catch (e) {
+        				verdict = false;
+        			}
+        			if (typeof verdict === "string" && verdict !== "") {
+        				return {valid: false, value: raw, message: verdict};
+        			}
+        			if (verdict === false) {
+        				return fail("Grid_RowCreation_Custom");
+        			}
+        		}
+        		return {valid: true, value: value, message: ""};
+        	}
+        
+        	// Leaf column definitions of the grid, column groups flattened.
+        	getAgGridDraftLeafColDefs(colDefs?: any): any[] {
+        		const leaves: any[] = [];
+        		const visit = (items: any) => {
+        			(Array.isArray(items) ? items : []).forEach((item: any) => {
+        				if (item != null && Array.isArray(item.children)) {
+        					visit(item.children);
+        				}
+        				else if (item != null && typeof item === "object") {
+        					leaves.push(item);
+        				}
+        			});
+        		};
+        		visit(colDefs !== undefined ? colDefs : this.columnDefs);
+        		return leaves;
+        	}
+        
+        	// Fields checked at submit: every column field plus every field that has a rule.
+        	getAgGridDraftFields(): string[] {
+        		const fields: string[] = [];
+        		this.getAgGridDraftLeafColDefs().forEach((colDef: any) => {
+        			if (typeof colDef.field === "string" && colDef.field !== "" && fields.indexOf(colDef.field) < 0) {
+        				fields.push(colDef.field);
+        			}
+        		});
+        		const rules: any = this.rowCreationColumns;
+        		if (rules != null && typeof rules === "object") {
+        			Object.keys(rules).forEach((field: string) => {
+        				if (fields.indexOf(field) < 0) {
+        					fields.push(field);
+        				}
+        			});
+        		}
+        		return fields;
+        	}
+        
+        	// Validates the whole draft. Fills agGridDraftErrors ({field: message}) and returns true when the draft is valid.
+        	validateAgGridDraft(): boolean {
+        		const errors: any = {};
+        		if (this.agGridDraftRow != null) {
+        			this.getAgGridDraftFields().forEach((field: string) => {
+        				const result = this.checkAgGridDraftValue(field, this.getAgGridDraftValue(this.agGridDraftRow, field), this.agGridDraftRow);
+        				if (!result.valid) {
+        					errors[field] = result.message;
+        				}
+        			});
+        		}
+        		this.agGridDraftErrors = errors;
+        		return Object.keys(errors).length === 0;
+        	}
+        
+        	getAgGridDraftErrorCount(): number {
+        		return Object.keys(this.agGridDraftErrors || {}).length;
+        	}
+        
+        	isAgGridDraftSubmittable(): boolean {
+        		return this.agGridDraftRow != null && !this.agGridDraftSubmitting && this.getAgGridDraftErrorCount() === 0;
+        	}
+        
+        	// Editor of a draft cell, from the type of its rule. undefined: the editor of the column is kept.
+        	getAgGridDraftEditor(field: any): any {
+        		const rule = this.getAgGridDraftRule(field);
+        		const type = String(rule.type || "").toLowerCase();
+        		if (type === "number" || type === "integer") {
+        			// min and max are left to the validation: the editor would silently drop an out of range value
+        			return {component: "agNumberCellEditor", params: {}};
+        		}
+        		if (type === "date") {
+        			return {component: "agDateStringCellEditor", params: {}};
+        		}
+        		if (type === "boolean") {
+        			return {component: "agCheckboxCellEditor"};
+        		}
+        		if (type === "select") {
+        			const options = this.getAgGridDraftOptions(rule);
+        			// the list shows the values through the valueFormatter of the column, as the cells do
+        			const values = options.map((option: any) => option.value);
+        			if (rule.required !== true) {
+        				values.unshift("");
+        			}
+        			return {component: "agSelectCellEditor", params: {values: values}};
+        		}
+        		if (type === "multiselect") {
+        			return {component: this.getAgGridDraftMultiSelectEditor(), params: {options: this.getAgGridDraftOptions(rule)}, popup: true, popupPosition: "under"};
+        		}
+        		return undefined;
+        	}
+        
+        	// Plain JavaScript AG Grid cell editor: a popup list of checkboxes. AG Grid community has no multi select editor.
+        	getAgGridDraftMultiSelectEditor(): any {
+        		if (this.agGridDraftMultiSelectEditor == null) {
+        			this.agGridDraftMultiSelectEditor = class {
+        				public gui: any;
+        				public boxes: any[] = [];
+        				init(params: any) {
+        					const current = Array.isArray(params.value) ? params.value : (params.value == null || params.value === "" ? [] : String(params.value).split(",").map((item: string) => item.trim()));
+        					this.gui = document.createElement("div");
+        					this.gui.className = "ag-grid-draft-multiselect";
+        					this.gui.tabIndex = 0;
+        					(params.options || []).forEach((option: any) => {
+        						const label = document.createElement("label");
+        						const box = document.createElement("input");
+        						box.type = "checkbox";
+        						box.checked = current.some((item: any) => item === option.value || String(item) === String(option.value));
+        						(box as any).optionValue = option.value;
+        						label.appendChild(box);
+        						label.appendChild(document.createTextNode(" " + String(option.label)));
+        						this.gui.appendChild(label);
+        						this.boxes.push(box);
+        					});
+        					this.gui.addEventListener("keydown", (event: any) => {
+        						if (event.key === "Enter") {
+        							params.stopEditing();
+        						}
+        					});
+        				}
+        				getGui() {
+        					return this.gui;
+        				}
+        				afterGuiAttached() {
+        					(this.boxes[0] || this.gui).focus();
+        				}
+        				getValue() {
+        					return this.boxes.filter((box: any) => box.checked).map((box: any) => box.optionValue);
+        				}
+        				isPopup() {
+        					return true;
+        				}
+        			};
+        		}
+        		return this.agGridDraftMultiSelectEditor;
+        	}
+        
+        	// Column definitions given to the grid while row creation is enabled: shallow copies of the application ones.
+        	// Every leaf gains 3 cell class rules that only match the draft row. A leaf whose rule sets "editable" or a typed
+        	// editor also gains an editable / cellEditorSelector wrapper that answers for the draft row and hands every other
+        	// row to the original definition (then to defaultColDef), so existing rows behave as before.
+        	// The copies are rebuilt only when the columnDefs reference or the content of the rules changes: a new array on
+        	// every change detection pass would make the grid reset its columns for ever.
+        	getAgGridRowCreationColumnDefs(source: any): any {
+        		if (!Array.isArray(source)) {
+        			return source;
+        		}
+        		let signature = "";
+        		try {
+        			signature = JSON.stringify(this.rowCreationColumns, (key: string, value: any) => typeof value === "function" ? "function" : (value instanceof RegExp ? String(value) : value)) || "";
+        		} catch (e) {
+        			signature = "";
+        		}
+        		if (this.agGridDraftColumnDefs != null && this.agGridDraftColumnDefsSource === source && this.agGridDraftColumnDefsSignature === signature) {
+        			return this.agGridDraftColumnDefs;
+        		}
+        		const wrap = (colDef: any): any => {
+        			if (colDef == null || typeof colDef !== "object") {
+        				return colDef;
+        			}
+        			if (Array.isArray(colDef.children)) {
+        				return {...colDef, children: colDef.children.map(wrap)};
+        			}
+        			const field = colDef.field;
+        			if (typeof field !== "string" || field === "") {
+        				return colDef;
+        			}
+        			const wrapped: any = {...colDef};
+        			wrapped.cellClassRules = {
+        				...(colDef.cellClassRules || {}),
+        				"ag-grid-draft-cell": (params: any) => this.isAgGridDraftNode(params?.node),
+        				"ag-grid-draft-invalid": (params: any) => this.isAgGridDraftNode(params?.node) && this.agGridDraftErrors?.[field] != null && this.agGridDraftTouched?.[field] === true,
+        				"ag-grid-draft-required": (params: any) => this.isAgGridDraftNode(params?.node) && this.agGridDraftErrors?.[field] != null && this.agGridDraftTouched?.[field] !== true
+        			};
+        			const rule = this.getAgGridDraftRule(field);
+        			if (rule.editable === true || rule.editable === false) {
+        				const original = colDef.editable !== undefined ? colDef.editable : this.defaultColDef?.editable;
+        				wrapped.editable = (params: any) => {
+        					if (this.isAgGridDraftNode(params?.node)) {
+        						return this.getAgGridDraftRule(field).editable !== false && !this.agGridDraftSubmitting;
+        					}
+        					return typeof original === "function" ? original(params) : original === true;
+        				};
+        			}
+        			if (this.getAgGridDraftEditor(field) !== undefined) {
+        				const original = colDef.cellEditorSelector !== undefined ? colDef.cellEditorSelector : this.defaultColDef?.cellEditorSelector;
+        				wrapped.cellEditorSelector = (params: any) => {
+        					if (this.isAgGridDraftNode(params?.node)) {
+        						return this.getAgGridDraftEditor(field);
+        					}
+        					return typeof original === "function" ? original(params) : undefined;
+        				};
+        			}
+        			return wrapped;
+        		};
+        		this.agGridDraftColumnDefs = source.map(wrap);
+        		this.agGridDraftColumnDefsSource = source;
+        		this.agGridDraftColumnDefsSignature = signature;
+        		return this.agGridDraftColumnDefs;
+        	}
+        
+        	cloneAgGridDraftValue(value: any): any {
+        		if (value instanceof Date) {
+        			return new Date(value.getTime());
+        		}
+        		if (Array.isArray(value)) {
+        			return value.map((item: any) => this.cloneAgGridDraftValue(item));
+        		}
+        		if (value != null && typeof value === "object") {
+        			const copy: any = {};
+        			Object.keys(value).forEach((key: string) => {
+        				copy[key] = this.cloneAgGridDraftValue(value[key]);
+        			});
+        			return copy;
+        		}
+        		return value;
+        	}
+        
+        	setAgGridPinnedTopRows(gridApi: any, rows: any[]): void {
+        		if (typeof gridApi.setGridOption === "function") {
+        			gridApi.setGridOption("pinnedTopRowData", rows);
+        		}
+        		else {
+        			gridApi.setPinnedTopRowData?.(rows);
+        		}
+        	}
+        
+        	getAgGridDraftNode(gridApi?: any): any {
+        		const api = gridApi || this.resolveAgGridApi();
+        		const count = api != null && typeof api.getPinnedTopRowCount === "function" ? api.getPinnedTopRowCount() : 0;
+        		for (let i = 0; i < count; i++) {
+        			const node = api.getPinnedTopRow(i);
+        			if (this.isAgGridDraftNode(node)) {
+        				return node;
+        			}
+        		}
+        		return null;
+        	}
+        
+        	refreshAgGridDraft(): void {
+        		const gridApi = this.resolveAgGridApi();
+        		const node = this.getAgGridDraftNode(gridApi);
+        		if (gridApi != null && node != null) {
+        			gridApi.refreshCells?.({rowNodes: [node], force: true});
+        		}
+        		if (!this.agGridDestroyed) {
+        			this.ref.markForCheck();
+        		}
+        	}
+        
+        	// Shows the draft row again on a grid created after the draft was opened (the grid is rebuilt when the locale loads).
+        	restoreAgGridDraft(gridApi: any): void {
+        		if (this.agGridDraftRow != null && gridApi != null && this.getAgGridDraftNode(gridApi) == null) {
+        			this.setAgGridPinnedTopRows(gridApi, [this.agGridDraftRow]);
+        		}
+        	}
+        
+        	// Opens the draft row. Nothing is sent to the backend. Returns false when row creation is disabled, when the grid
+        	// is not ready or when a draft is already open.
+        	startAgGridRowCreation(): boolean {
+        		const gridApi = this.resolveAgGridApi();
+        		if (!this.isAgGridRowCreationEnabled() || gridApi == null || this.agGridDraftRow != null) {
+        			return false;
+        		}
+        		const draft: any = {};
+        		const defaults: any = typeof this.rowCreationDefaultValues === "function" ? this.rowCreationDefaultValues() : this.rowCreationDefaultValues;
+        		if (defaults != null && typeof defaults === "object") {
+        			Object.keys(defaults).forEach((field: string) => {
+        				this.setAgGridDraftValue(draft, field, this.cloneAgGridDraftValue(defaults[field]));
+        			});
+        		}
+        		const rules: any = this.rowCreationColumns;
+        		if (rules != null && typeof rules === "object") {
+        			Object.keys(rules).forEach((field: string) => {
+        				if (rules[field] != null && rules[field].defaultValue !== undefined && this.getAgGridDraftValue(draft, field) === undefined) {
+        					const value = rules[field].defaultValue;
+        					this.setAgGridDraftValue(draft, field, this.cloneAgGridDraftValue(typeof value === "function" ? value() : value));
+        				}
+        			});
+        		}
+        		this.agGridDraftRow = draft;
+        		this.agGridDraftTouched = {};
+        		this.agGridDraftSubmitting = false;
+        		this.agGridDraftSubmitError = "";
+        		this.validateAgGridDraft();
+        		this.setAgGridPinnedTopRows(gridApi, [draft]);
+        		// The "no rows" overlay of an empty grid would cover the draft row, and the grid shows it again on every row data
+        		// update: it is hidden now and after each of those updates, as long as the draft is open.
+        		gridApi.hideOverlay?.();
+        		if (this.agGridDraftOverlayListener == null && typeof gridApi.addEventListener === "function") {
+        			this.agGridDraftOverlayListener = () => {
+        				if (this.agGridDraftRow != null) {
+        					this.resolveAgGridApi()?.hideOverlay?.();
+        				}
+        			};
+        			this.agGridDraftOverlayApi = gridApi;
+        			gridApi.addEventListener("rowDataUpdated", this.agGridDraftOverlayListener);
+        		}
+        		this.refreshAgGridDraft();
+        		this.editAgGridDraftFirstCell(gridApi);
+        		return true;
+        	}
+        
+        	editAgGridDraftFirstCell(gridApi: any): void {
+        		try {
+        			const node = this.getAgGridDraftNode(gridApi);
+        			const columns: any[] = typeof gridApi.getAllDisplayedColumns === "function" ? gridApi.getAllDisplayedColumns() || [] : [];
+        			for (let i = 0; node != null && i < columns.length; i++) {
+        				if (typeof columns[i].isCellEditable === "function" && columns[i].isCellEditable(node)) {
+        					gridApi.ensureColumnVisible?.(columns[i]);
+        					gridApi.startEditingCell({rowIndex: 0, rowPinned: "top", colKey: columns[i]});
+        					return;
+        				}
+        			}
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid row creation: the first cell could not be edited : ", e != null ? (e as any).message : e);
+        		}
+        	}
+        
+        	closeAgGridDraft(): void {
+        		const gridApi = this.resolveAgGridApi();
+        		const hadDraft = this.agGridDraftRow != null;
+        		if (gridApi != null && hadDraft) {
+        			gridApi.stopEditing?.(true);
+        			if (this.getAgGridDraftNode(gridApi) != null) {
+        				this.setAgGridPinnedTopRows(gridApi, []);
+        			}
+        		}
+        		if (this.agGridDraftOverlayListener != null) {
+        			try {
+        				const listenerApi = this.agGridDraftOverlayApi;
+        				if (listenerApi != null && !(typeof listenerApi.isDestroyed === "function" && listenerApi.isDestroyed())) {
+        					listenerApi.removeEventListener("rowDataUpdated", this.agGridDraftOverlayListener);
+        				}
+        			} catch (e) {
+        			}
+        			this.agGridDraftOverlayListener = null;
+        			this.agGridDraftOverlayApi = null;
+        		}
+        		this.agGridDraftRow = null;
+        		this.agGridDraftTouched = {};
+        		this.agGridDraftErrors = {};
+        		this.agGridDraftSubmitting = false;
+        		this.agGridDraftSubmitError = "";
+        		if (gridApi != null && hadDraft && typeof gridApi.getDisplayedRowCount === "function" && gridApi.getDisplayedRowCount() === 0 && this.rowModelType !== "infinite") {
+        			gridApi.showNoRowsOverlay?.();
+        		}
+        		if (!this.agGridDestroyed) {
+        			this.ref.markForCheck();
+        		}
+        	}
+        
+        	// Removes the draft row. Nothing was sent to the backend, so there is nothing to undo.
+        	cancelAgGridRowCreation(): boolean {
+        		if (this.agGridDraftRow == null || this.agGridDraftSubmitting) {
+        			return false;
+        		}
+        		const row = this.cloneAgGridDraftValue(this.agGridDraftRow);
+        		this.closeAgGridDraft();
+        		this.emitAgGridRowCreationEvent("RowCreateCancelled", {row: row});
+        		return true;
+        	}
+        
+        	emitAgGridRowCreationEvent(name: string, data: any): void {
+        		try {
+        			// async: the emitter does not wait for the application handler to finish
+        			const emitted: any = this.actionBeans.EmitEventAction(this, {event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid." + name, async: true, data: data}, null);
+        			emitted?.catch?.((error: any) => this.c8o.log.debug("[MB] agGrid row creation: event " + name + " failed : ", error != null ? error.message : error));
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid row creation: event " + name + " could not be emitted : ", e != null ? (e as any).message : e);
+        		}
+        	}
+        
+        	// A cell of the draft row changed: the field becomes "touched", a valid value is replaced by its normalized form.
+        	onAgGridDraftCellValueChanged(event: any): void {
+        		if (!this.isAgGridDraftEvent(event)) {
+        			return;
+        		}
+        		const field = event?.colDef?.field;
+        		if (typeof field === "string" && field !== "") {
+        			this.agGridDraftTouched[field] = true;
+        			const result = this.checkAgGridDraftValue(field, this.getAgGridDraftValue(this.agGridDraftRow, field), this.agGridDraftRow);
+        			if (result.valid) {
+        				this.setAgGridDraftValue(this.agGridDraftRow, field, result.value);
+        			}
+        		}
+        		this.agGridDraftSubmitError = "";
+        		this.validateAgGridDraft();
+        		this.refreshAgGridDraft();
+        	}
+        
+        	// Validates the draft and, only when it is valid, creates the row with ONE call: rowCreationCallback(row) when it
+        	// is a function, else the RowCreate event, whose data carries success(createdRow) and fail(error).
+        	// Resolves true when the row was created.
+        	async submitAgGridRowCreation(): Promise<boolean> {
+        		if (this.agGridDraftRow == null || this.agGridDraftSubmitting) {
+        			return false;
+        		}
+        		const gridApi = this.resolveAgGridApi();
+        		// commits the cell being edited: its cellValueChanged is handled synchronously, before the validation below
+        		gridApi?.stopEditing?.(false);
+        		this.getAgGridDraftFields().forEach((field: string) => {
+        			this.agGridDraftTouched[field] = true;
+        		});
+        		if (!this.validateAgGridDraft()) {
+        			this.refreshAgGridDraft();
+        			return false;
+        		}
+        		const draft = this.agGridDraftRow;
+        		const row: any = this.cloneAgGridDraftValue(draft);
+        		this.getAgGridDraftFields().forEach((field: string) => {
+        			const result = this.checkAgGridDraftValue(field, this.getAgGridDraftValue(draft, field), draft);
+        			if (result.value !== undefined || this.getAgGridDraftValue(row, field) !== undefined) {
+        				this.setAgGridDraftValue(row, field, this.cloneAgGridDraftValue(result.value));
+        			}
+        		});
+        		this.agGridDraftSubmitting = true;
+        		this.agGridDraftSubmitError = "";
+        		this.refreshAgGridDraft();
+        		let created: any;
+        		try {
+        			if (typeof this.rowCreationCallback === "function") {
+        				created = await this.rowCreationCallback(this.cloneAgGridDraftValue(row), {agGrid: this.agGrid, api: gridApi});
+        			}
+        			else {
+        				created = await new Promise((resolve, reject) => {
+        					let settled = false;
+        					this.emitAgGridRowCreationEvent("RowCreate", {
+        						row: this.cloneAgGridDraftValue(row),
+        						success: (result?: any) => { if (!settled) { settled = true; resolve(result); } },
+        						fail: (error?: any) => { if (!settled) { settled = true; reject(error); } }
+        					});
+        				});
+        			}
+        		} catch (error) {
+        			if (this.agGridDraftRow === draft) {
+        				this.agGridDraftSubmitting = false;
+        				const message = typeof error === "string" ? error : (error != null && typeof (error as any).message === "string" ? (error as any).message : "");
+        				this.agGridDraftSubmitError = message !== "" ? message : this.agGridRowCreationText("Grid_RowCreation_Failed");
+        				this.refreshAgGridDraft();
+        			}
+        			this.emitAgGridRowCreationEvent("RowCreateFailed", {row: row, error: error});
+        			return false;
+        		}
+        		if (this.agGridDraftRow !== draft || this.agGridDestroyed) {
+        			return true;
+        		}
+        		const createdRow = created != null && typeof created === "object" && !Array.isArray(created) ? created : row;
+        		this.closeAgGridDraft();
+        		let node: any = null;
+        		try {
+        			node = this.applyAgGridCreatedRow(createdRow);
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid row creation: the created row could not be shown : ", e != null ? (e as any).message : e);
+        		}
+        		this.emitAgGridRowCreationEvent("RowCreated", {row: createdRow, submitted: row, rowIndex: node != null ? node.rowIndex : null});
+        		return true;
+        	}
+        
+        	// rowCreationAfterSuccess: "navigate" (default) adds the row to the grid, goes to its page and flashes it,
+        	// "append" adds it, "refresh" reloads an infinite grid (a client side grid is refreshed by the application, from
+        	// the RowCreated event), "none" does nothing. An infinite grid cannot take a row: append and navigate reload it.
+        	applyAgGridCreatedRow(createdRow: any): any {
+        		const gridApi = this.resolveAgGridApi();
+        		const mode = String(this.rowCreationAfterSuccess || "navigate").toLowerCase();
+        		if (gridApi == null || mode === "none") {
+        			return null;
+        		}
+        		if (this.rowModelType === "infinite") {
+        			if (typeof (this.agGrid as any)?.context?.reset === "function") {
+        				(this.agGrid as any).context.reset();
+        			}
+        			else {
+        				gridApi.refreshInfiniteCache?.();
+        			}
+        			return null;
+        		}
+        		if (mode === "refresh" || typeof gridApi.applyTransaction !== "function") {
+        			return null;
+        		}
+        		const result = gridApi.applyTransaction({add: [createdRow], addIndex: 0});
+        		const node = result != null && Array.isArray(result.add) ? result.add[0] : null;
+        		gridApi.hideOverlay?.();
+        		if (node != null && mode === "navigate") {
+        			if (node.rowIndex != null && this.pagination !== false && typeof gridApi.paginationGetPageSize === "function") {
+        				const pageSize = gridApi.paginationGetPageSize();
+        				if (pageSize > 0) {
+        					gridApi.paginationGoToPage?.(Math.floor(node.rowIndex / pageSize));
+        				}
+        			}
+        			gridApi.ensureNodeVisible?.(node, "middle");
+        			gridApi.flashCells?.({rowNodes: [node]});
+        		}
+        		this.scheduleAgGridSizing(gridApi, 2);
+        		return node;
+        	}
+        
+        	// gridReady: shows an open draft again on a rebuilt grid and publishes the row creation commands on the grid
+        	// component, next to the existing context.reset: agGrid.context.rowCreation.start() / submit() / cancel() / isActive().
+        	onAgGridRowCreationReady(grid: any): void {
+        		try {
+        			if (!this.isAgGridRowCreationEnabled() || grid == null) {
+        				return;
+        			}
+        			this.restoreAgGridDraft(grid.api);
+        			if (grid.context == null || typeof grid.context !== "object") {
+        				grid.context = {};
+        			}
+        			grid.context.rowCreation = {
+        				start: () => this.startAgGridRowCreation(),
+        				submit: () => this.submitAgGridRowCreation(),
+        				cancel: () => this.cancelAgGridRowCreation(),
+        				isActive: () => this.agGridDraftRow != null,
+        				isValid: () => this.agGridDraftRow != null && this.getAgGridDraftErrorCount() === 0,
+        				getErrors: () => ({...(this.agGridDraftErrors || {})})
+        			};
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid row creation: gridReady failed : ", e != null ? (e as any).message : e);
+        		}
+        	}
+        
+        	// A click on a draft cell opens its editor, whatever singleClickEdit says: the draft row is there to be filled.
+        	onAgGridDraftCellClicked(event: any): void {
+        		try {
+        			if (!this.isAgGridDraftEvent(event) || this.agGridDraftSubmitting || event.column == null) {
+        				return;
+        			}
+        			const gridApi = this.resolveAgGridApi(event.api);
+        			const editing: any[] = gridApi?.getEditingCells?.() || [];
+        			if (gridApi == null || editing.length > 0 || !event.column.isCellEditable?.(event.node)) {
+        				return;
+        			}
+        			gridApi.startEditingCell({rowIndex: event.node.rowIndex, rowPinned: event.node.rowPinned, colKey: event.column});
+        		} catch (e) {
+        		}
+        	}
+        
+        	// Text next to the Save and Cancel buttons: the creation error, else the invalid touched fields, else nothing.
+        	getAgGridDraftMessage(): string {
+        		if (this.agGridDraftRow == null) {
+        			return "";
+        		}
+        		if (this.agGridDraftSubmitError !== "") {
+        			return this.agGridDraftSubmitError;
+        		}
+        		const fields = Object.keys(this.agGridDraftErrors || {}).filter((field: string) => this.agGridDraftTouched?.[field] === true);
+        		if (fields.length === 0) {
+        			return "";
+        		}
+        		const leaves = this.getAgGridDraftLeafColDefs();
+        		const details = fields.map((field: string) => {
+        			const colDef = leaves.filter((leaf: any) => leaf.field === field)[0];
+        			return (colDef?.headerName || field) + ": " + this.agGridDraftErrors[field];
+        		});
+        		return this.agGridRowCreationText("Grid_RowCreation_Invalid", {count: fields.length}) + " — " + details.join(" ; ");
         	}
         	
         	/*End_c8o_CompFunction*/
@@ -707,10 +1540,204 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.wrapperClass","prefix":"","suffix":"","custom":"","useCustom":false}}
       comment: Attr2 (UIAttribute).
+    ↓RowCreationStyle [ngx.components.UIStyle-1808000000016]: 
+      comment: Cells of the row creation draft row. These classes are only set while enableRowCreation is true.
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '::ng-deep .ag-grid-draft-cell { background-color: var(--ag-grid-draft-background, rgba(56, 128, 255, 0.08)); }
+              ::ng-deep .ag-grid-draft-required { box-shadow: inset 0 -2px 0 var(--ag-grid-draft-required-color, #ffc409); }
+              ::ng-deep .ag-grid-draft-invalid { box-shadow: inset 0 0 0 2px var(--ag-grid-draft-invalid-color, #eb445a); background-color: var(--ag-grid-draft-invalid-background, rgba(235, 68, 90, 0.12)); }
+              ::ng-deep .ag-grid-draft-multiselect { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px; min-width: 160px; max-height: 240px; overflow: auto; outline: none; background: var(--ag-background-color, #fff); color: var(--ag-foreground-color, inherit); border: 1px solid var(--ag-border-color, #babfc7); border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+              ::ng-deep .ag-grid-draft-multiselect label { display: flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+              '
     ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
       beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
       comment: Grid (UIDynamicElement).
       tagName: ion-grid
+      ↓RowCreationIf [ngx.components.UIControlDirective-1808000000010]: 
+        directiveName: If
+        directiveSource: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:this.isAgGridRowCreationEnabled() && this.rowCreationToolbar !== false
+        ↓RowCreationToolbar [ngx.components.UIDynamicElement-1808000000011]: 
+          beanData: '{"ionBean":"GridRow"}'
+          comment: Row creation toolbar. Only rendered when enableRowCreation is true.
+          tagName: ion-row
+          ↓Class [ngx.components.UIAttribute-1808000000012]: 
+            attrName: class
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:ag-grid-row-creation-toolbar ion-align-items-center
+          ↓AddIf [ngx.components.UIControlDirective-1808000000013]: 
+            directiveName: If
+            directiveSource: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this.agGridDraftRow == null
+            ↓AddRowButton [ngx.components.UIDynamicElement-1808000000020]: 
+              beanData: |
+                '{
+                 "ionBean": "Button",
+                 "IonColor": "plain:primary",
+                 "IonFill": "plain:solid",
+                 "IonSize": "plain:small"
+                }'
+              comment: Opens the draft row.
+              tagName: ion-button
+              ↓Class [ngx.components.UIAttribute-1808000000021]: 
+                attrName: class
+                attrValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:ag-grid-row-creation-add
+              ↓Icon [ngx.components.UIDynamicElement-1808000000022]: 
+                beanData: |
+                  '{
+                   "ionBean": "Icon",
+                   "IconName": "script:''add-outline''",
+                   "IconSlot": "plain:start"
+                  }'
+                tagName: ion-icon
+              ↓Text [ngx.components.UIText-1808000000023]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: script:this.agGridRowCreationText('Grid_RowCreation_Add')
+              ↓Event [ngx.components.UIControlEvent-1808000000024]: 
+                ↓StartRowCreation [ngx.components.UICustomAction-1808000000025]: 
+                  actionValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                        →: |
+                          		page.startAgGridRowCreation();
+                          		resolve();
+                          
+                  comment: Opens the draft row in the grid. Nothing is sent to the backend.
+          ↓DraftIf [ngx.components.UIControlDirective-1808000000014]: 
+            directiveName: If
+            directiveSource: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:this.agGridDraftRow != null
+            ↓SubmitRowButton [ngx.components.UIDynamicElement-1808000000030]: 
+              beanData: |
+                '{
+                 "ionBean": "Button",
+                 "Disabled": "script:!this.isAgGridDraftSubmittable()",
+                 "IonColor": "plain:primary",
+                 "IonFill": "plain:solid",
+                 "IonSize": "plain:small"
+                }'
+              comment: Disabled while the draft row is invalid or being created.
+              tagName: ion-button
+              ↓Class [ngx.components.UIAttribute-1808000000031]: 
+                attrName: class
+                attrValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:ag-grid-row-creation-submit
+              ↓Icon [ngx.components.UIDynamicElement-1808000000032]: 
+                beanData: |
+                  '{
+                   "ionBean": "Icon",
+                   "IconName": "script:''checkmark-outline''",
+                   "IconSlot": "plain:start"
+                  }'
+                tagName: ion-icon
+              ↓Text [ngx.components.UIText-1808000000033]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: 'script:this.agGridDraftSubmitting ? this.agGridRowCreationText(''Grid_RowCreation_Saving'') : this.agGridRowCreationText(''Grid_RowCreation_Submit'')'
+              ↓Event [ngx.components.UIControlEvent-1808000000034]: 
+                ↓SubmitRowCreation [ngx.components.UICustomAction-1808000000035]: 
+                  actionValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                        →: |
+                          		page.submitAgGridRowCreation().then(() => resolve(), () => resolve());
+                          
+                  comment: Validates the draft row, then creates the row with a single call.
+            ↓CancelRowButton [ngx.components.UIDynamicElement-1808000000040]: 
+              beanData: |
+                '{
+                 "ionBean": "Button",
+                 "Disabled": "script:this.agGridDraftSubmitting",
+                 "IonColor": "plain:medium",
+                 "IonFill": "plain:outline",
+                 "IonSize": "plain:small"
+                }'
+              comment: Removes the draft row.
+              tagName: ion-button
+              ↓Class [ngx.components.UIAttribute-1808000000041]: 
+                attrName: class
+                attrValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:ag-grid-row-creation-cancel
+              ↓Icon [ngx.components.UIDynamicElement-1808000000042]: 
+                beanData: |
+                  '{
+                   "ionBean": "Icon",
+                   "IconName": "script:''close-outline''",
+                   "IconSlot": "plain:start"
+                  }'
+                tagName: ion-icon
+              ↓Text [ngx.components.UIText-1808000000043]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: script:this.agGridRowCreationText('Grid_RowCreation_Cancel')
+              ↓Event [ngx.components.UIControlEvent-1808000000044]: 
+                ↓CancelRowCreation [ngx.components.UICustomAction-1808000000045]: 
+                  actionValue: 
+                    - xmlizable: 
+                      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                        →: |
+                          		page.cancelAgGridRowCreation();
+                          		resolve();
+                          
+                  comment: Removes the draft row. Nothing was sent to the backend.
+            ↓Message [ngx.components.UIDynamicElement-1808000000050]: 
+              beanData: '{"ionBean":"SpanTag"}'
+              comment: Creation error, or the invalid fields of the draft row.
+              tagName: span
+              ↓Class [ngx.components.UIAttribute-1808000000051]: 
+                attrName: class
+                attrValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:ag-grid-row-creation-message
+              ↓Role [ngx.components.UIAttribute-1808000000052]: 
+                attrName: role
+                attrValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:alert
+              ↓Text [ngx.components.UIText-1808000000053]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: script:this.getAgGridDraftMessage()
+          ↓Style [ngx.components.UIStyle-1808000000015]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    'gap: 6px;
+                    padding: 0 0 4px 0;
+                    ion-button { margin: 4px 0; }
+                    .ag-grid-row-creation-message { color: var(--ion-color-danger, #eb445a); font-size: 0.85em; }
+                    '
       ↓Directive [ngx.components.UIControlDirective-1741622178213]: 
         comment: Directive (UIControlDirective).
         directiveName: If
@@ -929,6 +1956,7 @@ scriptContent:
                           					grid.api.setDatasource(datasource);
                           					page["api"] = grid.api;
                           				}
+                          				page.onAgGridRowCreationReady(grid);
                           			}
                           			resolve();
                           '
@@ -968,26 +1996,42 @@ scriptContent:
               attrName: (cellClicked)
               comment: Event1 (UIControlEvent).
               eventName: (cellClicked)
-              ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919028]: 
-                beanData: |
-                  '{
-                   "ionBean": "EmitEventAction",
-                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked",
-                   "data": "script:event"
-                  }'
-                comment: Emit Event (UIDynamicEmit).
+              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000001]: 
+                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
+                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
+                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919028]: 
+                  beanData: |
+                    '{
+                     "ionBean": "EmitEventAction",
+                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked",
+                     "data": "script:event"
+                    }'
+                  comment: Emit Event (UIDynamicEmit).
+              ↓handleDraftCellClicked [ngx.components.UICustomAction-1808000000002]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        		page.onAgGridDraftCellClicked(event);
+                        		resolve();
+                        
+                comment: A click on a row creation draft cell opens its editor. Does nothing for any other row.
             ↓Event2 [ngx.components.UIControlEvent-1710934919031]: 
               attrName: (rowClicked)
               comment: Event2 (UIControlEvent).
               eventName: (rowClicked)
-              ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919034]: 
-                beanData: |
-                  '{
-                   "ionBean": "EmitEventAction",
-                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked",
-                   "data": "script:event"
-                  }'
-                comment: Emit Event (UIDynamicEmit).
+              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000003]: 
+                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
+                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
+                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919034]: 
+                  beanData: |
+                    '{
+                     "ionBean": "EmitEventAction",
+                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked",
+                     "data": "script:event"
+                    }'
+                  comment: Emit Event (UIDynamicEmit).
             ↓Event3 [ngx.components.UIControlEvent-1710934919037]: 
               attrName: (rowSelected)
               comment: Event3 (UIControlEvent).
@@ -1085,14 +2129,27 @@ scriptContent:
               attrName: (cellValueChanged)
               comment: Event41 (UIControlEvent).
               eventName: (cellValueChanged)
-              ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919079]: 
-                beanData: |
-                  '{
-                   "ionBean": "EmitEventAction",
-                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged",
-                   "data": "script:event"
-                  }'
-                comment: Emit Event (UIDynamicEmit).
+              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000004]: 
+                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
+                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
+                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919079]: 
+                  beanData: |
+                    '{
+                     "ionBean": "EmitEventAction",
+                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged",
+                     "data": "script:event"
+                    }'
+                  comment: Emit Event (UIDynamicEmit).
+              ↓handleDraftCellValueChanged [ngx.components.UICustomAction-1808000000005]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        		page.onAgGridDraftCellValueChanged(event);
+                        		resolve();
+                        
+                comment: Validates the row creation draft row when one of its cells changes. Does nothing for any other row.
               ↓Log [ngx.components.UIDynamicAction-1710934919082]: 
                 beanData: '{"ionBean":"LogAction","message":"plain:cellChnaged"}'
                 comment: Log (UIDynamicAction).
@@ -1100,14 +2157,17 @@ scriptContent:
               attrName: (rowDoubleClicked)
               comment: Event5 (UIControlEvent).
               eventName: (rowDoubleClicked)
-              ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919088]: 
-                beanData: |
-                  '{
-                   "ionBean": "EmitEventAction",
-                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked",
-                   "data": "script:event"
-                  }'
-                comment: Emit Event (UIDynamicEmit).
+              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000006]: 
+                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
+                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
+                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919088]: 
+                  beanData: |
+                    '{
+                     "ionBean": "EmitEventAction",
+                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked",
+                     "data": "script:event"
+                    }'
+                  comment: Emit Event (UIDynamicEmit).
             ↓Event7 [ngx.components.UIControlEvent-1710934919091]: 
               attrName: (selectionChanged)
               comment: Event7 (UIControlEvent).
@@ -1341,3 +2401,33 @@ scriptContent:
 ↓showXlsxDownloadAlignment [ngx.components.UICompVariable-1789565844865]: 
   comment: '<p>If showXlsxDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>'
   value: '''end'''
+↓enableRowCreation [ngx.components.UICompVariable-1808000000060]: 
+  comment: '<p>boolean: false (default) or true. When true, the grid offers a transactional row creation: <b>Add row</b> opens a draft row pinned at the top of the grid (never hidden by pagination, sorting or filtering), its cells are validated against <code>rowCreationColumns</code>, <b>Save</b> creates the row with one single call and <b>Cancel</b> drops the draft. Nothing reaches the backend before Save. While false, the grid behaves exactly as before.</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
+↓rowCreationColumns [ngx.components.UICompVariable-1808000000061]: 
+  comment: '<p>Rules of the draft row, by column field: <code>{field: {type, required, editable, defaultValue, options, min, max, integer, minLength, maxLength, pattern, validator, message, dateOutput}}</code>. <code>type</code>: text, number, integer, date, boolean, select or multiselect; it selects the cell editor and the value is validated and normalized (number, boolean, YYYY-MM-DD string, option value, array of option values) before submit. <code>editable</code>: true or false forces the draft cell, otherwise the column editable setting applies. <code>options</code>: values or {value, label} objects for select and multiselect. <code>pattern</code>: regular expression. <code>validator</code>: function (value, row, field) or expression using them, returning true, false or an error message. <code>dateOutput</code>: day (default), iso, timestamp or date. A field without rule is free text and optional.</p><p><b>Example:</b> <code>{make: {type: &#x27;select&#x27;, required: true, options: [&#x27;Toyota&#x27;, &#x27;Ford&#x27;]}, price: {type: &#x27;number&#x27;, required: true, min: 0}}</code></p>'
+  value: '{}'
+↓rowCreationDefaultValues [ngx.components.UICompVariable-1808000000062]: 
+  comment: '<p>Initial values of the draft row: an object <code>{field: value}</code> or a function returning one.</p><p><b>Example:</b> <code>{}</code></p>'
+  value: '{}'
+↓rowCreationCallback [ngx.components.UICompVariable-1808000000063]: 
+  comment: <p>Optional function <code>(row, context) =&gt; createdRow | Promise&lt;createdRow&gt;</code> called once, with the validated and normalized row, to create it in the backend. A rejection keeps the draft open and shows the error. When it is not a function, the <code>RowCreate</code> event is fired instead.</p><p><b>Example:</b> <code>null</code></p>
+  value: null
+↓rowCreationAfterSuccess [ngx.components.UICompVariable-1808000000064]: 
+  comment: '<p>What the grid does once the row is created: <code>&#x27;navigate&#x27;</code> (default) adds the created row, goes to its page and flashes it, <code>&#x27;append&#x27;</code> adds it, <code>&#x27;refresh&#x27;</code> reloads an infinite grid (a client side grid is reloaded by the application from the <code>RowCreated</code> event), <code>&#x27;none&#x27;</code> does nothing. An infinite grid is always reloaded.</p><p><b>Example:</b> <code>&#x27;navigate&#x27;</code></p>'
+  value: '''navigate'''
+↓rowCreationToolbar [ngx.components.UICompVariable-1808000000065]: 
+  comment: '<p>boolean: true (default) shows the Add row / Save / Cancel buttons above the grid when enableRowCreation is true. Set false to drive the draft row from your own buttons with <code>agGrid.context.rowCreation.start()</code>, <code>submit()</code> and <code>cancel()</code> (agGrid is <code>event.object.agGrid</code> of the GridReady event).</p><p><b>Example:</b> <code>true</code></p>'
+  value: true
+↓RowCreate [ngx.components.UICompEvent-1808000000070]: 
+  attrName: RowCreate
+  comment: 'Fired when a valid draft row is submitted and rowCreationCallback is not a function. Data: {row, success, fail}. Create the row with ONE backend call, then call the agGridCompleteRowCreation action (or event.success(createdRow) / event.fail(error)).'
+↓RowCreated [ngx.components.UICompEvent-1808000000071]: 
+  attrName: RowCreated
+  comment: 'Fired once the row is created. Data: {row: the created row, submitted: the row that was submitted, rowIndex}.'
+↓RowCreateCancelled [ngx.components.UICompEvent-1808000000072]: 
+  attrName: RowCreateCancelled
+  comment: 'Fired when the draft row is cancelled. Nothing was sent to the backend. Data: {row: the dropped draft}.'
+↓RowCreateFailed [ngx.components.UICompEvent-1808000000073]: 
+  attrName: RowCreateFailed
+  comment: 'Fired when the row creation failed. The draft row stays open. Data: {row, error}.'

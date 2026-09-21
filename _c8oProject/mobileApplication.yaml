@@ -28,6 +28,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓cardIO_sa [ngx.components.UIActionStack-1595431416100]: 🗏 mobileSharedActions/cardIO_sa.yaml
 ↓ZXing_sa [ngx.components.UIActionStack-1595431416151]: 🗏 mobileSharedActions/ZXing_sa.yaml
 ↓agGridUpdateRows [ngx.components.UIActionStack-1652954574813]: 🗏 mobileSharedActions/agGridUpdateRows.yaml
+↓agGridCompleteRowCreation [ngx.components.UIActionStack-1808000000080]: 🗏 mobileSharedActions/agGridCompleteRowCreation.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
 ↓agGrid_CsvXlsxDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvXlsxDownload_Row.yaml
@@ -47,6 +48,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGrid_XlsxDownload [ngx.components.UISharedRegularComponent-1789565499327]: 🗏 mobileSharedComponents/agGrid_XlsxDownload.yaml
 ↓testAgGrid1 [ngx.components.PageComponent-1577112296926]: 🗏 mobilePages/testAgGrid1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
+↓testAgGrid3 [ngx.components.PageComponent-1808000000099]: 🗏 mobilePages/testAgGrid3.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
 ↓ZXing [ngx.components.PageComponent-1595431440486]: 🗏 mobilePages/ZXing.yaml
 ↓testTinyMce [ngx.components.PageComponent-1614265132496]: 🗏 mobilePages/testTinyMce.yaml

@@ -16,6 +16,7 @@ For more technical informations : [documentation](./project.md)
 - [Installation](#installation)
 - [Mobile Library](#mobile-library)
     - [Shared Actions](#shared-actions)
+        - [agGridCompleteRowCreation](#aggridcompleterowcreation)
         - [agGridUpdateRows](#aggridupdaterows)
         - [cardIO_sa](#cardio_sa)
         - [ZXing_sa](#zxing_sa)
@@ -67,6 +68,45 @@ For more technical informations : [documentation](./project.md)
 Describes the mobile application global properties
 
 ### Shared Actions
+
+#### agGridCompleteRowCreation
+
+agGrid Complete Row Creation, must be called in a RowCreate Control once the backend call that creates the row is over
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>agGridEvent</td><td><p>map agGridEvent to the TS &#x27;event&#x27; parameter from the RowCreate Control</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
+</tr>
+<tr>
+<td>data</td><td><p>the created row as the backend returned it (with its id, computed fields...). Optional: the submitted row is used when empty</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
+</tr>
+<tr>
+<td>error</td><td><p>set it when the creation failed (message or error object): the draft row stays open and shows the message. Leave empty on success</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p></td>
+</tr>
+</table>
 
 #### agGridUpdateRows
 
@@ -263,6 +303,8 @@ n/a
 
 This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
 
+Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
+
 
 **variables**
 
@@ -361,6 +403,21 @@ null
 </p></td>
 </tr>
 <tr>
+<td>enableRowCreation</td><td><p>boolean: false (default) or true. When true, the grid offers a transactional row creation: <b>Add row</b> opens a draft row pinned at the top of the grid (never hidden by pagination, sorting or filtering), its cells are validated against 
+
+```
+rowCreationColumns
+```
+
+, <b>Save</b> creates the row with one single call and <b>Cancel</b> drops the draft. Nothing reaches the backend before Save. While false, the grid behaves exactly as before.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
+</tr>
+<tr>
 <td>getLocaleText</td><td><p>Variable get Locale Text.</p><p><b>Example:</b> 
 
 ```
@@ -454,6 +511,165 @@ true
 </tr>
 <tr>
 <td>paginationPageSizeSelector</td><td><p>array | boolean: [20,50,100] by default</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowCreationAfterSuccess</td><td><p>What the grid does once the row is created: 
+
+```
+&#x27;navigate&#x27;
+```
+
+ (default) adds the created row, goes to its page and flashes it, 
+
+```
+&#x27;append&#x27;
+```
+
+ adds it, 
+
+```
+&#x27;refresh&#x27;
+```
+
+ reloads an infinite grid (a client side grid is reloaded by the application from the 
+
+```
+RowCreated
+```
+
+ event), 
+
+```
+&#x27;none&#x27;
+```
+
+ does nothing. An infinite grid is always reloaded.</p><p><b>Example:</b> 
+
+```
+&#x27;navigate&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowCreationCallback</td><td><p>Optional function 
+
+```
+(row, context) =&gt; createdRow | Promise&lt;createdRow&gt;
+```
+
+ called once, with the validated and normalized row, to create it in the backend. A rejection keeps the draft open and shows the error. When it is not a function, the 
+
+```
+RowCreate
+```
+
+ event is fired instead.</p><p><b>Example:</b> 
+
+```
+null
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowCreationColumns</td><td><p>Rules of the draft row, by column field: 
+
+```
+{field: {type, required, editable, defaultValue, options, min, max, integer, minLength, maxLength, pattern, validator, message, dateOutput}}
+```
+
+. 
+
+```
+type
+```
+
+: text, number, integer, date, boolean, select or multiselect; it selects the cell editor and the value is validated and normalized (number, boolean, YYYY-MM-DD string, option value, array of option values) before submit. 
+
+```
+editable
+```
+
+: true or false forces the draft cell, otherwise the column editable setting applies. 
+
+```
+options
+```
+
+: values or {value, label} objects for select and multiselect. 
+
+```
+pattern
+```
+
+: regular expression. 
+
+```
+validator
+```
+
+: function (value, row, field) or expression using them, returning true, false or an error message. 
+
+```
+dateOutput
+```
+
+: day (default), iso, timestamp or date. A field without rule is free text and optional.</p><p><b>Example:</b> 
+
+```
+{make: {type: &#x27;select&#x27;, required: true, options: [&#x27;Toyota&#x27;, &#x27;Ford&#x27;]}, price: {type: &#x27;number&#x27;, required: true, min: 0}}
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowCreationDefaultValues</td><td><p>Initial values of the draft row: an object 
+
+```
+{field: value}
+```
+
+ or a function returning one.</p><p><b>Example:</b> 
+
+```
+{}
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowCreationToolbar</td><td><p>boolean: true (default) shows the Add row / Save / Cancel buttons above the grid when enableRowCreation is true. Set false to drive the draft row from your own buttons with 
+
+```
+agGrid.context.rowCreation.start()
+```
+
+, 
+
+```
+submit()
+```
+
+ and 
+
+```
+cancel()
+```
+
+ (agGrid is 
+
+```
+event.object.agGrid
+```
+
+ of the GridReady event).</p><p><b>Example:</b> 
 
 ```
 true
@@ -636,6 +852,18 @@ n/a
 </tr>
 <tr>
 <td>RowClicked</td><td>Fired when a row is clicked. Data will be the agGrid event</td>
+</tr>
+<tr>
+<td>RowCreate</td><td>Fired when a valid draft row is submitted and rowCreationCallback is not a function. Data: {row, success, fail}. Create the row with ONE backend call, then call the agGridCompleteRowCreation action (or event.success(createdRow) / event.fail(error)).</td>
+</tr>
+<tr>
+<td>RowCreateCancelled</td><td>Fired when the draft row is cancelled. Nothing was sent to the backend. Data: {row: the dropped draft}.</td>
+</tr>
+<tr>
+<td>RowCreated</td><td>Fired once the row is created. Data: {row: the created row, submitted: the row that was submitted, rowIndex}.</td>
+</tr>
+<tr>
+<td>RowCreateFailed</td><td>Fired when the row creation failed. The draft row stays open. Data: {row, error}.</td>
 </tr>
 <tr>
 <td>RowDataChanged</td><td>Fired when Row data changed. Data will be the agGrid event</td>

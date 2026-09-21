@@ -1,0 +1,559 @@
+comment: Page with a grid using the transactional row creation (draft row, typed validation, one backend call)
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        
+segment: path-to-testaggrid3
+title: AgGrid Row Creation
+↓Header [ngx.components.UIDynamicElement-1808000000100]: 
+  beanData: '{"ionBean":"Header"}'
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1808000000101]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1808000000102]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓BackButton [ngx.components.UIDynamicElement-1808000000103]: 
+        beanData: '{"ionBean":"BackButton"}'
+        tagName: ion-back-button
+      ↓MenuButton [ngx.components.UIDynamicElement-1808000000104]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1808000000105]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1808000000106]: 
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Page_AgGrid_RowCreation
+↓Content [ngx.components.UIDynamicElement-1808000000110]: 
+  beanData: '{"ionBean":"Content"}'
+  comment: Page content
+  tagName: ion-content
+  ↓DemoCard [ngx.components.UIDynamicElement-1808000000111]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: What the page shows, and the counters read by the regression test
+    tagName: ion-card
+    ↓CardContent [ngx.components.UIDynamicElement-1808000000112]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓demoWhat [ngx.components.UIDynamicElement-1808000000120]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000121]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoWhat
+        ↓Text [ngx.components.UIText-1808000000122]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_AgGrid_RowCreation
+      ↓demoBackendCalls [ngx.components.UIDynamicElement-1808000000123]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000124]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoBackendCalls
+        ↓Text [ngx.components.UIText-1808000000125]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''Backend calls: '' + (this.local[''demo:backendCalls''] || 0)'
+      ↓demoLastEvent [ngx.components.UIDynamicElement-1808000000126]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000127]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoLastEvent
+        ↓Text [ngx.components.UIText-1808000000128]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''Last event: '' + (this.local[''demo:lastEvent''] || ''none'')'
+      ↓demoCellChanges [ngx.components.UIDynamicElement-1808000000129]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000130]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoCellChanges
+        ↓Text [ngx.components.UIText-1808000000131]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''CellValueChanged events: '' + (this.local[''demo:cellChanges''] || 0)'
+  ↓UseSharedComponent [ngx.components.UIUseShared-1808000000140]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+    ↓id [ngx.components.UIUseVariable-1808000000141]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'rowCreationGrid'
+    ↓pagination [ngx.components.UIUseVariable-1808000000142]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓paginationPageSize [ngx.components.UIUseVariable-1808000000143]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:5
+    ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1808000000144]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓defaultColDef [ngx.components.UIUseVariable-1808000000145]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: true, sortable: true, resizable: true, filter: true}'
+    ↓columnDefs [ngx.components.UIUseVariable-1808000000146]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:[{headerName: ''Make'', field: ''make''}, {headerName: ''Model'', field: ''model''}, {headerName: ''Price'', field: ''price'', sort: ''desc''}, {headerName: ''Released'', field: ''released''}, {headerName: ''Electric'', field: ''electric''}, {headerName: ''Tags'', field: ''tags''}, {headerName: ''Code'', field: ''code''}, {headerName: ''Id'', field: ''id'', editable: false}]'
+    ↓rowData [ngx.components.UIUseVariable-1808000000147]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:[{id: 1, make: ''Toyota'', model: ''Celica'', price: 35000, released: ''1999-05-01'', electric: false, tags: [''sport''], code: ''TOY-001''}, {id: 2, make: ''Ford'', model: ''Mondeo'', price: 32000, released: ''2004-03-12'', electric: false, tags: [''family''], code: ''FOR-002''}, {id: 3, make: ''Porsche'', model: ''Boxter'', price: 72000, released: ''2012-09-30'', electric: false, tags: [''sport''], code: ''POR-003''}, {id: 4, make: ''Renault'', model: ''Zoe'', price: 29000, released: ''2019-01-15'', electric: true, tags: [''city''], code: ''REN-004''}, {id: 5, make: ''BMW'', model: ''X5'', price: 81000, released: ''2021-06-01'', electric: false, tags: [''suv''], code: ''BMW-005''}, {id: 6, make: ''Toyota'', model: ''Yaris'', price: 19000, released: ''2018-02-20'', electric: false, tags: [''city''], code: ''TOY-006''}, {id: 7, make: ''Ford'', model: ''Kuga'', price: 38000, released: ''2020-11-05'', electric: false, tags: [''suv''], code: ''FOR-007''}, {id: 8, make: ''Renault'', model: ''Megane'', price: 27000, released: ''2016-04-18'', electric: false, tags: [''family''], code: ''REN-008''}, {id: 9, make: ''BMW'', model: ''i3'', price: 41000, released: ''2017-07-07'', electric: true, tags: [''city''], code: ''BMW-009''}, {id: 10, make: ''Porsche'', model: ''Taycan'', price: 110000, released: ''2022-03-03'', electric: true, tags: [''sport''], code: ''POR-010''}, {id: 11, make: ''Toyota'', model: ''Prius'', price: 31000, released: ''2015-10-10'', electric: false, tags: [''family''], code: ''TOY-011''}, {id: 12, make: ''Ford'', model: ''Fiesta'', price: 17000, released: ''2014-08-08'', electric: false, tags: [''city''], code: ''FOR-012''}]'
+    ↓localeText [ngx.components.UIUseVariable-1808000000148]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'en'
+    ↓autoSizeColumns [ngx.components.UIUseVariable-1808000000149]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓enableRowCreation [ngx.components.UIUseVariable-1808000000150]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓rowCreationColumns [ngx.components.UIUseVariable-1808000000151]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{make: {type: ''select'', required: true, options: [''Toyota'', ''Ford'', ''Porsche'', ''BMW'', ''Renault'']}, model: {type: ''text'', required: true, minLength: 2}, price: {type: ''number'', required: true, min: 0, max: 500000}, released: {type: ''date'', min: ''1990-01-01''}, electric: {type: ''boolean''}, tags: {type: ''multiselect'', options: [''sport'', ''family'', ''city'', ''suv'']}, code: {pattern: ''^[A-Z]{3}-[0-9]{3}$'', message: ''Expected format: ABC-123''}, id: {editable: false}}'
+    ↓rowCreationDefaultValues [ngx.components.UIUseVariable-1808000000152]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{electric: false}'
+    ↓rowCreationAfterSuccess [ngx.components.UIUseVariable-1808000000153]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'navigate'
+    ↓OnRowCreate [ngx.components.UIControlEvent-1808000000160]: 
+      attrName: (RowCreate)
+      eventName: RowCreate
+      ↓Error_Handler [ngx.components.UIActionErrorEvent-1808000000170]: 
+        ↓CompleteRowCreation [ngx.components.UIDynamicInvoke-1808000000171]: 
+          beanData: '{"ionBean":"InvokeAction"}'
+          stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGridCompleteRowCreation
+          ↓agGridEvent [ngx.components.UIUseVariable-1808000000172]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:event
+          ↓error [ngx.components.UIUseVariable-1808000000174]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:out && out.message ? out.message : out'
+      ↓CreateInBackend [ngx.components.UICustomAction-1808000000180]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		// Stands for the ONE backend call that creates the row: counts the calls, answers after 300 ms with the row and
+                		// its new id, and fails when the model is "FAIL".
+                		page.local["demo:backendCalls"] = (page.local["demo:backendCalls"] || 0) + 1;
+                		const row = event.row;
+                		setTimeout(() => {
+                			if (row.model === "FAIL") {
+                				reject(new Error("Backend refused the row"));
+                			}
+                			else {
+                				resolve({...row, id: 100 + page.local["demo:backendCalls"]});
+                			}
+                		}, 300);
+                '
+        comment: Simulated backend. A real page calls its sequence here, once.
+        ↓CompleteRowCreation [ngx.components.UIDynamicInvoke-1808000000181]: 
+          beanData: '{"ionBean":"InvokeAction"}'
+          stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGridCompleteRowCreation
+          ↓agGridEvent [ngx.components.UIUseVariable-1808000000182]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:event
+          ↓data [ngx.components.UIUseVariable-1808000000183]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:parent.out
+    ↓OnRowCreated [ngx.components.UIControlEvent-1808000000190]: 
+      attrName: (RowCreated)
+      eventName: RowCreated
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000191]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:''RowCreated id='' + (event.row ? event.row.id : '''') + '' rowIndex='' + event.rowIndex"
+          }'
+    ↓OnRowCreateCancelled [ngx.components.UIControlEvent-1808000000192]: 
+      attrName: (RowCreateCancelled)
+      eventName: RowCreateCancelled
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000193]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:''RowCreateCancelled''"
+          }'
+    ↓OnRowCreateFailed [ngx.components.UIControlEvent-1808000000194]: 
+      attrName: (RowCreateFailed)
+      eventName: RowCreateFailed
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000195]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:lastEvent",
+           "Value": "script:''RowCreateFailed''"
+          }'
+    ↓OnCellValueChanged [ngx.components.UIControlEvent-1808000000196]: 
+      attrName: (CellValueChanged)
+      eventName: CellValueChanged
+      ↓CountCellChanges [ngx.components.UIDynamicAction-1808000000197]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo:cellChanges",
+           "Value": "script:(this.local[''demo:cellChanges''] || 0) + 1"
+          }'
+  ↓ExternalCard [ngx.components.UIDynamicElement-1808000000200]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: Same feature driven by buttons of the page. The grid below hides its own toolbar (rowCreationToolbar false).
+    tagName: ion-card
+    ↓CardContent [ngx.components.UIDynamicElement-1808000000201]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓demoExternalWhat [ngx.components.UIDynamicElement-1808000000202]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000203]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoExternalWhat
+        ↓Text [ngx.components.UIText-1808000000204]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_AgGrid_RowCreation_External
+      ↓demoExternalState [ngx.components.UIDynamicElement-1808000000205]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1808000000206]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoExternalState
+        ↓Text [ngx.components.UIText-1808000000207]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''External grid: backend calls '' + (this.local[''demo2:backendCalls''] || 0) + '', last event '' + (this.local[''demo2:lastEvent''] || ''none'')'
+  ↓ExternalAdd [ngx.components.UIDynamicElement-1808000000210]: 
+    beanData: |
+      '{
+       "ionBean": "Button",
+       "Disabled": "script:!this.local.rowCreation || this.local.rowCreation.isActive()",
+       "IonColor": "plain:primary",
+       "IonFill": "plain:solid",
+       "IonSize": "plain:small"
+      }'
+    comment: Button of the page that opens the draft row.
+    tagName: ion-button
+    ↓Id [ngx.components.UIAttribute-1808000000211]: 
+      attrName: id
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:externalAdd
+    ↓Text [ngx.components.UIText-1808000000212]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:External add
+    ↓Event [ngx.components.UIControlEvent-1808000000213]: 
+      ↓ExternalAddAction [ngx.components.UICustomAction-1808000000214]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                		page.local.rowCreation.start();
+                		resolve();
+                
+  ↓ExternalSave [ngx.components.UIDynamicElement-1808000000220]: 
+    beanData: |
+      '{
+       "ionBean": "Button",
+       "Disabled": "script:!this.local.rowCreation || !this.local.rowCreation.isValid()",
+       "IonColor": "plain:primary",
+       "IonFill": "plain:solid",
+       "IonSize": "plain:small"
+      }'
+    comment: Button of the page that validates and creates the row.
+    tagName: ion-button
+    ↓Id [ngx.components.UIAttribute-1808000000221]: 
+      attrName: id
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:externalSave
+    ↓Text [ngx.components.UIText-1808000000222]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:External save
+    ↓Event [ngx.components.UIControlEvent-1808000000223]: 
+      ↓ExternalSaveAction [ngx.components.UICustomAction-1808000000224]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                		page.local.rowCreation.submit().then((created) => resolve(created), () => resolve(false));
+                
+  ↓ExternalCancel [ngx.components.UIDynamicElement-1808000000230]: 
+    beanData: |
+      '{
+       "ionBean": "Button",
+       "Disabled": "script:!this.local.rowCreation || !this.local.rowCreation.isActive()",
+       "IonColor": "plain:medium",
+       "IonFill": "plain:outline",
+       "IonSize": "plain:small"
+      }'
+    comment: Button of the page that drops the draft row.
+    tagName: ion-button
+    ↓Id [ngx.components.UIAttribute-1808000000231]: 
+      attrName: id
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:externalCancel
+    ↓Text [ngx.components.UIText-1808000000232]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:External cancel
+    ↓Event [ngx.components.UIControlEvent-1808000000233]: 
+      ↓ExternalCancelAction [ngx.components.UICustomAction-1808000000234]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                		page.local.rowCreation.cancel();
+                		resolve();
+                
+  ↓ExternalGrid [ngx.components.UIUseShared-1808000000240]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+    ↓pagination [ngx.components.UIUseVariable-1808000000241]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓paginationPageSize [ngx.components.UIUseVariable-1808000000242]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:5
+    ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1808000000243]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓defaultColDef [ngx.components.UIUseVariable-1808000000244]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: true, sortable: true, resizable: true, filter: true}'
+    ↓columnDefs [ngx.components.UIUseVariable-1808000000245]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:[{headerName: ''Make'', field: ''make''}, {headerName: ''Model'', field: ''model''}, {headerName: ''Price'', field: ''price'', sort: ''desc''}, {headerName: ''Released'', field: ''released''}, {headerName: ''Electric'', field: ''electric''}, {headerName: ''Tags'', field: ''tags''}, {headerName: ''Code'', field: ''code''}, {headerName: ''Id'', field: ''id'', editable: false}]'
+    ↓rowData [ngx.components.UIUseVariable-1808000000246]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:[{id: 1, make: ''Toyota'', model: ''Celica'', price: 35000, released: ''1999-05-01'', electric: false, tags: [''sport''], code: ''TOY-001''}, {id: 2, make: ''Ford'', model: ''Mondeo'', price: 32000, released: ''2004-03-12'', electric: false, tags: [''family''], code: ''FOR-002''}, {id: 3, make: ''Porsche'', model: ''Boxter'', price: 72000, released: ''2012-09-30'', electric: false, tags: [''sport''], code: ''POR-003''}, {id: 4, make: ''Renault'', model: ''Zoe'', price: 29000, released: ''2019-01-15'', electric: true, tags: [''city''], code: ''REN-004''}, {id: 5, make: ''BMW'', model: ''X5'', price: 81000, released: ''2021-06-01'', electric: false, tags: [''suv''], code: ''BMW-005''}, {id: 6, make: ''Toyota'', model: ''Yaris'', price: 19000, released: ''2018-02-20'', electric: false, tags: [''city''], code: ''TOY-006''}, {id: 7, make: ''Ford'', model: ''Kuga'', price: 38000, released: ''2020-11-05'', electric: false, tags: [''suv''], code: ''FOR-007''}, {id: 8, make: ''Renault'', model: ''Megane'', price: 27000, released: ''2016-04-18'', electric: false, tags: [''family''], code: ''REN-008''}, {id: 9, make: ''BMW'', model: ''i3'', price: 41000, released: ''2017-07-07'', electric: true, tags: [''city''], code: ''BMW-009''}, {id: 10, make: ''Porsche'', model: ''Taycan'', price: 110000, released: ''2022-03-03'', electric: true, tags: [''sport''], code: ''POR-010''}, {id: 11, make: ''Toyota'', model: ''Prius'', price: 31000, released: ''2015-10-10'', electric: false, tags: [''family''], code: ''TOY-011''}, {id: 12, make: ''Ford'', model: ''Fiesta'', price: 17000, released: ''2014-08-08'', electric: false, tags: [''city''], code: ''FOR-012''}]'
+    ↓localeText [ngx.components.UIUseVariable-1808000000247]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'en'
+    ↓autoSizeColumns [ngx.components.UIUseVariable-1808000000248]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓enableRowCreation [ngx.components.UIUseVariable-1808000000249]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓rowCreationColumns [ngx.components.UIUseVariable-1808000000250]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{make: {type: ''select'', required: true, options: [''Toyota'', ''Ford'', ''Porsche'', ''BMW'', ''Renault'']}, model: {type: ''text'', required: true, minLength: 2}, price: {type: ''number'', required: true, min: 0, max: 500000}, released: {type: ''date'', min: ''1990-01-01''}, electric: {type: ''boolean''}, tags: {type: ''multiselect'', options: [''sport'', ''family'', ''city'', ''suv'']}, code: {pattern: ''^[A-Z]{3}-[0-9]{3}$'', message: ''Expected format: ABC-123''}, id: {editable: false}}'
+    ↓rowCreationDefaultValues [ngx.components.UIUseVariable-1808000000251]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{electric: false}'
+    ↓rowCreationAfterSuccess [ngx.components.UIUseVariable-1808000000252]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'navigate'
+    ↓id [ngx.components.UIUseVariable-1808000000253]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'externalRowCreationGrid'
+    ↓rowCreationToolbar [ngx.components.UIUseVariable-1808000000254]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓OnGridReady [ngx.components.UIControlEvent-1808000000260]: 
+      attrName: (GridReady)
+      eventName: GridReady
+      ↓KeepRowCreationCommands [ngx.components.UIDynamicAction-1808000000261]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:rowCreation",
+           "Value": "script:event.object.agGrid.context.rowCreation"
+          }'
+    ↓OnRowCreate [ngx.components.UIControlEvent-1808000000262]: 
+      attrName: (RowCreate)
+      eventName: RowCreate
+      ↓Error_Handler [ngx.components.UIActionErrorEvent-1808000000270]: 
+        ↓CompleteRowCreation [ngx.components.UIDynamicInvoke-1808000000271]: 
+          beanData: '{"ionBean":"InvokeAction"}'
+          stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGridCompleteRowCreation
+          ↓agGridEvent [ngx.components.UIUseVariable-1808000000272]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:event
+          ↓error [ngx.components.UIUseVariable-1808000000274]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:out && out.message ? out.message : out'
+      ↓CreateInBackend [ngx.components.UICustomAction-1808000000280]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                '		// Stands for the ONE backend call that creates the row: counts the calls, answers after 300 ms with the row and
+                		// its new id, and fails when the model is "FAIL".
+                		page.local["demo2:backendCalls"] = (page.local["demo2:backendCalls"] || 0) + 1;
+                		const row = event.row;
+                		setTimeout(() => {
+                			if (row.model === "FAIL") {
+                				reject(new Error("Backend refused the row"));
+                			}
+                			else {
+                				resolve({...row, id: 100 + page.local["demo2:backendCalls"]});
+                			}
+                		}, 300);
+                '
+        comment: Simulated backend of the external grid.
+        ↓CompleteRowCreation [ngx.components.UIDynamicInvoke-1808000000285]: 
+          beanData: '{"ionBean":"InvokeAction"}'
+          stack: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGridCompleteRowCreation
+          ↓agGridEvent [ngx.components.UIUseVariable-1808000000286]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:event
+          ↓data [ngx.components.UIUseVariable-1808000000287]: 
+            varValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:parent.out
+    ↓OnRowCreated [ngx.components.UIControlEvent-1808000000290]: 
+      attrName: (RowCreated)
+      eventName: RowCreated
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000291]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo2:lastEvent",
+           "Value": "script:''RowCreated id='' + (event.row ? event.row.id : '''')"
+          }'
+    ↓OnRowCreateCancelled [ngx.components.UIControlEvent-1808000000292]: 
+      attrName: (RowCreateCancelled)
+      eventName: RowCreateCancelled
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000293]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo2:lastEvent",
+           "Value": "script:''RowCreateCancelled''"
+          }'
+    ↓OnRowCreateFailed [ngx.components.UIControlEvent-1808000000294]: 
+      attrName: (RowCreateFailed)
+      eventName: RowCreateFailed
+      ↓SetDemoEvent [ngx.components.UIDynamicAction-1808000000295]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:demo2:lastEvent",
+           "Value": "script:''RowCreateFailed''"
+          }'
