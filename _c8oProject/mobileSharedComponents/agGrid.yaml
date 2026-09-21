@@ -13,21 +13,43 @@ scriptContent:
         	public agGridResizeObserver: any = null;
         	public agGridResizePending: boolean = false;
         	public agGridLastSizedWidth: number = 0;
+        	// Single sizing chain, see scheduleAgGridSizing: repeats left, canceller of the queued frame, 120 ms gap timer.
+        	public agGridSizingRemaining: number = 0;
+        	public agGridSizingFrameCancel: any = null;
+        	public agGridSizingTimer: any = null;
+        	public agGridDestroyed: boolean = false;
+        	// Change detection passes seen by this component, the last pass that brought an object to object input change,
+        	// and how many passes in a row did so.
+        	public agGridCheckCount: number = 0;
+        	public agGridLastUncertainPass: number = -2;
+        	public agGridUncertainStreak: number = 0;
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
         /*Begin_c8o_CompInitialization*/
         		/*End_c8o_CompInitialization*/
         /*Begin_c8o_CompFinalization*/
+        		this.agGridDestroyed = true;
+        		this.cancelAgGridSizing();
         		if (this.agGridResizeObserver != null) {
         			this.agGridResizeObserver.disconnect();
         			this.agGridResizeObserver = null;
         		}
         		/*End_c8o_CompFinalization*/
         /*Begin_c8o_CompChanges*/
+        		// Former onChanges event actions first (height style, page size selector, locale), then the sizing request, as before.
+        		const agGridLocaleLoading = this.applyAgGridInputChanges(changes);
         		this.scheduleAgGridSizing(undefined, 4);
+        		// The former onChanges event ended every ngOnChanges with a markForCheck. It is kept, except when this pass brings
+        		// only object to object changes and each of the 3 previous passes brought one too (whatever the input): that is what
+        		// a reference unstable binding does and it would loop for ever. While a locale loads, the load issues it when it settles.
+        		const agGridCheckWanted = this.isAgGridCheckWanted(changes);
+        		if (agGridCheckWanted && !agGridLocaleLoading) {
+        			this.requestAgGridCheck();
+        		}
         		/*End_c8o_CompChanges*/
         /*Begin_c8o_CompDoCheck*/
+        		this.agGridCheckCount++;
         		/*End_c8o_CompDoCheck*/
         /*Begin_c8o_CompAfterContentInit*/
         		/*End_c8o_CompAfterContentInit*/
@@ -36,10 +58,12 @@ scriptContent:
         /*Begin_c8o_CompAfterViewInit*/
         		/*End_c8o_CompAfterViewInit*/
         /*Begin_c8o_CompAfterViewChecked*/
-        		const gridElement = this.getAgGridElement();
-        		const gridWidth = gridElement != null ? Math.round(gridElement.getBoundingClientRect().width) : 0;
-        		if (this.api != null && gridWidth > 0 && Math.abs(gridWidth - this.agGridLastSizedWidth) > 1) {
-        			this.scheduleAgGridSizing(this.api, 2);
+        		if (this.api != null && !this.agGridDestroyed) {
+        			const gridElement = this.getAgGridElement();
+        			const gridWidth = gridElement != null ? Math.round(gridElement.getBoundingClientRect().width) : 0;
+        			if (gridWidth > 0 && Math.abs(gridWidth - this.agGridLastSizedWidth) > 1) {
+        				this.scheduleAgGridSizing(this.api, 2);
+        			}
         		}
         		/*End_c8o_CompAfterViewChecked*/
         /*Begin_c8o_CompFunction*/
@@ -54,8 +78,213 @@ scriptContent:
         		return null;
         	}
         
+        	// Port of the two actions of the former onChanges shared component event. Called first in the CompChanges block.
+        	// It never throws. It returns true when an asynchronous locale load was started: the change detection pass is
+        	// then requested when that load settles, exactly as the former event did.
+        	applyAgGridInputChanges(changes: any): boolean {
+        		let localeLoading = false;
+        		// Former action CustomAsyncAction: a non first height change is written on the grid element. The grid element
+        		// is missing while the locale is loading: that error stays swallowed, handleOnReady applies the height at gridReady.
+        		try {
+        			if (changes?.height?.currentValue != null && changes.height.firstChange != true) {
+        				let height = changes?.height?.currentValue;
+        				var autoHeight = height == "" || height == "auto";
+        				(this.agGrid as any)._nativeElement.style.height = autoHeight ? "" : height;
+        			}
+        		} catch (e) {
+        		}
+        		// Former action agGridLang: the synchronous part runs inside ngOnChanges, before the grid is created.
+        		try {
+        			let arrPagination = [20, 50, 100];
+        			if (this.paginationPageSizeSelector == true && !isNaN(this.paginationPageSize) && arrPagination.indexOf(this.paginationPageSize) == -1) {
+        				arrPagination.push(this.paginationPageSize);
+        				arrPagination = arrPagination.sort((a, b) => { return a - b; });
+        				this.paginationPageSizeSelector = arrPagination;
+        			}
+        
+        			let curLocaleText = changes?.localeText?.currentValue;
+        			if (curLocaleText != undefined) {
+        				if (curLocaleText == null) {
+        					curLocaleText = "en";
+        				}
+        				if (typeof curLocaleText == "string") {
+        					localeLoading = true;
+        					this.loadAgGridLocale(curLocaleText)
+        					.then((agGridLang: any) => {
+        						this.local.agGridLang = agGridLang;
+        					})
+        					.catch((error: any) => {
+        						this.c8o.log.debug("[MB] agGrid agGridLang: An error occured : ", error != null ? error.message : error);
+        					})
+        					.then(() => {
+        						// Zoneless application: this is the pass that lets the ngIf on local.agGridLang create the grid.
+        						if (!this.agGridDestroyed) {
+        							this.ref.markForCheck();
+        						}
+        					});
+        				}
+        				else {
+        					this.local.agGridLang = curLocaleText;
+        				}
+        			}
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid onChanges: An error occured : ", e != null ? (e as any).message : e);
+        		}
+        		return localeLoading;
+        	}
+        
+        	async loadAgGridLocale(locale: string): Promise<any> {
+        		const locales: any = {
+        			"ar": "AG_GRID_LOCALE_EG",
+        			"ar-EG": "AG_GRID_LOCALE_EG",
+        			"bg": "AG_GRID_LOCALE_BG",
+        			"bg-BG": "AG_GRID_LOCALE_BG",
+        			"zh-HK": "AG_GRID_LOCALE_HK",
+        			"zh": "AG_GRID_LOCALE_CN",
+        			"cn": "AG_GRID_LOCALE_CN",
+        			"zh-CN": "AG_GRID_LOCALE_CN",
+        			"zh-TW": "AG_GRID_LOCALE_TW",
+        			"hr": "AG_GRID_LOCALE_HR",
+        			"hr-HR": "AG_GRID_LOCALE_HR",
+        			"cs": "AG_GRID_LOCALE_CZ",
+        			"cs-CZ": "AG_GRID_LOCALE_CZ",
+        			"da": "AG_GRID_LOCALE_DK",
+        			"da-DK": "AG_GRID_LOCALE_DK",
+        			"nl": "AG_GRID_LOCALE_NL",
+        			"nl-NL": "AG_GRID_LOCALE_NL",
+        			"fi": "AG_GRID_LOCALE_FI",
+        			"fi-FI": "AG_GRID_LOCALE_FI",
+        			"fr": "AG_GRID_LOCALE_FR",
+        			"fr-FR": "AG_GRID_LOCALE_FR",
+        			"de": "AG_GRID_LOCALE_DE",
+        			"de-DE": "AG_GRID_LOCALE_DE",
+        			"el": "AG_GRID_LOCALE_GR",
+        			"el-GR": "AG_GRID_LOCALE_GR",
+        			"he": "AG_GRID_LOCALE_IL",
+        			"he-IL": "AG_GRID_LOCALE_IL",
+        			"hu": "AG_GRID_LOCALE_HU",
+        			"hu-HU": "AG_GRID_LOCALE_HU",
+        			"it": "AG_GRID_LOCALE_IT",
+        			"it-IT": "AG_GRID_LOCALE_IT",
+        			"ja": "AG_GRID_LOCALE_JP",
+        			"ja-JP": "AG_GRID_LOCALE_JP",
+        			"ko": "AG_GRID_LOCALE_KR",
+        			"ko-KR": "AG_GRID_LOCALE_KR",
+        			"nb": "AG_GRID_LOCALE_NO",
+        			"nb-NO": "AG_GRID_LOCALE_NO",
+        			"fa": "AG_GRID_LOCALE_IR",
+        			"fa-IR": "AG_GRID_LOCALE_IR",
+        			"pl": "AG_GRID_LOCALE_PL",
+        			"pl-PL": "AG_GRID_LOCALE_PL",
+        			"pt": "AG_GRID_LOCALE_PT",
+        			"pt-PT": "AG_GRID_LOCALE_PT",
+        			"br": "AG_GRID_LOCALE_BR",
+        			"pt-BR": "AG_GRID_LOCALE_BR",
+        			"ro": "AG_GRID_LOCALE_RO",
+        			"ro-RO": "AG_GRID_LOCALE_RO",
+        			"sk": "AG_GRID_LOCALE_SK",
+        			"sk-SK": "AG_GRID_LOCALE_SK",
+        			"es": "AG_GRID_LOCALE_ES",
+        			"es-ES": "AG_GRID_LOCALE_ES",
+        			"sv": "AG_GRID_LOCALE_SE",
+        			"sv-SE": "AG_GRID_LOCALE_SE",
+        			"tr": "AG_GRID_LOCALE_TR",
+        			"tr-TR": "AG_GRID_LOCALE_TR",
+        			"uk": "AG_GRID_LOCALE_UA",
+        			"uk-UA": "AG_GRID_LOCALE_UA",
+        			"ur": "AG_GRID_LOCALE_PK",
+        			"ur-PK": "AG_GRID_LOCALE_PK",
+        			"vi": "AG_GRID_LOCALE_VN",
+        			"vi-VN": "AG_GRID_LOCALE_VN",
+        			"en": "AG_GRID_LOCALE_EN",
+        			"en-US": "AG_GRID_LOCALE_EN"
+        		};
+        
+        		const localeModule: any = await import("@ag-grid-community/locale");
+        		const selectedLocale = localeModule[locales[locale] || "AG_GRID_LOCALE_EN"];
+        		// read after the import, exactly as the former action did
+        		const customLocaleText = this.customLocaleText[locale.split("-")[0]] || {};
+        
+        		return {
+        			...selectedLocale,
+        			...customLocaleText
+        		};
+        	}
+        
+        	isAgGridReference(value: any): boolean {
+        		return value != null && (typeof value === "object" || typeof value === "function");
+        	}
+        
+        	// Tells whether the change detection pass that used to follow every ngOnChanges must still be requested.
+        	// Angular compares inputs with Object.is: a first change, or a change with a primitive on either side, is a new
+        	// value for sure and keeps its pass. An object to object change keeps its pass too, as long as no more than 3 passes
+        	// in a row bring one: real changes come in short bursts (columns, then rows, then options), whereas a binding that
+        	// returns a new object on every pass never stops and would otherwise feed itself for ever.
+        	isAgGridCheckWanted(changes: any): boolean {
+        		try {
+        			const pass = this.agGridCheckCount;
+        			let certain = false;
+        			let uncertain = false;
+        			const names = changes != null ? Object.keys(changes) : [];
+        			for (let i = 0; i < names.length; i++) {
+        				const change = changes[names[i]];
+        				if (change == null || change.firstChange == true || !this.isAgGridReference(change.currentValue) || !this.isAgGridReference(change.previousValue)) {
+        					certain = true;
+        				}
+        				else {
+        					uncertain = true;
+        				}
+        			}
+        			if (uncertain) {
+        				this.agGridUncertainStreak = this.agGridLastUncertainPass === pass - 1 ? this.agGridUncertainStreak + 1 : 1;
+        				this.agGridLastUncertainPass = pass;
+        			}
+        			return certain || (uncertain && this.agGridUncertainStreak <= 3);
+        		} catch (e) {
+        			return false;
+        		}
+        	}
+        
+        	requestAgGridCheck(): void {
+        		// Two microtasks later, as the former event did (several hops): after the current change detection pass AND after
+        		// the one microtask window in which zoneless Angular runs the next pass at once instead of scheduling it.
+        		Promise.resolve().then(() => undefined).then(() => {
+        			if (!this.agGridDestroyed) {
+        				this.ref.markForCheck();
+        			}
+        		});
+        	}
+        
+        	// First candidate that exists and is not a destroyed GridApi. After destroy every GridApi method except
+        	// isDestroyed only prints a warning.
+        	resolveAgGridApi(api?: any): any {
+        		const candidates: any[] = [api, this.api, (this.agGrid as any)?.api];
+        		for (let i = 0; i < candidates.length; i++) {
+        			const candidate = candidates[i];
+        			if (candidate != null && !(typeof candidate.isDestroyed === "function" && candidate.isDestroyed())) {
+        				return candidate;
+        			}
+        		}
+        		return null;
+        	}
+        
+        	// Public mirror of the AG Grid internal flag columnModel.isAutoRowHeightActive(): same column list (every grid
+        	// column, hidden ones included) and same test (merged colDef, so defaultColDef counts). When it is true
+        	// gridApi.resetRowHeights() does nothing but print a warning. Any doubt answers false: the call is made as before.
+        	isAgGridAutoRowHeightActive(gridApi: any): boolean {
+        		try {
+        			const columns = typeof gridApi?.getAllGridColumns === "function" ? gridApi.getAllGridColumns() : null;
+        			return Array.isArray(columns) && columns.some((column: any) => column != null && typeof column.isAutoHeight === "function" && column.isAutoHeight() === true);
+        		} catch (e) {
+        			return false;
+        		}
+        	}
+        
         	applyAgGridSizing(api?: any): boolean {
-        		const gridApi = api || this.api || (this.agGrid as any)?.api;
+        		if (this.agGridDestroyed) {
+        			return false;
+        		}
+        		const gridApi = this.resolveAgGridApi(api);
         		const gridElement = this.getAgGridElement();
         		const gridWidth = gridElement != null ? Math.round(gridElement.getBoundingClientRect().width) : 0;
         		if (gridApi == null || gridWidth <= 0) {
@@ -67,32 +296,94 @@ scriptContent:
         		else {
         			gridApi.sizeColumnsToFit?.();
         		}
-        		gridApi.resetRowHeights?.();
+        		// With auto row height the cells measure themselves again after the column widths changed.
+        		if (!this.isAgGridAutoRowHeightActive(gridApi)) {
+        			gridApi.resetRowHeights?.();
+        		}
         		this.agGridLastSizedWidth = gridWidth;
         		return true;
         	}
         
+        	// Same contract as before: one sizing pass on the next animation frame, then "attempts" more passes every 120 ms.
+        	// There is a single chain per component: a request made while the chain is alive never starts a second one,
+        	// it raises the number of passes left to the highest request and adds one uncounted pass on the next frame.
         	scheduleAgGridSizing(api?: any, attempts: number = 6): void {
         		if (api != null) {
         			this.api = api;
         		}
+        		if (this.agGridDestroyed) {
+        			return;
+        		}
+        		const wanted = attempts > 0 ? attempts : 0;
+        		if (wanted > this.agGridSizingRemaining) {
+        			this.agGridSizingRemaining = wanted;
+        		}
         		if (this.agGridResizePending) {
+        			// a frame is already queued: it serves this request too
+        			return;
+        		}
+        		// the 120 ms gap timer, if any, is left alone: this extra pass does not count and the chain keeps its cadence
+        		this.requestAgGridSizingFrame();
+        	}
+        
+        	requestAgGridSizingFrame(): void {
+        		if (this.agGridDestroyed || this.agGridResizePending) {
         			return;
         		}
         		this.agGridResizePending = true;
-        		const requestFrame = typeof requestAnimationFrame === "function" ? requestAnimationFrame : (callback) => setTimeout(callback, 16);
-        		requestFrame(() => {
+        		const run = () => {
+        			this.agGridSizingFrameCancel = null;
         			this.agGridResizePending = false;
-        			this.applyAgGridSizing(api);
-        			if (attempts > 0) {
-        				setTimeout(() => this.scheduleAgGridSizing(api, attempts - 1), 120);
+        			if (this.agGridDestroyed) {
+        				return;
         			}
-        		});
+        			try {
+        				this.applyAgGridSizing();
+        			} catch (e) {
+        				// as before, an error in a sizing pass ends the chain and is reported
+        				this.agGridSizingRemaining = 0;
+        				throw e;
+        			}
+        			if (this.agGridResizePending || this.agGridSizingTimer != null) {
+        				return;
+        			}
+        			if (this.agGridSizingRemaining > 0) {
+        				this.agGridSizingRemaining--;
+        				this.agGridSizingTimer = setTimeout(() => {
+        					this.agGridSizingTimer = null;
+        					this.requestAgGridSizingFrame();
+        				}, 120);
+        			}
+        		};
+        		if (typeof requestAnimationFrame === "function") {
+        			const frame = requestAnimationFrame(run);
+        			this.agGridSizingFrameCancel = () => cancelAnimationFrame(frame);
+        		}
+        		else {
+        			const frameTimer = setTimeout(run, 16);
+        			this.agGridSizingFrameCancel = () => clearTimeout(frameTimer);
+        		}
+        	}
+        
+        	cancelAgGridSizing(): void {
+        		if (this.agGridSizingFrameCancel != null) {
+        			try {
+        				this.agGridSizingFrameCancel();
+        			} catch (e) {
+        			}
+        			this.agGridSizingFrameCancel = null;
+        		}
+        		if (this.agGridSizingTimer != null) {
+        			clearTimeout(this.agGridSizingTimer);
+        			this.agGridSizingTimer = null;
+        		}
+        		this.agGridSizingRemaining = 0;
+        		this.agGridResizePending = false;
         	}
         
         	watchAgGridSize(grid?: any): void {
         		const gridElement = grid?._nativeElement || this.getAgGridElement();
-        		if (gridElement == null || typeof ResizeObserver === "undefined") {
+        		if (this.agGridDestroyed || gridElement == null || typeof ResizeObserver === "undefined") {
         			return;
         		}
         		if (this.agGridResizeObserver != null) {
@@ -366,133 +657,6 @@ scriptContent:
 ↓domLayout [ngx.components.UICompVariable-1736414720782]: 
   comment: '<p>boolean: true (default) or false</p><p><b>Example:</b> <code>&#x27;autoHeight&#x27;</code></p>'
   value: '''autoHeight'''
-↓SharedComponent_Event1 [ngx.components.UISharedComponentEvent-1736431569720]: 
-  comment: Shared Component Event1 (UISharedComponentEvent).
-  componentEvent: onChanges
-  ↓CustomAsyncAction [ngx.components.UICustomAsyncAction-1736431569723]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		try {
-            			if(props?.stack?.root?.scope?.changes?.height?.currentValue != null && props.stack.root.scope.changes.height.firstChange != true){
-            				let height = props?.stack?.root?.scope?.changes?.height?.currentValue;
-            				var autoHeight = height == "" || height == "auto";
-            				(page.agGrid as any)._nativeElement.style.height = autoHeight ? "" : height;
-            			}
-            //			debugger;
-            		} catch (e) {
-            		
-            		} finally {
-            			return;
-            		}
-            '
-    comment: Custom Async Action (UICustomAsyncAction).
-  ↓agGridLang [ngx.components.UICustomAsyncAction-1741619830154]: 
-    actionValue: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-        - com.twinsoft.convertigo.beans.common.FormatedContent: 
-          →: |
-            '		let arrPagination =[20, 50, 100];
-            		if(page.paginationPageSizeSelector == true && !isNaN(page.paginationPageSize) && arrPagination.indexOf(page.paginationPageSize) == -1 ){
-            			arrPagination.push(page.paginationPageSize);
-            			arrPagination = arrPagination.sort((a,b)=>{return a - b});
-            			page.paginationPageSizeSelector = arrPagination;
-            		}
-            		
-            		let curLocaleText = props?.stack?.root?.scope?.changes?.localeText?.currentValue;
-            		if (curLocaleText != undefined) {
-            			if(curLocaleText == null){
-            				curLocaleText = ''en'';
-            			}
-            			if(typeof curLocaleText == ''string''){
-            				async function getLocale(locale) {
-            				    const locales = {
-            				        ''ar'': ''AG_GRID_LOCALE_EG'',
-            				        ''ar-EG'': ''AG_GRID_LOCALE_EG'',
-            				        ''bg'': ''AG_GRID_LOCALE_BG'',
-            				        ''bg-BG'': ''AG_GRID_LOCALE_BG'',
-            				        ''zh-HK'': ''AG_GRID_LOCALE_HK'',
-            				        ''zh'': ''AG_GRID_LOCALE_CN'',
-            				        ''cn'': ''AG_GRID_LOCALE_CN'',
-            				        ''zh-CN'': ''AG_GRID_LOCALE_CN'',
-            				        ''zh-TW'': ''AG_GRID_LOCALE_TW'',
-            				        ''hr'': ''AG_GRID_LOCALE_HR'',
-            				        ''hr-HR'': ''AG_GRID_LOCALE_HR'',
-            				        ''cs'': ''AG_GRID_LOCALE_CZ'',
-            				        ''cs-CZ'': ''AG_GRID_LOCALE_CZ'',
-            				        ''da'': ''AG_GRID_LOCALE_DK'',
-            				        ''da-DK'': ''AG_GRID_LOCALE_DK'',
-            				        ''nl'': ''AG_GRID_LOCALE_NL'',
-            				        ''nl-NL'': ''AG_GRID_LOCALE_NL'',
-            				        ''fi'': ''AG_GRID_LOCALE_FI'',
-            				        ''fi-FI'': ''AG_GRID_LOCALE_FI'',
-            				        ''fr'': ''AG_GRID_LOCALE_FR'',
-            				        ''fr-FR'': ''AG_GRID_LOCALE_FR'',
-            				        ''de'': ''AG_GRID_LOCALE_DE'',
-            				        ''de-DE'': ''AG_GRID_LOCALE_DE'',
-            				        ''el'': ''AG_GRID_LOCALE_GR'',
-            				        ''el-GR'': ''AG_GRID_LOCALE_GR'',
-            				        ''he'': ''AG_GRID_LOCALE_IL'',
-            				        ''he-IL'': ''AG_GRID_LOCALE_IL'',
-            				        ''hu'': ''AG_GRID_LOCALE_HU'',
-            				        ''hu-HU'': ''AG_GRID_LOCALE_HU'',
-            				        ''it'': ''AG_GRID_LOCALE_IT'',
-            				        ''it-IT'': ''AG_GRID_LOCALE_IT'',
-            				        ''ja'': ''AG_GRID_LOCALE_JP'',
-            				        ''ja-JP'': ''AG_GRID_LOCALE_JP'',
-            				        ''ko'': ''AG_GRID_LOCALE_KR'',
-            				        ''ko-KR'': ''AG_GRID_LOCALE_KR'',
-            				        ''nb'': ''AG_GRID_LOCALE_NO'',
-            				        ''nb-NO'': ''AG_GRID_LOCALE_NO'',
-            				        ''fa'': ''AG_GRID_LOCALE_IR'',
-            				        ''fa-IR'': ''AG_GRID_LOCALE_IR'',
-            				        ''pl'': ''AG_GRID_LOCALE_PL'',
-            				        ''pl-PL'': ''AG_GRID_LOCALE_PL'',
-            				        ''pt'': ''AG_GRID_LOCALE_PT'',
-            				        ''pt-PT'': ''AG_GRID_LOCALE_PT'',
-            				        ''br'': ''AG_GRID_LOCALE_BR'',
-            				        ''pt-BR'': ''AG_GRID_LOCALE_BR'',
-            				        ''ro'': ''AG_GRID_LOCALE_RO'',
-            				        ''ro-RO'': ''AG_GRID_LOCALE_RO'',
-            				        ''sk'': ''AG_GRID_LOCALE_SK'',
-            				        ''sk-SK'': ''AG_GRID_LOCALE_SK'',
-            				        ''es'': ''AG_GRID_LOCALE_ES'',
-            				        ''es-ES'': ''AG_GRID_LOCALE_ES'',
-            				        ''sv'': ''AG_GRID_LOCALE_SE'',
-            				        ''sv-SE'': ''AG_GRID_LOCALE_SE'',
-            				        ''tr'': ''AG_GRID_LOCALE_TR'',
-            				        ''tr-TR'': ''AG_GRID_LOCALE_TR'',
-            				        ''uk'': ''AG_GRID_LOCALE_UA'',
-            				        ''uk-UA'': ''AG_GRID_LOCALE_UA'',
-            				        ''ur'': ''AG_GRID_LOCALE_PK'',
-            				        ''ur-PK'': ''AG_GRID_LOCALE_PK'',
-            				        ''vi'': ''AG_GRID_LOCALE_VN'',
-            				        ''vi-VN'': ''AG_GRID_LOCALE_VN'',
-            				        ''en'': ''AG_GRID_LOCALE_EN'',
-            				        ''en-US'': ''AG_GRID_LOCALE_EN''
-            				    };
-            				
-            				    const localeModule = await import(''@ag-grid-community/locale'');
-            				    const selectedLocale = localeModule[locales[locale] || ''AG_GRID_LOCALE_EN''];
-            				    const customLocaleText = page.customLocaleText[locale.split(''-'')[0]] || {};
-            				    			    
-            				    return {
-            			        	...selectedLocale,
-            			        	...customLocaleText
-            				    };
-            				}
-            				
-            				curLocaleText = await getLocale(curLocaleText);
-            	
-            	
-            			}
-            			page.local.agGridLang = curLocaleText;
-            		} 
-            '
-    comment: ag Grid Lang (UICustomAsyncAction).
 ↓datasource [ngx.components.UICompVariable-1739986920136]: 
   comment: <p>Variable datasource.</p><p><b>Example:</b> <code>null</code></p>
   value: null

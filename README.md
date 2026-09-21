@@ -379,6 +379,17 @@ null
 </p></td>
 </tr>
 <tr>
+<td>icons</td><td><p>Replaces AG Grid's default legacy "menu" icon with a custom icon, for example a filter/funnel icon.</p><p><b>Example:</b> 
+
+```
+{
+    menu: `<span class='ag-icon ag-icon-filter'></span>`
+}
+```
+
+</p></td>
+</tr>
+<tr>
 <td>id</td><td><p>An Optional ID</p><p><b>Example:</b> 
 
 ```
@@ -523,6 +534,33 @@ false
 </p></td>
 </tr>
 <tr>
+<td>showXlsxDownload</td><td><p>If true, displays a XLSX download button/menu around the grid.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>showXlsxDownloadAlignment</td><td><p>If showXlsxDownload is true, defines CSV button alignment: start, center or end.</p><p><b>Example:</b> 
+
+```
+&#x27;end&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
+<td>showXlsxDownloadPosition</td><td><p>If showXlsxDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> 
+
+```
+&#x27;top&#x27;
+```
+
+</p></td>
+</tr>
+<tr>
 <td>suppressCellSelection</td><td><p>Variable suppress Cell Selection.</p><p><b>Example:</b> 
 
 ```
@@ -533,6 +571,15 @@ false
 </tr>
 <tr>
 <td>suppressFieldDotNotation</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p></td>
+</tr>
+<tr>
+<td>suppressMenuHide</td><td><p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> 
 
 ```
 false
