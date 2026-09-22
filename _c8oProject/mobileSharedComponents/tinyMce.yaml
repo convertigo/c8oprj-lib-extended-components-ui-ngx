@@ -1841,6 +1841,20 @@ scriptContent:
         				consumerPastePreprocess(editor, args);
         			}
         		};
+        		// #local-files: content already saved with such references (before this filter existed) is cleaned when it
+        		// is loaded into the editor, so the browser stops logging "Not allowed to load local resource" at every
+        		// display and the next save persists the clean HTML. The consumer setup, if any, runs afterwards.
+        		const consumerSetup = mergedInit.setup;
+        		mergedInit.setup = (editor: any) => {
+        			editor.on("BeforeSetContent", (event: any) => {
+        				if (event != null && typeof event.content === "string") {
+        					event.content = this.removeLocalFileReferences(event.content);
+        				}
+        			});
+        			if (typeof consumerSetup === "function") {
+        				consumerSetup(editor);
+        			}
+        		};
         
         		if (
         			mergedInit.language == null ||
