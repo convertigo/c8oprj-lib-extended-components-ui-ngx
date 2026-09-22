@@ -1996,17 +1996,21 @@ scriptContent:
               attrName: (cellClicked)
               comment: Event1 (UIControlEvent).
               eventName: (cellClicked)
-              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000001]: 
-                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
-                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
-                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919028]: 
-                  beanData: |
-                    '{
-                     "ionBean": "EmitEventAction",
-                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked",
-                     "data": "script:event"
-                    }'
-                  comment: Emit Event (UIDynamicEmit).
+              ↓EmitCellClicked [ngx.components.UICustomAction-1808000000101]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		// Synchronous emit: see EmitRowClicked on (rowClicked) for why this is not an IfAction.
+                        		if (!page.isAgGridDraftEvent(event)) {
+                        			page.actionBeans
+                        				.EmitEventAction(page, {actionName: "EmitEvent", actionFunction: "EmitEventAction", async: true, data: event, event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellClicked"}, {})
+                        				.catch(() => undefined);
+                        		}
+                        		resolve();
+                        '
+                comment: Forwards CellClicked to the application, skipping the row creation draft row. Kept synchronous on purpose.
               ↓handleDraftCellClicked [ngx.components.UICustomAction-1808000000002]: 
                 actionValue: 
                   - xmlizable: 
@@ -2021,17 +2025,29 @@ scriptContent:
               attrName: (rowClicked)
               comment: Event2 (UIControlEvent).
               eventName: (rowClicked)
-              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000003]: 
-                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
-                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
-                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919034]: 
-                  beanData: |
-                    '{
-                     "ionBean": "EmitEventAction",
-                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked",
-                     "data": "script:event"
-                    }'
-                  comment: Emit Event (UIDynamicEmit).
+              ↓EmitRowClicked [ngx.components.UICustomAction-1808000000102]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		// ag-grid dispatches this event BEFORE it applies its own row selection, and consumers
+                        		// depend on that order: C8oForms'' itemGridViewer toggles an already selected row off when
+                        		// it receives RowClicked while event.node.selected is true. Emitting from inside an
+                        		// IfAction deferred the emit by a microtask - the generated chain runs child actions in a
+                        		// .then() - so RowClicked arrived after ag-grid had selected the row and after RowSelected
+                        		// had stored the node: every click cleared the selection instead of keeping it.
+                        		// A UICustomAction body runs synchronously, so filtering the row creation draft costs no
+                        		// microtask. EmitEventAction emits synchronously while async is true, and calling it keeps
+                        		// the {object, target} payload that the generated EmitEvent produces.
+                        		if (!page.isAgGridDraftEvent(event)) {
+                        			page.actionBeans
+                        				.EmitEventAction(page, {actionName: "EmitEvent", actionFunction: "EmitEventAction", async: true, data: event, event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowClicked"}, {})
+                        				.catch(() => undefined);
+                        		}
+                        		resolve();
+                        '
+                comment: Forwards RowClicked to the application, skipping the row creation draft row. Kept synchronous on purpose.
             ↓Event3 [ngx.components.UIControlEvent-1710934919037]: 
               attrName: (rowSelected)
               comment: Event3 (UIControlEvent).
@@ -2129,17 +2145,21 @@ scriptContent:
               attrName: (cellValueChanged)
               comment: Event41 (UIControlEvent).
               eventName: (cellValueChanged)
-              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000004]: 
-                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
-                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
-                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919079]: 
-                  beanData: |
-                    '{
-                     "ionBean": "EmitEventAction",
-                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged",
-                     "data": "script:event"
-                    }'
-                  comment: Emit Event (UIDynamicEmit).
+              ↓EmitCellValueChanged [ngx.components.UICustomAction-1808000000103]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		// Synchronous emit: see EmitRowClicked on (rowClicked) for why this is not an IfAction.
+                        		if (!page.isAgGridDraftEvent(event)) {
+                        			page.actionBeans
+                        				.EmitEventAction(page, {actionName: "EmitEvent", actionFunction: "EmitEventAction", async: true, data: event, event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.CellValueChanged"}, {})
+                        				.catch(() => undefined);
+                        		}
+                        		resolve();
+                        '
+                comment: Forwards CellValueChanged to the application, skipping the row creation draft row. Kept synchronous on purpose.
               ↓handleDraftCellValueChanged [ngx.components.UICustomAction-1808000000005]: 
                 actionValue: 
                   - xmlizable: 
@@ -2157,17 +2177,21 @@ scriptContent:
               attrName: (rowDoubleClicked)
               comment: Event5 (UIControlEvent).
               eventName: (rowDoubleClicked)
-              ↓IfNotDraftRow [ngx.components.UIDynamicAction-1808000000006]: 
-                beanData: '{"ionBean":"IfAction","condition":"script:!page.isAgGridDraftEvent(event)"}'
-                comment: The row creation draft row does not exist for the application, its grid events are not forwarded.
-                ↓EmitEvent [ngx.components.UIDynamicEmit-1710934919088]: 
-                  beanData: |
-                    '{
-                     "ionBean": "EmitEventAction",
-                     "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked",
-                     "data": "script:event"
-                    }'
-                  comment: Emit Event (UIDynamicEmit).
+              ↓EmitRowDoubleClicked [ngx.components.UICustomAction-1808000000104]: 
+                actionValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                      →: |
+                        '		// Synchronous emit: see EmitRowClicked on (rowClicked) for why this is not an IfAction.
+                        		if (!page.isAgGridDraftEvent(event)) {
+                        			page.actionBeans
+                        				.EmitEventAction(page, {actionName: "EmitEvent", actionFunction: "EmitEventAction", async: true, data: event, event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowDoubleClicked"}, {})
+                        				.catch(() => undefined);
+                        		}
+                        		resolve();
+                        '
+                comment: Forwards RowDoubleClicked to the application, skipping the row creation draft row. Kept synchronous on purpose.
             ↓Event7 [ngx.components.UIControlEvent-1710934919091]: 
               attrName: (selectionChanged)
               comment: Event7 (UIControlEvent).

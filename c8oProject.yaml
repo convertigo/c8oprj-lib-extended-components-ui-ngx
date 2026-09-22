@@ -8,7 +8,7 @@
     
     '
   corsOrigin: =Origin
-  version: 8.4.0.48
+  version: 8.4.0.49
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓lib_MicrosoftExcel [references.ProjectSchemaReference]: 
     projectName: lib_MicrosoftExcel=https://github.com/convertigo/c8oprj-lib-excel.git:branch=8.2.X
