@@ -1830,6 +1830,17 @@ scriptContent:
         			...init,
         			...this.initOffline
         		};
+        		// #local-files: a pasted or dropped fragment can reference files of the author''s machine
+        		// (file:///C:/Users/...), which no other browser can load. HugeRTE keeps such URLs (unknown protocols are
+        		// allowed by its sanitizer, and convert_urls is usually off), so they are removed at paste time.
+        		// A paste_preprocess supplied by the consumer still runs afterwards.
+        		const consumerPastePreprocess = mergedInit.paste_preprocess;
+        		mergedInit.paste_preprocess = (editor: any, args: any) => {
+        			args.content = this.removeLocalFileReferences(args.content);
+        			if (typeof consumerPastePreprocess === "function") {
+        				consumerPastePreprocess(editor, args);
+        			}
+        		};
         
         		if (
         			mergedInit.language == null ||
@@ -1854,6 +1865,20 @@ scriptContent:
         			language
         		};
         	}
+        	/**
+        	 * #local-files: removes the references to files of the local machine from a pasted HTML fragment.
+        	 * Images and media whose src is a file: URL are removed as a whole (a broken image would be left otherwise),
+        	 * any other file: attribute (href, data, poster) is dropped and the element is kept.
+        	 */
+        	public removeLocalFileReferences(html: any): any {
+        		if (typeof html !== "string" || !/file:/i.test(html)) {
+        			return html;
+        		}
+        		const fileUrl = "(?:\"\\s*file:[^\"]*\"|''\\s*file:[^'']*''|file:[^\\s>]*)";
+        		const result = html.replace(new RegExp("<(?:img|source|embed)\\b[^>]*\\bsrc\\s*=\\s*" + fileUrl + "[^>]*>", "gi"), "");
+        		return result.replace(new RegExp("\\s(?:src|href|data|poster)\\s*=\\s*" + fileUrl, "gi"), "");
+        	}
+        
         public isDisabled(value: any){
             return value === true || value === "true" || value === 1 || value === "1";
         }
