@@ -620,6 +620,14 @@ true
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;boxStyle
+</td>
+<td>
+<p>Optional per-instance outer box styles applied to the Grid visual wrapper.</p>
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cacheBlockSize
 </td>
 <td>
@@ -1281,6 +1289,20 @@ false
 
 ```
 false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;themeStyle
+</td>
+<td>
+<p>Optional per-instance CSS custom properties applied directly to the AG Grid theme root.</p><p><b>Example:</b> 
+
+```
+{'--ag-background-color': '#ffffff'}
 ```
 
 </p>

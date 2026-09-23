@@ -2295,6 +2295,13 @@ scriptContent:
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.icons
               comment: Attr24 (UIAttribute).
+            ↓AttrThemeStyle [ngx.components.UIAttribute-1790089083525]: 
+              attrName: '[ngStyle]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.themeStyle
+              comment: Per-instance AG Grid theme variables.
           ↓height100 [ngx.components.UIStyle-1741629457874]: 
             comment: height100 (UIStyle).
             styleContent: 
@@ -2407,6 +2414,13 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.id
+    ↓AttrBoxStyle [ngx.components.UIAttribute-1790093398848]: 
+      attrName: '[ngStyle]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.boxStyle
+      comment: Per-instance outer Box geometry for the Grid visual wrapper.
 ↓suppressMenuHide [ngx.components.UICompVariable-1786460434726]: 
   comment: <p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> <code>false</code></p>
   value: false
@@ -2455,3 +2469,9 @@ scriptContent:
 ↓RowCreateFailed [ngx.components.UICompEvent-1808000000073]: 
   attrName: RowCreateFailed
   comment: 'Fired when the row creation failed. The draft row stays open. Data: {row, error}.'
+↓themeStyle [ngx.components.UICompVariable-1790181359671]: 
+  comment: '<p>Optional per-instance CSS custom properties applied directly to the AG Grid theme root.</p><p><b>Example:</b> <code>{''--ag-background-color'': ''#ffffff''}</code></p>'
+  value: '{}'
+↓boxStyle [ngx.components.UICompVariable-1790181376848]: 
+  comment: <p>Optional per-instance outer box styles applied to the Grid visual wrapper.</p>
+  value: '{}'
