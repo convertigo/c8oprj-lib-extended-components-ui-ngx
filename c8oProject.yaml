@@ -8,7 +8,7 @@
     
     '
   corsOrigin: =Origin
-  version: 8.4.0.59
+  version: 8.4.0.60
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓RichTextPaletteMerge [sequences.GenericSequence]: 🗏 sequences/RichTextPaletteMerge.yaml
   ↓lib_MicrosoftExcel [references.ProjectSchemaReference]: 
