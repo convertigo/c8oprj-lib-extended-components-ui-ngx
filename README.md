@@ -15,6 +15,11 @@ For more technical informations : [documentation](./project.md)
 
 - [Installation](#installation)
 - [Sequences](#sequences)
+    - [AGGRIDCRUD_DELETE](#aggridcrud_delete)
+    - [AGGRIDCRUD_INSERT](#aggridcrud_insert)
+    - [AGGRIDCRUD_LIST](#aggridcrud_list)
+    - [AGGRIDCRUD_SELECT](#aggridcrud_select)
+    - [AGGRIDCRUD_UPDATE](#aggridcrud_update)
     - [RichTextPaletteMerge](#richtextpalettemerge)
 - [Mobile Library](#mobile-library)
     - [Shared Actions](#shared-actions)
@@ -24,6 +29,7 @@ For more technical informations : [documentation](./project.md)
         - [ZXing_sa](#zxing_sa)
     - [Shared Components](#shared-components)
         - [agGrid](#aggrid)
+        - [agGrid_CRUD](#aggrid_crud)
         - [angularxQRCode](#angularxqrcode)
         - [cardIO_sc](#cardio_sc)
         - [cyGraph](#cygraph)
@@ -68,6 +74,119 @@ For more technical informations : [documentation](./project.md)
 
 
 ## Sequences
+
+### AGGRIDCRUD_DELETE
+
+Demo of agGrid_CRUD (page testAgGridCrud1): deletes a row of the AGGRIDCRUD table of the sample HSQLDB database of the library. Hidden, so it answers without authentication.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ID</td><td>ID</td>
+</tr>
+</table>
+
+
+### AGGRIDCRUD_INSERT
+
+Demo of agGrid_CRUD (page testAgGridCrud1): adds a row to the AGGRIDCRUD table of the sample HSQLDB database of the library. Hidden, so it answers without authentication.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>FIRST_NAME</td><td>FIRST_NAME</td>
+</tr>
+<tr>
+<td>LAST_NAME</td><td>LAST_NAME</td>
+</tr>
+<tr>
+<td>EMAIL</td><td>EMAIL</td>
+</tr>
+<tr>
+<td>PHONE</td><td>PHONE</td>
+</tr>
+<tr>
+<td>SCORE</td><td>SCORE</td>
+</tr>
+</table>
+
+
+### AGGRIDCRUD_LIST
+
+Demo of agGrid_CRUD (page testAgGridCrud1): lists the rows of the AGGRIDCRUD table of the sample HSQLDB database of the library. Hidden, so it answers without authentication.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>order_by</td><td>order_by</td>
+</tr>
+<tr>
+<td>limit</td><td>limit</td>
+</tr>
+<tr>
+<td>offset</td><td>offset</td>
+</tr>
+</table>
+
+
+### AGGRIDCRUD_SELECT
+
+Demo of agGrid_CRUD (page testAgGridCrud1): reads one row of the AGGRIDCRUD table of the sample HSQLDB database of the library. Hidden, so it answers without authentication.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>ID</td><td>ID</td>
+</tr>
+</table>
+
+
+### AGGRIDCRUD_UPDATE
+
+Demo of agGrid_CRUD (page testAgGridCrud1): updates a row of the AGGRIDCRUD table of the sample HSQLDB database of the library. Hidden, so it answers without authentication.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>FIRST_NAME</td><td>FIRST_NAME</td>
+</tr>
+<tr>
+<td>LAST_NAME</td><td>LAST_NAME</td>
+</tr>
+<tr>
+<td>EMAIL</td><td>EMAIL</td>
+</tr>
+<tr>
+<td>PHONE</td><td>PHONE</td>
+</tr>
+<tr>
+<td>SCORE</td><td>SCORE</td>
+</tr>
+<tr>
+<td>ID</td><td>ID</td>
+</tr>
+</table>
+
 
 ### RichTextPaletteMerge
 
@@ -813,6 +932,15 @@ true
 </p></td>
 </tr>
 <tr>
+<td>editType</td><td><p>'singleCell' or 'fullRow'</p></td>
+</tr>
+<tr>
+<td>pinnedTopRowData</td><td><p>Data to be displayed as pinned top rows in the grid.</p></td>
+</tr>
+<tr>
+<td>pinnedBottomRowData</td><td><p>Data to be displayed as pinned bottom rows in the grid.</p></td>
+</tr>
+<tr>
 <td>rowDeselection</td><td><p>boolean: true (default) or false</p><p><b>Example:</b> 
 
 ```
@@ -998,6 +1126,9 @@ n/a
 <td>CellValueChanged</td><td>Fired when A Cell is edited changed. Data will be the agGrid event</td>
 </tr>
 <tr>
+<td>RowValueChanged</td><td>Fired when a row edited in full row mode (editType 'fullRow') is validated. Data will be the agGrid event</td>
+</tr>
+<tr>
 <td>GetRows</td><td>Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUpdateRows action</td>
 </tr>
 <tr>
@@ -1037,6 +1168,148 @@ n/a
 <td>SortChanged</td><td>Fired when a a column is sorted. Data will be the agGrid event</td>
 </tr>
 </table>
+
+#### agGrid_CRUD
+
+This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
+Enhanced version that handle CRUD Sequences (*_INSERT, *_LIST, *_UPDATE, *_DELETE) to manage data.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>table</td><td>Prefix of callable CRUD Sequence (without _LIST). Can be from the current project with dot ".mydata" or another project "myback.mydata".</td>
+</tr>
+<tr>
+<td>enableInsert</td><td>Allow to add entry in the table (need _INSERT).</td>
+</tr>
+<tr>
+<td>enableUpdate</td><td>Allow to update entry in the table (need _UPDATE)</td>
+</tr>
+<tr>
+<td>enableDelete</td><td>Allow to delete entry from the table (need _DELETE)</td>
+</tr>
+<tr>
+<td>pagination</td><td>boolean: true (default) or false</td>
+</tr>
+<tr>
+<td>paginationPageSize</td><td>integer: 20 by default</td>
+</tr>
+<tr>
+<td>paginationPageSizeSelector</td><td>array | boolean: [20,50,100] by default. If 'paginationPageSize' has a value not in the default array, it is automatically added.</td>
+</tr>
+<tr>
+<td>rowSelection</td><td>string: 'single' (default) or 'multiple'</td>
+</tr>
+<tr>
+<td>rowDeselection</td><td>boolean: true (default) or false</td>
+</tr>
+<tr>
+<td>customColDef</td><td>Object of columnDef {'fieldName': {headerName: 'headerName', ...} objects</td>
+</tr>
+<tr>
+<td>defaultColDef</td><td>default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}</td>
+</tr>
+<tr>
+<td>width</td><td>width value in % or px</td>
+</tr>
+<tr>
+<td>height</td><td>height is 'auto' or value in % or px</td>
+</tr>
+<tr>
+<td>class</td><td>One of the themes provided here : https://www.ag-grid.com/javascript-grid-themes-provided/ Also be shure to add the theme in the Theme object as : @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss"; </td>
+</tr>
+<tr>
+<td>id</td><td>An Optional ID</td>
+</tr>
+<tr>
+<td>suppressCellSelection</td><td></td>
+</tr>
+<tr>
+<td>suppressRowClickSelection</td><td></td>
+</tr>
+<tr>
+<td>overlayLoadingTemplate</td><td></td>
+</tr>
+<tr>
+<td>overlayNoRowsTemplate</td><td></td>
+</tr>
+<tr>
+<td>rowHeight</td><td>Height of the row in pixels as a string</td>
+</tr>
+<tr>
+<td>wrapperClass</td><td>Height of the row in pixels as a string</td>
+</tr>
+<tr>
+<td>rowModelType</td><td>Row model type</td>
+</tr>
+<tr>
+<td>maxBlocksInCache</td><td>How many blocks to keep in the store. Default is no limit, so every requested block is kept</td>
+</tr>
+<tr>
+<td>autoSizeColumns</td><td></td>
+</tr>
+<tr>
+<td>accessibility</td><td>boolean: true (default) or false</td>
+</tr>
+<tr>
+<td>ariaLabel</td><td></td>
+</tr>
+<tr>
+<td>showCsvDownload</td><td>If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.</td>
+</tr>
+<tr>
+<td>showCsvDownloadPosition</td><td>If 'showCsvDownload' is set to true, you can define the CSV button position to 'top', 'bottom', 'left', 'right', 'both_row' or 'both_col' relative to the Grid.</td>
+</tr>
+<tr>
+<td>showCsvDownloadAlignment</td><td>If 'showCsvDownload' is set to true, you can define the CSV button horizontal or vertical alignment to 'start', 'center' or 'end'.</td>
+</tr>
+<tr>
+<td>localeText</td><td>Define the Grid localisation. You can provide: - { [key: string]: string } =&gt; A map of key-&gt;value pairs for localising text within the grid. - 'fr' or 'fr-FR' =&gt; A string representing the translation language (BCP47 Tag or Sub tag) The default language of the grid is American English.</td>
+</tr>
+<tr>
+<td>customLocaleText</td><td>Add or surcharge Grid localisation. You have to provide: - { [key_lang: string]: { [key: string]: string } } =&gt; A map of key_lang-&gt;object pairs for adding or surcharging localising text within the grid. The default value is an empty object.</td>
+</tr>
+</table>
+
+**events**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>CellClicked</td><td></td>
+</tr>
+<tr>
+<td>RowClicked</td><td></td>
+</tr>
+<tr>
+<td>RowSelected</td><td></td>
+</tr>
+<tr>
+<td>SortChanged</td><td></td>
+</tr>
+<tr>
+<td>RowDataChanged</td><td></td>
+</tr>
+<tr>
+<td>RowValueChanged</td><td></td>
+</tr>
+<tr>
+<td>RowDoubleClicked</td><td></td>
+</tr>
+<tr>
+<td>SelectionChanged</td><td></td>
+</tr>
+<tr>
+<td>GridReady</td><td></td>
+</tr>
+</table>
+
 
 #### angularxQRCode
 
@@ -2275,6 +2548,9 @@ This component provides Chips management for your apps
 </tr>
 <tr>
 <td>editableTag</td><td></td>
+</tr>
+<tr>
+<td>formCtrl</td><td>Optional reactive form control (an Angular FormControl). When set, the tag input shows its value and writes each change to it (setValue and markAsDirty, markAsTouched when the input loses the focus) and is disabled when the control is, in place of the two-way binding on items.</td>
 </tr>
 <tr>
 <td>inputtext</td><td></td>
