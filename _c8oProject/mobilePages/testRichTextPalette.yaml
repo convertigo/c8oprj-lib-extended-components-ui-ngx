@@ -446,6 +446,67 @@ title: Rich text palette
           		<pre class="rtp-demo-code">{{ local['rtp:unsafeRendered'] }}</pre>
           	</div>
           </div>
+  ↓BackendCard [ngx.components.UIDynamicElement-1812200000150]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: How to give the variables values read from a database, in the application and on the server
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000151]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000152]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000153]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Backend_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000154]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓ParagraphApp [ngx.components.UIDynamicElement-1812200000155]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000156]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Backend_App
+      ↓AppCode [ngx.components.UICustom-1812200000157]: 
+        comment: The actions of the page and the variables of the viewer, as an example
+        htmlTemplate: |
+          '<pre class="rtp-demo-code">PageEvent (onWillEnter)
+            CallSequence   a sequence of your project that reads the order in the database
+              SetLocal     Property: order, Value: the response of CallSequence (source picker)
+          
+          variables of richTextPaletteViewer (and of richTextPalette, for the palette):
+          [&#123;key: ''customer.name'', label: ''Customer name'', value: () =&gt; this.local.order?.customerName&#125;,
+           &#123;key: ''order.total'', label: ''Order total'', value: () =&gt; this.local.order?.total + '' EUR''&#125;]</pre>'
+      ↓ParagraphServer [ngx.components.UIDynamicElement-1812200000158]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000159]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Backend_Server
+      ↓ServerCode [ngx.components.UICustom-1812200000160]: 
+        comment: The JavaScript step of a sequence that replaces the placeholders, as an example
+        htmlTemplate: |
+          '<pre class="rtp-demo-code">// a JavaScript step of the sequence; html: the text saved from richTextPalette,
+          // customerName and orderTotal: read from the database by the steps before
+          function escapeHtml(text) &#123;
+            return String(text).replace(/&amp;/g, "&amp;amp;").replace(/&lt;/g, "&amp;lt;").replace(/&gt;/g, "&amp;gt;").replace(/"/g, "&amp;quot;").replace(/''/g, "&amp;#39;");
+          &#125;
+          var values = &#123; "customer.name": customerName, "order.total": orderTotal &#125;;
+          var result = String(html).replace(/\&#123;\&#123;([^&#123;&#125;&lt;&gt;]*?)\&#125;\&#125;(?![^&lt;]*&gt;)/g, function (all, raw) &#123;
+            var key = raw.replace(/&amp;nbsp;|&amp;#160;|&amp;#xa0;|\u00a0/gi, " ").replace(/\s+/g, " ").trim();
+            var value = values[key];
+            return value != null ? escapeHtml(value).replace(/\r\n|\r|\n/g, "&lt;br&gt;") : all;
+          &#125;);</pre>'
 ↓DemoStyle [ngx.components.UIStyle-1812200000080]: 
   comment: The blocks of code of the demo, the frame of the HTML shown by the viewer of the sanitize card
   styleContent: 
@@ -477,6 +538,9 @@ title: Rich text palette
           	display: grid;
           	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           	gap: 12px;
+          }
+          .rtp-demo-code + p {
+          	margin-top: 16px;
           }
           .rtp-demo-caption {
           	margin: 0 0 4px;

@@ -145,5 +145,8 @@
   "RichText_Sanitize_Text": "Questo visualizzatore riceve un HTML con uno stile in linea, un gestore di eventi, un link javascript:, un link, uno script e un frame. Mantiene lo stile, il link e il testo, e rimuove il resto.",
   "RichText_Sanitize_Given": "HTML dato al visualizzatore",
   "RichText_Sanitize_Shown": "HTML mostrato (onRender)",
+  "RichText_Backend_Title": "Valori dal server",
+  "RichText_Backend_App": "Nell'applicazione: all'ingresso della pagina, chiamate una sequenza che legge i dati, conservate la sua risposta in una variabile locale con SetLocal e date al visualizzatore variabili il cui valore legge quella variabile locale. Il visualizzatore mostra i valori appena arriva la risposta; il testo conserva i suoi segnaposto.",
+  "RichText_Backend_Server": "Sul server (un'e-mail o un PDF prodotto da una sequenza) non c'è visualizzatore: sostituite i segnaposto dell'HTML salvato in un passo JavaScript, con l'espressione regolare del visualizzatore. La documentazione di richTextPaletteViewer fornisce i dettagli.",
   "RichText_Placeholder": "Scrivi qui il tuo testo"
 }
