@@ -136,12 +136,14 @@
   "Kanban_Card_Review": "Relire la pull request",
   "Kanban_Card_Release": "Preparer les notes de version",
   "Page_RichTextPalette": "Palette de texte riche",
-  "Demo_What_RichTextPalette": "richTextPalette est un editeur de texte riche avec une palette de variables. richTextPaletteViewer affiche le texte avec les valeurs de ses variables, assaini.",
-  "Demo_Scenario_RichTextPalette": "Cliquez une variable de la palette ou glissez-la dans le texte, puis lisez le texte avec ses valeurs dans le viewer.",
-  "RichText_Editor_Title": "Editeur",
+  "Demo_What_RichTextPalette": "richTextPalette est un éditeur de texte riche avec une palette de variables. richTextPaletteViewer affiche le texte avec les valeurs de ses variables, assaini.",
+  "Demo_Scenario_RichTextPalette": "Cliquez sur une variable de la palette ou glissez-la dans le texte, puis lisez le texte avec ses valeurs dans le viewer.",
+  "RichText_Editor_Title": "Éditeur",
   "RichText_Viewer_Title": "Affichage",
-  "RichText_Html_Title": "HTML enregistre (onChange)",
+  "RichText_Html_Title": "HTML enregistré (onChange)",
   "RichText_Sanitize_Title": "HTML assaini",
-  "RichText_Sanitize_Text": "Ce viewer recoit un HTML avec un script, un gestionnaire d'evenement, un cadre et un lien javascript: : ils sont retires, le style en ligne reste.",
-  "RichText_Placeholder": "Ecrivez votre texte ici"
+  "RichText_Sanitize_Text": "Ce viewer reçoit un HTML avec un style en ligne, un gestionnaire d'événement, un lien javascript:, un lien, un script et un cadre. Il garde le style, le lien et le texte, et retire le reste.",
+  "RichText_Sanitize_Given": "HTML donné au viewer",
+  "RichText_Sanitize_Shown": "HTML affiché (onRender)",
+  "RichText_Placeholder": "Écrivez votre texte ici"
 }

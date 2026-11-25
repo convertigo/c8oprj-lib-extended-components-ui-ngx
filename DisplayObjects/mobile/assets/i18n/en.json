@@ -142,6 +142,8 @@
   "RichText_Viewer_Title": "Viewer",
   "RichText_Html_Title": "Stored HTML (onChange)",
   "RichText_Sanitize_Title": "Sanitized HTML",
-  "RichText_Sanitize_Text": "This viewer is given HTML with a script, an event handler, a frame and a javascript: link: they are removed, the inline style stays.",
+  "RichText_Sanitize_Text": "This viewer is given HTML with an inline style, an event handler, a javascript: link, a link, a script and a frame. It keeps the style, the link and the text, and removes the rest.",
+  "RichText_Sanitize_Given": "HTML given to the viewer",
+  "RichText_Sanitize_Shown": "HTML shown (onRender)",
   "RichText_Placeholder": "Write your text here"
 }

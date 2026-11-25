@@ -136,12 +136,14 @@
   "Kanban_Card_Review": "Revisionare la pull request",
   "Kanban_Card_Release": "Preparare note di rilascio",
   "Page_RichTextPalette": "Palette di testo ricco",
-  "Demo_What_RichTextPalette": "richTextPalette e un editor di testo ricco con una palette di variabili. richTextPaletteViewer mostra il testo con i valori delle sue variabili, sanificato.",
+  "Demo_What_RichTextPalette": "richTextPalette è un editor di testo ricco con una palette di variabili. richTextPaletteViewer mostra il testo con i valori delle sue variabili, sanificato.",
   "Demo_Scenario_RichTextPalette": "Fai clic su una variabile della palette o trascinala nel testo, poi leggi il testo con i suoi valori nel visualizzatore.",
   "RichText_Editor_Title": "Editor",
   "RichText_Viewer_Title": "Visualizzatore",
   "RichText_Html_Title": "HTML salvato (onChange)",
   "RichText_Sanitize_Title": "HTML sanificato",
-  "RichText_Sanitize_Text": "Questo visualizzatore riceve un HTML con uno script, un gestore di eventi, un frame e un link javascript: : vengono rimossi, lo stile in linea resta.",
+  "RichText_Sanitize_Text": "Questo visualizzatore riceve un HTML con uno stile in linea, un gestore di eventi, un link javascript:, un link, uno script e un frame. Mantiene lo stile, il link e il testo, e rimuove il resto.",
+  "RichText_Sanitize_Given": "HTML dato al visualizzatore",
+  "RichText_Sanitize_Shown": "HTML mostrato (onRender)",
   "RichText_Placeholder": "Scrivi qui il tuo testo"
 }

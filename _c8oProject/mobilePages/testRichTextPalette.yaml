@@ -9,24 +9,6 @@ scriptContent:
         /*Begin_c8o_PageDeclaration*/
         	/*End_c8o_PageDeclaration*/
         /*Begin_c8o_PageConstructor*/
-        		// #rich-text-palette: the variables of the demo, the text the editor and the viewer share, a text to sanitize
-        		this.local[''rtp:variables''] = [
-        			{ key: ''customer.name'', label: ''Customer name'', group: ''Customer'', icon: ''business-outline'', type: ''Text'', value: ''ACME Corporation'' },
-        			{ key: ''customer.city'', label: ''Customer city'', group: ''Customer'', icon: ''location-outline'', type: ''Text'', value: ''Lyon'' },
-        			{ key: ''order.number'', label: ''Order number'', group: ''Order'', icon: ''receipt-outline'', type: ''Text'', value: () => ''SO-'' + new Date().getFullYear() + ''-0042'' },
-        			{ key: ''order.total'', label: ''Order total'', group: ''Order'', description: ''Taxes included'', icon: ''cash-outline'', type: ''Amount'', value: () => (1250.5).toFixed(2) + '' EUR'' },
-        			{ key: ''order.notes'', label: ''Order notes'', group: ''Order'', description: ''Two lines'', icon: ''document-text-outline'', type: ''Text'', value: ''Deliver before noon\nCall <the> reception'' }
-        		];
-        		// the icons of the groups of the demo (the default groups keep theirs)
-        		this.local[''rtp:groups''] = { ''Customer'': ''people-outline'', ''Order'': ''cart-outline'' };
-        		this.local[''rtp:html''] = ''<p>Hello {{ customer.name }},</p>''
-        			+ ''<p>Your order <strong>{{ order.number }}</strong> of <span style="color: #3b82f6;">{{ order.total }}</span> was registered on {{ api.clock.today }}.</p>''
-        			+ ''<p>Notes: {{ order.notes }}</p>''
-        			+ ''<p>Best regards,<br>{{ api.user.name }} ({{ api.user.email }})</p>''
-        			+ ''<p>Unknown placeholder kept: {{ not.a.variable }}</p>'';
-        		this.local[''rtp:unsafe''] = ''<p style="color: #b91c1c;">Inline style kept for {{ customer.name }}.</p>''
-        			+ ''<p><img src="x" onerror="alert(1)">event handler removed, <a href="javascript:alert(2)">javascript: link removed</a>, ''
-        			+ ''<a href="https://www.convertigo.com" target="_blank">link kept</a></p><script>alert(3)</script><iframe src="https://example.com"></iframe>'';
         		/*End_c8o_PageConstructor*/
         /*Begin_c8o_PageInitialization*/
         		/*End_c8o_PageInitialization*/
@@ -398,6 +380,13 @@ title: Rich text palette
   ↓SanitizeCard [ngx.components.UIDynamicElement-1812200000060]: 
     beanData: '{"ionBean":"Card"}'
     tagName: ion-card
+    ↓Class [ngx.components.UIAttribute-1812200000146]: 
+      attrName: class
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:rtp-demo-sanitize
+      comment: CSS class that frames the HTML the viewer shows
     ↓CardHeader [ngx.components.UIDynamicElement-1812200000061]: 
       beanData: '{"ionBean":"CardHeader"}'
       tagName: ion-card-header
@@ -445,11 +434,20 @@ title: Rich text palette
                "Value": "script:event.html"
               }'
       ↓RenderedHtml [ngx.components.UICustom-1812200000072]: 
-        comment: The HTML the viewer shows (onRender)
+        comment: The HTML given to the viewer and the HTML it shows (onRender), side by side
         htmlTemplate: |
-          <pre class="rtp-demo-code">{{ local['rtp:unsafeRendered'] }}</pre>
+          <div class="rtp-demo-compare">
+          	<div>
+          		<p class="rtp-demo-caption">{{ 'RichText_Sanitize_Given' | translate }}</p>
+          		<pre class="rtp-demo-code">{{ local['rtp:unsafe'] }}</pre>
+          	</div>
+          	<div>
+          		<p class="rtp-demo-caption">{{ 'RichText_Sanitize_Shown' | translate }}</p>
+          		<pre class="rtp-demo-code">{{ local['rtp:unsafeRendered'] }}</pre>
+          	</div>
+          </div>
 ↓DemoStyle [ngx.components.UIStyle-1812200000080]: 
-  comment: The blocks of code of the demo
+  comment: The blocks of code of the demo, the frame of the HTML shown by the viewer of the sanitize card
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -469,4 +467,56 @@ title: Rich text palette
           	font-size: 12px;
           	opacity: 0.7;
           }
+          .rtp-demo-sanitize lib_extendedcomponents_ui_ngx-richtextpaletteviewer {
+          	margin: 12px 0;
+          	padding: 12px 14px;
+          	border: 1px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.15);
+          	border-radius: 8px;
+          }
+          .rtp-demo-compare {
+          	display: grid;
+          	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          	gap: 12px;
+          }
+          .rtp-demo-caption {
+          	margin: 0 0 4px;
+          	font-size: 12px;
+          	font-weight: 600;
+          	opacity: 0.7;
+          }
           '
+↓PageEvent [ngx.components.UIPageEvent-1812200000141]: 
+  comment: Sets the locals of the demo when the page is about to enter, one SetLocal after the other
+  viewEvent: onWillEnter
+  ↓SetVariables [ngx.components.UIDynamicAction-1812200000142]: 
+    beanData: |
+      '{
+       "ionBean": "SetLocalAction",
+       "Property": "plain:rtp:variables",
+       "Value": "script:[{key: ''customer.name'', label: ''Customer name'', group: ''Customer'', icon: ''business-outline'', type: ''Text'', value: ''ACME Corporation''}, {key: ''customer.city'', label: ''Customer city'', group: ''Customer'', icon: ''location-outline'', type: ''Text'', value: ''Lyon''}, {key: ''order.number'', label: ''Order number'', group: ''Order'', icon: ''receipt-outline'', type: ''Text'', value: () => ''SO-'' + new Date().getFullYear() + ''-0042''}, {key: ''order.total'', label: ''Order total'', group: ''Order'', description: ''Taxes included'', icon: ''cash-outline'', type: ''Amount'', value: () => (1250.5).toFixed(2) + '' EUR''}, {key: ''order.notes'', label: ''Order notes'', group: ''Order'', description: ''Two lines'', icon: ''document-text-outline'', type: ''Text'', value: ''Deliver before noon\\nCall <the> reception''}]"
+      }'
+    comment: The variables of the demo; a value is a value or a function returning it
+    ↓SetGroups [ngx.components.UIDynamicAction-1812200000143]: 
+      beanData: |
+        '{
+         "ionBean": "SetLocalAction",
+         "Property": "plain:rtp:groups",
+         "Value": "script:{''Customer'': ''people-outline'', ''Order'': ''cart-outline''}"
+        }'
+      comment: The icons of the groups of the demo (the default groups keep theirs)
+      ↓SetHtml [ngx.components.UIDynamicAction-1812200000144]: 
+        beanData: |
+          '{
+           "ionBean": "SetLocalAction",
+           "Property": "plain:rtp:html",
+           "Value": "script:''<p>Hello {{ customer.name }},</p>\\n<p>Your order <strong>{{ order.number }}</strong> of <span style=\"color: #3b82f6;\">{{ order.total }}</span> was registered on {{ api.clock.today }}.</p>\\n<p>Notes: {{ order.notes }}</p>\\n<p>Best regards,<br>{{ api.user.name }} ({{ api.user.email }})</p>\\n<p>Unknown placeholder kept: {{ not.a.variable }}</p>''"
+          }'
+        comment: The text the editor and the viewer share, its variables written as {{ key }} placeholders
+        ↓SetUnsafe [ngx.components.UIDynamicAction-1812200000145]: 
+          beanData: |
+            '{
+             "ionBean": "SetLocalAction",
+             "Property": "plain:rtp:unsafe",
+             "Value": "script:''<p style=\"color: #ea580c;\">Inline style kept for {{ customer.name }}.</p>\\n<p><strong onclick=\"alert(1)\">Event handler removed</strong>, the text stays.</p>\\n<p><a href=\"javascript:alert(2)\">javascript: link removed</a>, the text stays.</p>\\n<p><a href=\"https://www.convertigo.com\" target=\"_blank\">Link kept</a>, opened in a new tab.</p>\\n<p>Script and frame removed:<script>alert(3)</script><iframe src=\"https://example.com\"></iframe> nothing left.</p>''"
+            }'
+          comment: 'A text to sanitize: an inline style, an event handler, a javascript: link, a link, a script and a frame'
