@@ -440,7 +440,7 @@ scriptContent:
   htmlTemplate: |
     <div class="rtp-viewer" [innerHTML]="rtpRendered()"></div>
 ↓ViewerStyle [ngx.components.UIStyle-1812100000002]: 
-  comment: Images and tables no wider than the viewer; links, quotes, tables and code in colors drawn from the text and the primary color, so the text reads in a light or a dark theme
+  comment: 'Images and tables no wider than the viewer; links, quotes, tables and code in colors drawn from the text and the primary color, so the text reads in a light or a dark theme. An anchor without href (its javascript: URL removed) is no link and keeps the color of the text'
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
@@ -467,8 +467,12 @@ scriptContent:
           .rtp-viewer ::ng-deep > :last-child {
           	margin-bottom: 0;
           }
-          .rtp-viewer ::ng-deep a {
+          .rtp-viewer ::ng-deep a[href] {
           	color: var(--ion-color-primary, #2557d6);
+          }
+          .rtp-viewer ::ng-deep a:not([href]) {
+          	color: inherit;
+          	text-decoration: none;
           }
           .rtp-viewer ::ng-deep blockquote {
           	margin-left: 0;
