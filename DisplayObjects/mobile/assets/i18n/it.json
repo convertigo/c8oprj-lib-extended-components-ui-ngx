@@ -147,6 +147,6 @@
   "RichText_Sanitize_Shown": "HTML mostrato (onRender)",
   "RichText_Backend_Title": "Valori dal server",
   "RichText_Backend_App": "Nell'applicazione: all'ingresso della pagina, chiamate una sequenza che legge i dati, conservate la sua risposta in una variabile locale con SetLocal e date al visualizzatore variabili il cui valore legge quella variabile locale. Il visualizzatore mostra i valori appena arriva la risposta; il testo conserva i suoi segnaposto.",
-  "RichText_Backend_Server": "Sul server (un'e-mail o un PDF prodotto da una sequenza) non c'è visualizzatore: sostituite i segnaposto dell'HTML salvato in un passo JavaScript, con l'espressione regolare del visualizzatore. La documentazione di richTextPaletteViewer fornisce i dettagli.",
+  "RichText_Backend_Server": "Sul server (un'e-mail o un PDF prodotto da una sequenza) non c'è visualizzatore: chiamate come sotto-sequenza la sequenza RichTextPaletteMerge di questa libreria, con l'HTML salvato e i valori. Sostituisce i segnaposto come il visualizzatore; la documentazione di richTextPaletteViewer fornisce anche la sua espressione regolare, per farlo da soli.",
   "RichText_Placeholder": "Scrivi qui il tuo testo"
 }

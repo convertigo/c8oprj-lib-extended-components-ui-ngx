@@ -147,6 +147,6 @@
   "RichText_Sanitize_Shown": "HTML affiché (onRender)",
   "RichText_Backend_Title": "Valeurs venant du serveur",
   "RichText_Backend_App": "Dans l'application : à l'entrée de la page, appelez une séquence qui lit les données, gardez sa réponse dans une variable locale avec SetLocal, et donnez au viewer des variables dont la valeur lit cette variable locale. Le viewer affiche les valeurs dès que la réponse arrive ; le texte garde ses balises.",
-  "RichText_Backend_Server": "Côté serveur (un mail ou un PDF fait par une séquence), il n'y a pas de viewer : remplacez les balises du HTML enregistré dans une étape JavaScript, avec l'expression régulière du viewer. La documentation de richTextPaletteViewer donne le détail.",
+  "RichText_Backend_Server": "Côté serveur (un mail ou un PDF fait par une séquence), il n'y a pas de viewer : appelez en sous-séquence la séquence RichTextPaletteMerge de cette lib, avec le HTML enregistré et les valeurs. Elle remplace les balises comme le viewer ; la documentation de richTextPaletteViewer donne aussi son expression régulière, pour le faire vous-même.",
   "RichText_Placeholder": "Écrivez votre texte ici"
 }

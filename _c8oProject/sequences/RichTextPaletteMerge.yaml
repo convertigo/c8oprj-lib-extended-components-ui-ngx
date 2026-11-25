@@ -1,0 +1,126 @@
+accessibility: Private
+comment: |
+  'Merges values into an HTML text written with richTextPalette, on the server (a mail or a PDF made by a sequence). Each {{ key }} placeholder of its text is replaced by the value of its key, written as text (escaped, its line breaks as `<br>`), as richTextPaletteViewer does in the application; a placeholder in a tag (an attribute) stays as written.
+  
+  Private: call it as a sub-sequence, with a Call Sequence step on lib_ExtendedComponents_ui_ngx.RichTextPaletteMerge and its variables html and values. A JavaScript step can build values before, for example from a row read in a database: `values = JSON.stringify({"customer.name": row.name, "order.total": row.total + " EUR"})`.
+  
+  Returns html, the merged HTML; variables, the keys of the placeholders of the text; missing, the keys without value, whose placeholders stay as written, or are removed with removeUnknown.'
+↓Merge [steps.SimpleStep-1812300000001]: 
+  comment: Replaces the placeholders of html by the values, and lists the keys of the text and the keys without value
+  expression: |
+    '// #rich-text-palette: the {{ key }} placeholders of html replaced by their values, as richTextPaletteViewer does
+    function rtpEscape(text) {
+    	return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/''/g, "&#39;");
+    }
+    // a key as richTextPalette writes it: spaces (and no-break spaces) trimmed and collapsed; null when it cannot be one
+    function rtpCleanKey(raw) {
+    	var key = String(raw).replace(/&nbsp;|&#160;|&#xa0;|\u00a0/gi, " ").replace(/\s+/g, " ").trim();
+    	return key === "" || key.length > 200 || /[{}<>"''`\\&]/.test(key) ? null : key;
+    }
+    // a value as text: an array as its values joined by commas, an object as its JSON
+    function rtpValueText(value) {
+    	if (value instanceof Array) {
+    		var parts = [];
+    		for (var i = 0; i < value.length; i++) {
+    			if (value[i] != null) {
+    				parts.push(String(value[i]));
+    			}
+    		}
+    		return parts.join(", ");
+    	}
+    	return typeof value === "object" ? JSON.stringify(value) : String(value);
+    }
+    var rtpValues = {};
+    var rtpValuesText = values == null ? "" : String(values).trim();
+    if (rtpValuesText !== "") {
+    	try {
+    		rtpValues = JSON.parse(rtpValuesText);
+    	}
+    	catch (e) {
+    		throw new Error("RichTextPaletteMerge: values must be a JSON object { key: value }: " + e.message);
+    	}
+    	if (rtpValues == null || typeof rtpValues !== "object" || rtpValues instanceof Array) {
+    		throw new Error("RichTextPaletteMerge: values must be a JSON object { key: value }");
+    	}
+    }
+    var rtpRemoveUnknown = String(removeUnknown) === "true";
+    var rtpKeys = [];
+    var rtpMissing = [];
+    var rtpSeen = {};
+    // in the text only: a placeholder in a tag (an attribute) is no variable
+    var rtpMerged = String(html == null ? "" : html).replace(/\{\{([^{}<>]*?)\}\}(?![^<]*>)/g, function (all, raw) {
+    	var key = rtpCleanKey(raw);
+    	if (key == null) {
+    		return all;
+    	}
+    	var known = Object.prototype.hasOwnProperty.call(rtpValues, key) && rtpValues[key] != null;
+    	if (rtpSeen["#" + key] !== true) {
+    		rtpSeen["#" + key] = true;
+    		rtpKeys.push(key);
+    		if (!known) {
+    			rtpMissing.push(key);
+    		}
+    	}
+    	if (!known) {
+    		return rtpRemoveUnknown ? "" : all;
+    	}
+    	return rtpEscape(rtpValueText(rtpValues[key])).replace(/\r\n|\r|\n/g, "<br>");
+    });'
+↓Html [steps.ElementStep-1812300000002]: 
+  comment: The merged HTML
+  expression: rtpMerged
+  nodeName: html
+↓variables [steps.JsonArrayStep-1812300000003]: 
+  comment: The keys of the placeholders of the text, in their order (a list)
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: variables
+  ↓Keys [steps.SimpleIteratorStep-1812300000004]: 
+    expression: rtpKeys
+    ↓key [steps.JsonFieldStep-1812300000005]: 
+      key: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: key
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: item
+↓missing [steps.JsonArrayStep-1812300000006]: 
+  comment: The keys of the placeholders without value (a list)
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: missing
+  ↓Keys [steps.SimpleIteratorStep-1812300000007]: 
+    expression: rtpMissing
+    ↓key [steps.JsonFieldStep-1812300000008]: 
+      key: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: key
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: item
+↓html [variables.RequestableVariable-1812300000010]: 
+  comment: The HTML text written with richTextPalette (its html, saved from onChange), its variables as {{ key }} placeholders
+  required: true
+↓values [variables.RequestableVariable-1812300000011]: 
+  comment: 'The values of the variables, as a JSON object { key: value }: a value is written as text, an array as its values joined by commas. Example: {"customer.name": "ACME Corporation", "order.total": "1250.50 EUR"}'
+↓removeUnknown [variables.RequestableVariable-1812300000012]: 
+  comment: true to remove the placeholders without value; false (default) keeps them as written
+  value: false

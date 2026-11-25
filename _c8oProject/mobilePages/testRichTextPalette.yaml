@@ -494,19 +494,16 @@ title: Rich text palette
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:RichText_Backend_Server
       ↓ServerCode [ngx.components.UICustom-1812200000160]: 
-        comment: The JavaScript step of a sequence that replaces the placeholders, as an example
+        comment: The sub-sequence that replaces the placeholders on the server, as an example
         htmlTemplate: |
-          '<pre class="rtp-demo-code">// a JavaScript step of the sequence; html: the text saved from richTextPalette,
-          // customerName and orderTotal: read from the database by the steps before
-          function escapeHtml(text) &#123;
-            return String(text).replace(/&amp;/g, "&amp;amp;").replace(/&lt;/g, "&amp;lt;").replace(/&gt;/g, "&amp;gt;").replace(/"/g, "&amp;quot;").replace(/''/g, "&amp;#39;");
-          &#125;
-          var values = &#123; "customer.name": customerName, "order.total": orderTotal &#125;;
-          var result = String(html).replace(/\&#123;\&#123;([^&#123;&#125;&lt;&gt;]*?)\&#125;\&#125;(?![^&lt;]*&gt;)/g, function (all, raw) &#123;
-            var key = raw.replace(/&amp;nbsp;|&amp;#160;|&amp;#xa0;|\u00a0/gi, " ").replace(/\s+/g, " ").trim();
-            var value = values[key];
-            return value != null ? escapeHtml(value).replace(/\r\n|\r|\n/g, "&lt;br&gt;") : all;
-          &#125;);</pre>'
+          '<pre class="rtp-demo-code">// 1. a JavaScript step: the values, here from a row read in the database
+          values = JSON.stringify(&#123;"customer.name": row.name, "order.total": row.total.toFixed(2) + " EUR"&#125;);
+          
+          // 2. a Call Sequence step on lib_ExtendedComponents_ui_ngx.RichTextPaletteMerge
+          //    html: the text saved from richTextPalette; values: the variable above (same name)
+          
+          // 3. its response: html, the merged HTML; variables, the keys of the text;
+          //    missing, the keys without value (removeUnknown=true removes their placeholders)</pre>'
 ↓DemoStyle [ngx.components.UIStyle-1812200000080]: 
   comment: The blocks of code of the demo, the frame of the HTML shown by the viewer of the sanitize card
   styleContent: 

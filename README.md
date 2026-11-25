@@ -14,6 +14,8 @@ Set of shared components you can use in your projects :
 For more technical informations : [documentation](./project.md)
 
 - [Installation](#installation)
+- [Sequences](#sequences)
+    - [RichTextPaletteMerge](#richtextpalettemerge)
 - [Mobile Library](#mobile-library)
     - [Shared Actions](#shared-actions)
         - [agGridCompleteRowCreation](#aggridcompleterowcreation)
@@ -63,6 +65,34 @@ For more technical informations : [documentation](./project.md)
      </td></tr>
     </table>
 3. Click the `Finish` button. This will automatically import the __lib_ExtendedComponents_ui_ngx__ project
+
+
+## Sequences
+
+### RichTextPaletteMerge
+
+Merges values into an HTML text written with richTextPalette, on the server (a mail or a PDF made by a sequence). Each {{ key }} placeholder of its text is replaced by the value of its key, written as text (escaped, its line breaks as `<br>`), as richTextPaletteViewer does in the application; a placeholder in a tag (an attribute) stays as written.
+
+Private: call it as a sub-sequence, with a Call Sequence step on lib_ExtendedComponents_ui_ngx.RichTextPaletteMerge and its variables html and values. A JavaScript step can build values before, for example from a row read in a database: `values = JSON.stringify({"customer.name": row.name, "order.total": row.total + " EUR"})`.
+
+Returns html, the merged HTML; variables, the keys of the placeholders of the text; missing, the keys without value, whose placeholders stay as written, or are removed with removeUnknown.
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>html</td><td>The HTML text written with richTextPalette (its html, saved from onChange), its variables as {{ key }} placeholders</td>
+</tr>
+<tr>
+<td>values</td><td>The values of the variables, as a JSON object { key: value }: a value is written as text, an array as its values joined by commas. Example: {"customer.name": "ACME Corporation", "order.total": "1250.50 EUR"}</td>
+</tr>
+<tr>
+<td>removeUnknown</td><td>true to remove the placeholders without value; false (default) keeps them as written</td>
+</tr>
+</table>
 
 
 ## Mobile Library
@@ -2487,7 +2517,7 @@ false
 
 Shows an HTML text written with richTextPalette: its {{ key }} placeholders replaced by the values of their variables (as text), then the HTML sanitized by DOMPurify (no script, event handler, javascript: URL, frame, form; the inline styles stay). Typical use: html and variables are the ones given to richTextPalette (the labels and groups are not needed here); userName and userEmail give the name and the e-mail of the signed-in user when the application knows them.
 
-On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: replace the placeholders with the regular expression of the viewer, for example in a JavaScript step:
+On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: call the sequence RichTextPaletteMerge of this library as a sub-sequence, with html and values (a JSON object { key: value }); it applies the rules below. Or replace the placeholders yourself with the regular expression of the viewer, for example in a JavaScript step:
 
 ```js
 // html: the text saved from richTextPalette; customerName, orderTotal: read from the database by the steps before

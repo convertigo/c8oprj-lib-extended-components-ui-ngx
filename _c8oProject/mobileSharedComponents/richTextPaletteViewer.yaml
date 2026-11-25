@@ -1,7 +1,7 @@
 comment: |
   'Shows an HTML text written with richTextPalette: its {{ key }} placeholders replaced by the values of their variables (as text), then the HTML sanitized by DOMPurify (no script, event handler, javascript: URL, frame, form; the inline styles stay). Typical use: html and variables are the ones given to richTextPalette (the labels and groups are not needed here); userName and userEmail give the name and the e-mail of the signed-in user when the application knows them.
   
-  On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: replace the placeholders with the regular expression of the viewer, for example in a JavaScript step:
+  On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: call the sequence RichTextPaletteMerge of this library as a sub-sequence, with html and values (a JSON object { key: value }); it applies the rules below. Or replace the placeholders yourself with the regular expression of the viewer, for example in a JavaScript step:
   
   ```js
   // html: the text saved from richTextPalette; customerName, orderTotal: read from the database by the steps before

@@ -147,6 +147,6 @@
   "RichText_Sanitize_Shown": "HTML shown (onRender)",
   "RichText_Backend_Title": "Values from the server",
   "RichText_Backend_App": "In the application: when the page enters, call a sequence that reads the data, keep its response in a local with SetLocal, and give the viewer variables whose value reads that local. The viewer shows the values as soon as the response arrives; the text keeps its placeholders.",
-  "RichText_Backend_Server": "On the server (an e-mail or a PDF made by a sequence) there is no viewer: replace the placeholders of the saved HTML in a JavaScript step, with the regular expression of the viewer. The documentation of richTextPaletteViewer gives the details.",
+  "RichText_Backend_Server": "On the server (an e-mail or a PDF made by a sequence) there is no viewer: call the sequence RichTextPaletteMerge of this library as a sub-sequence, with the saved HTML and the values. It replaces the placeholders as the viewer does; the documentation of richTextPaletteViewer also gives its regular expression, to do it yourself.",
   "RichText_Placeholder": "Write your text here"
 }

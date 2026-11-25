@@ -147,6 +147,6 @@
   "RichText_Sanitize_Shown": "HTML mostrado (onRender)",
   "RichText_Backend_Title": "Valores del servidor",
   "RichText_Backend_App": "En la aplicación: al entrar en la página, llame a una secuencia que lea los datos, guarde su respuesta en una variable local con SetLocal y dé al visor variables cuyo valor lea esa variable local. El visor muestra los valores en cuanto llega la respuesta; el texto conserva sus marcadores.",
-  "RichText_Backend_Server": "En el servidor (un correo o un PDF generado por una secuencia) no hay visor: reemplace los marcadores del HTML guardado en un paso JavaScript, con la expresión regular del visor. La documentación de richTextPaletteViewer da los detalles.",
+  "RichText_Backend_Server": "En el servidor (un correo o un PDF generado por una secuencia) no hay visor: llame como subsecuencia a la secuencia RichTextPaletteMerge de esta biblioteca, con el HTML guardado y los valores. Reemplaza los marcadores como el visor; la documentación de richTextPaletteViewer también da su expresión regular, para hacerlo usted mismo.",
   "RichText_Placeholder": "Escriba su texto aquí"
 }
