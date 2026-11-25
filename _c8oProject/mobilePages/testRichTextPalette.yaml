@@ -1,0 +1,472 @@
+comment: Page with the rich text editor with a palette of variables (richTextPalette) and its viewer (richTextPaletteViewer)
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		// #rich-text-palette: the variables of the demo, the text the editor and the viewer share, a text to sanitize
+        		this.local[''rtp:variables''] = [
+        			{ key: ''customer.name'', label: ''Customer name'', group: ''Customer'', icon: ''business-outline'', type: ''Text'', value: ''ACME Corporation'' },
+        			{ key: ''customer.city'', label: ''Customer city'', group: ''Customer'', icon: ''location-outline'', type: ''Text'', value: ''Lyon'' },
+        			{ key: ''order.number'', label: ''Order number'', group: ''Order'', icon: ''receipt-outline'', type: ''Text'', value: () => ''SO-'' + new Date().getFullYear() + ''-0042'' },
+        			{ key: ''order.total'', label: ''Order total'', group: ''Order'', description: ''Taxes included'', icon: ''cash-outline'', type: ''Amount'', value: () => (1250.5).toFixed(2) + '' EUR'' },
+        			{ key: ''order.notes'', label: ''Order notes'', group: ''Order'', description: ''Two lines'', icon: ''document-text-outline'', type: ''Text'', value: ''Deliver before noon\nCall <the> reception'' }
+        		];
+        		// the icons of the groups of the demo (the default groups keep theirs)
+        		this.local[''rtp:groups''] = { ''Customer'': ''people-outline'', ''Order'': ''cart-outline'' };
+        		this.local[''rtp:html''] = ''<p>Hello {{ customer.name }},</p>''
+        			+ ''<p>Your order <strong>{{ order.number }}</strong> of <span style="color: #3b82f6;">{{ order.total }}</span> was registered on {{ api.clock.today }}.</p>''
+        			+ ''<p>Notes: {{ order.notes }}</p>''
+        			+ ''<p>Best regards,<br>{{ api.user.name }} ({{ api.user.email }})</p>''
+        			+ ''<p>Unknown placeholder kept: {{ not.a.variable }}</p>'';
+        		this.local[''rtp:unsafe''] = ''<p style="color: #b91c1c;">Inline style kept for {{ customer.name }}.</p>''
+        			+ ''<p><img src="x" onerror="alert(1)">event handler removed, <a href="javascript:alert(2)">javascript: link removed</a>, ''
+        			+ ''<a href="https://www.convertigo.com" target="_blank">link kept</a></p><script>alert(3)</script><iframe src="https://example.com"></iframe>'';
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageInitialization*/
+        		/*End_c8o_PageInitialization*/
+        /*Begin_c8o_PageAfterViewInit*/
+        		/*End_c8o_PageAfterViewInit*/
+        /*Begin_c8o_PageFinalization*/
+        		/*End_c8o_PageFinalization*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        '
+segment: path-to-testrichtextpalette
+title: Rich text palette
+↓Header [ngx.components.UIDynamicElement-1812200000101]: 
+  beanData: '{"ionBean":"Header"}'
+  comment: Top page header container
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1812200000102]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    comment: Main toolbar displayed in the header
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1812200000103]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      comment: Left toolbar button group
+      tagName: ion-buttons
+      ↓BackButton [ngx.components.UIDynamicElement-1812200000104]: 
+        beanData: '{"ionBean":"BackButton"}'
+        comment: Navigates to the previous page when available
+        tagName: ion-back-button
+      ↓MenuButton [ngx.components.UIDynamicElement-1812200000105]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        comment: Toggles the side navigation menu
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1812200000106]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      comment: Title container displayed in the toolbar
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1812200000107]: 
+        comment: Translated page title key
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Page_RichTextPalette
+    ↓ButtonSet2 [ngx.components.UIDynamicElement-1812200000108]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      comment: Right toolbar button group
+      tagName: ion-buttons
+      ↓ThemeSwitchButton [ngx.components.UIDynamicElement-1812200000109]: 
+        beanData: '{"ionBean":"Button","IonFill":"plain:clear"}'
+        comment: Toggles between light and dark themes
+        tagName: ion-button
+        ↓Class [ngx.components.UIAttribute-1812200000110]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-theme-button
+          comment: CSS class used to style the theme button
+        ↓Aria [ngx.components.UIAttribute-1812200000111]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? this.translate.instant(''Theme_Switch_To_Light'') : this.translate.instant(''Theme_Switch_To_Dark'')'
+          comment: Accessibility label describing the next theme action
+        ↓Event [ngx.components.UIControlEvent-1812200000112]: 
+          comment: Click handler for theme switching
+          ↓SetTheme [ngx.components.UIDynamicAction-1812200000113]: 
+            beanData: '{"ionBean":"SetThemeAction","dark":"script:!(this.global && this.global.themeDark)"}'
+            comment: Applies the opposite theme mode
+        ↓ThemeIcon [ngx.components.UIDynamicElement-1812200000114]: 
+          beanData: '{"ionBean":"Icon","IconName":"script:this?.global?.themeDark ? ''sunny-outline'' : ''moon-outline''"}'
+          comment: Dynamic icon reflecting the active theme
+          tagName: ion-icon
+          ↓IconName [ngx.components.UIAttribute-1812200000115]: 
+            attrName: '[name]'
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'script:(this.global && this.global.themeDark) ? ''sunny-outline'' : ''moon-outline'''
+            comment: Binds the icon name to the current theme state
+      ↓LanguageSelector [ngx.components.UIDynamicElement-1812200000116]: 
+        beanData: |
+          '{
+           "ionBean": "Select",
+           "ControlName": "plain:name1770915137820",
+           "Justify": "plain:start"
+          }'
+        comment: Language selector displayed in the toolbar
+        tagName: ion-select
+        ↓Class [ngx.components.UIAttribute-1812200000117]: 
+          attrName: class
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:toolbar-lang-select
+          comment: CSS class used to style the language selector
+        ↓Aria [ngx.components.UIAttribute-1812200000118]: 
+          attrName: aria-label
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'Language' | translate
+          comment: Accessibility label for language selection
+        ↓Interface [ngx.components.UIAttribute-1812200000119]: 
+          attrName: '[interface]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'popover'
+          comment: Uses popover mode for option rendering
+        ↓Value [ngx.components.UIAttribute-1812200000120]: 
+          attrName: '[value]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.global.currentLanguage() ?? 'en'
+          comment: Current selected language bound to global state
+        ↓SelectedText [ngx.components.UIAttribute-1812200000121]: 
+          attrName: '[selectedText]'
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:(this.global?.getLanguageLabelKey() ??  'Lang_English') | translate
+          comment: Localized label shown for the selected language
+        ↓ChangeEvent [ngx.components.UIControlEvent-1812200000122]: 
+          attrName: (ionChange)
+          comment: Triggered when the selected language changes
+          eventName: ionChange
+          ↓SetLanguage [ngx.components.UIDynamicAction-1812200000123]: 
+            beanData: |
+              '{
+               "ionBean": "SetLanguageAction",
+               "language": "script:event.detail.value",
+               "storageKey": "plain:c8o-lang",
+               "globalProperty": "plain:currentLanguage"
+              }'
+            comment: Persists and applies the selected language
+        ↓LangEN [ngx.components.UIDynamicElement-1812200000124]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:en"}'
+          comment: English language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1812200000125]: 
+            comment: Translation key for the English option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_English
+        ↓LangFR [ngx.components.UIDynamicElement-1812200000126]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:fr"}'
+          comment: French language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1812200000127]: 
+            comment: Translation key for the French option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_French
+        ↓LangIT [ngx.components.UIDynamicElement-1812200000128]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:it"}'
+          comment: Italian language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1812200000129]: 
+            comment: Translation key for the Italian option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Italian
+        ↓LangES [ngx.components.UIDynamicElement-1812200000130]: 
+          beanData: '{"ionBean":"SelectOption","Value":"plain:es"}'
+          comment: Spanish language option
+          tagName: ion-select-option
+          ↓Text [ngx.components.UIText-1812200000131]: 
+            comment: Translation key for the Spanish option label
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Lang_Spanish
+↓Content [ngx.components.UIDynamicElement-1812200000001]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
+  ↓DemoOverviewCard [ngx.components.UIDynamicElement-1812200000002]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000003]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000004]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000005]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000006]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓ParagraphWhat [ngx.components.UIDynamicElement-1812200000007]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000008]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_RichTextPalette
+      ↓ParagraphScenarioTitle [ngx.components.UIDynamicElement-1812200000009]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000010]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Scenario_Title
+      ↓ParagraphScenario [ngx.components.UIDynamicElement-1812200000011]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000012]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_Scenario_RichTextPalette
+  ↓EditorCard [ngx.components.UIDynamicElement-1812200000020]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000021]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000022]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000023]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Editor_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000024]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓RichTextPalette [ngx.components.UIUseShared-1812200000025]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.richTextPalette
+        ↓html [ngx.components.UIUseVariable-1812200000026]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:html']
+        ↓variables [ngx.components.UIUseVariable-1812200000027]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:variables']
+        ↓groups [ngx.components.UIUseVariable-1812200000090]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:groups']
+        ↓placeholder [ngx.components.UIUseVariable-1812200000028]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.translate.instant('RichText_Placeholder')
+        ↓height [ngx.components.UIUseVariable-1812200000029]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:480
+        ↓Event [ngx.components.UIControlEvent-1812200000030]: 
+          attrName: (onChange)
+          eventName: onChange
+          ↓SetHtml [ngx.components.UIDynamicAction-1812200000031]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:rtp:html",
+               "Value": "script:event.html"
+              }'
+          ↓SetLastEvent [ngx.components.UIDynamicAction-1812200000032]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:rtp:lastEvent",
+               "Value": "script:{type: ''onChange'', variables: event.variables}"
+              }'
+        ↓Event1 [ngx.components.UIControlEvent-1812200000033]: 
+          attrName: (onBlur)
+          eventName: onBlur
+          ↓SetLastEvent [ngx.components.UIDynamicAction-1812200000034]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:rtp:lastEvent",
+               "Value": "script:{type: ''onBlur'', variables: event.variables}"
+              }'
+      ↓LastEvent [ngx.components.UICustom-1812200000035]: 
+        comment: The last event of the editor and the keys of the placeholders of its text
+        htmlTemplate: |
+          <p class="rtp-demo-event" *ngIf="local['rtp:lastEvent']">{{ local['rtp:lastEvent'].type }}: {{ local['rtp:lastEvent'].variables.join(', ') }}</p>
+  ↓ViewerCard [ngx.components.UIDynamicElement-1812200000040]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000041]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000042]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000043]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Viewer_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000044]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓RichTextPaletteViewer [ngx.components.UIUseShared-1812200000045]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.richTextPaletteViewer
+        ↓html [ngx.components.UIUseVariable-1812200000046]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:html']
+        ↓variables [ngx.components.UIUseVariable-1812200000047]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:variables']
+        ↓userName [ngx.components.UIUseVariable-1812200000048]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'Jane Doe'
+        ↓userEmail [ngx.components.UIUseVariable-1812200000049]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:'jane.doe@example.com'
+  ↓HtmlCard [ngx.components.UIDynamicElement-1812200000050]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000051]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000052]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000053]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Html_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000054]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓StoredHtml [ngx.components.UICustom-1812200000055]: 
+        comment: The HTML the page keeps from onChange, with its placeholders
+        htmlTemplate: |
+          <pre class="rtp-demo-code">{{ local['rtp:html'] }}</pre>
+  ↓SanitizeCard [ngx.components.UIDynamicElement-1812200000060]: 
+    beanData: '{"ionBean":"Card"}'
+    tagName: ion-card
+    ↓CardHeader [ngx.components.UIDynamicElement-1812200000061]: 
+      beanData: '{"ionBean":"CardHeader"}'
+      tagName: ion-card-header
+      ↓CardTitle [ngx.components.UIDynamicElement-1812200000062]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓Text [ngx.components.UIText-1812200000063]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Sanitize_Title
+    ↓CardContent [ngx.components.UIDynamicElement-1812200000064]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓ParagraphSanitize [ngx.components.UIDynamicElement-1812200000065]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1812200000066]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:RichText_Sanitize_Text
+      ↓UnsafeViewer [ngx.components.UIUseShared-1812200000067]: 
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.richTextPaletteViewer
+        ↓html [ngx.components.UIUseVariable-1812200000068]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:unsafe']
+        ↓variables [ngx.components.UIUseVariable-1812200000069]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.local['rtp:variables']
+        ↓Event [ngx.components.UIControlEvent-1812200000070]: 
+          attrName: (onRender)
+          eventName: onRender
+          ↓SetRendered [ngx.components.UIDynamicAction-1812200000071]: 
+            beanData: |
+              '{
+               "ionBean": "SetLocalAction",
+               "Property": "plain:rtp:unsafeRendered",
+               "Value": "script:event.html"
+              }'
+      ↓RenderedHtml [ngx.components.UICustom-1812200000072]: 
+        comment: The HTML the viewer shows (onRender)
+        htmlTemplate: |
+          <pre class="rtp-demo-code">{{ local['rtp:unsafeRendered'] }}</pre>
+↓DemoStyle [ngx.components.UIStyle-1812200000080]: 
+  comment: The blocks of code of the demo
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.rtp-demo-code {
+          	margin: 0;
+          	padding: 8px;
+          	border-radius: 6px;
+          	background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+          	font-size: 12px;
+          	white-space: pre-wrap;
+          	overflow-wrap: anywhere;
+          }
+          .rtp-demo-event {
+          	margin: 8px 0 0;
+          	font-size: 12px;
+          	opacity: 0.7;
+          }
+          '

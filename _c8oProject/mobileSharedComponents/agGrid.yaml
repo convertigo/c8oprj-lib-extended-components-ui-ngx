@@ -1,6 +1,10 @@
 comment: |
   'This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
   
+  Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop.
+  
+  External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
+  
   Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
   '
 scriptContent: 
@@ -38,6 +42,15 @@ scriptContent:
         	public agGridDraftMultiSelectEditor: any = null;
         	public agGridDraftOverlayListener: any = null;
         	public agGridDraftOverlayApi: any = null;
+        	// truncateText: the tooltip of the whole content of a cut cell, its cell, what showed it (hover or focus), the timer of
+        	// the hover, the type of the last pointer, the listener of the scroll that hides it and its id.
+        	public agGridCellPreview: any = null;
+        	public agGridCellPreviewCell: any = null;
+        	public agGridCellPreviewSource: string = "";
+        	public agGridCellPreviewTimer: any = null;
+        	public agGridCellPreviewPointer: string = "";
+        	public agGridCellPreviewOnScroll: any = () => this.hideAgGridCellPreview();
+        	public agGridCellPreviewId: string = "aggrid-cell-preview-" + Math.random().toString(36).slice(2, 10);
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
@@ -50,6 +63,10 @@ scriptContent:
         			this.agGridResizeObserver.disconnect();
         			this.agGridResizeObserver = null;
         		}
+        		// truncateText: the tooltip lives in the body of the document
+        		this.hideAgGridCellPreview();
+        		this.agGridCellPreview?.remove?.();
+        		this.agGridCellPreview = null;
         		/*End_c8o_CompFinalization*/
         /*Begin_c8o_CompChanges*/
         		// Former onChanges event actions first (height style, page size selector, locale), then the sizing request, as before.
@@ -311,6 +328,8 @@ scriptContent:
         		else {
         			gridApi.sizeColumnsToFit?.();
         		}
+        		// maxColumnCharacters: no column wider than its maximum after a sizing pass
+        		this.applyAgGridColumnMaxWidth(gridApi);
         		// With auto row height the cells measure themselves again after the column widths changed.
         		if (!this.isAgGridAutoRowHeightActive(gridApi)) {
         			gridApi.resetRowHeights?.();
@@ -411,6 +430,373 @@ scriptContent:
         			}
         		});
         		this.agGridResizeObserver.observe(gridElement);
+        	}
+        
+        	// Display options (truncateText, maxColumnCharacters, stickyHeader), off by default: the grid behaves as before.
+        
+        	isAgGridTruncateText(): boolean {
+        		return this.truncateText === true || this.truncateText === "true";
+        	}
+        
+        	isAgGridStickyHeader(): boolean {
+        		return this.stickyHeader === true || this.stickyHeader === "true";
+        	}
+        
+        	// Fonts (headerFontFamily, headerFontSize, cellFontFamily, cellFontSize), off by default: the font of the theme. A value
+        	// that is not a font is ignored (the font of the theme), never written in a style.
+        
+        	// headerFontFamily, cellFontFamily: a list of font families (names, quoted or not, and generic families), or a var() of
+        	// a variable of the page with such a list as fallback; null when the value is none of them.
+        	getAgGridFontFamily(value: any): string {
+        		if (value == null || typeof value == "object" || typeof value == "boolean") {
+        			return null;
+        		}
+        		const text = ("" + value).trim();
+        		if (text == "" || text.length > 300) {
+        			return null;
+        		}
+        		const family = /^[A-Za-z0-9 _.,\-"]+$/;
+        		const variable = /^var\(\s*--[A-Za-z0-9_\-]+\s*(,\s*([A-Za-z0-9 _.,\-"]+))?\)$/;
+        		if (!family.test(text) && !variable.test(text)) {
+        			return null;
+        		}
+        		// quotes go in pairs: an open quote would swallow the rest of the declaration
+        		return (text.split("\"").length - 1) % 2 == 0 ? text : null;
+        	}
+        
+        	// headerFontSize, cellFontSize: a number of pixels (12) or a CSS length (0.9rem, 13px, 90%), or a var() of a variable of
+        	// the page; null when the value is none of them.
+        	getAgGridFontSize(value: any): string {
+        		if (value == null || typeof value == "object" || typeof value == "boolean") {
+        			return null;
+        		}
+        		const text = ("" + value).trim().toLowerCase();
+        		if (/^(\d+(\.\d+)?|\.\d+)$/.test(text)) {
+        			const size = Number(text);
+        			return size > 0 && size <= 200 ? size + "px" : null;
+        		}
+        		if (/^(\d+(\.\d+)?|\.\d+)(px|pt|em|rem|%|vw|vh|vmin|vmax)$/.test(text)) {
+        			return parseFloat(text) > 0 ? text : null;
+        		}
+        		return /^var\(\s*--[a-z0-9_\-]+\s*\)$/.test(text) ? text : null;
+        	}
+        
+        	isAgGridHeaderFont(): boolean {
+        		return this.getAgGridFontFamily(this.headerFontFamily) != null || this.getAgGridFontSize(this.headerFontSize) != null;
+        	}
+        
+        	isAgGridCellFont(): boolean {
+        		return this.getAgGridFontFamily(this.cellFontFamily) != null || this.getAgGridFontSize(this.cellFontSize) != null;
+        	}
+        
+        	// truncateText: the whole content of a cell cut at the width of its column, null when the cell shows all of it. The
+        	// line is the element a cell renderer marks with the class aggrid-cell-line, else the value of the cell (the text
+        	// AG Grid writes); the content is the data-aggrid-full-text attribute a renderer may give, else the text of the line.
+        	getAgGridCellPreviewContent(cell: any): string {
+        		if (cell == null) {
+        			return null;
+        		}
+        		const line = cell.querySelector?.(".aggrid-cell-line") ?? cell.querySelector?.(".ag-cell-value") ?? cell;
+        		if (!(line.scrollWidth > line.clientWidth + 1)) {
+        			return null;
+        		}
+        		const holder = cell.querySelector?.("[data-aggrid-full-text]");
+        		const text = holder != null ? "" + (holder.getAttribute("data-aggrid-full-text") ?? "") : ("" + (line.textContent ?? "")).trim();
+        		return text.trim() != "" ? text : null;
+        	}
+        
+        	// truncateText: shows the whole content of a cut cell in a tooltip of the body of the document (the boxes of the grid
+        	// do not clip it), under the cell, above it at the bottom of the window; the cell is described by it (aria-describedby).
+        	// source: "hover" (the mouse rests on the cell) or "focus" (the keyboard or a touch gave it the focus).
+        	showAgGridCellPreview(cell: any, source: string): void {
+        		const text = this.isAgGridTruncateText() ? this.getAgGridCellPreviewContent(cell) : null;
+        		if (text == null) {
+        			if (cell == this.agGridCellPreviewCell) {
+        				this.hideAgGridCellPreview();
+        			}
+        			return;
+        		}
+        		let preview = this.agGridCellPreview;
+        		if (preview == null) {
+        			preview = document.createElement("div");
+        			preview.id = this.agGridCellPreviewId;
+        			preview.className = "aggrid-cell-preview";
+        			preview.setAttribute("role", "tooltip");
+        			Object.assign(preview.style, {
+        				position: "fixed", zIndex: "40000", maxWidth: "min(420px, calc(100vw - 16px))", maxHeight: "60vh", overflow: "hidden",
+        				padding: "6px 10px", borderRadius: "6px", background: "#1F2937", color: "#FFFFFF", fontSize: "13px", lineHeight: "1.45",
+        				whiteSpace: "pre-wrap", overflowWrap: "anywhere", boxShadow: "0 4px 14px rgba(15, 23, 42, 0.25)", pointerEvents: "none"
+        			});
+        			this.agGridCellPreview = preview;
+        		}
+        		if (this.agGridCellPreviewCell != null && this.agGridCellPreviewCell != cell) {
+        			this.agGridCellPreviewCell.removeAttribute("aria-describedby");
+        		}
+        		preview.textContent = text;
+        		preview.style.display = "block";
+        		preview.style.left = "0px";
+        		preview.style.top = "0px";
+        		if (preview.parentNode == null) {
+        			document.body.appendChild(preview);
+        		}
+        		cell.setAttribute("aria-describedby", preview.id);
+        		this.agGridCellPreviewCell = cell;
+        		this.agGridCellPreviewSource = source;
+        		const margin = 8;
+        		const rect = cell.getBoundingClientRect();
+        		const size = preview.getBoundingClientRect();
+        		let top = rect.bottom + 4;
+        		if (top + size.height > window.innerHeight - margin && rect.top - 4 - size.height >= margin) {
+        			top = rect.top - 4 - size.height;
+        		}
+        		const left = Math.min(Math.max(rect.left, margin), window.innerWidth - size.width - margin);
+        		preview.style.left = Math.max(margin, left) + "px";
+        		preview.style.top = Math.max(margin, top) + "px";
+        		// it stays under its cell: it goes as soon as the page or the grid scrolls
+        		document.addEventListener("scroll", this.agGridCellPreviewOnScroll, true);
+        	}
+        
+        	hideAgGridCellPreview(): void {
+        		clearTimeout(this.agGridCellPreviewTimer);
+        		this.agGridCellPreviewTimer = null;
+        		document.removeEventListener("scroll", this.agGridCellPreviewOnScroll, true);
+        		this.agGridCellPreviewCell?.removeAttribute?.("aria-describedby");
+        		this.agGridCellPreviewCell = null;
+        		this.agGridCellPreviewSource = "";
+        		if (this.agGridCellPreview != null) {
+        			this.agGridCellPreview.style.display = "none";
+        		}
+        	}
+        
+        	// truncateText: listened once on the element of the grid (gridReady). The mouse resting on a cut cell (300 ms), the
+        	// focus moved to it by the keyboard (arrows of the grid, Tab) or a touch shows its whole content; leaving the cell,
+        	// Escape or a scroll hides it. While truncateText is false nothing shows.
+        	listenAgGridCellPreview(host: any): void {
+        		if (host == null || host.__aggridCellPreview == true) {
+        			return;
+        		}
+        		host.__aggridCellPreview = true;
+        		const cellOf = (event: any): any => event?.target?.closest?.(".ag-cell") ?? null;
+        		host.addEventListener("pointerdown", (event: any) => {
+        			this.agGridCellPreviewPointer = event?.pointerType ?? "";
+        		});
+        		host.addEventListener("mouseover", (event: any) => {
+        			const cell = cellOf(event);
+        			if (cell == null || cell == this.agGridCellPreviewCell || !this.isAgGridTruncateText()) {
+        				return;
+        			}
+        			clearTimeout(this.agGridCellPreviewTimer);
+        			this.agGridCellPreviewTimer = setTimeout(() => this.showAgGridCellPreview(cell, "hover"), 300);
+        		});
+        		host.addEventListener("mouseout", (event: any) => {
+        			const cell = cellOf(event);
+        			if (cell == null || cell.contains(event.relatedTarget)) {
+        				return;
+        			}
+        			clearTimeout(this.agGridCellPreviewTimer);
+        			if (this.agGridCellPreviewSource == "hover") {
+        				this.hideAgGridCellPreview();
+        			}
+        		});
+        		host.addEventListener("focusin", (event: any) => {
+        			const cell = cellOf(event);
+        			if (cell == null || !this.isAgGridTruncateText()) {
+        				return;
+        			}
+        			let keyboard = false;
+        			try {
+        				keyboard = cell.matches(":focus-visible");
+        			}
+        			catch (e) {
+        			}
+        			if (keyboard || this.agGridCellPreviewPointer == "touch" || this.agGridCellPreviewPointer == "pen") {
+        				this.showAgGridCellPreview(cell, "focus");
+        			}
+        			else if (this.agGridCellPreviewSource == "focus") {
+        				this.hideAgGridCellPreview();
+        			}
+        		});
+        		host.addEventListener("focusout", (event: any) => {
+        			const cell = cellOf(event);
+        			if (this.agGridCellPreviewSource == "focus" && (cell == null || !cell.contains(event.relatedTarget))) {
+        				this.hideAgGridCellPreview();
+        			}
+        		});
+        		host.addEventListener("keydown", (event: any) => {
+        			if (event?.key == "Escape" && this.agGridCellPreviewCell != null) {
+        				this.hideAgGridCellPreview();
+        			}
+        		});
+        	}
+        
+        	// maxColumnCharacters: the number of characters, null when the columns are not capped.
+        	getAgGridMaxColumnCharacters(): number {
+        		const raw = this.maxColumnCharacters;
+        		const characters = Number(raw);
+        		if (raw == null || ("" + raw).trim() == "" || !Number.isFinite(characters) || characters < 1) {
+        			return null;
+        		}
+        		return Math.floor(characters);
+        	}
+        
+        	// maxColumnCharacters: the width in pixels of a column showing that many characters of its cells (as many "0" in the
+        	// font of a cell, the ch unit of CSS), the padding of the cells included.
+        	getAgGridColumnMaxWidth(gridElement: any, characters: number): number {
+        		let width = characters * 8;
+        		let padding = 42;
+        		try {
+        			const cell = gridElement?.querySelector?.(".ag-cell");
+        			const host = cell ?? gridElement?.querySelector?.(".ag-center-cols-container") ?? gridElement;
+        			if (host != null) {
+        				const probe = document.createElement("span");
+        				probe.style.cssText = "position: absolute; visibility: hidden; white-space: nowrap; width: " + characters + "ch;";
+        				host.appendChild(probe);
+        				const measured = probe.getBoundingClientRect().width;
+        				probe.remove();
+        				if (measured > 0) {
+        					width = measured;
+        				}
+        			}
+        			if (cell != null) {
+        				const style = getComputedStyle(cell);
+        				const cellPadding = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+        				if (cellPadding > 0) {
+        					padding = cellPadding;
+        				}
+        			}
+        		}
+        		catch (e) {
+        		}
+        		return Math.ceil(width + padding);
+        	}
+        
+        	// maxColumnCharacters: after a sizing pass (applyAgGridSizing), a column wider than the maximum is brought back to it,
+        	// never under its minWidth. A column the user resizes keeps its width until the next sizing pass.
+        	applyAgGridColumnMaxWidth(gridApi: any): void {
+        		const characters = this.getAgGridMaxColumnCharacters();
+        		if (characters == null || gridApi == null || gridApi.isDestroyed?.()) {
+        			return;
+        		}
+        		const maxWidth = this.getAgGridColumnMaxWidth(this.getAgGridElement(), characters);
+        		const widths = (gridApi.getAllDisplayedColumns?.() ?? [])
+        			.map((column: any) => ({ key: column, newWidth: Math.max(maxWidth, column.getMinWidth?.() ?? 0) }))
+        			.filter((entry: any) => entry.newWidth < entry.key.getActualWidth());
+        		if (widths.length > 0) {
+        			gridApi.setColumnWidths(widths, true, "api");
+        		}
+        	}
+        
+        	// externalPagination: the pager of a grid whose rows are paged by the application (a server gives one page at a time).
+        	// The grid holds the rows of the page shown; the pager under it says which rows they are among all of them and asks the
+        	// other pages with the PageRequest event. It looks like the pager of AG Grid, with its texts in the language of the grid.
+        
+        	isAgGridExternalPagination(): boolean {
+        		return this.externalPagination === true || this.externalPagination === "true";
+        	}
+        
+        	// externalPagination: the number of rows of a page, externalPaginationPageSize, else paginationPageSize, else 100.
+        	getAgGridExternalPageSize(): number {
+        		for (const raw of [this.externalPaginationPageSize, this.paginationPageSize]) {
+        			const size = Math.floor(Number(raw));
+        			if (raw != null && ("" + raw).trim() != "" && Number.isFinite(size) && size > 0) {
+        				return size;
+        			}
+        		}
+        		return 100;
+        	}
+        
+        	// externalPagination: the number of rows of all the pages, null while the application does not know it.
+        	getAgGridExternalRowCount(): number {
+        		const raw = this.externalPaginationRowCount;
+        		const count = Math.floor(Number(raw));
+        		return raw != null && ("" + raw).trim() != "" && Number.isFinite(count) && count >= 0 ? count : null;
+        	}
+        
+        	// externalPagination: the number of pages, null while the number of rows is unknown.
+        	getAgGridExternalPageCount(): number {
+        		const count = this.getAgGridExternalRowCount();
+        		return count == null ? null : Math.max(1, Math.ceil(count / this.getAgGridExternalPageSize()));
+        	}
+        
+        	// externalPagination: the page shown, from 1 (externalPaginationPage, never past the last page).
+        	getAgGridExternalPage(): number {
+        		const page = Math.floor(Number(this.externalPaginationPage));
+        		const pages = this.getAgGridExternalPageCount();
+        		const current = Number.isFinite(page) && page > 0 ? page : 1;
+        		return pages != null ? Math.min(current, pages) : current;
+        	}
+        
+        	// externalPagination: the number of the first row of the page shown among all the rows, 0 when there is none.
+        	getAgGridExternalFirstRow(): number {
+        		const count = this.getAgGridExternalRowCount();
+        		const shown = count != null ? count : (this.api?.getDisplayedRowCount?.() ?? 0);
+        		return shown == 0 ? 0 : (this.getAgGridExternalPage() - 1) * this.getAgGridExternalPageSize() + 1;
+        	}
+        
+        	// externalPagination: the number of the last row of the page shown among all the rows, 0 when there is none.
+        	getAgGridExternalLastRow(): number {
+        		const size = this.getAgGridExternalPageSize();
+        		const page = this.getAgGridExternalPage();
+        		const count = this.getAgGridExternalRowCount();
+        		if (count != null) {
+        			return Math.min(page * size, count);
+        		}
+        		const shown = Math.min(this.api?.getDisplayedRowCount?.() ?? 0, size);
+        		return shown == 0 ? 0 : (page - 1) * size + shown;
+        	}
+        
+        	// externalPagination: whether the pager can go to the first, previous, next or last page, never while
+        	// externalPaginationBusy is true (a page is loading). Without the number of rows, a full page may have a next one and
+        	// the last page is unknown.
+        	canGoAgGridExternalPage(where: string): boolean {
+        		if (this.externalPaginationBusy === true || this.externalPaginationBusy === "true") {
+        			return false;
+        		}
+        		const page = this.getAgGridExternalPage();
+        		if (where == "first" || where == "previous") {
+        			return page > 1;
+        		}
+        		const pages = this.getAgGridExternalPageCount();
+        		if (pages == null) {
+        			return where == "next" && (this.api?.getDisplayedRowCount?.() ?? 0) >= this.getAgGridExternalPageSize();
+        		}
+        		return (where == "next" || where == "last") && page < pages;
+        	}
+        
+        	// externalPagination: a button of the pager. The PageRequest event asks the page to the application, data
+        	// {page, previousPage, pageSize, rowCount, button}; the application gives the grid the rows of that page and sets
+        	// externalPaginationPage. A button that cannot go (first page, last page, busy) does nothing.
+        	goAgGridExternalPage(where: string): void {
+        		if (!this.canGoAgGridExternalPage(where)) {
+        			return;
+        		}
+        		const page = this.getAgGridExternalPage();
+        		const pages = this.getAgGridExternalPageCount();
+        		const target = where == "first" ? 1 : (where == "previous" ? page - 1 : (where == "next" ? page + 1 : pages));
+        		const data = {page: target, previousPage: page, pageSize: this.getAgGridExternalPageSize(), rowCount: this.getAgGridExternalRowCount(), button: where};
+        		try {
+        			// async: the emitter does not wait for the application handler to finish
+        			const emitted: any = this.actionBeans.EmitEventAction(this, {event: "lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.PageRequest", async: true, data: data}, null);
+        			emitted?.catch?.((error: any) => this.c8o.log.debug("[MB] agGrid pager: event PageRequest failed : ", error != null ? error.message : error));
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid pager: event PageRequest could not be emitted : ", e != null ? (e as any).message : e);
+        		}
+        	}
+        
+        	// externalPagination: a text of the pager of AG Grid (to, of, more, page, firstPage...) in the language of the grid:
+        	// getLocaleText when it is a function, else the locale of the grid (localeText), else defaultValue (English).
+        	getAgGridPagerText(key: string, defaultValue: string): string {
+        		try {
+        			if (typeof this.getLocaleText == "function") {
+        				const custom = this.getLocaleText({key: key, defaultValue: defaultValue});
+        				if (typeof custom == "string" && custom != "") {
+        					return custom;
+        				}
+        			}
+        		} catch (e) {
+        		}
+        		const text = this.local?.agGridLang?.[key];
+        		return typeof text == "string" && text != "" ? text : defaultValue;
         	}
         
         	computeColumnDef() {
@@ -676,12 +1062,11 @@ scriptContent:
         			}
         		}
         		if (rule.validator != null && rule.validator !== "") {
-        			// function (value, row, field) or expression using value, row and field. true / undefined: valid,
-        			// false: invalid, string: invalid with that message. An error in the validator is an invalid value.
+        			// A validator is a function (value, row, field); a string validator is not evaluated.
+        			// true / undefined: valid, false: invalid, string: invalid with that message.
         			let verdict: any;
         			try {
-        				const validator = typeof rule.validator === "function" ? rule.validator : new Function("value", "row", "field", "return (" + String(rule.validator) + ");");
-        				verdict = validator(value, row, field);
+        				verdict = typeof rule.validator === "function" ? rule.validator(value, row, field) : false;
         			} catch (e) {
         				verdict = false;
         			}
@@ -1540,6 +1925,156 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.wrapperClass","prefix":"","suffix":"","custom":"","useCustom":false}}
       comment: Attr2 (UIAttribute).
+    ↓AttrTruncateText [ngx.components.UIAttribute-1810000000001]: 
+      attrName: '[class.aggrid-truncate-text]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridTruncateText()
+      comment: 'truncateText: one line per cell, cut with an ellipsis at the width of its column (DisplayOptionsStyle).'
+    ↓AttrStickyHeader [ngx.components.UIAttribute-1810000000002]: 
+      attrName: '[class.aggrid-sticky-header]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridStickyHeader()
+      comment: 'stickyHeader: the header row stays on screen while the page scrolls the rows (DisplayOptionsStyle).'
+    ↓AttrStickyHeaderTop [ngx.components.UIAttribute-1810000000003]: 
+      attrName: '[style.--aggrid-sticky-header-top]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.stickyHeaderTop
+      comment: 'stickyHeaderTop: where the header row sticks, from the top of the scrolling container.'
+    ↓AttrExternalPagination [ngx.components.UIAttribute-1810000000005]: 
+      attrName: '[class.aggrid-external-pagination]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridExternalPagination()
+      comment: 'externalPagination: the pager of the application under the grid (DisplayOptionsStyle).'
+    ↓AttrHeaderFont [ngx.components.UIAttribute-1810000000030]: 
+      attrName: '[class.aggrid-header-font]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridHeaderFont()
+      comment: 'headerFontFamily, headerFontSize: the font of the header row (DisplayOptionsStyle).'
+    ↓AttrHeaderFontFamily [ngx.components.UIAttribute-1810000000031]: 
+      attrName: '[style.--aggrid-header-font-family]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.getAgGridFontFamily(this.headerFontFamily)
+      comment: 'headerFontFamily: the font family of the header row, null for the font of the theme.'
+    ↓AttrHeaderFontSize [ngx.components.UIAttribute-1810000000032]: 
+      attrName: '[style.--aggrid-header-font-size]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.getAgGridFontSize(this.headerFontSize)
+      comment: 'headerFontSize: the font size of the header row, null for the font of the theme.'
+    ↓AttrCellFont [ngx.components.UIAttribute-1810000000033]: 
+      attrName: '[class.aggrid-cell-font]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridCellFont()
+      comment: 'cellFontFamily, cellFontSize: the font of the rows (DisplayOptionsStyle).'
+    ↓AttrCellFontFamily [ngx.components.UIAttribute-1810000000034]: 
+      attrName: '[style.--aggrid-cell-font-family]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.getAgGridFontFamily(this.cellFontFamily)
+      comment: 'cellFontFamily: the font family of the cells, null for the font of the theme.'
+    ↓AttrCellFontSize [ngx.components.UIAttribute-1810000000035]: 
+      attrName: '[style.--aggrid-cell-font-size]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.getAgGridFontSize(this.cellFontSize)
+      comment: 'cellFontSize: the font size of the cells, null for the font of the theme.'
+    ↓DisplayOptionsStyle [ngx.components.UIStyle-1810000000004]: 
+      comment: The display options truncateText, stickyHeader, externalPagination and the fonts of the header and of the cells. Their classes are only set while the options are set.
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '// truncateText: each cell on one line, cut with an ellipsis at the width of its column; a cell renderer marks the
+              // element holding its line with the class aggrid-cell-line
+              &.aggrid-truncate-text ::ng-deep {
+              	.ag-cell-wrap-text {
+              		white-space: nowrap !important;
+              	}
+              	.ag-cell-value {
+              		overflow: hidden;
+              		text-overflow: ellipsis;
+              	}
+              	.aggrid-cell-line {
+              		display: block !important;
+              		min-width: 0;
+              		white-space: nowrap !important;
+              		overflow: hidden !important;
+              		text-overflow: ellipsis !important;
+              	}
+              }
+              // stickyHeader: the header row sticks in .ag-root, as high as the grid: it leaves with the end of the grid. The grid
+              // boxes clip (a hidden overflow made them the containers the header stuck in); clip makes no scrolling box, so .ag-root
+              // keeps the min-width 0 it had as one and the columns still scroll across inside it. The header is opaque (its color,
+              // often see-through, over the background of the grid), under the sticky components of a page (z-index 5).
+              &.aggrid-sticky-header ::ng-deep {
+              	.ag-root-wrapper {
+              		overflow: clip;
+              	}
+              	.ag-root {
+              		overflow: clip;
+              		min-width: 0;
+              	}
+              	.ag-header {
+              		position: sticky;
+              		top: var(--aggrid-sticky-header-top, 0px);
+              		z-index: 4;
+              		--aggrid-header-tint: var(--ag-header-background-color, transparent);
+              		background-color: var(--ag-background-color, #fff);
+              		background-image: linear-gradient(var(--aggrid-header-tint), var(--aggrid-header-tint));
+              	}
+              	.ag-header:hover {
+              		--aggrid-header-tint: var(--ag-header-cell-hover-background-color, #F8FAFC);
+              	}
+              }
+              // externalPagination: the pager of the application under the grid, with the look of the pager of AG Grid (its classes,
+              // in the theme of the grid); its buttons are buttons of the page, without a background or a border of their own
+              &.aggrid-external-pagination ::ng-deep {
+              	.aggrid-external-pager .ag-paging-panel {
+              		border-top: none;
+              	}
+              	.aggrid-external-pager button.ag-paging-button {
+              		background: transparent;
+              		border: 0;
+              		padding: 0;
+              		font: inherit;
+              		color: inherit;
+              	}
+              	.aggrid-external-pager button.ag-paging-button.ag-disabled {
+              		color: var(--ag-disabled-foreground-color);
+              		cursor: default;
+              	}
+              }
+              // headerFontFamily, headerFontSize: the font of the header row (names of the columns, group headers, floating filters);
+              // the one not set stays the font of the theme. The icons keep their own font.
+              &.aggrid-header-font ::ng-deep .ag-header {
+              	font-family: var(--aggrid-header-font-family, var(--ag-font-family));
+              	font-size: var(--aggrid-header-font-size, var(--ag-font-size));
+              }
+              // cellFontFamily, cellFontSize: the font of the rows (their cells, the draft row of the row creation, the pinned and
+              // full width rows); the one not set stays the font of the theme. Rows of a fixed height do not grow with the font.
+              &.aggrid-cell-font ::ng-deep .ag-row {
+              	font-family: var(--aggrid-cell-font-family, var(--ag-font-family));
+              	font-size: var(--aggrid-cell-font-size, var(--ag-font-size));
+              }
+              '
     ↓RowCreationStyle [ngx.components.UIStyle-1808000000016]: 
       comment: Cells of the row creation draft row. These classes are only set while enableRowCreation is true.
       styleContent: 
@@ -1849,8 +2384,8 @@ scriptContent:
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1576501532114,"regular":true}],"path":"?.pagination","prefix":"","suffix":"","custom":"","useCustom":false}}
-              comment: Attr2 (UIAttribute).
+                  - MobileSmartSourceType: 'script:this.isAgGridExternalPagination() ? false : this?.pagination'
+              comment: 'pagination (UIAttribute). Off while externalPagination is true: the pager of the application replaces the one of AG Grid.'
             ↓Attr3 [ngx.components.UIAttribute-1710934918989]: 
               attrName: '[paginationPageSize]'
               attrValue: 
@@ -1925,6 +2460,8 @@ scriptContent:
                           				page["api"] = grid.api;
                           				page.watchAgGridSize(grid);
                           				page.scheduleAgGridSizing(grid.api, 8);
+                          				// truncateText: the whole content of a cut cell on hover or keyboard focus
+                          				page.listenAgGridCellPreview((grid as any)._nativeElement);
                           				page.c8o.log.debug(''[MB] gridApi sizing done'');
                           				if (grid.rowModelType == "infinite") {
                           					if (typeof grid.context != "object") {
@@ -2295,6 +2832,40 @@ scriptContent:
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.icons
               comment: Attr24 (UIAttribute).
+            ↓AttrThemeStyle [ngx.components.UIAttribute-1790089083525]: 
+              attrName: '[ngStyle]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.themeStyle
+              comment: Per-instance AG Grid theme variables.
+          ↓ExternalPager [ngx.components.UICustom-1810000000020]: 
+            comment: 'externalPagination: the pager of a grid whose rows are paged by the application, in place of the pager of AG Grid. Its buttons emit PageRequest. The words of the pager are text next to its numbers, and a space separates its two parts: the compiled template drops the blank text between elements.'
+            htmlTemplate: |
+              <div class="aggrid-external-pager ag-theme-quartz" *ngIf="isAgGridExternalPagination()" [ngStyle]="themeStyle">
+                <div class="ag-paging-panel ag-unselectable">
+                  <span class="ag-paging-row-summary-panel" role="status">
+                    <span class="ag-paging-row-summary-panel-number">{{ getAgGridExternalFirstRow() }}</span>
+                    {{ getAgGridPagerText('to', 'to') }}
+                    <span class="ag-paging-row-summary-panel-number">{{ getAgGridExternalLastRow() }}</span>
+                    {{ getAgGridPagerText('of', 'of') }}
+                    <span class="ag-paging-row-summary-panel-number">{{ getAgGridExternalRowCount() ?? getAgGridPagerText('more', 'more') }}</span>
+                  </span>
+                  {{ ' ' }}
+                  <span class="ag-paging-page-summary-panel" role="presentation">
+                    <button type="button" class="ag-button ag-paging-button aggrid-external-pager-first" [class.ag-disabled]="!canGoAgGridExternalPage('first')" [attr.aria-disabled]="!canGoAgGridExternalPage('first')" [attr.aria-label]="getAgGridPagerText('firstPage', 'First Page')" (click)="goAgGridExternalPage('first')"><span class="ag-icon ag-icon-first" role="presentation"></span></button>
+                    <button type="button" class="ag-button ag-paging-button aggrid-external-pager-previous" [class.ag-disabled]="!canGoAgGridExternalPage('previous')" [attr.aria-disabled]="!canGoAgGridExternalPage('previous')" [attr.aria-label]="getAgGridPagerText('previousPage', 'Previous Page')" (click)="goAgGridExternalPage('previous')"><span class="ag-icon ag-icon-previous" role="presentation"></span></button>
+                    <span class="ag-paging-description" role="status">
+                      {{ getAgGridPagerText('page', 'Page') }}
+                      <span class="ag-paging-number">{{ getAgGridExternalPage() }}</span>
+                      {{ getAgGridPagerText('of', 'of') }}
+                      <span class="ag-paging-number">{{ getAgGridExternalPageCount() ?? getAgGridPagerText('more', 'more') }}</span>
+                    </span>
+                    <button type="button" class="ag-button ag-paging-button aggrid-external-pager-next" [class.ag-disabled]="!canGoAgGridExternalPage('next')" [attr.aria-disabled]="!canGoAgGridExternalPage('next')" [attr.aria-label]="getAgGridPagerText('nextPage', 'Next Page')" (click)="goAgGridExternalPage('next')"><span class="ag-icon ag-icon-next" role="presentation"></span></button>
+                    <button type="button" class="ag-button ag-paging-button aggrid-external-pager-last" [class.ag-disabled]="!canGoAgGridExternalPage('last')" [attr.aria-disabled]="!canGoAgGridExternalPage('last')" [attr.aria-label]="getAgGridPagerText('lastPage', 'Last Page')" (click)="goAgGridExternalPage('last')"><span class="ag-icon ag-icon-last" role="presentation"></span></button>
+                  </span>
+                </div>
+              </div>
           ↓height100 [ngx.components.UIStyle-1741629457874]: 
             comment: height100 (UIStyle).
             styleContent: 
@@ -2407,6 +2978,13 @@ scriptContent:
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:this?.id
+    ↓AttrBoxStyle [ngx.components.UIAttribute-1790093398848]: 
+      attrName: '[ngStyle]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.boxStyle
+      comment: Per-instance outer Box geometry for the Grid visual wrapper.
 ↓suppressMenuHide [ngx.components.UICompVariable-1786460434726]: 
   comment: <p>Keeps the legacy column menu/filter button visible at all times instead of showing it only when hovering over the column header.</p><p><b>Example:</b> <code>false</code></p>
   value: false
@@ -2429,7 +3007,7 @@ scriptContent:
   comment: '<p>boolean: false (default) or true. When true, the grid offers a transactional row creation: <b>Add row</b> opens a draft row pinned at the top of the grid (never hidden by pagination, sorting or filtering), its cells are validated against <code>rowCreationColumns</code>, <b>Save</b> creates the row with one single call and <b>Cancel</b> drops the draft. Nothing reaches the backend before Save. While false, the grid behaves exactly as before.</p><p><b>Example:</b> <code>true</code></p>'
   value: false
 ↓rowCreationColumns [ngx.components.UICompVariable-1808000000061]: 
-  comment: '<p>Rules of the draft row, by column field: <code>{field: {type, required, editable, defaultValue, options, min, max, integer, minLength, maxLength, pattern, validator, message, dateOutput}}</code>. <code>type</code>: text, number, integer, date, boolean, select or multiselect; it selects the cell editor and the value is validated and normalized (number, boolean, YYYY-MM-DD string, option value, array of option values) before submit. <code>editable</code>: true or false forces the draft cell, otherwise the column editable setting applies. <code>options</code>: values or {value, label} objects for select and multiselect. <code>pattern</code>: regular expression. <code>validator</code>: function (value, row, field) or expression using them, returning true, false or an error message. <code>dateOutput</code>: day (default), iso, timestamp or date. A field without rule is free text and optional.</p><p><b>Example:</b> <code>{make: {type: &#x27;select&#x27;, required: true, options: [&#x27;Toyota&#x27;, &#x27;Ford&#x27;]}, price: {type: &#x27;number&#x27;, required: true, min: 0}}</code></p>'
+  comment: '<p>Rules of the draft row, by column field: <code>{field: {type, required, editable, defaultValue, options, min, max, integer, minLength, maxLength, pattern, validator, message, dateOutput}}</code>. <code>type</code>: text, number, integer, date, boolean, select or multiselect; it selects the cell editor and the value is validated and normalized (number, boolean, YYYY-MM-DD string, option value, array of option values) before submit. <code>editable</code>: true or false forces the draft cell, otherwise the column editable setting applies. <code>options</code>: values or {value, label} objects for select and multiselect. <code>pattern</code>: regular expression. <code>validator</code>: function (value, row, field), returning true, false or an error message. <code>dateOutput</code>: day (default), iso, timestamp or date. A field without rule is free text and optional.</p><p><b>Example:</b> <code>{make: {type: &#x27;select&#x27;, required: true, options: [&#x27;Toyota&#x27;, &#x27;Ford&#x27;]}, price: {type: &#x27;number&#x27;, required: true, min: 0}}</code></p>'
   value: '{}'
 ↓rowCreationDefaultValues [ngx.components.UICompVariable-1808000000062]: 
   comment: '<p>Initial values of the draft row: an object <code>{field: value}</code> or a function returning one.</p><p><b>Example:</b> <code>{}</code></p>'
@@ -2455,3 +3033,51 @@ scriptContent:
 ↓RowCreateFailed [ngx.components.UICompEvent-1808000000073]: 
   attrName: RowCreateFailed
   comment: 'Fired when the row creation failed. The draft row stays open. Data: {row, error}.'
+↓themeStyle [ngx.components.UICompVariable-1790181359671]: 
+  comment: '<p>Optional per-instance CSS custom properties applied directly to the AG Grid theme root.</p><p><b>Example:</b> <code>{''--ag-background-color'': ''#ffffff''}</code></p>'
+  value: '{}'
+↓boxStyle [ngx.components.UICompVariable-1790181376848]: 
+  comment: <p>Optional per-instance outer box styles applied to the Grid visual wrapper.</p>
+  value: '{}'
+↓truncateText [ngx.components.UICompVariable-1810000000010]: 
+  comment: '<p>boolean: false (default) or true. When true, each cell shows on one line, a longer content cut with an ellipsis at the width of its column: widening the column shows more of it. The whole content of a cut cell shows in a tooltip when the mouse rests on the cell (300 ms), or when the cell gets the focus from the keyboard (arrows of the grid) or a touch; Escape, leaving the cell or a scroll hides it, and a cell that shows all of its content shows none. A cell renderer can mark the element holding its line with the class <code>aggrid-cell-line</code> and give its whole content in a <code>data-aggrid-full-text</code> attribute. While false, the grid behaves exactly as before.</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
+↓maxColumnCharacters [ngx.components.UICompVariable-1810000000011]: 
+  comment: '<p>number: null (default) or a number of characters. After each sizing pass of the grid (autoSizeColumns, or the fit of the columns to the width of the grid), a column wider than this number of characters (as many "0" in the font of the cells, plus their padding, never under the minWidth of the column) is brought back to it. A column the user resizes keeps its width until the next sizing pass (new rows, a new width of the grid). With truncateText, a longer text is cut at the width of the column.</p><p><b>Example:</b> <code>40</code></p>'
+  value: null
+↓stickyHeader [ngx.components.UICompVariable-1810000000012]: 
+  comment: '<p>boolean: false (default) or true. When true, the header row of a grid taller than the screen stays on screen while the page scrolls its rows, then leaves with the end of the grid, as a frozen row of a spreadsheet. It sticks in the nearest scrolling ancestor of the grid, at stickyHeaderTop: that ancestor must be the box that scrolls (a box with overflow hidden or auto that never scrolls keeps it from sticking). Needs overflow: clip (Safari 16 and later; before, the header scrolls with the rows).</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
+↓stickyHeaderTop [ngx.components.UICompVariable-1810000000013]: 
+  comment: '<p>CSS length: where the header row sticks when stickyHeader is true, from the top of the scrolling container, for example the height of a sticky toolbar above the grid; a var() of a variable the page sets works too.</p><p><b>Example:</b> <code>&#x27;56px&#x27;</code></p>'
+  value: '''0px'''
+↓externalPagination [ngx.components.UICompVariable-1810000000014]: 
+  comment: '<p>boolean: false (default) or true. When true, the rows of the grid are paged by the application (a server gives one page at a time): the grid holds the rows of the page shown, and a pager under it, with the look and the texts of the pager of AG Grid, says which rows they are ("21 to 40 of 250", "Page 2 of 13") and offers the first, previous, next and last pages. A button emits the <code>PageRequest</code> event; the application gives the grid the rows of that page and sets externalPaginationPage. The pagination of AG Grid is off meanwhile. While false, the grid behaves exactly as before.</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
+↓externalPaginationPage [ngx.components.UICompVariable-1810000000015]: 
+  comment: '<p>number: the page shown when externalPagination is true, from 1 (default 1; never past the last page).</p><p><b>Example:</b> <code>2</code></p>'
+  value: 1
+↓externalPaginationPageSize [ngx.components.UICompVariable-1810000000016]: 
+  comment: '<p>number: the number of rows of a page when externalPagination is true; null (default) takes paginationPageSize.</p><p><b>Example:</b> <code>20</code></p>'
+  value: null
+↓externalPaginationRowCount [ngx.components.UICompVariable-1810000000017]: 
+  comment: '<p>number: the number of rows of all the pages when externalPagination is true. null (default) while it is unknown: the pager says "of more", offers the next page while the page shown is full, and no last page.</p><p><b>Example:</b> <code>250</code></p>'
+  value: null
+↓externalPaginationBusy [ngx.components.UICompVariable-1810000000018]: 
+  comment: '<p>boolean: false (default) or true. While true (a page is loading), the buttons of the pager of externalPagination are disabled; they keep the focus of the keyboard.</p><p><b>Example:</b> <code>false</code></p>'
+  value: false
+↓headerFontFamily [ngx.components.UICompVariable-1810000000040]: 
+  comment: '<p>string: null (default) or a list of font families, as the CSS property font-family (names, quoted or not, and generic families such as serif or monospace), or a var() of a variable of the page with such a list as fallback. The font family of the header row: the names of the columns, the group headers and the floating filters. While null, the header keeps the font of the theme; a value that is not a list of font families is ignored.</p><p><b>Example:</b> <code>&#x27;Georgia, &quot;Times New Roman&quot;, serif&#x27;</code></p>'
+  value: null
+↓headerFontSize [ngx.components.UICompVariable-1810000000041]: 
+  comment: '<p>number or string: null (default), a number of pixels or a CSS length (px, pt, em, rem, %), or a var() of a variable of the page. The font size of the header row. While null, the header keeps the font size of the theme; a value that is not a size is ignored. The header row keeps its height: a size much larger than the font of the theme may cut its texts.</p><p><b>Example:</b> <code>13</code></p>'
+  value: null
+↓cellFontFamily [ngx.components.UICompVariable-1810000000042]: 
+  comment: '<p>string: null (default) or a list of font families, as the CSS property font-family (names, quoted or not, and generic families such as serif or monospace), or a var() of a variable of the page with such a list as fallback. The font family of the rows: their cells, the draft row of the row creation, the pinned and full width rows. While null, the rows keep the font of the theme; a value that is not a list of font families is ignored.</p><p><b>Example:</b> <code>&#x27;ui-monospace, Menlo, monospace&#x27;</code></p>'
+  value: null
+↓cellFontSize [ngx.components.UICompVariable-1810000000043]: 
+  comment: '<p>number or string: null (default), a number of pixels or a CSS length (px, pt, em, rem, %), or a var() of a variable of the page. The font size of the rows. While null, the rows keep the font size of the theme; a value that is not a size is ignored. Rows of an automatic height (autoHeight columns) follow the size; rows of a fixed height (rowHeight) keep it.</p><p><b>Example:</b> <code>12</code></p>'
+  value: null
+↓PageRequest [ngx.components.UICompEvent-1810000000019]: 
+  attrName: PageRequest
+  comment: 'Fired by a button of the pager of externalPagination. Data: {page: the page asked, from 1, previousPage, pageSize, rowCount, button: first, previous, next or last}. Give the grid the rows of that page, then set externalPaginationPage (and externalPaginationRowCount).'

@@ -34,6 +34,8 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGrid_CsvXlsxDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvXlsxDownload_Row.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
+↓richTextPalette [ngx.components.UISharedRegularComponent-1812000000000]: 🗏 mobileSharedComponents/richTextPalette.yaml
+↓richTextPaletteViewer [ngx.components.UISharedRegularComponent-1812100000000]: 🗏 mobileSharedComponents/richTextPaletteViewer.yaml
 ↓angularxQRCode [ngx.components.UISharedRegularComponent-1600099015160]: 🗏 mobileSharedComponents/angularxQRCode.yaml
 ↓cardIO_sc [ngx.components.UISharedRegularComponent-1595431403877]: 🗏 mobileSharedComponents/cardIO_sc.yaml
 ↓DropZoneComponent [ngx.components.UISharedRegularComponent-1653988043625]: 🗏 mobileSharedComponents/DropZoneComponent.yaml
@@ -52,6 +54,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
 ↓ZXing [ngx.components.PageComponent-1595431440486]: 🗏 mobilePages/ZXing.yaml
 ↓testTinyMce [ngx.components.PageComponent-1614265132496]: 🗏 mobilePages/testTinyMce.yaml
+↓testRichTextPalette [ngx.components.PageComponent-1812200000000]: 🗏 mobilePages/testRichTextPalette.yaml
 ↓testAngularxQRCode [ngx.components.PageComponent-1614267429193]: 🗏 mobilePages/testAngularxQRCode.yaml
 ↓testMaterialDatePicker [ngx.components.PageComponent-1662715336337]: 🗏 mobilePages/testMaterialDatePicker.yaml
 ↓testMaterialSlider [ngx.components.PageComponent-1799901000001]: 🗏 mobilePages/testMaterialSlider.yaml

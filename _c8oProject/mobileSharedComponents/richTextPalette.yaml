@@ -1,0 +1,1973 @@
+comment: 'A rich text editor (HugeRTE, through the tinyMce component) with a palette of variables, after the Description of C8Oforms: its menu bar and toolbar, and a palette like its data palette (a search field, groups that fold, with their icon and count, the variables with their icon, second line and type). A click on a variable, or a drag and drop into the text, writes it at that place. The variables are written in the HTML as {{ key }} placeholders, shown in the editor as chips. The variables input lists the variables of the application; default variables (date, signed-in user, language) are offered too. Light or dark as the page behind it (theme input). Typical use: bind html to a variable of the page and set that variable again from event.html in onChange; give the same html and variables to richTextPaletteViewer, which shows the text with the values of the variables (the editor never reads the values).'
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        import { NgZone } from "@angular/core";
+        import { defineCustomElement as rtpDefineIonIcon } from "ionicons/components/ion-icon.js";
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	// #rich-text-palette: the HugeRTE editor of the inner tinyMce component, set by the setup of its init (rtpSetup)
+        	public rtpEditor: any = null;
+        	public rtpReady: boolean = false;
+        	// the text typed in the search field of the palette
+        	public rtpSearch: string = "";
+        	// the variables of the palette (rtpVariables), computed again at each change detection
+        	public rtpCurrentVariables: any[] = [];
+        	// the key of the variable under the pointer or the focus: the foot of the palette describes it
+        	public rtpHover: string = null;
+        	// the groups of the palette the author folded (true) or unfolded (false), by "#" + title
+        	public rtpFolded: any = {};
+        	// the look of the component (rtpDetectLook): its theme, light or dark, and the colors its editor needs
+        	public rtpLook: any = null;
+        	// one item, the signature of the look: the editor is created again when it changes (HugeRTE reads its skin at its start)
+        	public rtpLooks: string[] = [];
+        	// the HTML last loaded into the editor or given by onChange, with its {{ }} placeholders: an html input equal to it
+        	// is not loaded again (the page that keeps the HTML of onChange gives it back)
+        	private rtpLastHtml: string = null;
+        	// the text of the editor of the former look, loaded into the next one
+        	private rtpPendingHtml: string = null;
+        	private rtpInit: any = null;
+        	private rtpGroups: any[] = [];
+        	private rtpGroupsSignature: string = null;
+        	private rtpChipsSignature: string = null;
+        	private rtpChangeTimer: any = null;
+        	private rtpLookTimer: any = null;
+        	private rtpLoading: boolean = false;
+        	private rtpZone: any = null;
+        	private rtpIcons: any = {};
+        	// what stops watching the theme of the page and the width of the editor
+        	private rtpThemeWatchers: any[] = [];
+        	private rtpSizeWatcher: any = null;
+        	// the type of the data a variable of the palette carries while it is dragged
+        	public readonly rtpDragType: string = "application/x-c8o-rich-text-variable";
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		// the ion-icon element, for the Ionicons icons of the palette, whatever the pages of the application use
+        		try {
+        			rtpDefineIonIcon();
+        		}
+        		catch (e) {
+        		}
+        		this.rtpCurrentVariables = this.rtpVariables();
+        		this.rtpRefreshLook();
+        		this.rtpWatchTheme();
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		// the text typed less than a moment ago is still given (onChange) before the editor goes away
+        		try {
+        			this.rtpEmitChange();
+        		}
+        		catch (e) {
+        		}
+        		this.rtpUnwatchTheme();
+        		this.rtpUnwatchSize();
+        		this.rtpEditor = null;
+        		this.rtpReady = false;
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		if (changes["html"] != null) {
+        			this.rtpLoadHtml(false);
+        		}
+        		if (changes["theme"] != null && !changes["theme"].firstChange) {
+        			this.rtpScheduleLook();
+        		}
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		this.rtpCheckVariables();
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		// the look read again once the page is laid out
+        		this.rtpScheduleLook();
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	/**
+        	 * #rich-text-palette: a variable key as a placeholder writes it ({{ key }}), or null when it cannot be one: not empty, at
+        	 * most 200 characters, without brace, angle bracket, quote, backquote, backslash nor ampersand. Spaces (and the no-break
+        	 * spaces an editor writes) are trimmed and collapsed.
+        	 */
+        	public rtpCleanKey(raw: any): string {
+        		if (raw == null || typeof raw === "object" || typeof raw === "function") {
+        			return null;
+        		}
+        		const key = ("" + raw).replace(/&nbsp;|&#160;|&#xa0;| /gi, " ").replace(/\s+/g, " ").trim();
+        		if (key === "" || key.length > 200 || /[{}<>"''`\\&]/.test(key)) {
+        			return null;
+        		}
+        		return key;
+        	}
+        
+        	/** #rich-text-palette: the {{ key }} placeholders of an HTML text: in its text only, a placeholder in a tag is no variable. */
+        	public rtpPlaceholderPattern(): RegExp {
+        		return /\{\{([^{}<>]*?)\}\}(?![^<]*>)/g;
+        	}
+        
+        	public rtpEscape(text: any): string {
+        		return ("" + (text == null ? "" : text)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/''/g, "&#39;");
+        	}
+        
+        	public rtpDecode(text: any): string {
+        		return ("" + (text == null ? "" : text)).replace(/&quot;/g, "\"").replace(/&#39;|&#x27;|&apos;/gi, "''").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the clock of the device, in its time zone, as the descriptions of C8Oforms read it (api.clock):
+        	 * "now" as ISO 8601 with the local offset (2026-11-24T14:32:05+01:00), "today" as YYYY-MM-DD, "time" as HH:mm, "year".
+        	 */
+        	public rtpClock(kind: string, date: Date = new Date()): any {
+        		const pad = (n: number) => (n < 10 ? "0" : "") + n;
+        		const day = date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate());
+        		const time = pad(date.getHours()) + ":" + pad(date.getMinutes());
+        		if (kind == "today") {
+        			return day;
+        		}
+        		if (kind == "time") {
+        			return time;
+        		}
+        		if (kind == "year") {
+        			return date.getFullYear();
+        		}
+        		let offset = -date.getTimezoneOffset();
+        		const sign = offset < 0 ? "-" : "+";
+        		offset = Math.abs(offset);
+        		return day + "T" + time + ":" + pad(date.getSeconds()) + sign + pad(Math.floor(offset / 60)) + ":" + pad(offset % 60);
+        	}
+        
+        	/** #rich-text-palette: the user of the Convertigo session when signed in, else null. */
+        	public rtpSessionUser(): any {
+        		try {
+        			const user: any = (this as any).c8o?.session?.user;
+        			return user != null && user.authenticated === true ? user : null;
+        		}
+        		catch (e) {
+        			return null;
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables offered by default, with the keys of the placeholders of C8Oforms (api.*) so a text
+        	 * reads the same in both, and the icons, types and second lines of the palette of C8Oforms. A variable of the variables
+        	 * input with the same key replaces its label, group, description, icon, type or value.
+        	 */
+        	public rtpDefaultVariables(): any[] {
+        		const text = (value: any) => value == null ? "" : "" + value;
+        		const given = (value: any) => value != null && ("" + value).trim() !== "";
+        		const userId = () => text(this.rtpSessionUser()?.name);
+        		const example = (value: any) => "e.g. " + value;
+        		const self: any = this;
+        		return [
+        			{ key: "api.clock.today", label: "Today''s date", group: "Date and time", icon: "lucide:calendar", type: "Date", sub: example(this.rtpClock("today")), value: () => this.rtpClock("today") },
+        			{ key: "api.clock.now", label: "Date and time", group: "Date and time", icon: "lucide:calendar-clock", type: "Date and time", sub: example(this.rtpClock("now")), value: () => this.rtpClock("now") },
+        			{ key: "api.clock.time", label: "Time", group: "Date and time", icon: "lucide:clock", type: "Time", sub: example(this.rtpClock("time")), value: () => this.rtpClock("time") },
+        			{ key: "api.clock.year", label: "Year", group: "Date and time", icon: "lucide:hash", type: "Number", sub: example(this.rtpClock("year")), value: () => this.rtpClock("year") },
+        			{ key: "api.user.name", label: "User name", group: "Signed-in user", icon: "lucide:user", type: "Text", sub: "The name of the signed-in user", value: () => given(self.userName) ? text(self.userName) : userId() },
+        			{
+        				key: "api.user.email", label: "User e-mail", group: "Signed-in user", icon: "lucide:mail", type: "Text", sub: "The e-mail address of the signed-in user", value: () => {
+        					if (given(self.userEmail)) {
+        						return text(self.userEmail);
+        					}
+        					const id = userId();
+        					return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id) ? id : "";
+        				}
+        			},
+        			{ key: "api.user.authenticatedUserID", label: "User ID", group: "Signed-in user", icon: "lucide:key-round", type: "Text", sub: "The ID of the signed-in user", value: userId },
+        			{
+        				key: "api.user.groups", label: "User groups", group: "Signed-in user", icon: "lucide:users", type: "List", sub: "Labels separated by commas", value: () => {
+        					const groups = this.rtpSessionUser()?.groups;
+        					return Array.isArray(groups) ? groups.map((group: any) => group != null && typeof group === "object" ? text(group.name) : text(group)).filter((group: string) => group !== "").join(", ") : "";
+        				}
+        			},
+        			{ key: "api.translate.currentLang", label: "Language", group: "Application", icon: "lucide:languages", type: "Text", sub: example(text(self.translate?.currentLang || self.translate?.defaultLang || "en")), value: () => text(self.translate?.currentLang || self.translate?.defaultLang) }
+        		];
+        	}
+        
+        	/** #rich-text-palette: the keys of the default variables to offer: null for all of them (the default), [] for none. */
+        	public rtpDefaultKeys(): string[] {
+        		const option: any = (this as any).defaultVariables;
+        		if (option === false || option === "false" || option === 0) {
+        			return [];
+        		}
+        		let keys: any[] = null;
+        		if (Array.isArray(option)) {
+        			keys = option;
+        		}
+        		else if (typeof option === "string" && option.trim() !== "" && option.trim() !== "true") {
+        			keys = option.split(",");
+        		}
+        		return keys == null ? null : keys.map((key) => this.rtpCleanKey(key)).filter((key) => key != null);
+        	}
+        
+        	/** #rich-text-palette: an array or an object given as such or as its JSON text, else null. */
+        	public rtpParseJson(source: any, input: string): any {
+        		if (typeof source !== "string") {
+        			return source;
+        		}
+        		const json = source.trim();
+        		if (json.charAt(0) == "[" || json.charAt(0) == "{") {
+        			try {
+        				return JSON.parse(json);
+        			}
+        			catch (e) {
+        				console.warn("[richTextPalette] " + input + ": invalid JSON", e);
+        			}
+        		}
+        		return null;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables of the variables input: an array of { key, label, group, description, icon, type,
+        	 * value } (a string is a key), or an object { key: value } (or { key: { label, group, description, icon, type, value } }),
+        	 * or the JSON text of one of them. A value is a value or a function computing it when the text is shown. The first one
+        	 * of a key is kept.
+        	 */
+        	public rtpCustomVariables(): any[] {
+        		const source: any = this.rtpParseJson((this as any).variables, "variables");
+        		const result: any[] = [];
+        		const seen: any = {};
+        		const given = (value: any) => value != null && ("" + value).trim() !== "";
+        		const add = (rawKey: any, def: any) => {
+        			const key = this.rtpCleanKey(rawKey);
+        			if (key == null || seen["#" + key] === true) {
+        				return;
+        			}
+        			seen["#" + key] = true;
+        			result.push({
+        				key: key,
+        				label: given(def.label) ? "" + def.label : null,
+        				group: def.group != null ? "" + def.group : null,
+        				description: given(def.description) ? "" + def.description : null,
+        				icon: given(def.icon) ? ("" + def.icon).trim() : null,
+        				type: given(def.type) ? "" + def.type : null,
+        				hasValue: Object.prototype.hasOwnProperty.call(def, "value"),
+        				value: def.value
+        			});
+        		};
+        		if (Array.isArray(source)) {
+        			for (const def of source) {
+        				if (typeof def === "string") {
+        					add(def, {});
+        				}
+        				else if (def != null && typeof def === "object") {
+        					add(def.key != null ? def.key : def.name, def);
+        				}
+        			}
+        		}
+        		else if (source != null && typeof source === "object") {
+        			for (const name of Object.keys(source)) {
+        				const entry = source[name];
+        				const isDefinition = entry != null && typeof entry === "object" && !Array.isArray(entry) && !(entry instanceof Date)
+        					&& ("value" in entry || "label" in entry || "group" in entry || "description" in entry || "icon" in entry || "type" in entry);
+        				add(name, isDefinition ? entry : { value: entry });
+        			}
+        		}
+        		return result;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables, as { key, label, group, description, sub, icon, type, value }: the variables of the
+        	 * variables input first, then the default variables kept by defaultVariables (one of them redefined by the variables
+        	 * input stays in place).
+        	 */
+        	public rtpVariables(): any[] {
+        		const keep = this.rtpDefaultKeys();
+        		const byKey: any = {};
+        		const defaults: any[] = [];
+        		if (keep == null || keep.length > 0) {
+        			for (const def of this.rtpDefaultVariables()) {
+        				if (keep == null || keep.indexOf(def.key) != -1) {
+        					const item = { key: def.key, label: def.label, group: def.group, description: "", sub: def.sub, icon: def.icon, type: def.type, value: def.value };
+        					byKey["#" + def.key] = item;
+        					defaults.push(item);
+        				}
+        			}
+        		}
+        		const custom: any[] = [];
+        		for (const def of this.rtpCustomVariables()) {
+        			const existing = byKey["#" + def.key];
+        			if (existing != null) {
+        				existing.label = def.label != null ? def.label : existing.label;
+        				existing.group = def.group != null ? def.group : existing.group;
+        				existing.description = def.description != null ? def.description : existing.description;
+        				existing.icon = def.icon != null ? def.icon : existing.icon;
+        				existing.type = def.type != null ? def.type : existing.type;
+        				existing.value = def.hasValue ? def.value : existing.value;
+        			}
+        			else {
+        				custom.push({ key: def.key, label: def.label != null ? def.label : def.key, group: def.group != null ? def.group : "", description: def.description != null ? def.description : "", sub: "", icon: def.icon, type: def.type, value: def.value });
+        			}
+        		}
+        		return custom.concat(defaults);
+        	}
+        
+        	public rtpFind(key: any): any {
+        		const clean = this.rtpCleanKey(key);
+        		for (const variable of this.rtpCurrentVariables || []) {
+        			if (variable.key === clean) {
+        				return variable;
+        			}
+        		}
+        		return null;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables are read again at each change detection; when a key or a label changes (variables
+        	 * given later by the page, another language), the chips of the editor are written again from the placeholders.
+        	 */
+        	public rtpCheckVariables(): void {
+        		this.rtpCurrentVariables = this.rtpVariables();
+        		const signature = JSON.stringify(this.rtpCurrentVariables.map((variable) => [variable.key, variable.label]));
+        		if (this.rtpChipsSignature != null && signature !== this.rtpChipsSignature && this.rtpEditor != null && this.rtpReady) {
+        			setTimeout(() => this.rtpRefreshChips());
+        		}
+        		this.rtpChipsSignature = signature;
+        	}
+        
+        	public rtpRefreshChips(): void {
+        		const editor = this.rtpEditor;
+        		if (editor == null || !this.rtpReady) {
+        			return;
+        		}
+        		try {
+        			const html = editor.getContent();
+        			this.rtpLoading = true;
+        			editor.setContent(html);
+        		}
+        		catch (e) {
+        			console.error("[richTextPalette] the chips of the variables could not be written again", e);
+        		}
+        		finally {
+        			this.rtpLoading = false;
+        		}
+        	}
+        
+        	public rtpNormalizeText(text: any): string {
+        		return ("" + (text == null ? "" : text)).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the icons of the palette, drawn after Lucide (https://lucide.dev, ISC License, Copyright (c) Lucide
+        	 * Contributors), the icons of the palette of C8Oforms.
+        	 */
+        	public rtpIconShapes(): any {
+        		return {
+        			"calendar": "<path d=''M8 2v4''/><path d=''M16 2v4''/><rect width=''18'' height=''18'' x=''3'' y=''4'' rx=''2''/><path d=''M3 10h18''/>",
+        			"calendar-clock": "<path d=''M16 14v2.2l1.6 1''/><path d=''M16 2v4''/><path d=''M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5''/><path d=''M3 10h5''/><path d=''M8 2v4''/><circle cx=''16'' cy=''16'' r=''6''/>",
+        			"clock": "<circle cx=''12'' cy=''12'' r=''10''/><path d=''M12 6v6l4 2''/>",
+        			"hash": "<line x1=''4'' x2=''20'' y1=''9'' y2=''9''/><line x1=''4'' x2=''20'' y1=''15'' y2=''15''/><line x1=''10'' x2=''8'' y1=''3'' y2=''21''/><line x1=''16'' x2=''14'' y1=''3'' y2=''21''/>",
+        			"user": "<path d=''M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2''/><circle cx=''12'' cy=''7'' r=''4''/>",
+        			"mail": "<path d=''m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7''/><rect x=''2'' y=''4'' width=''20'' height=''16'' rx=''2''/>",
+        			"key-round": "<path d=''M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z''/><circle cx=''16.5'' cy=''7.5'' r=''.5'' fill=''currentColor''/>",
+        			"users": "<path d=''M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2''/><path d=''M16 3.128a4 4 0 0 1 0 7.744''/><path d=''M22 21v-2a4 4 0 0 0-3-3.87''/><circle cx=''9'' cy=''7'' r=''4''/>",
+        			"languages": "<path d=''m5 8 6 6''/><path d=''m4 14 6-6 2-3''/><path d=''M2 5h12''/><path d=''M7 2h1''/><path d=''m22 22-5-10-5 10''/><path d=''M14 18h6''/>",
+        			"app-window": "<rect x=''2'' y=''4'' width=''20'' height=''16'' rx=''2''/><path d=''M10 4v4''/><path d=''M2 8h20''/><path d=''M6 4v4''/>",
+        			"folder": "<path d=''M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z''/>",
+        			"variable": "<path d=''M8 21s-4-3-4-9 4-9 4-9''/><path d=''M16 3s4 3 4 9-4 9-4 9''/><line x1=''15'' x2=''9'' y1=''9'' y2=''15''/><line x1=''9'' x2=''15'' y1=''9'' y2=''15''/>",
+        			"search": "<path d=''m21 21-4.34-4.34''/><circle cx=''11'' cy=''11'' r=''8''/>",
+        			"chevron-right": "<path d=''m9 18 6-6-6-6''/>",
+        			"list-collapse": "<path d=''M10 5h11''/><path d=''M10 12h11''/><path d=''M10 19h11''/><path d=''m3 10 3-3-3-3''/><path d=''m3 20 3-3-3-3''/>",
+        			"list-tree": "<path d=''M8 5h13''/><path d=''M13 12h8''/><path d=''M13 19h8''/><path d=''M3 10a2 2 0 0 0 2 2h3''/><path d=''M3 5v12a2 2 0 0 0 2 2h3''/>"
+        		};
+        	}
+        
+        	/**
+        	 * #rich-text-palette: an icon of the palette as a CSS url() of the data URL of its SVG, null if unknown. An icon is drawn
+        	 * as a mask in the color of the text (class rtp-dp-ico, its url in --rtp-icon), so it follows the theme.
+        	 */
+        	public rtpIcon(name: string): string {
+        		if (this.rtpIcons[name] === undefined) {
+        			const shapes = this.rtpIconShapes()[name];
+        			this.rtpIcons[name] = shapes == null ? null : "url(\"data:image/svg+xml;utf8," + encodeURIComponent("<svg xmlns=''http://www.w3.org/2000/svg'' viewBox=''0 0 24 24'' fill=''none'' stroke=''black'' stroke-width=''2'' stroke-linecap=''round'' stroke-linejoin=''round''>" + shapes + "</svg>") + "\")";
+        		}
+        		return this.rtpIcons[name];
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the icon of a group or of a variable, as { mask, name }: the name of an Ionicons icon of the
+        	 * application ("person-outline", shown by an ion-icon), or a CSS url() drawn as a mask in the color of the text: an icon
+        	 * of the palette ("lucide:calendar") or the URL of an SVG file ("assets/icons/customer.svg", "https://...",
+        	 * "data:image/svg+xml;..."; only its shape counts). Without one, the icon of the palette named fallback.
+        	 */
+        	public rtpIconRef(icon: any, fallback: string): any {
+        		const value = icon == null ? "" : ("" + icon).trim().replace(/[\r\n]/g, "");
+        		if (value.indexOf("lucide:") == 0 || value === "") {
+        			return { mask: this.rtpIcon(value.substring(7)) || this.rtpIcon(fallback), name: null };
+        		}
+        		if (/[\/.:]/.test(value)) {
+        			return { mask: "url(\"" + value.replace(/\\/g, "%5C").replace(/"/g, "%22") + "\")", name: null };
+        		}
+        		return { mask: null, name: value };
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the settings of the groups of the palette (groups input), by "#" + title: { icon, open }. An array
+        	 * of { name, icon, open }, or an object { name: icon } or { name: { icon, open } }, or the JSON text of one of them.
+        	 */
+        	public rtpGroupSettings(): any {
+        		const source: any = this.rtpParseJson((this as any).groups, "groups");
+        		const settings: any = {};
+        		const add = (name: any, def: any) => {
+        			const title = name == null ? "" : ("" + name).trim();
+        			if (title === "" || settings["#" + title] != null) {
+        				return;
+        			}
+        			if (typeof def === "string") {
+        				def = { icon: def };
+        			}
+        			if (def == null || typeof def !== "object") {
+        				return;
+        			}
+        			settings["#" + title] = {
+        				icon: def.icon != null && ("" + def.icon).trim() !== "" ? ("" + def.icon).trim() : null,
+        				open: !(def.open === false || def.open === "false")
+        			};
+        		};
+        		if (Array.isArray(source)) {
+        			for (const def of source) {
+        				if (def != null && typeof def === "object") {
+        					add(def.name != null ? def.name : def.title, def);
+        				}
+        			}
+        		}
+        		else if (source != null && typeof source === "object") {
+        			for (const name of Object.keys(source)) {
+        				add(name, source[name]);
+        			}
+        		}
+        		return settings;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the groups of the palette, as the palette of C8Oforms shows them: a title, an icon, open or folded
+        	 * (always open while a search is typed), the variables found by the search (label, key, group and type, without case
+        	 * nor accents) with their icon, second line (description, else an example) and type. The same array while nothing
+        	 * changes.
+        	 */
+        	public rtpGetGroups(): any[] {
+        		const variables = this.rtpCurrentVariables || [];
+        		const search = this.rtpNormalizeText(this.rtpSearch);
+        		const settings = this.rtpGroupSettings();
+        		const signature = JSON.stringify([search, this.rtpFolded, settings, variables.map((variable) => [variable.key, variable.label, variable.group, variable.description, variable.sub, variable.icon, variable.type])]);
+        		if (signature === this.rtpGroupsSignature) {
+        			return this.rtpGroups;
+        		}
+        		const groupIcons: any = { "Date and time": "lucide:clock", "Signed-in user": "lucide:user", "Application": "lucide:app-window" };
+        		const groups: any[] = [];
+        		const byName: any = {};
+        		for (const variable of variables) {
+        			if (search !== "" && this.rtpNormalizeText(variable.label + " " + variable.key + " " + variable.group + " " + (variable.type || "")).indexOf(search) == -1) {
+        				continue;
+        			}
+        			let group = byName["#" + variable.group];
+        			if (group == null) {
+        				const setting = settings["#" + variable.group] || {};
+        				const folded = this.rtpFolded["#" + variable.group];
+        				group = byName["#" + variable.group] = {
+        					title: variable.group,
+        					icon: this.rtpIconRef(setting.icon || groupIcons[variable.group], "folder"),
+        					open: search !== "" || (folded != null ? !folded : setting.open !== false),
+        					items: []
+        				};
+        				groups.push(group);
+        			}
+        			group.items.push({
+        				key: variable.key,
+        				label: variable.label,
+        				sub: variable.description || variable.sub || "",
+        				description: variable.description || variable.sub || "",
+        				type: variable.type || "",
+        				icon: this.rtpIconRef(variable.icon, "variable"),
+        				placeholder: "{{ " + variable.key + " }}",
+        				tooltip: "{{ " + variable.key + " }}" + (variable.description ? " - " + variable.description : "")
+        			});
+        		}
+        		this.rtpGroupsSignature = signature;
+        		this.rtpGroups = groups;
+        		return groups;
+        	}
+        
+        	public rtpTrackGroup(index: number, group: any): any {
+        		return group.title;
+        	}
+        
+        	public rtpTrackItem(index: number, item: any): any {
+        		return item.key;
+        	}
+        
+        	/** #rich-text-palette: a click on the title of a group folds or unfolds it. */
+        	public rtpToggleGroup(group: any): void {
+        		const folded = Object.assign({}, this.rtpFolded);
+        		folded["#" + group.title] = group.open === true;
+        		this.rtpFolded = folded;
+        	}
+        
+        	/** #rich-text-palette: true when every group with a title is folded. */
+        	public rtpAllFolded(): boolean {
+        		const groups = this.rtpGetGroups().filter((group) => group.title);
+        		return groups.length > 0 && groups.every((group) => !group.open);
+        	}
+        
+        	/** #rich-text-palette: the button beside the search field folds every group, or unfolds them when all are folded. */
+        	public rtpFoldAll(): void {
+        		const fold = !this.rtpAllFolded();
+        		const folded = Object.assign({}, this.rtpFolded);
+        		for (const variable of this.rtpCurrentVariables || []) {
+        			if (variable.group) {
+        				folded["#" + variable.group] = fold;
+        			}
+        		}
+        		this.rtpFolded = folded;
+        	}
+        
+        	/** #rich-text-palette: the variable the foot of the palette describes (under the pointer or the focus), or null. */
+        	public rtpHoverItem(): any {
+        		if (this.rtpHover == null) {
+        			return null;
+        		}
+        		for (const group of this.rtpGroups || []) {
+        			for (const item of group.items) {
+        				if (item.key === this.rtpHover) {
+        					return item;
+        				}
+        			}
+        		}
+        		return null;
+        	}
+        
+        	public rtpPosition(): string {
+        		const position = ("" + ((this as any).palettePosition == null ? "" : (this as any).palettePosition)).trim().toLowerCase();
+        		return ["start", "end", "top", "bottom", "none"].indexOf(position) != -1 ? position : "end";
+        	}
+        
+        	/** #rich-text-palette: the search field of the palette: "auto" (the default) shows it from 9 variables on. */
+        	public rtpShowSearch(): boolean {
+        		const option: any = (this as any).paletteSearch;
+        		if (option === true || option === "true") {
+        			return true;
+        		}
+        		if (option === false || option === "false") {
+        			return false;
+        		}
+        		return (this.rtpCurrentVariables || []).length > 8;
+        	}
+        
+        	public rtpText(name: string, fallback: string): string {
+        		const value: any = (this as any)[name];
+        		return value == null || ("" + value).trim() === "" ? fallback : "" + value;
+        	}
+        
+        	/** #rich-text-palette: a text of the palette from the paletteTexts input (empty, foldAll, unfoldAll), else its default. */
+        	public rtpPaletteText(name: string, fallback: string): string {
+        		const texts: any = this.rtpParseJson((this as any).paletteTexts, "paletteTexts");
+        		const value: any = texts != null && typeof texts === "object" && !Array.isArray(texts) ? texts[name] : null;
+        		return value == null || ("" + value).trim() === "" ? fallback : "" + value;
+        	}
+        
+        	/** #rich-text-palette: the help text of the foot of the palette; paletteHint false hides the foot. */
+        	public rtpHint(): string {
+        		const value: any = (this as any).paletteHint;
+        		if (value === false || value === "false") {
+        			return "";
+        		}
+        		return this.rtpText("paletteHint", "Click a variable or drag it into the text.");
+        	}
+        
+        	public rtpLayoutClass(): string {
+        		return "rtp--" + this.rtpPosition() + " rtp--" + (this.rtpLook?.theme === "dark" ? "dark" : "light") + (this.rtpIsDisabled() ? " rtp--disabled" : "");
+        	}
+        
+        	public rtpIsDisabled(): boolean {
+        		const value: any = (this as any).disabled;
+        		return value === true || value === "true" || value === 1 || value === "1";
+        	}
+        
+        	/** #rich-text-palette: the language of the toolbar of the editor: the language of the application when the tinyMce component has it. */
+        	public rtpEditorLanguage(): string {
+        		const translate: any = (this as any).translate;
+        		const language = "" + (translate?.currentLang || translate?.defaultLang || "");
+        		const code = language.toLowerCase().replace("_", "-");
+        		if (code.indexOf("zh") == 0) {
+        			return "zh-CN";
+        		}
+        		const base = code.split("-")[0];
+        		return ["en", "fr", "es", "it"].indexOf(base) != -1 ? base : null;
+        	}
+        
+        	/** #rich-text-palette: the theme input: "light", "dark", or "auto" (the default: the theme of the page behind the component). */
+        	public rtpThemeOption(): string {
+        		const value = ("" + ((this as any).theme == null ? "" : (this as any).theme)).trim().toLowerCase();
+        		return value === "light" || value === "dark" ? value : "auto";
+        	}
+        
+        	/** #rich-text-palette: a CSS color (rgb(), rgba(), #rgb, #rrggbb, #rrggbbaa) as [r, g, b, alpha], else null. */
+        	public rtpParseColor(text: any): number[] {
+        		const value = ("" + (text == null ? "" : text)).trim().toLowerCase();
+        		let match = /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:\s*[,\/]\s*([\d.]+%?))?\s*\)$/.exec(value);
+        		if (match != null) {
+        			const alpha = match[4] == null ? 1 : parseFloat(match[4]) / (match[4].indexOf("%") != -1 ? 100 : 1);
+        			return [parseFloat(match[1]), parseFloat(match[2]), parseFloat(match[3]), alpha];
+        		}
+        		match = /^#([0-9a-f]{3,8})$/.exec(value);
+        		if (match != null) {
+        			let hex = match[1];
+        			if (hex.length == 3 || hex.length == 4) {
+        				hex = hex.split("").map((digit) => digit + digit).join("");
+        			}
+        			if (hex.length == 6 || hex.length == 8) {
+        				return [parseInt(hex.substring(0, 2), 16), parseInt(hex.substring(2, 4), 16), parseInt(hex.substring(4, 6), 16), hex.length == 8 ? parseInt(hex.substring(6, 8), 16) / 255 : 1];
+        			}
+        		}
+        		return null;
+        	}
+        
+        	/** #rich-text-palette: the relative luminance of a color, from 0 (black) to 1 (white). */
+        	public rtpLuminance(rgb: number[]): number {
+        		const channel = (value: number) => {
+        			const c = value / 255;
+        			return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        		};
+        		return 0.2126 * channel(rgb[0]) + 0.7152 * channel(rgb[1]) + 0.0722 * channel(rgb[2]);
+        	}
+        
+        	/** #rich-text-palette: a value of the page put in the CSS of the editor: only when it cannot end its declaration. */
+        	public rtpCssValue(value: any, fallback: string): string {
+        		const text = value == null ? "" : ("" + value).trim();
+        		return text !== "" && text.length < 300 && !/[;{}<>\\]/.test(text) ? text : fallback;
+        	}
+        
+        	/** #rich-text-palette: the element of the component (its class gets it as elementRef). */
+        	public rtpHostElement(): any {
+        		const ref: any = (this as any).elementRef || (this as any).elRef;
+        		return ref != null && ref.nativeElement != null ? ref.nativeElement : null;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the look of the component: its theme (the theme input; else the one of the first opaque background
+        	 * behind the component, so it follows what the page shows, whatever sets it: a class, a media query, an inline style;
+        	 * else the background color of the application; else the color scheme of the device), and what the editor needs from
+        	 * the page (its iframe does not read the styles of the page): the color and the font of its text, the primary color and
+        	 * its contrast color for the chips.
+        	 */
+        	public rtpDetectLook(): any {
+        		const view: any = typeof window !== "undefined" ? window : null;
+        		const style = (element: any) => {
+        			try {
+        				return element != null && view != null ? view.getComputedStyle(element) : null;
+        			}
+        			catch (e) {
+        				return null;
+        			}
+        		};
+        		const host = this.rtpHostElement();
+        		const root = typeof document !== "undefined" ? document.documentElement : null;
+        		let surface: number[] = null;
+        		let element: any = host;
+        		for (let depth = 0; element != null && element.nodeType === 1 && depth < 80; depth++) {
+        			const color = this.rtpParseColor(style(element)?.backgroundColor);
+        			if (color != null && color[3] >= 0.5) {
+        				surface = color;
+        				break;
+        			}
+        			const rootNode = typeof element.getRootNode === "function" ? element.getRootNode() : null;
+        			element = element.parentElement || (rootNode != null && rootNode !== element ? rootNode.host : null) || null;
+        		}
+        		const rootStyle = style(root);
+        		if (surface == null && rootStyle != null) {
+        			surface = this.rtpParseColor(rootStyle.getPropertyValue("--ion-background-color"));
+        		}
+        		let theme = this.rtpThemeOption();
+        		if (theme === "auto") {
+        			if (surface != null) {
+        				theme = this.rtpLuminance(surface) < 0.4 ? "dark" : "light";
+        			}
+        			else {
+        				theme = view != null && typeof view.matchMedia === "function" && view.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        			}
+        		}
+        		const dark = theme === "dark";
+        		const hostStyle = style(host) || rootStyle;
+        		const text = this.rtpParseColor(hostStyle?.color);
+        		const textFits = text != null && (this.rtpLuminance(text) >= 0.4) === dark;
+        		const variable = (name: string) => hostStyle != null ? hostStyle.getPropertyValue(name) : "";
+        		return {
+        			theme: theme,
+        			text: textFits ? "rgb(" + Math.round(text[0]) + ", " + Math.round(text[1]) + ", " + Math.round(text[2]) + ")" : (dark ? "#e2e8f0" : "#111827"),
+        			font: this.rtpCssValue(hostStyle?.fontFamily, "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif"),
+        			primary: this.rtpCssValue(variable("--ion-color-primary"), dark ? "#60a5fa" : "#2557d6"),
+        			primaryContrast: this.rtpCssValue(variable("--ion-color-primary-contrast"), dark ? "#0b1220" : "#ffffff")
+        		};
+        	}
+        
+        	/**
+        	 * #rich-text-palette: reads the look again. Another theme (light or dark) creates the editor again, with the skin of
+        	 * that theme (its text, the last one given by onChange, is loaded into the new one); other colors or another font are
+        	 * given to the text of the editor at once (rtpApplyContentStyle). The application may run without zone.js: the view is
+        	 * told it changed.
+        	 */
+        	public rtpRefreshLook(): void {
+        		const look = this.rtpDetectLook();
+        		const previous = this.rtpLook;
+        		this.rtpLook = look;
+        		if (this.rtpLooks.length == 1 && this.rtpLooks[0] === look.theme) {
+        			if (previous == null || this.rtpContentStyle(previous) !== this.rtpContentStyle(look)) {
+        				this.rtpApplyContentStyle();
+        			}
+        			return;
+        		}
+        		if (this.rtpEditor != null) {
+        			try {
+        				this.rtpEmitChange();
+        			}
+        			catch (e) {
+        			}
+        			this.rtpPendingHtml = this.rtpLastHtml;
+        			this.rtpUnwatchSize();
+        			this.rtpEditor = null;
+        			this.rtpReady = false;
+        		}
+        		this.rtpInit = null;
+        		this.rtpLooks = [look.theme];
+        		this.rtpMarkForCheck();
+        	}
+        
+        	/** #rich-text-palette: the view of the component is told it changed (needed when the application runs without zone.js). */
+        	public rtpMarkForCheck(): void {
+        		try {
+        			const ref: any = (this as any).ref;
+        			if (ref != null && typeof ref.markForCheck === "function") {
+        				ref.markForCheck();
+        			}
+        		}
+        		catch (e) {
+        		}
+        	}
+        
+        	/** #rich-text-palette: the style of the text of the editor (rtpContentStyle) for the current look, in its iframe. */
+        	public rtpApplyContentStyle(): void {
+        		const editor = this.rtpEditor;
+        		if (editor == null || !this.rtpReady || this.rtpLook == null) {
+        			return;
+        		}
+        		try {
+        			const doc: any = editor.getDoc();
+        			let style: any = doc.getElementById("rtp-look");
+        			if (style == null) {
+        				style = doc.createElement("style");
+        				style.id = "rtp-look";
+        				(doc.head || doc.documentElement).appendChild(style);
+        			}
+        			style.textContent = this.rtpContentStyle(this.rtpLook) + this.rtpCustomContentStyle();
+        		}
+        		catch (e) {
+        			console.warn("[richTextPalette] the colors of the text could not be given to the editor", e);
+        		}
+        	}
+        
+        	public rtpScheduleLook(): void {
+        		if (this.rtpLookTimer != null) {
+        			clearTimeout(this.rtpLookTimer);
+        		}
+        		this.rtpLookTimer = setTimeout(() => {
+        			this.rtpLookTimer = null;
+        			this.rtpRun(() => this.rtpRefreshLook());
+        		}, 60);
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the theme of the page is watched: the classes and styles of its html and body elements (where the
+        	 * applications set their theme: force-dark, ion-palette-dark, dark...) and the color scheme of the device.
+        	 */
+        	public rtpWatchTheme(): void {
+        		this.rtpUnwatchTheme();
+        		const view: any = typeof window !== "undefined" ? window : null;
+        		if (view == null || typeof document === "undefined") {
+        			return;
+        		}
+        		const schedule = () => this.rtpScheduleLook();
+        		try {
+        			if (typeof view.MutationObserver === "function") {
+        				const observer = new view.MutationObserver(schedule);
+        				const attributeFilter = ["class", "style", "data-theme", "data-color-scheme"];
+        				observer.observe(document.documentElement, { attributes: true, attributeFilter: attributeFilter });
+        				if (document.body != null) {
+        					observer.observe(document.body, { attributes: true, attributeFilter: attributeFilter });
+        				}
+        				this.rtpThemeWatchers.push(() => observer.disconnect());
+        			}
+        			const media = typeof view.matchMedia === "function" ? view.matchMedia("(prefers-color-scheme: dark)") : null;
+        			if (media != null && typeof media.addEventListener === "function") {
+        				media.addEventListener("change", schedule);
+        				this.rtpThemeWatchers.push(() => media.removeEventListener("change", schedule));
+        			}
+        			else if (media != null && typeof media.addListener === "function") {
+        				media.addListener(schedule);
+        				this.rtpThemeWatchers.push(() => media.removeListener(schedule));
+        			}
+        		}
+        		catch (e) {
+        			console.warn("[richTextPalette] the theme of the page cannot be watched", e);
+        		}
+        	}
+        
+        	public rtpUnwatchTheme(): void {
+        		for (const stop of this.rtpThemeWatchers) {
+        			try {
+        				stop();
+        			}
+        			catch (e) {
+        			}
+        		}
+        		this.rtpThemeWatchers = [];
+        		if (this.rtpLookTimer != null) {
+        			clearTimeout(this.rtpLookTimer);
+        			this.rtpLookTimer = null;
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the toolbar of HugeRTE puts in its "..." drawer the buttons its width cannot hold, measured at its
+        	 * start and when the window is resized. When the editor itself changes of width (shown after its start, a panel opened
+        	 * beside it), it is told so and measures its toolbar again.
+        	 */
+        	public rtpWatchSize(editor: any): void {
+        		this.rtpUnwatchSize();
+        		const view: any = typeof window !== "undefined" ? window : null;
+        		const container: any = editor != null && typeof editor.getContainer === "function" ? editor.getContainer() : null;
+        		if (container == null || view == null || typeof view.ResizeObserver !== "function") {
+        			return;
+        		}
+        		let width = -1;
+        		const observer = new view.ResizeObserver(() => {
+        			const next = Math.round(container.getBoundingClientRect().width);
+        			if (next === width || editor !== this.rtpEditor) {
+        				return;
+        			}
+        			const first = width < 0;
+        			width = next;
+        			if (!first) {
+        				try {
+        					if (typeof editor.dispatch === "function") {
+        						editor.dispatch("ResizeEditor");
+        					}
+        					else {
+        						editor.fire("ResizeEditor");
+        					}
+        				}
+        				catch (e) {
+        				}
+        			}
+        		});
+        		observer.observe(container);
+        		this.rtpSizeWatcher = observer;
+        	}
+        
+        	public rtpUnwatchSize(): void {
+        		if (this.rtpSizeWatcher != null) {
+        			try {
+        				this.rtpSizeWatcher.disconnect();
+        			}
+        			catch (e) {
+        			}
+        			this.rtpSizeWatcher = null;
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the CSS of the text of the editor, in its iframe: transparent, on the background of the component,
+        	 * with the color and the font of the text of the page, and the chips of the variables as the badges of C8Oforms.
+        	 */
+        	public rtpContentStyle(look: any): string {
+        		const dark = look.theme === "dark";
+        		return ":root{color-scheme:" + (dark ? "dark" : "light") + "}"
+        			+ "html,body{background:transparent}"
+        			+ "body{color:" + look.text + ";font-family:" + look.font + "}"
+        			+ "a{color:" + look.primary + "}"
+        			+ ".rtp-variable{display:inline-block;margin:0 1px;padding:3px 8px;border-radius:10px;background:" + look.primary + ";color:" + look.primaryContrast
+        			+ ";font-size:.875em;font-weight:600;line-height:1.15;white-space:nowrap;vertical-align:baseline;cursor:default}";
+        	}
+        
+        	/** #rich-text-palette: the content_style of the init input, after the style of the component. */
+        	public rtpCustomContentStyle(): string {
+        		const init: any = (this as any).init;
+        		return init != null && typeof init === "object" && typeof init.content_style === "string" ? "\n" + init.content_style : "";
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the init of the editor: the defaults of the component (those of the Description of C8Oforms: its
+        	 * menu bar, toolbar and plugins; the height input; the language of the application; the light or dark skin of HugeRTE
+        	 * for the theme of the page), then the init input over them; its content_style is added to the style of the text and the
+        	 * chips, and its setup runs after the one of the component. Computed once for a look: the editor reads it at its start.
+        	 */
+        	public rtpGetInit(): any {
+        		if (this.rtpInit != null) {
+        			return this.rtpInit;
+        		}
+        		const self: any = this;
+        		const custom: any = self.init != null && typeof self.init === "object" ? self.init : {};
+        		const look = this.rtpLook || this.rtpDetectLook();
+        		const dark = look.theme === "dark";
+        		const base: any = {
+        			height: self.height != null && self.height !== "" ? self.height : 400,
+        			menubar: "file edit view insert format tools table help",
+        			menu: {
+        				format: {
+        					title: "Format",
+        					items: "bold italic underline strikethrough superscript subscript codeformat | blocks fontfamily fontsize | forecolor backcolor | align | removeformat"
+        				}
+        			},
+        			plugins: "preview importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help quickbars emoticons",
+        			toolbar: "undo redo | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image | help",
+        			toolbar_mode: "sliding",
+        			quickbars_selection_toolbar: "bold italic | quicklink h2 h3 blockquote quickimage quicktable",
+        			contextmenu: "link image table",
+        			image_advtab: true,
+        			image_caption: true,
+        			importcss_append: true,
+        			noneditable_class: "mceNonEditable",
+        			branding: false,
+        			promotion: false,
+        			convert_urls: false,
+        			browser_spellcheck: true,
+        			skin: dark ? "oxide-dark" : "oxide",
+        			content_css: dark ? "dark" : "default"
+        		};
+        		if (self.placeholder != null && ("" + self.placeholder).trim() !== "") {
+        			base.placeholder = "" + self.placeholder;
+        		}
+        		const language = this.rtpEditorLanguage();
+        		if (language != null) {
+        			base.language = language;
+        		}
+        		const merged: any = Object.assign({}, base, custom);
+        		merged.content_style = this.rtpContentStyle(look) + this.rtpCustomContentStyle();
+        		const consumerSetup = custom.setup;
+        		merged.setup = (editor: any) => {
+        			this.rtpSetup(editor);
+        			if (typeof consumerSetup === "function") {
+        				consumerSetup(editor);
+        			}
+        		};
+        		this.rtpInit = merged;
+        		return merged;
+        	}
+        
+        	/** #rich-text-palette: a chip of the editor, the variable as one block the text cannot change. */
+        	public rtpChipHtml(variable: any): string {
+        		return "<span class=\"rtp-variable mceNonEditable\" contenteditable=\"false\" data-rtp-variable=\"" + this.rtpEscape(variable.key)
+        			+ "\" title=\"" + this.rtpEscape("{{ " + variable.key + " }}") + "\">" + this.rtpEscape(variable.label) + "</span>";
+        	}
+        
+        	/** #rich-text-palette: the placeholders of the known variables as chips, for the editor; any other one stays as written. */
+        	public rtpPlaceholdersToChips(html: string): string {
+        		if (typeof html !== "string" || html.indexOf("{{") == -1) {
+        			return html;
+        		}
+        		return html.replace(this.rtpPlaceholderPattern(), (all: string, raw: string) => {
+        			const variable = this.rtpFind(raw);
+        			return variable != null ? this.rtpChipHtml(variable) : all;
+        		});
+        	}
+        
+        	/** #rich-text-palette: the chips of the HTML the editor gives as {{ key }} placeholders. */
+        	public rtpChipsToPlaceholders(html: string): string {
+        		if (typeof html !== "string" || html.indexOf("data-rtp-variable") == -1) {
+        			return html;
+        		}
+        		return html.replace(/<span\b[^>]*\sdata-rtp-variable="([^"]*)"[^>]*>[\s\S]*?<\/span>/gi, (all: string, rawKey: string) => {
+        			const key = this.rtpCleanKey(this.rtpDecode(rawKey));
+        			return key != null ? "{{ " + key + " }}" : all;
+        		});
+        	}
+        
+        	/** #rich-text-palette: the keys of the placeholders an HTML text holds, in their order, once each. */
+        	public rtpUsedKeys(html: any): string[] {
+        		const keys: string[] = [];
+        		("" + (html == null ? "" : html)).replace(this.rtpPlaceholderPattern(), (all: string, raw: string) => {
+        			const key = this.rtpCleanKey(raw);
+        			if (key != null && keys.indexOf(key) == -1) {
+        				keys.push(key);
+        			}
+        			return all;
+        		});
+        		return keys;
+        	}
+        
+        	public rtpEventData(html: string): any {
+        		return { html: html, variables: this.rtpUsedKeys(html) };
+        	}
+        
+        	public rtpEmit(name: string, data: any): void {
+        		const emitter: any = (this as any)[name];
+        		if (emitter != null && typeof emitter.emit === "function") {
+        			emitter.emit(data);
+        		}
+        	}
+        
+        	/** #rich-text-palette: the events of HugeRTE come outside of the Angular zone: the outputs are emitted in it. */
+        	public rtpRun(callback: () => void): void {
+        		try {
+        			if (this.rtpZone == null) {
+        				this.rtpZone = (this as any).getInstance(NgZone);
+        			}
+        		}
+        		catch (e) {
+        		}
+        		if (this.rtpZone != null && !NgZone.isInAngularZone()) {
+        			this.rtpZone.run(callback);
+        		}
+        		else {
+        			callback();
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the setup of the editor, given by the init of the inner tinyMce component (rtpGetInit). An editor
+        	 * replaced by another one (another look) is left alone: its events are not the ones of the component any more.
+        	 */
+        	public rtpSetup(editor: any): void {
+        		this.rtpEditor = editor;
+        		this.rtpReady = false;
+        		const current = () => editor === this.rtpEditor;
+        		editor.on("BeforeSetContent", (event: any) => {
+        			if (event != null && typeof event.content === "string" && event.format !== "raw") {
+        				event.content = this.rtpPlaceholdersToChips(event.content);
+        			}
+        		});
+        		editor.on("GetContent", (event: any) => {
+        			if (event != null && typeof event.content === "string" && event.format !== "raw") {
+        				event.content = this.rtpChipsToPlaceholders(event.content);
+        			}
+        		});
+        		editor.on("init", () => {
+        			if (!current()) {
+        				return;
+        			}
+        			this.rtpReady = true;
+        			this.rtpLoadHtml(true);
+        			this.rtpWatchSize(editor);
+        			// the look read again now the page is laid out: its colors and font given to the text
+        			this.rtpScheduleLook();
+        			this.rtpRun(() => this.rtpEmit("onReady", { editor: editor }));
+        		});
+        		editor.on("input change undo redo ExecCommand", () => {
+        			if (current()) {
+        				this.rtpScheduleChange(250);
+        			}
+        		});
+        		editor.on("SetContent", () => {
+        			if (current() && !this.rtpLoading) {
+        				this.rtpScheduleChange(0);
+        			}
+        		});
+        		editor.on("blur", () => {
+        			if (current()) {
+        				this.rtpEmitChange();
+        				this.rtpRun(() => this.rtpEmit("onBlur", this.rtpEventData(this.rtpLastHtml)));
+        			}
+        		});
+        		editor.on("dragover", (event: any) => {
+        			if (current() && this.rtpIsVariableDrag(event)) {
+        				event.preventDefault();
+        				try {
+        					event.dataTransfer.dropEffect = this.rtpIsDisabled() ? "none" : "copy";
+        				}
+        				catch (e) {
+        				}
+        			}
+        		});
+        		editor.on("drop", (event: any) => {
+        			if (current()) {
+        				this.rtpDrop(editor, event);
+        			}
+        		});
+        		editor.on("remove", () => {
+        			if (current()) {
+        				this.rtpUnwatchSize();
+        			}
+        		});
+        	}
+        
+        	/**
+        	 * #rich-text-palette: loads the HTML into the editor: at its start (initial) the html input, or the text of the editor
+        	 * of the former look; then the html input when the page gives another HTML than the one the editor last gave (onChange)
+        	 * or loaded.
+        	 */
+        	public rtpLoadHtml(initial: boolean): void {
+        		let html: string;
+        		if (initial && this.rtpPendingHtml != null) {
+        			html = this.rtpPendingHtml;
+        		}
+        		else {
+        			const value: any = (this as any).html;
+        			html = value == null ? "" : "" + value;
+        			if (!initial && html === this.rtpLastHtml) {
+        				return;
+        			}
+        			this.rtpPendingHtml = null;
+        		}
+        		this.rtpLastHtml = html;
+        		const editor = this.rtpEditor;
+        		if (editor == null || !this.rtpReady) {
+        			return;
+        		}
+        		this.rtpPendingHtml = null;
+        		if (this.rtpChangeTimer != null) {
+        			clearTimeout(this.rtpChangeTimer);
+        			this.rtpChangeTimer = null;
+        		}
+        		this.rtpLoading = true;
+        		try {
+        			editor.setContent(html);
+        			if (initial && editor.undoManager != null) {
+        				editor.undoManager.clear();
+        				editor.undoManager.add();
+        			}
+        			this.rtpLastHtml = editor.getContent();
+        		}
+        		catch (e) {
+        			console.error("[richTextPalette] the HTML could not be loaded into the editor", e);
+        		}
+        		finally {
+        			this.rtpLoading = false;
+        		}
+        	}
+        
+        
+        	public rtpScheduleChange(delay: number): void {
+        		if (!this.rtpReady) {
+        			return;
+        		}
+        		if (this.rtpChangeTimer != null) {
+        			clearTimeout(this.rtpChangeTimer);
+        		}
+        		this.rtpChangeTimer = setTimeout(() => this.rtpEmitChange(), delay);
+        	}
+        
+        	/** #rich-text-palette: emits htmlChange and onChange when the HTML of the editor is not the one last given or loaded. */
+        	public rtpEmitChange(): void {
+        		if (this.rtpChangeTimer != null) {
+        			clearTimeout(this.rtpChangeTimer);
+        			this.rtpChangeTimer = null;
+        		}
+        		const editor = this.rtpEditor;
+        		if (editor == null || !this.rtpReady || this.rtpLoading) {
+        			return;
+        		}
+        		let html: string;
+        		try {
+        			html = editor.getContent();
+        		}
+        		catch (e) {
+        			return;
+        		}
+        		if (html === this.rtpLastHtml) {
+        			return;
+        		}
+        		this.rtpLastHtml = html;
+        		const data = this.rtpEventData(html);
+        		this.rtpRun(() => {
+        			this.rtpEmit("htmlChange", html);
+        			this.rtpEmit("onChange", data);
+        		});
+        	}
+        
+        	/** #rich-text-palette: a click (or Enter, Space) on a variable of the palette writes it at the caret of the editor. */
+        	public rtpInsert(item: any): void {
+        		const editor = this.rtpEditor;
+        		const variable = this.rtpFind(item?.key);
+        		if (editor == null || !this.rtpReady || variable == null || this.rtpIsDisabled()) {
+        			return;
+        		}
+        		try {
+        			editor.focus();
+        			editor.insertContent(this.rtpChipHtml(variable));
+        		}
+        		catch (e) {
+        			console.error("[richTextPalette] the variable could not be inserted", e);
+        		}
+        		// onChange at once, not after the delay of the keystrokes
+        		this.rtpEmitChange();
+        	}
+        
+        	public rtpDragStart(event: any, item: any): void {
+        		const variable = this.rtpFind(item?.key);
+        		if (event?.dataTransfer == null || variable == null || this.rtpIsDisabled()) {
+        			event?.preventDefault?.();
+        			return;
+        		}
+        		event.dataTransfer.effectAllowed = "copy";
+        		event.dataTransfer.setData(this.rtpDragType, variable.key);
+        		event.dataTransfer.setData("text/plain", "{{ " + variable.key + " }}");
+        		event.dataTransfer.setData("text/html", this.rtpChipHtml(variable));
+        	}
+        
+        	public rtpIsVariableDrag(event: any): boolean {
+        		const types = event?.dataTransfer?.types;
+        		if (types == null) {
+        			return false;
+        		}
+        		for (let i = 0; i < types.length; i++) {
+        			if (types[i] === this.rtpDragType) {
+        				return true;
+        			}
+        		}
+        		return false;
+        	}
+        
+        	/** #rich-text-palette: a variable dropped from the palette is written where it is dropped. */
+        	public rtpDrop(editor: any, event: any): void {
+        		if (!this.rtpIsVariableDrag(event)) {
+        			return;
+        		}
+        		event.preventDefault();
+        		if (typeof event.stopImmediatePropagation === "function") {
+        			event.stopImmediatePropagation();
+        		}
+        		let key = null;
+        		try {
+        			key = event.dataTransfer.getData(this.rtpDragType);
+        		}
+        		catch (e) {
+        		}
+        		const variable = this.rtpFind(key);
+        		if (variable == null || this.rtpIsDisabled()) {
+        			return;
+        		}
+        		try {
+        			editor.focus();
+        			this.rtpPlaceCaret(editor, event);
+        			editor.insertContent(this.rtpChipHtml(variable));
+        		}
+        		catch (e) {
+        			console.error("[richTextPalette] the variable could not be dropped", e);
+        		}
+        		this.rtpEmitChange();
+        	}
+        
+        	/** #rich-text-palette: the caret at the point of a drop event; after a chip when the point is on one. */
+        	public rtpPlaceCaret(editor: any, event: any): void {
+        		try {
+        			const doc: any = editor.getDoc();
+        			const body: any = editor.getBody();
+        			let range: any = null;
+        			if (typeof doc.caretRangeFromPoint === "function") {
+        				range = doc.caretRangeFromPoint(event.clientX, event.clientY);
+        			}
+        			else if (typeof doc.caretPositionFromPoint === "function") {
+        				const position = doc.caretPositionFromPoint(event.clientX, event.clientY);
+        				if (position != null && position.offsetNode != null) {
+        					range = doc.createRange();
+        					range.setStart(position.offsetNode, position.offset);
+        					range.collapse(true);
+        				}
+        			}
+        			if (range != null && range.startContainer != null && body.contains(range.startContainer)) {
+        				const start: any = range.startContainer.nodeType === 1 ? range.startContainer : range.startContainer.parentElement;
+        				const chip = start != null && typeof start.closest === "function" ? start.closest("[contenteditable=\"false\"]") : null;
+        				if (chip != null && chip !== body && body.contains(chip)) {
+        					range = doc.createRange();
+        					range.setStartAfter(chip);
+        					range.collapse(true);
+        				}
+        				editor.selection.setRng(range);
+        				return;
+        			}
+        		}
+        		catch (e) {
+        		}
+        		try {
+        			editor.selection.placeCaretAt(event.clientX, event.clientY);
+        		}
+        		catch (e) {
+        		}
+        	}
+        	/*End_c8o_CompFunction*/'
+↓Layout [ngx.components.UIDynamicElement-1812000000001]: 
+  beanData: '{"ionBean":"DivTag"}'
+  comment: The palette and the editor, side by side or one above the other (palettePosition)
+  tagName: div
+  ↓Class [ngx.components.UIAttribute-1812000000002]: 
+    attrName: class
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:rtp
+  ↓PositionClass [ngx.components.UIAttribute-1812000000003]: 
+    attrName: '[ngClass]'
+    attrValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:this.rtpLayoutClass()
+  ↓Palette [ngx.components.UICustom-1812000000004]: 
+    comment: 'The palette, after the data palette of C8Oforms: its title, a search field (paletteSearch) with a button that folds or unfolds every group, the groups (icon, title, count) that fold, the variables (icon, label, second line, type), and a foot that describes the variable under the pointer (paletteHint). A click, or Enter or Space on a focused variable, writes it at the caret of the editor; a variable can also be dragged into the text.'
+    htmlTemplate: |
+      <div class="rtp-side" *ngIf="rtpPosition() != 'none'">
+        <div class="rtp-dp" role="group" [attr.aria-label]="rtpText('paletteTitle', 'Variables')" (mouseleave)="rtpHover = null">
+          <div class="rtp-dp-head"><span>{{ rtpText('paletteTitle', 'Variables') }}</span></div>
+          <div class="rtp-dp-search" *ngIf="rtpShowSearch()">
+            <label class="rtp-dp-search-box"><span class="rtp-dp-ico" aria-hidden="true" [style.--rtp-icon]="rtpIcon('search')"></span><input type="search" class="rtp-dp-search-input" [(ngModel)]="rtpSearch" [placeholder]="rtpText('searchPlaceholder', 'Search')" [attr.aria-label]="rtpText('searchPlaceholder', 'Search')"></label>
+            <button type="button" class="rtp-dp-fold" [title]="rtpAllFolded() ? rtpPaletteText('unfoldAll', 'Unfold all groups') : rtpPaletteText('foldAll', 'Fold all groups')" [attr.aria-label]="rtpAllFolded() ? rtpPaletteText('unfoldAll', 'Unfold all groups') : rtpPaletteText('foldAll', 'Fold all groups')" (click)="rtpFoldAll()"><span class="rtp-dp-ico" aria-hidden="true" [style.--rtp-icon]="rtpIcon(rtpAllFolded() ? 'list-tree' : 'list-collapse')"></span></button>
+          </div>
+          <div class="rtp-dp-list">
+            <ng-container *ngFor="let group of rtpGetGroups(); trackBy: rtpTrackGroup">
+              <button type="button" class="rtp-dp-group" *ngIf="group.title" [attr.aria-expanded]="group.open" (click)="rtpToggleGroup(group)"><span class="rtp-dp-ico rtp-dp-chevron" [class.rtp-dp-chevron--open]="group.open" aria-hidden="true" [style.--rtp-icon]="rtpIcon('chevron-right')"></span><span class="rtp-dp-ico rtp-dp-group-icon" *ngIf="group.icon.mask" aria-hidden="true" [style.--rtp-icon]="group.icon.mask"></span><ion-icon class="rtp-dp-group-icon" *ngIf="group.icon.name" [name]="group.icon.name" aria-hidden="true"></ion-icon><span class="rtp-dp-group-label">{{ group.title }}</span><span class="rtp-dp-count">{{ group.items.length }}</span></button>
+              <ng-container *ngIf="group.open || !group.title">
+                <div class="rtp-dp-row" *ngFor="let item of group.items; trackBy: rtpTrackItem" [class.rtp-dp-row--hover]="rtpHover == item.key" (mouseenter)="rtpHover = item.key">
+                  <div class="rtp-dp-item" role="button" [title]="item.tooltip" [attr.tabindex]="rtpIsDisabled() ? -1 : 0" [attr.aria-disabled]="rtpIsDisabled() ? 'true' : null" [attr.draggable]="rtpIsDisabled() ? 'false' : 'true'" (click)="rtpInsert(item)" (keydown.enter)="$event.preventDefault(); rtpInsert(item)" (keydown.space)="$event.preventDefault(); rtpInsert(item)" (dragstart)="rtpDragStart($event, item)" (focus)="rtpHover = item.key"><span class="rtp-dp-icon"><span class="rtp-dp-ico" *ngIf="item.icon.mask" aria-hidden="true" [style.--rtp-icon]="item.icon.mask"></span><ion-icon *ngIf="item.icon.name" [name]="item.icon.name" aria-hidden="true"></ion-icon></span><span class="rtp-dp-text"><span class="rtp-dp-label">{{ item.label }}</span><span class="rtp-dp-sub" *ngIf="item.sub">{{ item.sub }}</span></span><span class="rtp-dp-type" *ngIf="item.type">{{ item.type }}</span></div>
+                </div>
+              </ng-container>
+            </ng-container>
+            <div class="rtp-dp-empty" *ngIf="rtpGetGroups().length == 0"><span class="rtp-dp-empty-title">{{ rtpPaletteText('empty', 'No variable found.') }}</span></div>
+          </div>
+          <div class="rtp-dp-foot" *ngIf="rtpHint() != ''" aria-live="polite">
+            <ng-container *ngIf="rtpHoverItem() as hover; else rtpFootHint">
+              <div class="rtp-dp-foot-head"><span class="rtp-dp-foot-label">{{ hover.label }}</span><span class="rtp-dp-type" *ngIf="hover.type">{{ hover.type }}</span></div>
+              <div class="rtp-dp-foot-line rtp-dp-mono">{{ hover.placeholder }}</div>
+              <div class="rtp-dp-foot-line" *ngIf="hover.description">{{ hover.description }}</div>
+            </ng-container>
+            <ng-template #rtpFootHint><div class="rtp-dp-foot-line rtp-dp-foot-hint">{{ rtpHint() }}</div></ng-template>
+          </div>
+        </div>
+      </div>
+  ↓EditorArea [ngx.components.UIDynamicElement-1812000000005]: 
+    beanData: '{"ionBean":"DivTag"}'
+    comment: The editor
+    tagName: div
+    ↓Class [ngx.components.UIAttribute-1812000000006]: 
+      attrName: class
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:rtp-editor
+    ↓EditorLook [ngx.components.UIControlDirective-1812000000015]: 
+      comment: 'One editor for the look of the component (rtpLooks holds its signature): HugeRTE reads its skin at its start, so a change of theme creates the editor again'
+      directiveIndexName: rtpLookIndex
+      directiveItemName: rtpLookKey
+      directiveSource: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.rtpLooks
+      ↓Editor [ngx.components.UIUseShared-1812000000007]: 
+        comment: The HugeRTE editor of the tinyMce component; its init comes from rtpGetInit (the defaults for the look, then the init input)
+        sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.tinyMce
+        ↓model [ngx.components.UIUseVariable-1812000000008]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:null
+        ↓init [ngx.components.UIUseVariable-1812000000009]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.rtpGetInit()
+        ↓disabled [ngx.components.UIUseVariable-1812000000010]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.rtpIsDisabled()
+        ↓inline [ngx.components.UIUseVariable-1812000000011]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:false
+        ↓plugins [ngx.components.UIUseVariable-1812000000012]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:''
+        ↓toolbar [ngx.components.UIUseVariable-1812000000013]: 
+          varValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: script:this.rtpGetInit().toolbar
+↓LayoutStyle [ngx.components.UIStyle-1812000000014]: 
+  comment: The layout of the palette and the editor, the look of the palette (the data palette of C8Oforms) and of the frame of HugeRTE, light or dark. The page may set --rtp-palette-width, --rtp-palette-background, --rtp-palette-border-color and --rtp-palette-max-height.
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '/* The editor and its palette, the palette after the look of the data palette of C8Oforms (its sizes, fonts and colors in
+             the light theme; in the dark theme, colors taken from the Ionic colors of the application). The page may set
+             --rtp-palette-width, --rtp-palette-background, --rtp-palette-border-color and --rtp-palette-max-height. */
+          :host {
+          	display: block;
+          	width: 100%;
+          	container: rtp / inline-size;
+          }
+          .rtp {
+          	--rtp-bg: #ffffff;
+          	--rtp-fg: #111827;
+          	--rtp-fg-body: #1f2937;
+          	--rtp-fg-group: #374151;
+          	--rtp-fg-icon: #4b5563;
+          	--rtp-fg-muted: #6b7280;
+          	--rtp-line: #e5e7eb;
+          	--rtp-soft: #f9fafb;
+          	--rtp-hover: #f3f4f6;
+          	--rtp-badge: #f3f4f6;
+          	--rtp-badge-hover: #e5e7eb;
+          	--rtp-count: #e5e7eb;
+          	--rtp-pressed: #dce6fd;
+          	--rtp-focus: #326df7;
+          	--rtp-focus-border: #9db7f9;
+          	--rtp-editor-line: #eeeeee;
+          	display: flex;
+          	align-items: stretch;
+          	gap: 10px;
+          	width: 100%;
+          	box-sizing: border-box;
+          }
+          .rtp--dark {
+          	--rtp-bg: var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #1e293b)));
+          	--rtp-fg: var(--ion-text-color, #e2e8f0);
+          	--rtp-fg-body: color-mix(in srgb, var(--rtp-fg) 92%, var(--rtp-bg));
+          	--rtp-fg-group: color-mix(in srgb, var(--rtp-fg) 85%, var(--rtp-bg));
+          	--rtp-fg-icon: color-mix(in srgb, var(--rtp-fg) 74%, var(--rtp-bg));
+          	--rtp-fg-muted: color-mix(in srgb, var(--rtp-fg) 60%, var(--rtp-bg));
+          	--rtp-line: var(--ion-border-color, color-mix(in srgb, var(--rtp-fg) 16%, var(--rtp-bg)));
+          	--rtp-soft: color-mix(in srgb, var(--rtp-fg) 4%, var(--rtp-bg));
+          	--rtp-hover: color-mix(in srgb, var(--rtp-fg) 9%, var(--rtp-bg));
+          	--rtp-badge: color-mix(in srgb, var(--rtp-fg) 10%, var(--rtp-bg));
+          	--rtp-badge-hover: color-mix(in srgb, var(--rtp-fg) 16%, var(--rtp-bg));
+          	--rtp-count: color-mix(in srgb, var(--rtp-fg) 14%, var(--rtp-bg));
+          	--rtp-pressed: color-mix(in srgb, var(--ion-color-primary, #60a5fa) 26%, var(--rtp-bg));
+          	--rtp-focus: var(--ion-color-primary, #60a5fa);
+          	--rtp-focus-border: color-mix(in srgb, var(--ion-color-primary, #60a5fa) 60%, var(--rtp-bg));
+          	--rtp-editor-line: color-mix(in srgb, var(--rtp-fg) 14%, var(--rtp-bg));
+          }
+          .rtp--start {
+          	flex-direction: row;
+          }
+          .rtp--end {
+          	flex-direction: row-reverse;
+          }
+          .rtp--top {
+          	flex-direction: column;
+          }
+          .rtp--bottom {
+          	flex-direction: column-reverse;
+          }
+          .rtp-editor {
+          	flex: 1 1 auto;
+          	min-width: 0;
+          }
+          .rtp-editor ::ng-deep lib_extendedcomponents_ui_ngx-tinymce {
+          	display: block;
+          	width: 100%;
+          }
+          /* beside the editor, the palette is as high as the editor, its list scrolls; above or under it, it is at most
+             --rtp-palette-max-height high. Under 720 px, it goes above the editor. */
+          .rtp-side {
+          	position: relative;
+          	flex: 0 0 var(--rtp-palette-width, min(clamp(320px, 28vw, 520px), 50%));
+          	min-width: 0;
+          }
+          .rtp-side > .rtp-dp {
+          	position: absolute;
+          	inset: 0;
+          }
+          .rtp--top .rtp-side,
+          .rtp--bottom .rtp-side {
+          	flex: 0 0 auto;
+          	position: static;
+          }
+          .rtp--top .rtp-side > .rtp-dp,
+          .rtp--bottom .rtp-side > .rtp-dp {
+          	position: static;
+          	max-height: var(--rtp-palette-max-height, 320px);
+          }
+          @container rtp (max-width: 719px) {
+          	.rtp--start,
+          	.rtp--end {
+          		flex-direction: column;
+          	}
+          	.rtp--start .rtp-side,
+          	.rtp--end .rtp-side {
+          		flex: 0 0 auto;
+          		position: static;
+          	}
+          	.rtp--start .rtp-side > .rtp-dp,
+          	.rtp--end .rtp-side > .rtp-dp {
+          		position: static;
+          		max-height: var(--rtp-palette-max-height, 320px);
+          	}
+          }
+          /* an icon: the shape of an SVG (--rtp-icon, a CSS url()) in the color of the text */
+          .rtp-dp-ico {
+          	--rtp-icon: linear-gradient(transparent, transparent);
+          	display: inline-block;
+          	flex: none;
+          	width: 16px;
+          	height: 16px;
+          	background-color: currentColor;
+          	-webkit-mask: var(--rtp-icon) center / contain no-repeat;
+          	mask: var(--rtp-icon) center / contain no-repeat;
+          }
+          .rtp-dp {
+          	display: flex;
+          	flex-direction: column;
+          	min-height: 0;
+          	box-sizing: border-box;
+          	overflow: hidden;
+          	border: 1px solid var(--rtp-palette-border-color, var(--rtp-line));
+          	border-radius: 10px;
+          	background: var(--rtp-palette-background, var(--rtp-bg));
+          	color: var(--rtp-fg-body);
+          	font-size: 13px;
+          	text-align: left;
+          }
+          .rtp-dp-head {
+          	flex: none;
+          	height: 40px;
+          	display: flex;
+          	align-items: center;
+          	gap: 8px;
+          	padding: 0 6px 0 12px;
+          	box-sizing: border-box;
+          	border-bottom: 1px solid var(--rtp-line);
+          	color: var(--rtp-fg);
+          	font-size: 13px;
+          	font-weight: 600;
+          	white-space: nowrap;
+          }
+          .rtp-dp-head span {
+          	flex: 1;
+          	min-width: 0;
+          	overflow: hidden;
+          	text-overflow: ellipsis;
+          }
+          .rtp-dp-search {
+          	flex: none;
+          	display: flex;
+          	align-items: center;
+          	gap: 6px;
+          	padding: 8px 10px;
+          }
+          .rtp-dp-search-box {
+          	position: relative;
+          	flex: 1;
+          	min-width: 0;
+          	display: block;
+          	margin: 0;
+          }
+          .rtp-dp-search-box .rtp-dp-ico {
+          	position: absolute;
+          	top: 9px;
+          	left: 10px;
+          	color: var(--rtp-fg-muted);
+          	pointer-events: none;
+          }
+          .rtp-dp-search-input {
+          	width: 100%;
+          	height: 34px;
+          	box-sizing: border-box;
+          	margin: 0;
+          	padding: 0 10px 0 34px;
+          	border: 1px solid var(--rtp-line);
+          	border-radius: 8px;
+          	outline: none;
+          	background: var(--rtp-soft);
+          	color: var(--rtp-fg);
+          	font: inherit;
+          	font-size: 13.5px;
+          }
+          .rtp-dp-search-input::placeholder {
+          	color: var(--rtp-fg-muted);
+          	opacity: 1;
+          }
+          .rtp-dp-search-input:focus {
+          	border-color: var(--rtp-focus-border);
+          	background: var(--rtp-bg);
+          	box-shadow: 0 0 0 3px color-mix(in srgb, var(--rtp-focus) 14%, transparent);
+          }
+          .rtp-dp-fold {
+          	flex: none;
+          	width: 34px;
+          	height: 34px;
+          	display: flex;
+          	align-items: center;
+          	justify-content: center;
+          	margin: 0;
+          	padding: 0;
+          	border: 1px solid var(--rtp-line);
+          	border-radius: 8px;
+          	background: var(--rtp-bg);
+          	color: var(--rtp-fg-icon);
+          	cursor: pointer;
+          }
+          .rtp-dp-fold:hover {
+          	background: var(--rtp-hover);
+          	color: var(--rtp-fg);
+          }
+          .rtp-dp-fold .rtp-dp-ico {
+          	width: 17px;
+          	height: 17px;
+          }
+          .rtp-dp-list {
+          	flex: 1 1 auto;
+          	min-height: 0;
+          	overflow-y: auto;
+          	padding: 0 0 8px;
+          }
+          .rtp-dp-group {
+          	width: calc(100% - 12px);
+          	height: 32px;
+          	margin: 2px 6px 0;
+          	display: flex;
+          	align-items: center;
+          	gap: 7px;
+          	padding: 0 8px 0 6px;
+          	box-sizing: border-box;
+          	border: 0;
+          	border-radius: 8px;
+          	background: transparent;
+          	color: var(--rtp-fg-group);
+          	font: inherit;
+          	font-size: 13.5px;
+          	font-weight: 500;
+          	text-align: left;
+          	cursor: pointer;
+          }
+          .rtp-dp-group:hover {
+          	background: var(--rtp-hover);
+          }
+          .rtp-dp-chevron {
+          	width: 12px;
+          	height: 12px;
+          	color: var(--rtp-fg-muted);
+          	transition: transform 120ms ease-out;
+          }
+          .rtp-dp-chevron--open {
+          	transform: rotate(90deg);
+          }
+          .rtp-dp-group-icon {
+          	flex: none;
+          	width: 15px;
+          	height: 15px;
+          }
+          .rtp-dp-icon ion-icon {
+          	width: 16px;
+          	height: 16px;
+          }
+          .rtp-dp-group-label {
+          	flex: 1;
+          	min-width: 0;
+          	overflow: hidden;
+          	text-overflow: ellipsis;
+          	white-space: nowrap;
+          }
+          .rtp-dp-count {
+          	flex: none;
+          	padding: 0 6px;
+          	border-radius: 999px;
+          	background: var(--rtp-count);
+          	color: var(--rtp-fg-icon);
+          	font-size: 11px;
+          	font-weight: 500;
+          	line-height: 16px;
+          }
+          .rtp-dp-row {
+          	position: relative;
+          	display: flex;
+          	align-items: center;
+          	margin: 0 6px;
+          	border-radius: 8px;
+          }
+          .rtp-dp-row--hover {
+          	background: var(--rtp-hover);
+          }
+          .rtp-dp-item {
+          	flex: 1;
+          	min-width: 0;
+          	height: 40px;
+          	display: flex;
+          	align-items: center;
+          	gap: 9px;
+          	padding: 0 36px 0 22px;
+          	box-sizing: border-box;
+          	border-radius: 8px;
+          	color: inherit;
+          	cursor: grab;
+          	user-select: none;
+          	-webkit-user-select: none;
+          }
+          .rtp-dp-item:active {
+          	cursor: grabbing;
+          }
+          .rtp-dp-item:focus {
+          	outline: none;
+          }
+          .rtp-dp-item:focus-visible,
+          .rtp-dp-group:focus-visible,
+          .rtp-dp-fold:focus-visible {
+          	outline: 2px solid var(--rtp-focus);
+          	outline-offset: -2px;
+          }
+          .rtp-dp-item[aria-disabled="true"] {
+          	opacity: 0.55;
+          	cursor: default;
+          }
+          .rtp-dp-icon {
+          	flex: none;
+          	width: 26px;
+          	height: 20px;
+          	display: flex;
+          	align-items: center;
+          	justify-content: center;
+          	color: var(--rtp-fg-icon);
+          }
+          .rtp-dp-text {
+          	flex: 1;
+          	min-width: 0;
+          	display: flex;
+          	flex-direction: column;
+          	gap: 1px;
+          }
+          .rtp-dp-label {
+          	overflow: hidden;
+          	color: var(--rtp-fg);
+          	font-size: 13.5px;
+          	line-height: 18px;
+          	text-overflow: ellipsis;
+          	white-space: nowrap;
+          }
+          .rtp-dp-sub {
+          	overflow: hidden;
+          	color: var(--rtp-fg-muted);
+          	font-size: 11.5px;
+          	line-height: 15px;
+          	text-overflow: ellipsis;
+          	white-space: nowrap;
+          }
+          .rtp-dp-type {
+          	flex: none;
+          	padding: 1px 6px;
+          	border-radius: 5px;
+          	background: var(--rtp-badge);
+          	color: var(--rtp-fg-icon);
+          	font-size: 11px;
+          	font-weight: 500;
+          	line-height: 16px;
+          	white-space: nowrap;
+          }
+          .rtp-dp-row--hover .rtp-dp-type {
+          	background: var(--rtp-badge-hover);
+          }
+          .rtp-dp-mono {
+          	font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+          }
+          .rtp-dp-empty {
+          	display: flex;
+          	flex-direction: column;
+          	align-items: center;
+          	gap: 6px;
+          	padding: 28px 16px;
+          	color: var(--rtp-fg-icon);
+          	font-size: 12.5px;
+          	text-align: center;
+          }
+          .rtp-dp-empty-title {
+          	color: var(--rtp-fg);
+          	font-size: 13.5px;
+          	font-weight: 600;
+          	overflow-wrap: anywhere;
+          }
+          .rtp-dp-foot {
+          	flex: none;
+          	min-height: 76px;
+          	box-sizing: border-box;
+          	display: flex;
+          	flex-direction: column;
+          	justify-content: center;
+          	gap: 2px;
+          	padding: 8px 12px;
+          	border-top: 1px solid var(--rtp-line);
+          	background: var(--rtp-soft);
+          }
+          .rtp-dp-foot-head {
+          	min-width: 0;
+          	display: flex;
+          	align-items: center;
+          	gap: 8px;
+          }
+          .rtp-dp-foot-label {
+          	min-width: 0;
+          	overflow: hidden;
+          	color: var(--rtp-fg);
+          	font-size: 13px;
+          	font-weight: 600;
+          	text-overflow: ellipsis;
+          	white-space: nowrap;
+          }
+          .rtp-dp-foot-line {
+          	overflow: hidden;
+          	color: var(--rtp-fg-icon);
+          	font-size: 12px;
+          	line-height: 17px;
+          	text-overflow: ellipsis;
+          	white-space: nowrap;
+          }
+          .rtp-dp-foot-hint {
+          	white-space: normal;
+          }
+          @media (prefers-reduced-motion: reduce) {
+          	.rtp-dp-chevron {
+          		transition: none;
+          	}
+          }
+          /* The frame of HugeRTE in the colors of the component, light or dark (its skin, oxide or oxide-dark, draws its menus and
+             dialogs). The selectors outweigh the styles an application may give to every tinyMce component, so the editor keeps its
+             look in this one. */
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox.tox-hugerte,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox.tox-tinymce {
+          	border: 2px solid var(--rtp-editor-line) !important;
+          	border-radius: 10px !important;
+          	box-shadow: none !important;
+          	background: var(--rtp-bg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-editor-header,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-menubar,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-toolbar-overlord,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-toolbar,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-toolbar__primary,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-toolbar__overflow {
+          	background-color: var(--rtp-bg) !important;
+          	color: var(--rtp-fg) !important;
+          	border-color: var(--rtp-line) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar {
+          	background-color: var(--rtp-bg) !important;
+          	color: var(--rtp-fg-muted) !important;
+          	border-top: 1px solid var(--rtp-line) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar a,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar__path-item,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar__path-divider,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar__wordcount {
+          	color: var(--rtp-fg-muted) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-statusbar__resize-handle svg {
+          	fill: var(--rtp-fg-muted) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-edit-area,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-edit-area__iframe {
+          	background: var(--rtp-bg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-edit-area iframe.tox-edit-area__iframe {
+          	filter: none !important;
+          	color-scheme: light !important;
+          }
+          :host ::ng-deep .rtp--dark .rtp-editor.rtp-editor.rtp-editor .tox .tox-edit-area iframe.tox-edit-area__iframe {
+          	color-scheme: dark !important;
+          }
+          /* the frame of the text while it has the focus: the primary color in the dark theme (white in the oxide-dark skin) */
+          :host ::ng-deep .rtp--dark .rtp-editor.rtp-editor.rtp-editor .tox .tox-edit-area::before {
+          	border-color: var(--rtp-focus) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn {
+          	background: transparent !important;
+          	color: var(--rtp-fg-group) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn svg,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn svg {
+          	fill: var(--rtp-fg-group) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn__select-label {
+          	color: inherit !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn:hover,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn:hover,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn:focus,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn.tox-mbtn--active {
+          	background: var(--rtp-hover) !important;
+          	color: var(--rtp-fg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn:hover svg,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-mbtn:hover svg {
+          	fill: var(--rtp-fg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--enabled,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--enabled:hover {
+          	background: var(--rtp-pressed) !important;
+          	color: var(--rtp-fg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--enabled svg {
+          	fill: var(--rtp-fg) !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--disabled,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--disabled:hover,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn:disabled {
+          	background: transparent !important;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn.tox-tbtn--disabled svg,
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-tbtn:disabled svg {
+          	fill: var(--rtp-fg-muted) !important;
+          	opacity: 0.55;
+          }
+          :host ::ng-deep .rtp-editor.rtp-editor.rtp-editor .tox .tox-split-button:hover {
+          	box-shadow: 0 0 0 1px var(--rtp-hover) inset !important;
+          }
+          '
+↓html [ngx.components.UICompVariable-1812000000020]: 
+  comment: '<p>string: the HTML of the text, its variables written as {{ key }} placeholders. Loaded into the editor at its start and each time the page gives another HTML than the one onChange last gave. A placeholder of a key the palette does not have stays as written.</p><p><b>Example:</b> <code>&#x27;&lt;p&gt;Hello {{ customer.name }}&lt;/p&gt;&#x27;</code></p>'
+↓variables [ngx.components.UICompVariable-1812000000021]: 
+  comment: '<p>array or object: the variables of the application, listed first in the palette. An array of { key, label, group, description, icon, type, value } (a string is a key), or an object { key: value }. key: the name written in the placeholder (letters, digits, dots, spaces; no brace, angle bracket, quote, backslash nor ampersand). label: the text of the palette and of the chip (default: the key). group: the title of its group in the palette. description: its second line in the palette. icon: the name of an Ionicons icon of the application (''person-outline''), the URL of an SVG file, or an icon of the palette (''lucide:calendar''); drawn in the color of the text. type: the badge on its right (''Text'', ''Date''...). value: a value, or a function returning it, read by richTextPaletteViewer. A variable with the key of a default variable replaces its label, group, description, icon, type or value.</p><p><b>Example:</b> <code>[{key: &#x27;customer.name&#x27;, label: &#x27;Customer name&#x27;, group: &#x27;Customer&#x27;, icon: &#x27;person-outline&#x27;, type: &#x27;Text&#x27;, value: this.local.customer?.name}, {key: &#x27;order.total&#x27;, label: &#x27;Order total&#x27;, group: &#x27;Order&#x27;, description: &#x27;Taxes included&#x27;, value: () =&gt; this.local.total + &#x27; EUR&#x27;}, {key: &#x27;api.user.name&#x27;, label: &#x27;Author&#x27;}]</code></p>'
+  value: '[]'
+↓defaultVariables [ngx.components.UICompVariable-1812000000022]: 
+  comment: '<p>boolean or array: the default variables of the palette. true (default): all of them (api.clock.today, api.clock.now, api.clock.time, api.clock.year, api.user.name, api.user.email, api.user.authenticatedUserID, api.user.groups, api.translate.currentLang). false: none. An array (or a comma-separated text) of keys: only these ones.</p><p><b>Example:</b> <code>[&#x27;api.clock.today&#x27;, &#x27;api.user.name&#x27;, &#x27;api.user.email&#x27;]</code></p>'
+  value: true
+↓palettePosition [ngx.components.UICompVariable-1812000000023]: 
+  comment: '<p>string: where the palette stands: ''end'' (default, after the editor, as in C8Oforms), ''start'' (before it), ''top'', ''bottom'', or ''none'' (no palette: the placeholders of the HTML are still shown as chips). Beside the editor, the palette is as high as the editor and about 28% of the window wide (320 to 520 pixels, at most half of the component); under 720 pixels of width, it goes above the editor.</p><p><b>Example:</b> <code>&#x27;end&#x27;</code></p>'
+  value: '''end'''
+↓paletteTitle [ngx.components.UICompVariable-1812000000024]: 
+  comment: '<p>string: the title of the palette.</p><p><b>Example:</b> <code>&#x27;Variables&#x27;</code></p>'
+  value: '''Variables'''
+↓paletteHint [ngx.components.UICompVariable-1812000000025]: 
+  comment: '<p>string: the help text at the foot of the palette, where the variable under the pointer is described; false hides the foot.</p><p><b>Example:</b> <code>&#x27;Click a variable or drag it into the text.&#x27;</code></p>'
+  value: '''Click a variable or drag it into the text.'''
+↓paletteSearch [ngx.components.UICompVariable-1812000000026]: 
+  comment: '<p>boolean or string: the search field of the palette (it filters the variables by label, key and group): ''auto'' (default, shown from 9 variables on), true or false.</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>'
+  value: '''auto'''
+↓searchPlaceholder [ngx.components.UICompVariable-1812000000027]: 
+  comment: '<p>string: the placeholder of the search field of the palette.</p><p><b>Example:</b> <code>&#x27;Search&#x27;</code></p>'
+  value: '''Search'''
+↓placeholder [ngx.components.UICompVariable-1812000000028]: 
+  comment: '<p>string: the text the editor shows while it is empty.</p><p><b>Example:</b> <code>&#x27;Write your text here&#x27;</code></p>'
+↓height [ngx.components.UICompVariable-1812000000029]: 
+  comment: '<p>number or string: the height of the editor (pixels or a CSS length).</p><p><b>Example:</b> <code>400</code></p>'
+  value: 400
+↓disabled [ngx.components.UICompVariable-1812000000030]: 
+  comment: '<p>boolean: the editor is read only and the palette inserts nothing.</p><p><b>Example:</b> <code>false</code></p>'
+  value: false
+↓init [ngx.components.UICompVariable-1812000000031]: 
+  comment: '<p>object: options of HugeRTE over the ones of the component, which are those of the Description of C8Oforms (menu bar, toolbar, plugins, quick toolbar on a selection), the oxide or oxide-dark skin and the default or dark content for the theme, the height and placeholder inputs and the language of the application. Read when the editor starts. Its content_style is added to the style of the text and the chips; its setup runs after the one of the component.</p><p><b>Example:</b> <code>{menubar: false, toolbar: &#x27;undo redo | bold italic | bullist numlist&#x27;, plugins: &#x27;lists&#x27;}</code></p>'
+  value: '{}'
+↓theme [ngx.components.UICompVariable-1812000000032]: 
+  comment: '<p>string: the theme of the editor and its palette: ''auto'' (default: light or dark as the page behind the component, read again when the page changes its theme), ''light'' or ''dark''. Dark, the colors come from the Ionic colors of the application (--ion-card-background, --ion-text-color, --ion-border-color, --ion-color-primary). A change of theme starts the editor again, with its text.</p><p><b>Example:</b> <code>&#x27;auto&#x27;</code></p>'
+  value: '''auto'''
+↓groups [ngx.components.UICompVariable-1812000000033]: 
+  comment: '<p>array or object: the icon of a group of the palette, and whether it starts folded. An array of { name, icon, open }, or an object { name: icon } or { name: { icon, open } }. name: the group of the variables. icon: as the icon of a variable. open: false folds the group at the start. A group without an icon gets a folder; the default groups keep theirs.</p><p><b>Example:</b> <code>{&#x27;Customer&#x27;: &#x27;person-outline&#x27;, &#x27;Order&#x27;: {icon: &#x27;cart-outline&#x27;, open: false}}</code></p>'
+  value: '{}'
+↓paletteTexts [ngx.components.UICompVariable-1812000000034]: 
+  comment: '<p>object: the other texts of the palette: empty (shown when the search finds no variable), foldAll and unfoldAll (the button beside the search field).</p><p><b>Example:</b> <code>{empty: &#x27;Aucune variable trouvée.&#x27;, foldAll: &#x27;Tout replier&#x27;, unfoldAll: &#x27;Tout déplier&#x27;}</code></p>'
+  value: '{}'
+↓onChange [ngx.components.UICompEvent-1812000000040]: 
+  attrName: onChange
+  comment: 'Fired when the text changes (250 ms after the last keystroke, at once for a variable inserted). Data: { html, variables }: the HTML with its {{ key }} placeholders, and the keys of the placeholders it holds. htmlChange gives the same HTML (two-way binding of html).'
+↓onBlur [ngx.components.UICompEvent-1812000000041]: 
+  attrName: onBlur
+  comment: 'Fired when the editor loses the focus, after onChange when the text changed. Data: { html, variables }.'
+↓onReady [ngx.components.UICompEvent-1812000000042]: 
+  attrName: onReady
+  comment: 'Fired when the editor has started and loaded its text, and again when a change of theme has started a new editor. Data: { editor }: the HugeRTE editor.'

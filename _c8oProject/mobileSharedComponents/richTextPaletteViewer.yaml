@@ -1,0 +1,528 @@
+comment: |
+  'Shows an HTML text written with richTextPalette: its {{ key }} placeholders replaced by the values of their variables (as text), then the HTML sanitized by DOMPurify (no script, event handler, javascript: URL, frame, form; the inline styles stay). Typical use: html and variables are the ones given to richTextPalette (the labels and groups are not needed here); userName and userEmail give the name and the e-mail of the signed-in user when the application knows them.
+  
+  On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: replace the placeholders with the regular expression of the viewer, for example in a JavaScript step:
+  
+  ```js
+  // html: the text saved from richTextPalette; customerName, orderTotal: read from the database by the steps before
+  function escapeHtml(text) {
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/''/g, "&#39;");
+  }
+  var values = { "customer.name": customerName, "order.total": orderTotal };
+  var result = String(html).replace(/\{\{([^{}<>]*?)\}\}(?![^<]*>)/g, function (all, raw) {
+    var key = raw.replace(/&nbsp;|&#160;|&#xa0;|\u00a0/gi, " ").replace(/\s+/g, " ").trim();
+    var value = values[key];
+    return value != null ? escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>") : all;
+  });
+  ```
+  
+  As in the viewer: the key is cleaned (an editor may write no-break spaces in it); the value is escaped, so a value holding HTML stays text, and its line breaks become `<br>`; a placeholder in a tag (an attribute) or with a key that has no value stays as written. The `event.variables` of onChange in richTextPalette lists the keys the text holds: save them with the html to read only these values. Give their values to the default variables the text may hold too (`api.clock.today`, `api.user.name`...). There is no DOMPurify on the server: sanitize the HTML there too when its authors are not trusted and it is shown in a browser.'
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        '/*Begin_c8o_CompImport*/
+        import DOMPurify from "dompurify";
+        import { SecurityContext } from "@angular/core";
+        import { DomSanitizer as RtpDomSanitizer } from "@angular/platform-browser";
+        /*End_c8o_CompImport*/
+        /*Begin_c8o_CompDeclaration*/
+        	// #rich-text-palette: the HTML shown (rtpRendered), computed again only when the html input or a value it shows changes
+        	public rtpRenderedHtml: string = "";
+        	private rtpSignature: string = null;
+        	private rtpSafeHtml: any = null;
+        	private rtpKeysHtml: string = null;
+        	private rtpKeys: string[] = [];
+        	private rtpSanitizer: any = null;
+        	// the keys whose value failed, told once in the console (the values are read at each change detection)
+        	private rtpFailedKeys: any = {};
+        	/*End_c8o_CompDeclaration*/
+        /*Begin_c8o_CompConstructor*/
+        		/*End_c8o_CompConstructor*/
+        /*Begin_c8o_CompInitialization*/
+        		/*End_c8o_CompInitialization*/
+        /*Begin_c8o_CompFinalization*/
+        		/*End_c8o_CompFinalization*/
+        /*Begin_c8o_CompChanges*/
+        		/*End_c8o_CompChanges*/
+        /*Begin_c8o_CompDoCheck*/
+        		/*End_c8o_CompDoCheck*/
+        /*Begin_c8o_CompAfterContentInit*/
+        		/*End_c8o_CompAfterContentInit*/
+        /*Begin_c8o_CompAfterContentChecked*/
+        		/*End_c8o_CompAfterContentChecked*/
+        /*Begin_c8o_CompAfterViewInit*/
+        		/*End_c8o_CompAfterViewInit*/
+        /*Begin_c8o_CompAfterViewChecked*/
+        		/*End_c8o_CompAfterViewChecked*/
+        /*Begin_c8o_CompFunction*/
+        	/**
+        	 * #rich-text-palette: a variable key as a placeholder writes it ({{ key }}), or null when it cannot be one: not empty, at
+        	 * most 200 characters, without brace, angle bracket, quote, backquote, backslash nor ampersand. Spaces (and the no-break
+        	 * spaces an editor writes) are trimmed and collapsed. Same rule as richTextPalette.
+        	 */
+        	public rtpCleanKey(raw: any): string {
+        		if (raw == null || typeof raw === "object" || typeof raw === "function") {
+        			return null;
+        		}
+        		const key = ("" + raw).replace(/&nbsp;|&#160;|&#xa0;| /gi, " ").replace(/\s+/g, " ").trim();
+        		if (key === "" || key.length > 200 || /[{}<>"''`\\&]/.test(key)) {
+        			return null;
+        		}
+        		return key;
+        	}
+        
+        	/** #rich-text-palette: the {{ key }} placeholders of an HTML text: in its text only, a placeholder in a tag is no variable. */
+        	public rtpPlaceholderPattern(): RegExp {
+        		return /\{\{([^{}<>]*?)\}\}(?![^<]*>)/g;
+        	}
+        
+        	public rtpEscape(text: any): string {
+        		return ("" + (text == null ? "" : text)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/''/g, "&#39;");
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the clock of the device, in its time zone, as the descriptions of C8Oforms read it (api.clock):
+        	 * "now" as ISO 8601 with the local offset (2026-11-24T14:32:05+01:00), "today" as YYYY-MM-DD, "time" as HH:mm, "year".
+        	 */
+        	public rtpClock(kind: string, date: Date = new Date()): any {
+        		const pad = (n: number) => (n < 10 ? "0" : "") + n;
+        		const day = date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate());
+        		const time = pad(date.getHours()) + ":" + pad(date.getMinutes());
+        		if (kind == "today") {
+        			return day;
+        		}
+        		if (kind == "time") {
+        			return time;
+        		}
+        		if (kind == "year") {
+        			return date.getFullYear();
+        		}
+        		let offset = -date.getTimezoneOffset();
+        		const sign = offset < 0 ? "-" : "+";
+        		offset = Math.abs(offset);
+        		return day + "T" + time + ":" + pad(date.getSeconds()) + sign + pad(Math.floor(offset / 60)) + ":" + pad(offset % 60);
+        	}
+        
+        	/** #rich-text-palette: the user of the Convertigo session when signed in, else null. */
+        	public rtpSessionUser(): any {
+        		try {
+        			const user: any = (this as any).c8o?.session?.user;
+        			return user != null && user.authenticated === true ? user : null;
+        		}
+        		catch (e) {
+        			return null;
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables offered by default, with the keys of the placeholders of C8Oforms (api.*) so a text
+        	 * reads the same in both. A variable of the variables input with the same key replaces its label, group or value.
+        	 * Same list as richTextPalette.
+        	 */
+        	public rtpDefaultVariables(): any[] {
+        		const text = (value: any) => value == null ? "" : "" + value;
+        		const given = (value: any) => value != null && ("" + value).trim() !== "";
+        		const userId = () => text(this.rtpSessionUser()?.name);
+        		const self: any = this;
+        		return [
+        			{ key: "api.clock.today", label: "Today''s date", group: "Date and time", value: () => this.rtpClock("today") },
+        			{ key: "api.clock.now", label: "Date and time", group: "Date and time", value: () => this.rtpClock("now") },
+        			{ key: "api.clock.time", label: "Time", group: "Date and time", value: () => this.rtpClock("time") },
+        			{ key: "api.clock.year", label: "Year", group: "Date and time", value: () => this.rtpClock("year") },
+        			{ key: "api.user.name", label: "User name", group: "Signed-in user", value: () => given(self.userName) ? text(self.userName) : userId() },
+        			{
+        				key: "api.user.email", label: "User e-mail", group: "Signed-in user", value: () => {
+        					if (given(self.userEmail)) {
+        						return text(self.userEmail);
+        					}
+        					const id = userId();
+        					return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id) ? id : "";
+        				}
+        			},
+        			{ key: "api.user.authenticatedUserID", label: "User ID", group: "Signed-in user", value: userId },
+        			{
+        				key: "api.user.groups", label: "User groups", group: "Signed-in user", value: () => {
+        					const groups = this.rtpSessionUser()?.groups;
+        					return Array.isArray(groups) ? groups.map((group: any) => group != null && typeof group === "object" ? text(group.name) : text(group)).filter((group: string) => group !== "").join(", ") : "";
+        				}
+        			},
+        			{ key: "api.translate.currentLang", label: "Language", group: "Application", value: () => text(self.translate?.currentLang || self.translate?.defaultLang) }
+        		];
+        	}
+        
+        	/** #rich-text-palette: the keys of the default variables to offer: null for all of them (the default), [] for none. */
+        	public rtpDefaultKeys(): string[] {
+        		const option: any = (this as any).defaultVariables;
+        		if (option === false || option === "false" || option === 0) {
+        			return [];
+        		}
+        		let keys: any[] = null;
+        		if (Array.isArray(option)) {
+        			keys = option;
+        		}
+        		else if (typeof option === "string" && option.trim() !== "" && option.trim() !== "true") {
+        			keys = option.split(",");
+        		}
+        		return keys == null ? null : keys.map((key) => this.rtpCleanKey(key)).filter((key) => key != null);
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables of the variables input: an array of { key, label, group, description, value } (a
+        	 * string is a key), or an object { key: value } (or { key: { label, group, description, value } }), or the JSON text of
+        	 * one of them. A value is a value or a function computing it when the text is shown. The first one of a key is kept.
+        	 */
+        	public rtpCustomVariables(): any[] {
+        		let source: any = (this as any).variables;
+        		if (typeof source === "string") {
+        			const json = source.trim();
+        			source = null;
+        			if (json.charAt(0) == "[" || json.charAt(0) == "{") {
+        				try {
+        					source = JSON.parse(json);
+        				}
+        				catch (e) {
+        					console.warn("[richTextPaletteViewer] variables: invalid JSON", e);
+        				}
+        			}
+        		}
+        		const result: any[] = [];
+        		const seen: any = {};
+        		const given = (value: any) => value != null && ("" + value).trim() !== "";
+        		const add = (rawKey: any, def: any) => {
+        			const key = this.rtpCleanKey(rawKey);
+        			if (key == null || seen["#" + key] === true) {
+        				return;
+        			}
+        			seen["#" + key] = true;
+        			result.push({
+        				key: key,
+        				label: given(def.label) ? "" + def.label : null,
+        				group: def.group != null ? "" + def.group : null,
+        				description: given(def.description) ? "" + def.description : null,
+        				hasValue: Object.prototype.hasOwnProperty.call(def, "value"),
+        				value: def.value
+        			});
+        		};
+        		if (Array.isArray(source)) {
+        			for (const def of source) {
+        				if (typeof def === "string") {
+        					add(def, {});
+        				}
+        				else if (def != null && typeof def === "object") {
+        					add(def.key != null ? def.key : def.name, def);
+        				}
+        			}
+        		}
+        		else if (source != null && typeof source === "object") {
+        			for (const name of Object.keys(source)) {
+        				const entry = source[name];
+        				const isDefinition = entry != null && typeof entry === "object" && !Array.isArray(entry) && !(entry instanceof Date)
+        					&& ("value" in entry || "label" in entry || "group" in entry || "description" in entry);
+        				add(name, isDefinition ? entry : { value: entry });
+        			}
+        		}
+        		return result;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the variables, as { key, label, group, description, value }: the variables of the variables input
+        	 * first, then the default variables kept by defaultVariables (one of them redefined by the variables input stays in place).
+        	 */
+        	public rtpVariables(): any[] {
+        		const keep = this.rtpDefaultKeys();
+        		const byKey: any = {};
+        		const defaults: any[] = [];
+        		for (const def of this.rtpDefaultVariables()) {
+        			if (keep == null || keep.indexOf(def.key) != -1) {
+        				const item = { key: def.key, label: def.label, group: def.group, description: "", value: def.value };
+        				byKey["#" + def.key] = item;
+        				defaults.push(item);
+        			}
+        		}
+        		const custom: any[] = [];
+        		for (const def of this.rtpCustomVariables()) {
+        			const existing = byKey["#" + def.key];
+        			if (existing != null) {
+        				existing.label = def.label != null ? def.label : existing.label;
+        				existing.group = def.group != null ? def.group : existing.group;
+        				existing.description = def.description != null ? def.description : existing.description;
+        				existing.value = def.hasValue ? def.value : existing.value;
+        			}
+        			else {
+        				custom.push({ key: def.key, label: def.label != null ? def.label : def.key, group: def.group != null ? def.group : "", description: def.description != null ? def.description : "", value: def.value });
+        			}
+        		}
+        		return custom.concat(defaults);
+        	}
+        
+        	public rtpLocale(): string {
+        		const translate: any = (this as any).translate;
+        		const language = translate?.currentLang || translate?.defaultLang;
+        		return language != null && ("" + language).trim() !== "" ? ("" + language).replace("_", "-") : undefined;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the text a value shows: a function is called (once, its result not called again; when it fails,
+        	 * the text is empty and the console tells it once for the key), null and undefined are empty, a date is written in the language of the application, an array joins its values with ", ", an
+        	 * object is written as JSON.
+        	 */
+        	public rtpValueText(value: any, key: string = null): string {
+        		if (typeof value === "function") {
+        			try {
+        				value = value();
+        			}
+        			catch (e) {
+        				if (this.rtpFailedKeys["#" + key] !== true) {
+        					this.rtpFailedKeys["#" + key] = true;
+        					console.warn("[richTextPaletteViewer] the value of the variable " + key + " failed", e);
+        				}
+        				return "";
+        			}
+        		}
+        		const format = (item: any): string => {
+        			if (item == null || typeof item === "function") {
+        				return "";
+        			}
+        			if (item instanceof Date) {
+        				if (isNaN(item.getTime())) {
+        					return "";
+        				}
+        				try {
+        					return item.toLocaleString(this.rtpLocale());
+        				}
+        				catch (e) {
+        					return item.toLocaleString();
+        				}
+        			}
+        			if (typeof item === "object") {
+        				try {
+        					return JSON.stringify(item);
+        				}
+        				catch (e) {
+        					return "";
+        				}
+        			}
+        			return "" + item;
+        		};
+        		if (Array.isArray(value)) {
+        			return value.map((item) => format(item)).filter((item) => item !== "").join(", ");
+        		}
+        		return format(value);
+        	}
+        
+        	public rtpGetSanitizer(): any {
+        		if (this.rtpSanitizer == null) {
+        			this.rtpSanitizer = (this as any).getInstance(RtpDomSanitizer);
+        		}
+        		return this.rtpSanitizer;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the DOMPurify of the viewers, its own instance (a hook added to it does not change the DOMPurify of
+        	 * other parts of the application). A link opened in another window gets rel="noopener noreferrer"; any other target than
+        	 * _blank, _self, _parent and _top is removed.
+        	 */
+        	public rtpPurifier(): any {
+        		const holder: any = this.constructor;
+        		if (holder.rtpPurifierInstance === undefined) {
+        			let purifier: any = null;
+        			try {
+        				purifier = (DOMPurify as any)(window);
+        				if (purifier == null || purifier.isSupported === false || typeof purifier.sanitize !== "function") {
+        					purifier = null;
+        				}
+        				else {
+        					purifier.addHook("afterSanitizeAttributes", (node: any) => {
+        						if (node != null && node.tagName === "A" && node.hasAttribute("target")) {
+        							const target = ("" + node.getAttribute("target")).trim().toLowerCase();
+        							if (["_blank", "_self", "_parent", "_top"].indexOf(target) == -1) {
+        								node.removeAttribute("target");
+        							}
+        							else if (target === "_blank") {
+        								node.setAttribute("rel", "noopener noreferrer");
+        							}
+        						}
+        					});
+        				}
+        			}
+        			catch (e) {
+        				console.error("[richTextPaletteViewer] DOMPurify is not available", e);
+        				purifier = null;
+        			}
+        			holder.rtpPurifierInstance = purifier;
+        		}
+        		return holder.rtpPurifierInstance;
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the HTML as it is shown: no script, no event handler, no javascript: nor file: URL, no frame, no
+        	 * style sheet, no form nor form control (DOMPurify). The inline styles of the editor (colors, fonts, alignments) stay.
+        	 * Without DOMPurify, the Angular sanitizer (which also removes the inline styles).
+        	 */
+        	public rtpSanitize(html: string): string {
+        		const purifier = this.rtpPurifier();
+        		if (purifier != null) {
+        			return "" + purifier.sanitize(html, {
+        				ADD_ATTR: ["target"],
+        				FORBID_TAGS: ["style", "form", "input", "button", "textarea", "select", "option", "dialog"],
+        				FORBID_ATTR: ["contenteditable"]
+        			});
+        		}
+        		const sanitized = this.rtpGetSanitizer().sanitize(SecurityContext.HTML, html);
+        		return sanitized == null ? "" : "" + sanitized;
+        	}
+        
+        	public rtpEmit(name: string, data: any): void {
+        		const emitter: any = (this as any)[name];
+        		if (emitter != null && typeof emitter.emit === "function") {
+        			emitter.emit(data);
+        		}
+        	}
+        
+        	/**
+        	 * #rich-text-palette: the html input with its {{ key }} placeholders replaced by the values of their variables, as text
+        	 * (escaped, a line break of a value as <br>), then sanitized. A placeholder of no variable stays as written. The same
+        	 * SafeHtml while neither the HTML nor a value it shows changes, so the page is not written again at each change
+        	 * detection. onRender gives the HTML shown when it changes.
+        	 */
+        	public rtpRendered(): any {
+        		const value: any = (this as any).html;
+        		const html = value == null ? "" : "" + value;
+        		if (html !== this.rtpKeysHtml) {
+        			const keys: string[] = [];
+        			html.replace(this.rtpPlaceholderPattern(), (all: string, raw: string) => {
+        				const key = this.rtpCleanKey(raw);
+        				if (key != null && keys.indexOf(key) == -1) {
+        					keys.push(key);
+        				}
+        				return all;
+        			});
+        			this.rtpKeysHtml = html;
+        			this.rtpKeys = keys;
+        		}
+        		const values = new Map<string, string>();
+        		if (this.rtpKeys.length > 0) {
+        			const variables = new Map<string, any>();
+        			for (const variable of this.rtpVariables()) {
+        				variables.set(variable.key, variable);
+        			}
+        			for (const key of this.rtpKeys) {
+        				if (variables.has(key)) {
+        					values.set(key, this.rtpValueText(variables.get(key).value, key));
+        				}
+        			}
+        		}
+        		const signature = JSON.stringify([html, Array.from(values.entries())]);
+        		if (signature === this.rtpSignature && this.rtpSafeHtml != null) {
+        			return this.rtpSafeHtml;
+        		}
+        		const replaced = values.size == 0 ? html : html.replace(this.rtpPlaceholderPattern(), (all: string, raw: string) => {
+        			const key = this.rtpCleanKey(raw);
+        			return key != null && values.has(key) ? this.rtpEscape(values.get(key)).replace(/\r\n|\r|\n/g, "<br>") : all;
+        		});
+        		const clean = this.rtpSanitize(replaced);
+        		const changed = clean !== this.rtpRenderedHtml || this.rtpSafeHtml == null;
+        		this.rtpSignature = signature;
+        		this.rtpRenderedHtml = clean;
+        		this.rtpSafeHtml = this.rtpGetSanitizer().bypassSecurityTrustHtml(clean);
+        		if (changed) {
+        			// given after the change detection that computed it, so the page may keep it
+        			Promise.resolve().then(() => this.rtpEmit("onRender", { html: clean }));
+        		}
+        		return this.rtpSafeHtml;
+        	}
+        	/*End_c8o_CompFunction*/
+        '
+↓Content [ngx.components.UICustom-1812100000001]: 
+  comment: The HTML with the values of its variables, sanitized (rtpRendered)
+  htmlTemplate: |
+    <div class="rtp-viewer" [innerHTML]="rtpRendered()"></div>
+↓ViewerStyle [ngx.components.UIStyle-1812100000002]: 
+  comment: Images and tables no wider than the viewer; links, quotes, tables and code in colors drawn from the text and the primary color, so the text reads in a light or a dark theme
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          ':host {
+          	display: block;
+          }
+          .rtp-viewer {
+          	overflow-x: auto;
+          	overflow-wrap: anywhere;
+          }
+          .rtp-viewer ::ng-deep img {
+          	max-width: 100%;
+          	height: auto;
+          }
+          .rtp-viewer ::ng-deep table {
+          	max-width: 100%;
+          	border-collapse: collapse;
+          }
+          .rtp-viewer ::ng-deep > :first-child {
+          	margin-top: 0;
+          }
+          .rtp-viewer ::ng-deep > :last-child {
+          	margin-bottom: 0;
+          }
+          .rtp-viewer ::ng-deep a {
+          	color: var(--ion-color-primary, #2557d6);
+          }
+          .rtp-viewer ::ng-deep blockquote {
+          	margin-left: 0;
+          	padding-left: 1em;
+          	border-left: 3px solid color-mix(in srgb, currentColor 25%, transparent);
+          }
+          .rtp-viewer ::ng-deep th,
+          .rtp-viewer ::ng-deep td {
+          	border-color: color-mix(in srgb, currentColor 30%, transparent);
+          }
+          .rtp-viewer ::ng-deep code,
+          .rtp-viewer ::ng-deep pre {
+          	border-radius: 4px;
+          	background: color-mix(in srgb, currentColor 8%, transparent);
+          }
+          .rtp-viewer ::ng-deep code {
+          	padding: 0 4px;
+          }
+          .rtp-viewer ::ng-deep pre {
+          	padding: 8px 10px;
+          	overflow-x: auto;
+          }
+          .rtp-viewer ::ng-deep hr {
+          	border: 0;
+          	border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+          }
+          '
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1812100000003]: 
+  comment: The package of DOMPurify, which sanitizes the HTML shown
+  ↓Imports [ngx.components.UICustomAction-1812100000004]: 
+    comment: dompurify 3.4.11, the version C8Oforms pins
+    package_dependencies: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: dompurify
+              - java.lang.String: 
+                - ↑value: 3.4.11
+↓html [ngx.components.UICompVariable-1812100000010]: 
+  comment: '<p>string: the HTML to show, its variables written as {{ key }} placeholders (the html of richTextPalette). A placeholder in a tag (an attribute), or of a key no variable has, stays as written.</p><p><b>Example:</b> <code>this.local.text</code></p>'
+↓variables [ngx.components.UICompVariable-1812100000011]: 
+  comment: '<p>array or object: the variables, as for richTextPalette. A value is a value or a function returning it, read at each change detection; it is written as text (escaped, its line breaks kept), a date in the language of the application, an array as its values joined by commas.</p><p><b>Example:</b> <code>[{key: &#x27;customer.name&#x27;, value: this.local.customer?.name}, {key: &#x27;order.total&#x27;, value: () =&gt; this.local.total}]</code></p>'
+  value: '[]'
+↓defaultVariables [ngx.components.UICompVariable-1812100000012]: 
+  comment: '<p>boolean or array: the default variables, as for richTextPalette. true (default): all of them; false: none; an array of keys: only these ones.</p><p><b>Example:</b> <code>true</code></p>'
+  value: true
+↓userName [ngx.components.UICompVariable-1812100000013]: 
+  comment: '<p>string: the value of {{ api.user.name }}. While empty, the ID of the user signed in to the Convertigo session.</p><p><b>Example:</b> <code>this.local.user?.displayName</code></p>'
+↓userEmail [ngx.components.UICompVariable-1812100000014]: 
+  comment: '<p>string: the value of {{ api.user.email }}. While empty, the ID of the user signed in to the Convertigo session when it is an e-mail address, else empty.</p><p><b>Example:</b> <code>this.local.user?.mail</code></p>'
+↓onRender [ngx.components.UICompEvent-1812100000020]: 
+  attrName: onRender
+  comment: 'Fired when the HTML shown changes. Data: { html }: the sanitized HTML with the values of its variables.'

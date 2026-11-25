@@ -134,5 +134,14 @@
   "Kanban_Card_Implement": "Implementar modulo funcional",
   "Kanban_Card_Tests": "Escribir pruebas de integracion",
   "Kanban_Card_Review": "Revisar pull request",
-  "Kanban_Card_Release": "Preparar notas de version"
+  "Kanban_Card_Release": "Preparar notas de version",
+  "Page_RichTextPalette": "Paleta de texto enriquecido",
+  "Demo_What_RichTextPalette": "richTextPalette es un editor de texto enriquecido con una paleta de variables. richTextPaletteViewer muestra el texto con los valores de sus variables, saneado.",
+  "Demo_Scenario_RichTextPalette": "Haga clic en una variable de la paleta o arrastrela al texto, luego lea el texto con sus valores en el visor.",
+  "RichText_Editor_Title": "Editor",
+  "RichText_Viewer_Title": "Visor",
+  "RichText_Html_Title": "HTML guardado (onChange)",
+  "RichText_Sanitize_Title": "HTML saneado",
+  "RichText_Sanitize_Text": "Este visor recibe un HTML con un script, un manejador de eventos, un marco y un enlace javascript: : se eliminan, el estilo en linea se mantiene.",
+  "RichText_Placeholder": "Escriba su texto aqui"
 }

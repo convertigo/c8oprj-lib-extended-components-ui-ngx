@@ -147,6 +147,14 @@ Page demonstrating the Kanban shared component based on SortableJS
 
 </p></blockquote></details>
 
+<details><summary><b>testRichTextPalette</b> : Page with the rich text editor with a palette of variables (richTextPalette) and its viewer (richTextPaletteViewer)</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testRichTextPalette
+
+Page with the rich text editor with a palette of variables (richTextPalette) and its viewer (richTextPaletteViewer)
+</p></blockquote></details>
+
 <details><summary><b>testSortableJS</b> : Page demonstrating the SortableJS shared component</summary><blockquote><p>
 
 
@@ -562,6 +570,10 @@ n/a
 
 This Shared component wraps the ag-grid component. Most of the properties and events are supported. Please see https://www.ag-grid.com/ for more details.
 
+Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop. Fonts (off by default, the font of the theme): headerFontFamily and headerFontSize set the font of the header row, cellFontFamily and cellFontSize the font of the rows; a value that is not a font family list or a size is ignored.
+
+External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
+
 Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
 
 
@@ -627,6 +639,34 @@ true
 
 ```
 100
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cellFontFamily
+</td>
+<td>
+<p>string: null (default) or a list of font families, as the CSS property font-family (names, quoted or not, and generic families such as serif or monospace), or a var() of a variable of the page with such a list as fallback. The font family of the rows: their cells, the draft row of the row creation, the pinned and full width rows. While null, the rows keep the font of the theme; a value that is not a list of font families is ignored.</p><p><b>Example:</b> 
+
+```
+&#x27;ui-monospace, Menlo, monospace&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;cellFontSize
+</td>
+<td>
+<p>number or string: null (default), a number of pixels or a CSS length (px, pt, em, rem, %), or a var() of a variable of the page. The font size of the rows. While null, the rows keep the font size of the theme; a value that is not a size is ignored. Rows of an automatic height (autoHeight columns) follow the size; rows of a fixed height (rowHeight) keep it.</p><p><b>Example:</b> 
+
+```
+12
 ```
 
 </p>
@@ -738,6 +778,76 @@ true
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;externalPagination
+</td>
+<td>
+<p>boolean: false (default) or true. When true, the rows of the grid are paged by the application (a server gives one page at a time): the grid holds the rows of the page shown, and a pager under it, with the look and the texts of the pager of AG Grid, says which rows they are ("21 to 40 of 250", "Page 2 of 13") and offers the first, previous, next and last pages. A button emits the <code>PageRequest</code> event; the application gives the grid the rows of that page and sets externalPaginationPage. The pagination of AG Grid is off meanwhile. While false, the grid behaves exactly as before.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;externalPaginationBusy
+</td>
+<td>
+<p>boolean: false (default) or true. While true (a page is loading), the buttons of the pager of externalPagination are disabled; they keep the focus of the keyboard.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;externalPaginationPage
+</td>
+<td>
+<p>number: the page shown when externalPagination is true, from 1 (default 1; never past the last page).</p><p><b>Example:</b> 
+
+```
+2
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;externalPaginationPageSize
+</td>
+<td>
+<p>number: the number of rows of a page when externalPagination is true; null (default) takes paginationPageSize.</p><p><b>Example:</b> 
+
+```
+20
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;externalPaginationRowCount
+</td>
+<td>
+<p>number: the number of rows of all the pages when externalPagination is true. null (default) while it is unknown: the pager says "of more", offers the next page while the page shown is full, and no last page.</p><p><b>Example:</b> 
+
+```
+250
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;getLocaleText
 </td>
 <td>
@@ -745,6 +855,34 @@ true
 
 ```
 null
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;headerFontFamily
+</td>
+<td>
+<p>string: null (default) or a list of font families, as the CSS property font-family (names, quoted or not, and generic families such as serif or monospace), or a var() of a variable of the page with such a list as fallback. The font family of the header row: the names of the columns, the group headers and the floating filters. While null, the header keeps the font of the theme; a value that is not a list of font families is ignored.</p><p><b>Example:</b> 
+
+```
+&#x27;Georgia, &quot;Times New Roman&quot;, serif&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;headerFontSize
+</td>
+<td>
+<p>number or string: null (default), a number of pixels or a CSS length (px, pt, em, rem, %), or a var() of a variable of the page. The font size of the header row. While null, the header keeps the font size of the theme; a value that is not a size is ignored. The header row keeps its height: a size much larger than the font of the theme may cut its texts.</p><p><b>Example:</b> 
+
+```
+13
 ```
 
 </p>
@@ -817,6 +955,20 @@ n/a
 
 ```
 n/a
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;maxColumnCharacters
+</td>
+<td>
+<p>number: null (default) or a number of characters. After each sizing pass of the grid (autoSizeColumns, or the fit of the columns to the width of the grid), a column wider than this number of characters (as many "0" in the font of the cells, plus their padding, never under the minWidth of the column) is brought back to it. A column the user resizes keeps its width until the next sizing pass (new rows, a new width of the grid). With truncateText, a longer text is cut at the width of the column.</p><p><b>Example:</b> 
+
+```
+40
 ```
 
 </p>
@@ -1003,7 +1155,7 @@ pattern
 validator
 ```
 
-: function (value, row, field) or expression using them, returning true, false or an error message. 
+: function (value, row, field), returning true, false or an error message. 
 
 ```
 dateOutput
@@ -1232,6 +1384,34 @@ false
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;stickyHeader
+</td>
+<td>
+<p>boolean: false (default) or true. When true, the header row of a grid taller than the screen stays on screen while the page scrolls its rows, then leaves with the end of the grid, as a frozen row of a spreadsheet. It sticks in the nearest scrolling ancestor of the grid, at stickyHeaderTop: that ancestor must be the box that scrolls (a box with overflow hidden or auto that never scrolls keeps it from sticking). Needs overflow: clip (Safari 16 and later; before, the header scrolls with the rows).</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;stickyHeaderTop
+</td>
+<td>
+<p>CSS length: where the header row sticks when stickyHeader is true, from the top of the scrolling container, for example the height of a sticky toolbar above the grid; a var() of a variable the page sets works too.</p><p><b>Example:</b> 
+
+```
+'56px'
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;suppressCellSelection
 </td>
 <td>
@@ -1281,6 +1461,20 @@ false
 
 ```
 false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;truncateText
+</td>
+<td>
+<p>boolean: false (default) or true. When true, each cell shows on one line, a longer content cut with an ellipsis at the width of its column: widening the column shows more of it. The whole content of a cut cell shows in a tooltip when the mouse rests on the cell (300 ms), or when the cell gets the focus from the keyboard (arrows of the grid) or a touch; Escape, leaving the cell or a scroll hides it, and a cell that shows all of its content shows none. A cell renderer can mark the element holding its line with the class <code>aggrid-cell-line</code> and give its whole content in a <code>data-aggrid-full-text</code> attribute. While false, the grid behaves exactly as before.</p><p><b>Example:</b> 
+
+```
+true
 ```
 
 </p>
@@ -1358,6 +1552,14 @@ Fire when the RowModelType is 'infinite'. Excepts fromatted data into a agGridUp
 </td>
 <td>
 Fired when the Grid is ready. Data will be the agGrid event
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;PageRequest
+</td>
+<td>
+Fired by a button of the pager of externalPagination. Data: {page: the page asked, from 1, previousPage, pageSize, rowCount, button: first, previous, next or last}. Give the grid the rows of that page, then set externalPaginationPage (and externalPaginationRowCount).
 </td>
 </tr>
 <tr>
@@ -2830,6 +3032,20 @@ true
 </p>
 </td>
 </tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;tickLabelInterval
+</td>
+<td>
+<p>number: null (default) or an interval. When greater than 0, the values min, min + tickLabelInterval, min + 2 × tickLabelInterval... and max are written under the bar, each centered under its position, whatever the step. When the bar is too narrow for all of them, one value in 2, 3... is shown, the first and the last always. The values take the format of the value near the thumb (10000 and more in k). Empty, 0 or not a number: no values, the slider looks as before.</p><p><b>Example:</b> 
+
+```
+25
+```
+
+</p>
+</td>
+</tr>
 </table>
 
 
@@ -3851,6 +4067,407 @@ comment
 </td>
 <td>
 
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>richTextPalette</b> : A rich text editor (HugeRTE, through the tinyMce component) with a palette of variables, after the Description of C8Oforms: its menu bar and toolbar, and a palette like its data palette (a search field, groups that fold, with their icon and count, the variables with their icon, second line and type)</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") richTextPalette
+
+A rich text editor (HugeRTE, through the tinyMce component) with a palette of variables, after the Description of C8Oforms: its menu bar and toolbar, and a palette like its data palette (a search field, groups that fold, with their icon and count, the variables with their icon, second line and type). A click on a variable, or a drag and drop into the text, writes it at that place. The variables are written in the HTML as {{ key }} placeholders, shown in the editor as chips. The variables input lists the variables of the application; default variables (date, signed-in user, language) are offered too. Light or dark as the page behind it (theme input). Typical use: bind html to a variable of the page and set that variable again from event.html in onChange; give the same html and variables to richTextPaletteViewer, which shows the text with the values of the variables (the editor never reads the values).
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;defaultVariables
+</td>
+<td>
+<p>boolean or array: the default variables of the palette. true (default): all of them (api.clock.today, api.clock.now, api.clock.time, api.clock.year, api.user.name, api.user.email, api.user.authenticatedUserID, api.user.groups, api.translate.currentLang). false: none. An array (or a comma-separated text) of keys: only these ones.</p><p><b>Example:</b> 
+
+```
+[&#x27;api.clock.today&#x27;, &#x27;api.user.name&#x27;, &#x27;api.user.email&#x27;]
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;disabled
+</td>
+<td>
+<p>boolean: the editor is read only and the palette inserts nothing.</p><p><b>Example:</b> 
+
+```
+false
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;groups
+</td>
+<td>
+<p>array or object: the icon of a group of the palette, and whether it starts folded. An array of { name, icon, open }, or an object { name: icon } or { name: { icon, open } }. name: the group of the variables. icon: as the icon of a variable. open: false folds the group at the start. A group without an icon gets a folder; the default groups keep theirs.</p><p><b>Example:</b> 
+
+```
+{&#x27;Customer&#x27;: &#x27;person-outline&#x27;, &#x27;Order&#x27;: {icon: &#x27;cart-outline&#x27;, open: false}}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;height
+</td>
+<td>
+<p>number or string: the height of the editor (pixels or a CSS length).</p><p><b>Example:</b> 
+
+```
+400
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;html
+</td>
+<td>
+<p>string: the HTML of the text, its variables written as {{ key }} placeholders. Loaded into the editor at its start and each time the page gives another HTML than the one onChange last gave. A placeholder of a key the palette does not have stays as written.</p><p><b>Example:</b> 
+
+```
+&#x27;&lt;p&gt;Hello {{ customer.name }}&lt;/p&gt;&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;init
+</td>
+<td>
+<p>object: options of HugeRTE over the ones of the component, which are those of the Description of C8Oforms (menu bar, toolbar, plugins, quick toolbar on a selection), the oxide or oxide-dark skin and the default or dark content for the theme, the height and placeholder inputs and the language of the application. Read when the editor starts. Its content_style is added to the style of the text and the chips; its setup runs after the one of the component.</p><p><b>Example:</b> 
+
+```
+{menubar: false, toolbar: &#x27;undo redo | bold italic | bullist numlist&#x27;, plugins: &#x27;lists&#x27;}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paletteHint
+</td>
+<td>
+<p>string: the help text at the foot of the palette, where the variable under the pointer is described; false hides the foot.</p><p><b>Example:</b> 
+
+```
+&#x27;Click a variable or drag it into the text.&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;palettePosition
+</td>
+<td>
+<p>string: where the palette stands: 'end' (default, after the editor, as in C8Oforms), 'start' (before it), 'top', 'bottom', or 'none' (no palette: the placeholders of the HTML are still shown as chips). Beside the editor, the palette is as high as the editor and about 28% of the window wide (320 to 520 pixels, at most half of the component); under 720 pixels of width, it goes above the editor.</p><p><b>Example:</b> 
+
+```
+&#x27;end&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paletteSearch
+</td>
+<td>
+<p>boolean or string: the search field of the palette (it filters the variables by label, key and group): 'auto' (default, shown from 9 variables on), true or false.</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paletteTexts
+</td>
+<td>
+<p>object: the other texts of the palette: empty (shown when the search finds no variable), foldAll and unfoldAll (the button beside the search field).</p><p><b>Example:</b> 
+
+```
+{empty: &#x27;Aucune variable trouvée.&#x27;, foldAll: &#x27;Tout replier&#x27;, unfoldAll: &#x27;Tout déplier&#x27;}
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;paletteTitle
+</td>
+<td>
+<p>string: the title of the palette.</p><p><b>Example:</b> 
+
+```
+&#x27;Variables&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;placeholder
+</td>
+<td>
+<p>string: the text the editor shows while it is empty.</p><p><b>Example:</b> 
+
+```
+&#x27;Write your text here&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;searchPlaceholder
+</td>
+<td>
+<p>string: the placeholder of the search field of the palette.</p><p><b>Example:</b> 
+
+```
+&#x27;Search&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;theme
+</td>
+<td>
+<p>string: the theme of the editor and its palette: 'auto' (default: light or dark as the page behind the component, read again when the page changes its theme), 'light' or 'dark'. Dark, the colors come from the Ionic colors of the application (--ion-card-background, --ion-text-color, --ion-border-color, --ion-color-primary). A change of theme starts the editor again, with its text.</p><p><b>Example:</b> 
+
+```
+&#x27;auto&#x27;
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;variables
+</td>
+<td>
+<p>array or object: the variables of the application, listed first in the palette. An array of { key, label, group, description, icon, type, value } (a string is a key), or an object { key: value }. key: the name written in the placeholder (letters, digits, dots, spaces; no brace, angle bracket, quote, backslash nor ampersand). label: the text of the palette and of the chip (default: the key). group: the title of its group in the palette. description: its second line in the palette. icon: the name of an Ionicons icon of the application ('person-outline'), the URL of an SVG file, or an icon of the palette ('lucide:calendar'); drawn in the color of the text. type: the badge on its right ('Text', 'Date'...). value: a value, or a function returning it, read by richTextPaletteViewer. A variable with the key of a default variable replaces its label, group, description, icon, type or value.</p><p><b>Example:</b> 
+
+```
+[{key: &#x27;customer.name&#x27;, label: &#x27;Customer name&#x27;, group: &#x27;Customer&#x27;, icon: &#x27;person-outline&#x27;, type: &#x27;Text&#x27;, value: this.local.customer?.name}, {key: &#x27;order.total&#x27;, label: &#x27;Order total&#x27;, group: &#x27;Order&#x27;, description: &#x27;Taxes included&#x27;, value: () =&gt; this.local.total + &#x27; EUR&#x27;}, {key: &#x27;api.user.name&#x27;, label: &#x27;Author&#x27;}]
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onBlur
+</td>
+<td>
+Fired when the editor loses the focus, after onChange when the text changed. Data: { html, variables }.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onChange
+</td>
+<td>
+Fired when the text changes (250 ms after the last keystroke, at once for a variable inserted). Data: { html, variables }: the HTML with its {{ key }} placeholders, and the keys of the placeholders it holds. htmlChange gives the same HTML (two-way binding of html).
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onReady
+</td>
+<td>
+Fired when the editor has started and loaded its text, and again when a change of theme has started a new editor. Data: { editor }: the HugeRTE editor.
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>richTextPaletteViewer</b> : Shows an HTML text written with richTextPalette: its {{ key }} placeholders replaced by the values of their variables (as text), then the HTML sanitized by DOMPurify (no script, event handler, javascript: URL, frame, form; the inline styles stay)</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") richTextPaletteViewer
+
+Shows an HTML text written with richTextPalette: its {{ key }} placeholders replaced by the values of their variables (as text), then the HTML sanitized by DOMPurify (no script, event handler, javascript: URL, frame, form; the inline styles stay). Typical use: html and variables are the ones given to richTextPalette (the labels and groups are not needed here); userName and userEmail give the name and the e-mail of the signed-in user when the application knows them.
+
+On the server (an e-mail or a PDF made by a sequence, with values read from a database), there is no viewer: replace the placeholders with the regular expression of the viewer, for example in a JavaScript step:
+
+```js
+// html: the text saved from richTextPalette; customerName, orderTotal: read from the database by the steps before
+function escapeHtml(text) {
+  return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+var values = { "customer.name": customerName, "order.total": orderTotal };
+var result = String(html).replace(/\{\{([^{}<>]*?)\}\}(?![^<]*>)/g, function (all, raw) {
+  var key = raw.replace(/&nbsp;|&#160;|&#xa0;|\u00a0/gi, " ").replace(/\s+/g, " ").trim();
+  var value = values[key];
+  return value != null ? escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>") : all;
+});
+```
+
+As in the viewer: the key is cleaned (an editor may write no-break spaces in it); the value is escaped, so a value holding HTML stays text, and its line breaks become `<br>`; a placeholder in a tag (an attribute) or with a key that has no value stays as written. The `event.variables` of onChange in richTextPalette lists the keys the text holds: save them with the html to read only these values. Give their values to the default variables the text may hold too (`api.clock.today`, `api.user.name`...). There is no DOMPurify on the server: sanitize the HTML there too when its authors are not trusted and it is shown in a browser.
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;defaultVariables
+</td>
+<td>
+<p>boolean or array: the default variables, as for richTextPalette. true (default): all of them; false: none; an array of keys: only these ones.</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;html
+</td>
+<td>
+<p>string: the HTML to show, its variables written as {{ key }} placeholders (the html of richTextPalette). A placeholder in a tag (an attribute), or of a key no variable has, stays as written.</p><p><b>Example:</b> 
+
+```
+this.local.text
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;userEmail
+</td>
+<td>
+<p>string: the value of {{ api.user.email }}. While empty, the ID of the user signed in to the Convertigo session when it is an e-mail address, else empty.</p><p><b>Example:</b> 
+
+```
+this.local.user?.mail
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;userName
+</td>
+<td>
+<p>string: the value of {{ api.user.name }}. While empty, the ID of the user signed in to the Convertigo session.</p><p><b>Example:</b> 
+
+```
+this.local.user?.displayName
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;variables
+</td>
+<td>
+<p>array or object: the variables, as for richTextPalette. A value is a value or a function returning it, read at each change detection; it is written as text (escaped, its line breaks kept), a date in the language of the application, an array as its values joined by commas.</p><p><b>Example:</b> 
+
+```
+[{key: &#x27;customer.name&#x27;, value: this.local.customer?.name}, {key: &#x27;order.total&#x27;, value: () =&gt; this.local.total}]
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+
+<span style="color:DarkGoldenRod">Events</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompevent_16x16.png?raw=true "  alt="UICompEvent" >&nbsp;onRender
+</td>
+<td>
+Fired when the HTML shown changes. Data: { html }: the sanitized HTML with the values of its variables.
 </td>
 </tr>
 </table>

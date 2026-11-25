@@ -6,6 +6,10 @@ scriptContent:
         '/*Begin_c8o_CompImport*/
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
+        	// tickLabelInterval: the row of the values under the bar, its observer, the labels of the last bounds and measure
+        	public tickLabelsRow: any = null;
+        	public tickLabelsObserver: any = null;
+        	public tickLabelsCache: any = { key: null, labels: [] };
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		this.local.displayFormatter = (value: number) =>{
@@ -14,10 +18,16 @@ scriptContent:
         			  }
         			  return value.toString();
         		}
+        		// tickLabelInterval: the bar measured in the row of its values (null until then)
+        		this.local.tickLabelsTrack = null;
         		/*End_c8o_CompConstructor*/
         /*Begin_c8o_CompInitialization*/
         		/*End_c8o_CompInitialization*/
         /*Begin_c8o_CompFinalization*/
+        		if (this.tickLabelsObserver != null) {
+        			this.tickLabelsObserver.disconnect();
+        			this.tickLabelsObserver = null;
+        		}
         		/*End_c8o_CompFinalization*/
         /*Begin_c8o_CompChanges*/
         		/*End_c8o_CompChanges*/
@@ -30,8 +40,133 @@ scriptContent:
         /*Begin_c8o_CompAfterViewInit*/
         		/*End_c8o_CompAfterViewInit*/
         /*Begin_c8o_CompAfterViewChecked*/
+        		this.watchTickLabels();
         		/*End_c8o_CompAfterViewChecked*/
         /*Begin_c8o_CompFunction*/
+        	// tickLabelInterval: the values written under the bar, every tickLabelInterval from min, and max, each with its
+        	// position in percent of the bar and its text in the format of the value near the thumb (displayFormatter). None when
+        	// the interval is empty, 0, negative or not a number, or when the bounds cannot be read.
+        	listTickLabels(min: any, max: any, interval: any): any[] {
+        		const read = (value: any) => (value === "" || value == null || typeof value === "boolean" ? NaN : Number(value));
+        		const from = read(min);
+        		const to = read(max);
+        		const every = read(interval);
+        		if (!isFinite(from) || !isFinite(to) || !isFinite(every) || every <= 0 || to <= from) {
+        			return [];
+        		}
+        		// the decimals of the bound and of the interval: 0.1 + 0.2 is written 0.3
+        		const decimals = (value: number) => {
+        			const text = String(Math.abs(value));
+        			const exponent = text.indexOf("e");
+        			return exponent < 0 ? (text.split(".")[1] || "").length : Math.max(0, (text.slice(0, exponent).split(".")[1] || "").length - Number(text.slice(exponent + 1)));
+        		};
+        		const digits = Math.min(10, Math.max(decimals(from), decimals(every)));
+        		const count = Math.floor((to - from) / every + 1e-9);
+        		// about a hundred values at most: more could never be read under a bar
+        		const stride = Math.max(1, Math.ceil(count / 100));
+        		const values: number[] = [];
+        		for (let k = 0; k <= count; k += stride) {
+        			values.push(Number((from + k * every).toFixed(digits)));
+        		}
+        		if (to - values[values.length - 1] > every * 1e-9) {
+        			values.push(to);
+        		}
+        		const format = typeof this.local?.displayFormatter === "function" ? this.local.displayFormatter : (value: number) => String(value);
+        		return values.map((value: number) => ({ value: value, label: "" + format(value), position: (value - from) / (to - from) * 100 }));
+        	}
+        	// The labels that fit side by side in the width of the bar (px), a label taking charWidth px per character and gap px
+        	// from the next one: all of them, else one in 2, 3... (a stride that ends on the max when there is one close), the
+        	// first and the last always, the one before the last left out when it would touch it. All of them until the bar is
+        	// measured.
+        	fitTickLabels(labels: any[], width: any, charWidth: any = 7, gap: number = 8): any[] {
+        		if (!(width > 0) || !(charWidth > 0) || labels.length < 3) {
+        			return labels;
+        		}
+        		const last = labels.length - 1;
+        		const room = (label: any) => label.label.length * charWidth;
+        		const fits = (a: any, b: any) => (b.position - a.position) * width / 100 >= (room(a) + room(b)) / 2 + gap;
+        		const step = labels[1].position - labels[0].position;
+        		// the max is a regular value when the interval divides the range
+        		const regular = Math.abs(labels[last].position - labels[last - 1].position - step) < 1e-6;
+        		const widest = Math.max(...labels.map(room));
+        		let stride = Math.max(1, Math.ceil((widest + gap) / (step * width / 100)));
+        		if (regular) {
+        			for (let s = stride; s <= Math.min(stride * 2, last); s++) {
+        				if (last % s === 0) {
+        					stride = s;
+        					break;
+        				}
+        			}
+        		}
+        		const shown = labels.filter((label: any, i: number) => (regular || i < last) && i % stride === 0);
+        		if (shown[shown.length - 1] !== labels[last]) {
+        			while (shown.length > 1 && !fits(shown[shown.length - 1], labels[last])) {
+        				shown.pop();
+        			}
+        			shown.push(labels[last]);
+        		}
+        		return shown;
+        	}
+        	// The labels of the template: computed again when the bounds, the interval or the measure of the bar change.
+        	getTickLabels(): any[] {
+        		const track = this.local.tickLabelsTrack;
+        		const key = [this.min, this.max, this.tickLabelInterval, track?.width, track?.charWidth].join("|");
+        		if (this.tickLabelsCache.key !== key) {
+        			this.tickLabelsCache = { key: key, labels: this.fitTickLabels(this.listTickLabels(this.min, this.max, this.tickLabelInterval), track == null ? null : track.width - 6, track?.charWidth) };
+        		}
+        		return this.tickLabelsCache.labels;
+        	}
+        	// Where a label is centered: where the thumb stands for its value once the bar is measured (the thumb of mat-slider runs
+        	// from 3px after the left edge of the mat-slider element to 3px before its right edge, the other way in a right to left
+        	// page), at its percent of the row before.
+        	getTickLabelLeft(label: any): string {
+        		const track = this.local.tickLabelsTrack;
+        		if (track == null) {
+        			return label.position + "%";
+        		}
+        		const position = track.rtl ? 100 - label.position : label.position;
+        		return Math.round((track.left + 3 + (track.width - 6) * position / 100) * 10) / 10 + "px";
+        	}
+        	// Measures the bar when the row of the values is shown, and again when the width of the row changes.
+        	watchTickLabels(): void {
+        		const row = this.elRef?.nativeElement?.querySelector?.(".slider-tick-labels") ?? null;
+        		if (row === this.tickLabelsRow) {
+        			return;
+        		}
+        		this.tickLabelsRow = row;
+        		if (this.tickLabelsObserver != null) {
+        			this.tickLabelsObserver.disconnect();
+        			this.tickLabelsObserver = null;
+        		}
+        		if (row == null || typeof ResizeObserver === "undefined") {
+        			return;
+        		}
+        		this.tickLabelsObserver = new ResizeObserver(() => this.measureTickLabels());
+        		this.tickLabelsObserver.observe(row);
+        	}
+        	// The bar (the mat-slider element) in the coordinates of the row, whatever margin the page gives it, the width of a
+        	// character of the labels and the direction of the page.
+        	measureTickLabels(): void {
+        		const row = this.tickLabelsRow;
+        		const slider = this.elRef?.nativeElement?.querySelector?.("mat-slider");
+        		if (row == null || slider == null || !row.isConnected) {
+        			return;
+        		}
+        		const rowBox = row.getBoundingClientRect();
+        		const sliderBox = slider.getBoundingClientRect();
+        		if (!(sliderBox.width > 0)) {
+        			return;
+        		}
+        		const style = getComputedStyle(row);
+        		const fontSize = parseFloat(style.fontSize) || 12;
+        		const track = { left: Math.round((sliderBox.left - rowBox.left) * 10) / 10, width: Math.round(sliderBox.width * 10) / 10, charWidth: fontSize * 0.6, rtl: style.direction === "rtl" };
+        		const previous = this.local.tickLabelsTrack;
+        		if (previous != null && previous.left === track.left && previous.width === track.width && previous.charWidth === track.charWidth && previous.rtl === track.rtl) {
+        			return;
+        		}
+        		this.local.tickLabelsTrack = track;
+        		this.ref.detectChanges();
+        	}
         	/*End_c8o_CompFunction*/
         '
 ↓Tag [ngx.components.UIElement-1662984415570]: 
@@ -180,6 +315,37 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
         - MobileSmartSourceType: script:this.local.displayFormatter
     comment: Attr8 (UIAttribute).
+↓TickLabels [ngx.components.UICustom-1811000000001]: 
+  comment: 'tickLabelInterval: the values under the bar, each centered under its position. aria-hidden: the slider itself gives its value, min and max to assistive technologies.'
+  htmlTemplate: |
+    <div class="slider-tick-labels" aria-hidden="true" *ngIf="getTickLabels().length > 0">
+      <span class="slider-tick-label" *ngFor="let label of getTickLabels()" [style.left]="getTickLabelLeft(label)">{{ label.label }}</span>
+    </div>
+↓TickLabelsStyle [ngx.components.UIStyle-1811000000002]: 
+  comment: 'tickLabelInterval: the row of the values, pulled up under the bar (the mat-slider is 48px high, its bar in the middle). The page may set --slider-tick-label-color, --slider-tick-label-font-size and --slider-tick-labels-offset.'
+  styleContent: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+      - com.twinsoft.convertigo.beans.common.FormatedContent: 
+        →: |
+          '.slider-tick-labels {
+          	position: relative;
+          	display: block;
+          	height: 16px;
+          	margin-top: var(--slider-tick-labels-offset, -12px);
+          	font-size: var(--slider-tick-label-font-size, 12px);
+          	line-height: 16px;
+          	color: var(--slider-tick-label-color, currentColor);
+          	pointer-events: none;
+          	user-select: none;
+          }
+          .slider-tick-label {
+          	position: absolute;
+          	top: 0;
+          	transform: translateX(-50%);
+          	white-space: nowrap;
+          }
+          '
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1662984526639]: 
   comment: Shared Component Event (UISharedComponentEvent).
   ↓Imports [ngx.components.UICustomAction-1662984537097]: 
@@ -247,3 +413,6 @@ scriptContent:
 ↓showValue [ngx.components.UICompVariable-1729506413222]: 
   comment: '<p>boolean: display current value label near the thumb</p><p><b>Example:</b> <code>true</code></p>'
   value: true
+↓tickLabelInterval [ngx.components.UICompVariable-1811000000003]: 
+  comment: '<p>number: null (default) or an interval. When greater than 0, the values min, min + tickLabelInterval, min + 2 × tickLabelInterval... and max are written under the bar, each centered under its position, whatever the step. When the bar is too narrow for all of them, one value in 2, 3... is shown, the first and the last always. The values take the format of the value near the thumb (10000 and more in k). Empty, 0 or not a number: no values, the slider looks as before.</p><p><b>Example:</b> <code>25</code></p>'
+  value: null
