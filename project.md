@@ -1739,6 +1739,57 @@ n/a
 <details><summary><b>agGrid_CsvXlsxDownload_Row</b> : Compact CSV and Excel export menu for an AG Grid instance</summary><blockquote><p>
 
 
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_CsvDownload_Row
+
+Kept for the applications that use it. A row with the CSV export button of an agGrid; new applications use agGrid_CsvXlsxDownload_Row, which can also export to Excel.
+
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;ag_grid
+</td>
+<td>
+<p>Reference to the agGrid instance used to trigger CSV export</p><p><b>Example:</b> 
+
+```
+n/a
+```
+
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uicompvariable_16x16.png?raw=true "  alt="UICompVariable" >&nbsp;alignment
+</td>
+<td>
+<p>Row alignment for the CSV button container (start, center or end)</p><p><b>Example:</b> 
+
+```
+&#x27;end&#x27;
+```
+
+</p>
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
+<details><summary><b>angularxQRCode</b> : A QR Code Reader  using Full JS Algorithm</summary><blockquote><p>
+
+
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") agGrid_CsvXlsxDownload_Row
 
 Compact CSV and Excel export menu for an AG Grid instance.

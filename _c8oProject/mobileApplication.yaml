@@ -31,6 +31,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓agGridCompleteRowCreation [ngx.components.UIActionStack-1808000000080]: 🗏 mobileSharedActions/agGridCompleteRowCreation.yaml
 ↓agGrid [ngx.components.UISharedRegularComponent-1710934918899]: 🗏 mobileSharedComponents/agGrid.yaml
 ↓agGrid_CsvDownload [ngx.components.UISharedRegularComponent-1741622230172]: 🗏 mobileSharedComponents/agGrid_CsvDownload.yaml
+↓agGrid_CsvDownload_Row [ngx.components.UISharedRegularComponent-1795617317437]: 🗏 mobileSharedComponents/agGrid_CsvDownload_Row.yaml
 ↓agGrid_CsvXlsxDownload_Row [ngx.components.UISharedRegularComponent-1741622230199]: 🗏 mobileSharedComponents/agGrid_CsvXlsxDownload_Row.yaml
 ↓ngxTagInput [ngx.components.UISharedRegularComponent-1577113184271]: 🗏 mobileSharedComponents/ngxTagInput.yaml
 ↓tinyMce [ngx.components.UISharedRegularComponent-1584094766586]: 🗏 mobileSharedComponents/tinyMce.yaml
