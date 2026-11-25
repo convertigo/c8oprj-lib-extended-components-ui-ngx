@@ -20,3 +20,8 @@
 /oas3/
 
 /build/
+
+# database of the agGrid_CRUD demo (hsqldb.script and hsqldb.properties are versioned)
+/hsqldb.lck
+/hsqldb.log
+/hsqldb.tmp/

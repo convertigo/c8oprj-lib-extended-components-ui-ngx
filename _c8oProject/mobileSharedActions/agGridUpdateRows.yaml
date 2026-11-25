@@ -11,7 +11,7 @@ comment: agGrid Update Rows, must be called in a GetRows Control
         →: |
           '		try {
           			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName + '' vars: ''  +vars + ''event : '' + event);
-          			let data = ''RowData'' in vars.data ? vars.data.RowData : [];
+          			let data = vars.data?.RowData ?? [];
           			if (''ColDef'' in vars.data && vars.agGridEvent.skip == 0) {
           				vars.agGridEvent.object.agGrid.api.setColumnDefs(vars.data.ColDef);
           			}

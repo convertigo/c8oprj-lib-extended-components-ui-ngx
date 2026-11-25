@@ -10,6 +10,12 @@
   corsOrigin: =Origin
   version: 8.4.0.61
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  ↓sample [connectors.SqlConnector]: 🗏 connectors/sample.yaml
+  ↓AGGRIDCRUD_DELETE [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_DELETE.yaml
+  ↓AGGRIDCRUD_INSERT [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_INSERT.yaml
+  ↓AGGRIDCRUD_LIST [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_LIST.yaml
+  ↓AGGRIDCRUD_SELECT [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_SELECT.yaml
+  ↓AGGRIDCRUD_UPDATE [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_UPDATE.yaml
   ↓RichTextPaletteMerge [sequences.GenericSequence]: 🗏 sequences/RichTextPaletteMerge.yaml
   ↓lib_MicrosoftExcel [references.ProjectSchemaReference]: 
     projectName: lib_MicrosoftExcel=https://github.com/convertigo/c8oprj-lib-excel.git:branch=1.3.0

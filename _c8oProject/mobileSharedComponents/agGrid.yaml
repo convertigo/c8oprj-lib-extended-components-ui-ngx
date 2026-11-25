@@ -1659,6 +1659,15 @@ scriptContent:
 ↓rowData [ngx.components.UICompVariable-1710934918920]: 
   comment: '<p>Array of row { fieldName1: &#x27;value1&#x27;, fieldName2: &#x27;value2&#x27;, fieldName3: true, ...} objects</p><p><b>Example:</b> <code>[{ make: &#x27;Toyota&#x27;, model: &#x27;Celica&#x27;, price: 35000 },{ make: &#x27;Ford&#x27;, model: &#x27;Mondeo&#x27;, price: 32000 },{ make: &#x27;Porsche&#x27;, model: &#x27;Boxter&#x27;, pr...</code></p>'
   value: '[{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 },{ make: ''Toyota'', model: ''Celica'', price: 35000 },{ make: ''Ford'', model: ''Mondeo'', price: 32000 },{ make: ''Porsche'', model: ''Boxter'', price: 72000 }]'
+↓editType [ngx.components.UICompVariable-1755770286084]: 
+  comment: '''singleCell'' or ''fullRow'''
+  value: '''singleCell'''
+↓pinnedTopRowData [ngx.components.UICompVariable-1755770900201]: 
+  comment: Data to be displayed as pinned top rows in the grid.
+  value: '[]'
+↓pinnedBottomRowData [ngx.components.UICompVariable-1755770936305]: 
+  comment: Data to be displayed as pinned bottom rows in the grid.
+  value: '[]'
 ↓width [ngx.components.UICompVariable-1710934918923]: 
   comment: <p>width value in % or px</p><p><b>Example:</b> <code>&#x27;100%&#x27;</code></p>
   value: '''100%'''
@@ -1698,6 +1707,9 @@ scriptContent:
 ↓CellValueChanged [ngx.components.UICompEvent-1710934918962]: 
   attrName: CellValueChanged
   comment: Fired when A Cell is edited changed. Data will be the agGrid event
+↓RowValueChanged [ngx.components.UICompEvent-1755869511174]: 
+  attrName: RowValueChanged
+  comment: Fired when a row edited in full row mode (editType 'fullRow') is validated. Data will be the agGrid event
 ↓rowHeight [ngx.components.UICompVariable-1710934918965]: 
   comment: <p>Height of the row in pixels as a string</p><p><b>Example:</b> <code>&#x27;25&#x27;</code></p>
   value: '''25'''
@@ -2839,6 +2851,34 @@ scriptContent:
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.themeStyle
               comment: Per-instance AG Grid theme variables.
+            ↓AttrEditType [ngx.components.UIAttribute-1755770245668]: 
+              attrName: '[editType]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.editType","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓AttrPinnedTopRowData [ngx.components.UIAttribute-1755770633303]: 
+              attrName: '[pinnedTopRowData]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.pinnedTopRowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓AttrPinnedBottomRowData [ngx.components.UIAttribute-1755770853838]: 
+              attrName: '[pinnedBottomRowData]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: source:{"filter":"Shared","project":"lib_ExtendedComponents_ui_ngx","input":"","model":{"data":[{"priority":1710934918899,"regular":true}],"path":"?.pinnedBottomRowData","prefix":"","suffix":"","custom":"","useCustom":false}}
+            ↓EventRowValueChanged [ngx.components.UIControlEvent-1755869559327]: 
+              attrName: (rowValueChanged)
+              eventName: (rowValueChanged)
+              ↓EmitEvent [ngx.components.UIDynamicEmit-1755869559330]: 
+                beanData: |
+                  '{
+                   "ionBean": "EmitEventAction",
+                   "event": "plain:lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid.RowValueChanged",
+                   "data": "script:event"
+                  }'
           ↓ExternalPager [ngx.components.UICustom-1810000000020]: 
             comment: 'externalPagination: the pager of a grid whose rows are paged by the application, in place of the pager of AG Grid. Its buttons emit PageRequest. The words of the pager are text next to its numbers, and a space separates its two parts: the compiled template drops the blank text between elements.'
             htmlTemplate: |
