@@ -456,6 +456,8 @@ This Shared component wraps the ag-grid component. Most of the properties and ev
 
 Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop. Fonts (off by default, the font of the theme): headerFontFamily and headerFontSize set the font of the header row, cellFontFamily and cellFontSize the font of the rows; a value that is not a font family list or a size is ignored.
 
+Rows and columns (off by default): rowId gives the identity of a row (read when the grid is created), so that a new list of rows updates the rows of the same identity instead of drawing every row again (each row keeps its place, its height and its selection); columnStyles sets the alignment and the padding of the cells of some columns (align left, center or right, paddingLeft and paddingRight in pixels), their header aligned the same way.
+
 Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
 
 External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
@@ -633,6 +635,24 @@ false
 
 ```
 250
+```
+
+</p></td>
+</tr>
+<tr>
+<td>rowId</td><td><p>function: null (default) or a function that gives the identity of a row from its data, a string or a number (null for a row without one). It is read when the grid is created. While null, each new list of rows (rowData) is drawn again whole. Otherwise a new list updates the rows of the same identity: each row keeps its place, its height and its selection, and the grid keeps its height (rows of an automatic height are not measured again). A row without identity, or with the identity of a row before it in the same list, gets one of its own.</p><p><b>Example:</b> 
+
+```
+(data) => data?.id
+```
+
+</p></td>
+</tr>
+<tr>
+<td>columnStyles</td><td><p>object: null (default) or the look of some columns, by the field of their column definition: <code>align</code> (left, center or right) and <code>paddingLeft</code>, <code>paddingRight</code> (numbers of pixels, 0 to 60). The cells of the column and its header take them; the alignment also places a block a cell renderer gives (a number right-aligned by its renderer is centered by center). A value that is none of these is ignored, a column without style keeps its look.</p><p><b>Example:</b> 
+
+```
+{Rate: {align: "center", paddingRight: 24}}
 ```
 
 </p></td>

@@ -3,6 +3,8 @@ comment: |
   
   Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop.
   
+  Rows and columns (off by default): rowId gives the identity of a row (read when the grid is created), so that a new list of rows updates the rows of the same identity instead of drawing every row again (each row keeps its place, its height and its selection); columnStyles sets the alignment and the padding of the cells of some columns (align left, center or right, paddingLeft and paddingRight in pixels), their header aligned the same way.
+  
   Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
   
   External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
@@ -43,6 +45,16 @@ scriptContent:
         	public agGridDraftColumnDefsSignature: string = "";
         	public agGridDraftMultiSelectEditor: any = null;
         	public agGridDraftOverlayListener: any = null;
+        	// rowId (off by default): the getRowId function of AG Grid (false when rowId was no function as the grid was created), the
+        	// identity of each row given, the number of the next row without one
+        	public agGridRowIdFunction: any = null;
+        	public agGridRowIds: WeakMap<any, string> = new WeakMap();
+        	public agGridRowIdNext: number = 0;
+        	// columnStyles (off by default): the column definitions with the look of their columns, copied again only when the
+        	// columns or the styles change
+        	public agGridStyledColumnDefs: any = null;
+        	public agGridStyledColumnDefsSource: any = null;
+        	public agGridStyledColumnDefsSignature: string = "";
         	public agGridDraftOverlayApi: any = null;
         	// truncateText: the tooltip of the whole content of a cut cell, its cell, what showed it (hover or focus), the timer of
         	// the hover, the type of the last pointer, the listener of the scroll that hides it and its id.
@@ -84,6 +96,10 @@ scriptContent:
         		// Former onChanges event actions first (height style, page size selector, locale), then the sizing request, as before.
         		const agGridLocaleLoading = this.applyAgGridInputChanges(changes);
         		this.scheduleAgGridSizing(undefined, 4);
+        		// rowId: the identities of a new list of rows, before AG Grid reads it
+        		if (changes?.rowData != null) {
+        			this.indexAgGridRowIds(this.rowData);
+        		}
         		// filterModel: a new model of the filters of the columns, once the grid is ready (gridReady applies the first one)
         		if (changes?.filterModel != null && changes.filterModel.firstChange !== true) {
         			this.applyAgGridFilterModel(this.api);
@@ -456,6 +472,144 @@ scriptContent:
         
         	isAgGridStickyHeader(): boolean {
         		return this.stickyHeader === true || this.stickyHeader === "true";
+        	}
+        
+        	// rowId, off by default (null): a function that gives the identity of a row from its data (a string or a number), or null
+        	// for a row without one. It is read when the grid is created (getRowId of AG Grid is set once): a new list of rows
+        	// (rowData) then updates the rows of the same identity instead of drawing every row again. A row keeps its place, its height
+        	// and its selection: rows of an automatic height (autoHeight columns) were drawn again then measured again at each new
+        	// list, the grid lost then took back their height and the page below it moved. A row without identity, or whose identity
+        	// a row before it in the same list has, gets one of its own (a new object is then a new row, as without rowId).
+        	getAgGridRowIdFunction(): any {
+        		if (this.agGridRowIdFunction == null) {
+        			this.agGridRowIdFunction = typeof this.rowId === "function" ? (params: any) => this.getAgGridRowId(params?.data) : false;
+        		}
+        		return this.agGridRowIdFunction || undefined;
+        	}
+        
+        	// rowId: the identity AG Grid gets for a row, the one given to that data object when its list was indexed
+        	getAgGridRowId(data: any): string {
+        		const kept = data != null && typeof data === "object" ? this.agGridRowIds.get(data) : null;
+        		if (kept != null) {
+        			return kept;
+        		}
+        		const id = this.readAgGridRowId(data, null);
+        		if (data != null && typeof data === "object") {
+        			this.agGridRowIds.set(data, id);
+        		}
+        		return id;
+        	}
+        
+        	// rowId: the identity of a row ("id:" and what rowId gives), or one of its own ("row:" and a number) when rowId gives
+        	// nothing usable or an identity already taken in its list
+        	readAgGridRowId(data: any, taken: Set<string>): string {
+        		let key: any = null;
+        		try {
+        			key = typeof this.rowId === "function" ? this.rowId(data) : null;
+        		} catch (e) {
+        			key = null;
+        		}
+        		let id = (typeof key === "string" && key !== "") || (typeof key === "number" && isFinite(key)) ? "id:" + key : null;
+        		if (id == null || (taken != null && taken.has(id))) {
+        			id = "row:" + (++this.agGridRowIdNext);
+        		}
+        		if (taken != null) {
+        			taken.add(id);
+        		}
+        		return id;
+        	}
+        
+        	// rowId: the identities of a new list of rows, each one given once
+        	indexAgGridRowIds(rows: any): void {
+        		if (!Array.isArray(rows) || this.getAgGridRowIdFunction() == null) {
+        			return;
+        		}
+        		const taken = new Set<string>();
+        		for (const data of rows) {
+        			if (data != null && typeof data === "object") {
+        				this.agGridRowIds.set(data, this.readAgGridRowId(data, taken));
+        			}
+        		}
+        	}
+        
+        	// columnStyles, off by default (null): the look of some columns, by the field of their column definition: {align: "left",
+        	// "center" or "right", paddingLeft, paddingRight: numbers of pixels from 0 to 60}. The cells of the column take them, a block
+        	// a cell renderer gives aligned too (a number right-aligned by its renderer is centered by align center), and its header
+        	// takes the alignment and the padding. A value that is none of these is ignored. The column definitions are copied only
+        	// when the columns or the styles change (a new array at each change detection would make the grid set its columns again).
+        	getAgGridStyledColumnDefs(source: any): any {
+        		const styles: any = this.columnStyles;
+        		if (!Array.isArray(source) || styles == null || typeof styles !== "object" || Array.isArray(styles)) {
+        			return source;
+        		}
+        		let signature = "";
+        		try {
+        			signature = JSON.stringify(styles) || "";
+        		} catch (e) {
+        			return source;
+        		}
+        		if (this.agGridStyledColumnDefs != null && this.agGridStyledColumnDefsSource === source && this.agGridStyledColumnDefsSignature === signature) {
+        			return this.agGridStyledColumnDefs;
+        		}
+        		const merge = (classes: any, added: string[]): any => {
+        			if (added.length == 0) {
+        				return classes;
+        			}
+        			if (typeof classes === "function") {
+        				return (params: any) => {
+        					const own = classes(params);
+        					return (Array.isArray(own) ? own : (typeof own === "string" && own !== "" ? [own] : [])).concat(added);
+        				};
+        			}
+        			return (Array.isArray(classes) ? classes : (typeof classes === "string" && classes !== "" ? [classes] : [])).concat(added);
+        		};
+        		const style = (colDef: any): any => {
+        			if (colDef == null || typeof colDef !== "object") {
+        				return colDef;
+        			}
+        			if (Array.isArray(colDef.children)) {
+        				return {...colDef, children: colDef.children.map(style)};
+        			}
+        			const classes = this.getAgGridColumnStyleClasses(colDef.field);
+        			if (classes.length == 0) {
+        				return colDef;
+        			}
+        			return {...colDef, cellClass: merge(colDef.cellClass, classes), headerClass: merge(colDef.headerClass, classes)};
+        		};
+        		this.agGridStyledColumnDefs = source.map(style);
+        		this.agGridStyledColumnDefsSource = source;
+        		this.agGridStyledColumnDefsSignature = signature;
+        		return this.agGridStyledColumnDefs;
+        	}
+        
+        	// columnStyles: the classes of the look of a column (aggrid-col-align-<left|center|right>, aggrid-col-pl-<px>,
+        	// aggrid-col-pr-<px>), none for a column without a valid style
+        	getAgGridColumnStyleClasses(field: any): string[] {
+        		const styles: any = this.columnStyles;
+        		if (typeof field !== "string" || field === "" || styles == null || typeof styles !== "object" || !Object.prototype.hasOwnProperty.call(styles, field)) {
+        			return [];
+        		}
+        		const look: any = styles[field];
+        		if (look == null || typeof look !== "object") {
+        			return [];
+        		}
+        		const classes: string[] = [];
+        		if (["left", "center", "right"].indexOf(look.align) >= 0) {
+        			classes.push("aggrid-col-align-" + look.align);
+        		}
+        		const pixels = (value: any): number => {
+        			const number = typeof value === "number" ? value : (typeof value === "string" && /^\s*\d+(?:\.\d+)?\s*(?:px)?\s*$/.test(value) ? parseFloat(value) : NaN);
+        			return isFinite(number) && number >= 0 ? Math.min(60, Math.round(number)) : null;
+        		};
+        		const left = pixels(look.paddingLeft);
+        		const right = pixels(look.paddingRight);
+        		if (left != null) {
+        			classes.push("aggrid-col-pl-" + left);
+        		}
+        		if (right != null) {
+        			classes.push("aggrid-col-pr-" + right);
+        		}
+        		return classes;
         	}
         
         	// filterOnMenuButton, off by default: a filtered column shows it on the button of its menu, without the filter icon of
@@ -855,8 +1009,9 @@ scriptContent:
         			});
         			this.columnDefs = columnDefs;
         		}
-        		// row creation disabled (default): the application column definitions, untouched, as before
-        		return this.isAgGridRowCreationEnabled() ? this.getAgGridRowCreationColumnDefs(this.columnDefs) : this.columnDefs;
+        		// row creation disabled (default): the application column definitions, untouched, as before; columnStyles (off by
+        		// default) gives copies with the look of their columns
+        		return this.getAgGridStyledColumnDefs(this.isAgGridRowCreationEnabled() ? this.getAgGridRowCreationColumnDefs(this.columnDefs) : this.columnDefs);
         	}
         
         	// ---------------------------------------------------------------------------------------------------------------
@@ -2079,6 +2234,40 @@ scriptContent:
               		text-overflow: ellipsis !important;
               	}
               }
+              // columnStyles: the alignment of the cells of a column and of its header (a block a cell renderer gives, as a number
+              // right-aligned by a flex div, follows it), and the padding of its cells and of its header, 0 to 60 pixels
+              ::ng-deep {
+              	@each $align, $justify in (left: flex-start, center: center, right: flex-end) {
+              		.ag-cell.aggrid-col-align-#{$align} {
+              			text-align: $align !important;
+              			justify-content: $justify !important;
+              		}
+              		.ag-cell.aggrid-col-align-#{$align} .ag-cell-wrapper > .ag-cell-value {
+              			flex: 1 1 auto;
+              			min-width: 0;
+              		}
+              		.ag-cell.aggrid-col-align-#{$align} > div,
+              		.ag-cell.aggrid-col-align-#{$align} .ag-cell-value div,
+              		.ag-cell.aggrid-col-align-#{$align} .ag-cell-wrapper {
+              			text-align: $align !important;
+              			justify-content: $justify !important;
+              		}
+              		.ag-header-cell.aggrid-col-align-#{$align} .ag-header-cell-label {
+              			justify-content: $justify !important;
+              			text-align: $align !important;
+              		}
+              	}
+              	@for $px from 0 through 60 {
+              		.ag-cell.aggrid-col-pl-#{$px},
+              		.ag-header-cell.aggrid-col-pl-#{$px} {
+              			padding-left: #{$px}px !important;
+              		}
+              		.ag-cell.aggrid-col-pr-#{$px},
+              		.ag-header-cell.aggrid-col-pr-#{$px} {
+              			padding-right: #{$px}px !important;
+              		}
+              	}
+              }
               // filterOnMenuButton: a filtered column shows it on the button of its menu (the active color of the theme and a dot), and
               // the filter icon AG Grid adds to the label of a filtered column is hidden: a menu button drawn as a funnel (icons.menu)
               // made two funnels in the header of a filtered column
@@ -2513,6 +2702,13 @@ scriptContent:
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                   - MobileSmartSourceType: script:this.computeColumnDef()
               comment: Attr5 (UIAttribute).
+            ↓AttrGetRowId [ngx.components.UIAttribute-1852100000001]: 
+              attrName: '[getRowId]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.getAgGridRowIdFunction()
+              comment: 'rowId: the identity of the rows, given once to AG Grid when it is created (undefined while rowId is no function).'
             ↓Attr4 [ngx.components.UIAttribute-1710934919004]: 
               attrName: '[rowData]'
               attrValue: 
@@ -3206,6 +3402,12 @@ scriptContent:
 ↓filterOnMenuButton [ngx.components.UICompVariable-1851100000003]: 
   comment: '<p>boolean: false (default) or true. When true, a filtered column shows it on the button of its menu (the active color of the theme and a dot) and the filter icon of its label is hidden: one icon per header when the menu icon is a funnel (<code>icons: {menu: ...}</code>).</p><p><b>Example:</b> <code>true</code></p>'
   value: false
+↓rowId [ngx.components.UICompVariable-1852100000002]: 
+  comment: '<p>function: null (default) or a function that gives the identity of a row from its data, a string or a number (null for a row without one). It is read when the grid is created. While null, each new list of rows (rowData) is drawn again whole. Otherwise a new list updates the rows of the same identity: each row keeps its place, its height and its selection, and the grid keeps its height (rows of an automatic height are not measured again). A row without identity, or with the identity of a row before it in the same list, gets one of its own.</p><p><b>Example:</b> <code>(data) =&gt; data?.id</code></p>'
+  value: null
+↓columnStyles [ngx.components.UICompVariable-1852100000003]: 
+  comment: '<p>object: null (default) or the look of some columns, by the field of their column definition: <code>align</code> (left, center or right) and <code>paddingLeft</code>, <code>paddingRight</code> (numbers of pixels, 0 to 60). The cells of the column and its header take them; the alignment also places a block a cell renderer gives (a number right-aligned by its renderer is centered by center). A value that is none of these is ignored, a column without style keeps its look.</p><p><b>Example:</b> <code>{Rate: {align: "center", paddingRight: 24}}</code></p>'
+  value: null
 ↓PageRequest [ngx.components.UICompEvent-1810000000019]: 
   attrName: PageRequest
   comment: 'Fired by a button of the pager of externalPagination. Data: {page: the page asked, from 1, previousPage, pageSize, rowCount, button: first, previous, next or last}. Give the grid the rows of that page, then set externalPaginationPage (and externalPaginationRowCount).'
