@@ -456,6 +456,8 @@ This Shared component wraps the ag-grid component. Most of the properties and ev
 
 Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop. Fonts (off by default, the font of the theme): headerFontFamily and headerFontSize set the font of the header row, cellFontFamily and cellFontSize the font of the rows; a value that is not a font family list or a size is ignored.
 
+Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
+
 External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
 
 Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
@@ -631,6 +633,24 @@ false
 
 ```
 250
+```
+
+</p></td>
+</tr>
+<tr>
+<td>filterModel</td><td><p>object: null (default) or the filter model of the columns, as <code>getFilterModel()</code> of the grid gives it. While null, the grid keeps the filters its user sets. Otherwise it is applied when the grid is ready and each time it changes: a grid built again (its page left and shown again) gets back the filters its columns had, kept by the application from the filterChanged event of the grid. An empty object clears the filters.</p><p><b>Example:</b> 
+
+```
+{Status: {filterType: "text", type: "contains", filter: "open"}}
+```
+
+</p></td>
+</tr>
+<tr>
+<td>filterOnMenuButton</td><td><p>boolean: false (default) or true. When true, a filtered column shows it on the button of its menu (the active color of the theme and a dot) and the filter icon of its label is hidden: one icon per header when the menu icon is a funnel (<code>icons: {menu: ...}</code>).</p><p><b>Example:</b> 
+
+```
+true
 ```
 
 </p></td>

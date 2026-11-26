@@ -3,6 +3,8 @@ comment: |
   
   Display options (off by default): truncateText shows each cell on one line, cut with an ellipsis at the width of its column, the whole content in a tooltip on hover or keyboard focus; maxColumnCharacters keeps the columns no wider than a number of characters after each sizing pass, a column resized by the user keeps its width; stickyHeader keeps the header row on screen while the page scrolls the rows of the grid, at stickyHeaderTop.
   
+  Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
+  
   External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
   
   Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
@@ -82,6 +84,10 @@ scriptContent:
         		// Former onChanges event actions first (height style, page size selector, locale), then the sizing request, as before.
         		const agGridLocaleLoading = this.applyAgGridInputChanges(changes);
         		this.scheduleAgGridSizing(undefined, 4);
+        		// filterModel: a new model of the filters of the columns, once the grid is ready (gridReady applies the first one)
+        		if (changes?.filterModel != null && changes.filterModel.firstChange !== true) {
+        			this.applyAgGridFilterModel(this.api);
+        		}
         		// The former onChanges event ended every ngOnChanges with a markForCheck. It is kept, except when this pass brings
         		// only object to object changes and each of the 3 previous passes brought one too (whatever the input): that is what
         		// a reference unstable binding does and it would loop for ever. While a locale loads, the load issues it when it settles.
@@ -450,6 +456,32 @@ scriptContent:
         
         	isAgGridStickyHeader(): boolean {
         		return this.stickyHeader === true || this.stickyHeader === "true";
+        	}
+        
+        	// filterOnMenuButton, off by default: a filtered column shows it on the button of its menu, without the filter icon of
+        	// its label (DisplayOptionsStyle).
+        	isAgGridFilterOnMenuButton(): boolean {
+        		return this.filterOnMenuButton === true || this.filterOnMenuButton === "true";
+        	}
+        
+        	// filterModel, off by default (null): the filter model of the columns (the object getFilterModel gives) applied when the
+        	// grid is ready and each time the input changes. A grid built again (its page left and shown again) gets back the filters
+        	// its columns had, which the application kept from filterChanged. An empty object clears them. The model in force is not
+        	// set again: setFilterModel fires filterChanged.
+        	applyAgGridFilterModel(gridApi: any): void {
+        		try {
+        			const model: any = this.filterModel;
+        			if (gridApi == null || this.agGridDestroyed || model == null || typeof model !== "object" || Array.isArray(model)) {
+        				return;
+        			}
+        			const current = typeof gridApi.getFilterModel === "function" ? (gridApi.getFilterModel() || {}) : {};
+        			if (JSON.stringify(current) === JSON.stringify(model)) {
+        				return;
+        			}
+        			gridApi.setFilterModel(model);
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid filterModel: unable to set the filters of the columns : ", e != null ? (e as any).message : e);
+        		}
         	}
         
         	// Fonts (headerFontFamily, headerFontSize, cellFontFamily, cellFontSize), off by default: the font of the theme. A value
@@ -1959,6 +1991,13 @@ scriptContent:
           - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
           - MobileSmartSourceType: script:this.isAgGridStickyHeader()
       comment: 'stickyHeader: the header row stays on screen while the page scrolls the rows (DisplayOptionsStyle).'
+    ↓AttrFilterOnMenuButton [ngx.components.UIAttribute-1851100000001]: 
+      attrName: '[class.aggrid-filter-on-menu]'
+      attrValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.isAgGridFilterOnMenuButton()
+      comment: 'filterOnMenuButton: a filtered column shows it on the button of its menu, one icon per header (DisplayOptionsStyle).'
     ↓AttrStickyHeaderTop [ngx.components.UIAttribute-1810000000003]: 
       attrName: '[style.--aggrid-sticky-header-top]'
       attrValue: 
@@ -2038,6 +2077,32 @@ scriptContent:
               		white-space: nowrap !important;
               		overflow: hidden !important;
               		text-overflow: ellipsis !important;
+              	}
+              }
+              // filterOnMenuButton: a filtered column shows it on the button of its menu (the active color of the theme and a dot), and
+              // the filter icon AG Grid adds to the label of a filtered column is hidden: a menu button drawn as a funnel (icons.menu)
+              // made two funnels in the header of a filtered column
+              &.aggrid-filter-on-menu ::ng-deep {
+              	.ag-header-cell-filtered .ag-header-label-icon.ag-filter-icon {
+              		display: none !important;
+              	}
+              	.ag-header-cell-filtered .ag-header-cell-menu-button {
+              		position: relative;
+              		opacity: 1;
+              		color: var(--ag-active-color, #2196f3);
+              	}
+              	.ag-header-cell-filtered .ag-header-cell-menu-button .ag-icon {
+              		color: var(--ag-active-color, #2196f3);
+              	}
+              	.ag-header-cell-filtered .ag-header-cell-menu-button::after {
+              		content: "";
+              		position: absolute;
+              		top: 0;
+              		right: -3px;
+              		width: 6px;
+              		height: 6px;
+              		border-radius: 50%;
+              		background: var(--ag-active-color, #2196f3);
               	}
               }
               // stickyHeader: the header row sticks in .ag-root, as high as the grid: it leaves with the end of the grid. The grid
@@ -2514,6 +2579,8 @@ scriptContent:
                           					page["api"] = grid.api;
                           				}
                           				page.onAgGridRowCreationReady(grid);
+                          				// filterModel: the filters the columns had before the grid was built again
+                          				page.applyAgGridFilterModel(grid.api);
                           			}
                           			resolve();
                           '
@@ -3133,6 +3200,12 @@ scriptContent:
 ↓cellFontSize [ngx.components.UICompVariable-1810000000043]: 
   comment: '<p>number or string: null (default), a number of pixels or a CSS length (px, pt, em, rem, %), or a var() of a variable of the page. The font size of the rows. While null, the rows keep the font size of the theme; a value that is not a size is ignored. Rows of an automatic height (autoHeight columns) follow the size; rows of a fixed height (rowHeight) keep it.</p><p><b>Example:</b> <code>12</code></p>'
   value: null
+↓filterModel [ngx.components.UICompVariable-1851100000002]: 
+  comment: '<p>object: null (default) or the filter model of the columns, as <code>getFilterModel()</code> of the grid gives it. While null, the grid keeps the filters its user sets. Otherwise it is applied when the grid is ready and each time it changes: a grid built again (its page left and shown again) gets back the filters its columns had, kept by the application from the filterChanged event of the grid. An empty object clears the filters.</p><p><b>Example:</b> <code>{Status: {filterType: "text", type: "contains", filter: "open"}}</code></p>'
+  value: null
+↓filterOnMenuButton [ngx.components.UICompVariable-1851100000003]: 
+  comment: '<p>boolean: false (default) or true. When true, a filtered column shows it on the button of its menu (the active color of the theme and a dot) and the filter icon of its label is hidden: one icon per header when the menu icon is a funnel (<code>icons: {menu: ...}</code>).</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
 ↓PageRequest [ngx.components.UICompEvent-1810000000019]: 
   attrName: PageRequest
   comment: 'Fired by a button of the pager of externalPagination. Data: {page: the page asked, from 1, previousPage, pageSize, rowCount, button: first, previous, next or last}. Give the grid the rows of that page, then set externalPaginationPage (and externalPaginationRowCount).'
