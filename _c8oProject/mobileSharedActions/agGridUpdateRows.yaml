@@ -13,7 +13,7 @@ comment: agGrid Update Rows, must be called in a GetRows Control
           			page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName + '' vars: ''  +vars + ''event : '' + event);
           			let data = vars.data?.RowData ?? [];
           			if (''ColDef'' in vars.data && vars.agGridEvent.skip == 0) {
-          				vars.agGridEvent.object.agGrid.api.setColumnDefs(vars.data.ColDef);
+          				vars.agGridEvent.object.agGrid.api.setGridOption("columnDefs", vars.data.ColDef);
           			}
           			if (''bookmark'' in vars.data) {
           				vars.agGridEvent.object.agGrid.context.bookmark = vars.data.bookmark; 

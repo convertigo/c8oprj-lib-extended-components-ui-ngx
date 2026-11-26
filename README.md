@@ -495,7 +495,7 @@ true
 </p></td>
 </tr>
 <tr>
-<td>cacheBlockSize</td><td><p>Variable cache Block Size.</p><p><b>Example:</b> 
+<td>cacheBlockSize</td><td><p>Variable cache Block Size, for the infinite and serverSide row models (ignored with clientSide).</p><p><b>Example:</b> 
 
 ```
 100

@@ -51,6 +51,16 @@ scriptContent:
         	public agGridCellPreviewPointer: string = "";
         	public agGridCellPreviewOnScroll: any = () => this.hideAgGridCellPreview();
         	public agGridCellPreviewId: string = "aggrid-cell-preview-" + Math.random().toString(36).slice(2, 10);
+        	// cellDataType "object" (an option, a link, a list of them): its text for sorting, filtering, copying and exporting, instead of
+        	// "[object Object]"; AG Grid also warns at each load when no value formatter is given for this type
+        	public agGridDataTypeDefinitions: any = {
+        		object: {
+        			baseDataType: "object",
+        			extendsDataType: "object",
+        			valueFormatter: (params: any) => this.getAgGridObjectText(params?.value),
+        			valueParser: () => null
+        		}
+        	};
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
@@ -1633,6 +1643,29 @@ scriptContent:
         		return this.agGridRowCreationText("Grid_RowCreation_Invalid", {count: fields.length}) + " — " + details.join(" ; ");
         	}
         	
+        	// The text of a value of type "object": its value, label or name (an option), the items of a list joined by ", ", else its JSON.
+        	getAgGridObjectText(value: any): string {
+        		if (value == null) {
+        			return "";
+        		}
+        		if (Array.isArray(value)) {
+        			return value.map((item: any) => this.getAgGridObjectText(item)).filter((text: string) => text !== "").join(", ");
+        		}
+        		if (typeof value === "object") {
+        			for (const key of ["value", "label", "name"]) {
+        				if (Object.prototype.hasOwnProperty.call(value, key) && value[key] !== value) {
+        					return this.getAgGridObjectText(value[key]);
+        				}
+        			}
+        			try {
+        				return JSON.stringify(value);
+        			} catch (e) {
+        				return "";
+        			}
+        		}
+        		return String(value);
+        	}
+        	
         	/*End_c8o_CompFunction*/
         '
 ↓pagination [ngx.components.UICompVariable-1710934918902]: 
@@ -1729,7 +1762,7 @@ scriptContent:
         - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
         - com.twinsoft.convertigo.beans.common.FormatedContent: 
           →: |
-            '		ModuleRegistry.registerModules([CsvExportModule]);
+            '		// CSV export: registered by the ag-grid-community package itself (no module of @ag-grid-community/*, which would mix modules and packages)
             		// Install packages :
                         		    // Please have a look at all expert properties for this custom action
                         		    // They define which packages/plugins are needed to use agGrid component
@@ -1828,34 +1861,9 @@ scriptContent:
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: '@ag-grid-community/csv-export'
-              - java.lang.String: 
-                - ↑value: 31.3.4
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
                 - ↑value: '@ag-grid-community/locale'
               - java.lang.String: 
                 - ↑value: 32.3.1
-    page_ts_imports: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '{ ModuleRegistry }'
-              - java.lang.String: 
-                - ↑value: ag-grid-community
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: '{ CsvExportModule }'
-              - java.lang.String: 
-                - ↑value: '@ag-grid-community/csv-export'
 ↓rowModelType [ngx.components.UICompVariable-1710934919136]: 
   comment: <p>Row model type</p><p><b>Example:</b> <code>&#x27;clientSide&#x27;</code></p>
   value: '''clientSide'''
@@ -1891,7 +1899,7 @@ scriptContent:
   comment: <p>Variable datasource.</p><p><b>Example:</b> <code>null</code></p>
   value: null
 ↓cacheBlockSize [ngx.components.UICompVariable-1739987415429]: 
-  comment: <p>Variable cache Block Size.</p><p><b>Example:</b> <code>100</code></p>
+  comment: <p>Variable cache Block Size, for the infinite and serverSide row models (ignored with clientSide).</p><p><b>Example:</b> <code>100</code></p>
   value: 100
 ↓showCsvDownloadPosition [ngx.components.UICompVariable-1741620025245]: 
   comment: '<p>If showCsvDownload is true, defines CSV button position relative to the grid: top, bottom, left, right, both_row or both_col.</p><p><b>Example:</b> <code>&#x27;top&#x27;</code></p>'
@@ -2466,7 +2474,7 @@ scriptContent:
                           				var height = vars.height;
                           				var width = vars.width;
                           				var autoHeight = height == "" || height == "auto";
-                          				grid.api.setDomLayout(autoHeight ? "autoHeight":"normal");
+                          				grid.api.setGridOption("domLayout", autoHeight ? "autoHeight":"normal");
                           				(grid as any)._nativeElement.style.height = autoHeight ? "" : height;
                           				(grid as any)._nativeElement.style.width = width;
                           				page["api"] = grid.api;
@@ -2499,10 +2507,10 @@ scriptContent:
                           						},
                           					};
                           					grid.context.reset = () => {
-                          						grid.api.setDatasource(emptyds);
-                          						grid.api.setDatasource(datasource);
+                          						grid.api.setGridOption("datasource", emptyds);
+                          						grid.api.setGridOption("datasource", datasource);
                           					};
-                          					grid.api.setDatasource(datasource);
+                          					grid.api.setGridOption("datasource", datasource);
                           					page["api"] = grid.api;
                           				}
                           				page.onAgGridRowCreationReady(grid);
@@ -2828,8 +2836,15 @@ scriptContent:
               attrValue: 
                 - xmlizable: 
                   - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: script:this.cacheBlockSize
-              comment: Attr22 (UIAttribute).
+                  - MobileSmartSourceType: 'script:this.rowModelType == ''infinite'' || this.rowModelType == ''serverSide'' ? this.cacheBlockSize : null'
+              comment: Attr22 (UIAttribute). cacheBlockSize only for the infinite and server side row models (the client side row model warns).
+            ↓AttrDataTypes [ngx.components.UIAttribute-1795689667101]: 
+              attrName: '[dataTypeDefinitions]'
+              attrValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:this.agGridDataTypeDefinitions
+              comment: The text of the cells of type object (agGridDataTypeDefinitions).
             ↓Attr23 [ngx.components.UIAttribute-1786460748512]: 
               attrName: '[suppressMenuHide]'
               attrValue: 

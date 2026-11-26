@@ -115,7 +115,7 @@ comment: |
                       			api.deselectAll();
                       			let colDefs = api.getColumnDefs();
                       			colDefs[0].hide = !page.local.enabledDelete;
-                      			api.setColumnDefs(colDefs);
+                      			api.setGridOption("columnDefs", colDefs);
                       		} catch (e) {
                       		
                       		} finally {
