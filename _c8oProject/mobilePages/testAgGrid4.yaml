@@ -1,0 +1,342 @@
+comment: Page with grids using the filter by values (valuesFilter), Excel like, on the rows of the grid and from a provider
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	// valuesFilter demo, first grid: cars with texts, numbers, days, booleans, lists and blank cells; the values come from its rows
+        	public demoColumnDefs: any[] = [
+        		{headerName: "Make", field: "make", filter: "agTextColumnFilter"},
+        		{headerName: "Model", field: "model"},
+        		{headerName: "Price", field: "price", filter: "agNumberColumnFilter"},
+        		{headerName: "Released", field: "released", filter: "agDateColumnFilter", cellDataType: "dateString"},
+        		{headerName: "Electric", field: "electric"},
+        		{headerName: "Tags", field: "tags", filter: "agTextColumnFilter", filterValueGetter: (params: any) => params.data.tags},
+        		{headerName: "Id", field: "id", filter: false}
+        	];
+        	public demoRows: any[] = [
+        		{id: 1, make: "Toyota", model: "Celica", price: 35000, released: "1999-05-01", electric: false, tags: ["sport"]},
+        		{id: 2, make: "Ford", model: "Mondeo", price: 32000, released: "2004-03-12", electric: false, tags: ["family"]},
+        		{id: 3, make: "Porsche", model: "Boxter", price: 72000, released: "2012-09-30", electric: false, tags: ["sport"]},
+        		{id: 4, make: "Renault", model: "Zoe", price: 29000, released: "2019-01-15", electric: true, tags: ["city", "family"]},
+        		{id: 5, make: "BMW", model: "X5", price: 81000, released: "2021-06-01", electric: false, tags: ["suv"]},
+        		{id: 6, make: "Toyota", model: "Yaris", price: 19000, released: "2018-02-20", electric: false, tags: ["city"]},
+        		{id: 7, make: "Ford", model: "Kuga", price: 38000, released: "2020-11-05", electric: false, tags: ["suv"]},
+        		{id: 8, make: "Renault", model: "Megane", price: 27000, released: "2016-04-18", electric: false, tags: ["family"]},
+        		{id: 9, make: "BMW", model: "i3", price: 41000, released: "2017-07-07", electric: true, tags: ["city"]},
+        		{id: 10, make: "Porsche", model: "Taycan", price: 110000, released: "2022-03-03", electric: true, tags: ["sport"]},
+        		{id: 11, make: "Toyota", model: "Prius", price: 31000, released: "2015-10-10", electric: false, tags: []},
+        		{id: 12, make: null, model: "Prototype", price: null, released: null, electric: null, tags: []}
+        	];
+        	// second grid: 10,000 distinct codes (the list of the filter draws only the rows in view)
+        	public demoBigColumnDefs: any[] = [{headerName: "Code", field: "code"}, {headerName: "Number", field: "n", filter: "agNumberColumnFilter"}];
+        	public demoBigRows: any[] = Array.from({length: 10000}, (value: any, index: number) => ({code: "Code " + (index + 1), n: index * 3}));
+        	// third grid: a "server" table of 300 tickets; the page gives the distinct values of a column (valuesFilterProvider) and the
+        	// rows kept by the filter model, as a server would; the status is an option: its id is filtered, its label is shown
+        	public demoStatuses: any = {1: "Open", 2: "Closed", 3: "In progress"};
+        	public demoServerTable: any[] = Array.from({length: 300}, (value: any, index: number) => ({id: index + 1, status: index % 11 == 10 ? null : [1, 2, 3][index % 3], owner: "Owner " + (index % 60)}));
+        	public demoServerColumnDefs: any[] = [
+        		{headerName: "Ticket", field: "id", filter: false},
+        		{headerName: "Status", field: "status", filter: "agTextColumnFilter", valueFormatter: (params: any) => this.demoStatuses[params.value] || ""},
+        		{headerName: "Owner", field: "owner", filter: "agTextColumnFilter"}
+        	];
+        	public demoServerRows: any[] = this.demoServerTable.slice(0, 10);
+        	public demoValuesProvider = (column: any, search: string) => new Promise((resolve) => setTimeout(() => {
+        		this.local["demo:providerCalls"] = (this.local["demo:providerCalls"] || 0) + 1;
+        		const field = column.field;
+        		const text = (search || "").toLowerCase();
+        		const values: any[] = [];
+        		for (const row of this.demoServerTable) {
+        			if (values.indexOf(row[field]) < 0) {
+        				values.push(row[field]);
+        			}
+        		}
+        		const found = values.map((value: any) => field == "status" && value != null ? {value: value, label: this.demoStatuses[value]} : value)
+        			.filter((value: any) => String(value?.label ?? value ?? "").toLowerCase().indexOf(text) >= 0);
+        		resolve({values: found.slice(0, 25), complete: found.length <= 25});
+        		this.ref?.markForCheck?.();
+        	}, 200));
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	// third grid: the "server" keeps the rows whose values are kept by the filter model, the first 10 of them
+        	demoServerFilter(api: any): void {
+        		const model = api?.getFilterModel?.() || {};
+        		this.local["demo:serverModel"] = JSON.stringify(model);
+        		this.demoServerRows = this.demoServerTable.filter((row: any) => Object.keys(model).every((field: string) => !Array.isArray(model[field]?.values) || model[field].values.indexOf(row[field]) >= 0)).slice(0, 10);
+        		this.ref?.markForCheck?.();
+        	}
+        	/*End_c8o_PageFunction*/
+        
+segment: path-to-testaggrid4
+title: AgGrid Values Filter
+↓Header [ngx.components.UIDynamicElement-1853100000100]: 
+  beanData: '{"ionBean":"Header"}'
+  tagName: ion-header
+  ↓ToolBar [ngx.components.UIDynamicElement-1853100000101]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet [ngx.components.UIDynamicElement-1853100000102]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:start"}'
+      tagName: ion-buttons
+      ↓BackButton [ngx.components.UIDynamicElement-1853100000103]: 
+        beanData: '{"ionBean":"BackButton"}'
+        tagName: ion-back-button
+      ↓MenuButton [ngx.components.UIDynamicElement-1853100000104]: 
+        beanData: '{"ionBean":"MenuButton"}'
+        tagName: ion-menu-button
+    ↓BarTitle [ngx.components.UIDynamicElement-1853100000105]: 
+      beanData: '{"ionBean":"BarTitle"}'
+      tagName: ion-title
+      ↓Text [ngx.components.UIText-1853100000106]: 
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Page_AgGrid_ValuesFilter
+↓Content [ngx.components.UIDynamicElement-1853100000110]: 
+  beanData: '{"ionBean":"Content"}'
+  comment: Page content
+  tagName: ion-content
+  ↓DemoCard [ngx.components.UIDynamicElement-1853100000111]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: What the page shows, and the state of its filters
+    tagName: ion-card
+    ↓CardContent [ngx.components.UIDynamicElement-1853100000112]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓demoWhat [ngx.components.UIDynamicElement-1853100000120]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1853100000121]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoWhat
+        ↓Text [ngx.components.UIText-1853100000122]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_AgGrid_ValuesFilter
+      ↓demoFilterModel [ngx.components.UIDynamicElement-1853100000123]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1853100000124]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoFilterModel
+        ↓Text [ngx.components.UIText-1853100000125]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''Filter model: '' + (this.local[''demo:filterModel''] || ''{}'')'
+  ↓CarsGrid [ngx.components.UIUseShared-1853100000130]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+    ↓id [ngx.components.UIUseVariable-1853100000131]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'valuesFilterGrid'
+    ↓paginationPageSize [ngx.components.UIUseVariable-1853100000132]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:10
+    ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1853100000133]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓defaultColDef [ngx.components.UIUseVariable-1853100000134]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: false, sortable: true, resizable: true, filter: true}'
+    ↓columnDefs [ngx.components.UIUseVariable-1853100000135]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoColumnDefs
+    ↓rowData [ngx.components.UIUseVariable-1853100000136]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoRows
+    ↓localeText [ngx.components.UIUseVariable-1853100000137]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'en'
+    ↓valuesFilter [ngx.components.UIUseVariable-1853100000138]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓filterOnMenuButton [ngx.components.UIUseVariable-1853100000139]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓OnGridReady [ngx.components.UIControlEvent-1853100000140]: 
+      attrName: (GridReady)
+      eventName: GridReady
+      ↓ShowFilterModel [ngx.components.UICustomAction-1853100000141]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                		// the filter model of the grid, shown in the card above at each change of its filters
+                		const api = event?.api ?? event?.data?.api ?? event?.object?.api ?? event?.object?.agGrid?.api;
+                		api?.addEventListener?.("filterChanged", () => {
+                			page.local["demo:filterModel"] = JSON.stringify(api.getFilterModel());
+                			page.ref?.markForCheck?.();
+                		});
+                		resolve();
+                
+        comment: Shows the filter model of the grid in the card of the page.
+  ↓BigCard [ngx.components.UIDynamicElement-1853100000150]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: A column of 10,000 distinct values
+    tagName: ion-card
+    ↓CardContent [ngx.components.UIDynamicElement-1853100000151]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓Text [ngx.components.UIText-1853100000152]: 
+        i18n: true
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Demo_What_AgGrid_ValuesFilter_Big
+  ↓BigGrid [ngx.components.UIUseShared-1853100000160]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+    ↓id [ngx.components.UIUseVariable-1853100000161]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'valuesFilterBigGrid'
+    ↓paginationPageSizeSelector [ngx.components.UIUseVariable-1853100000162]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓defaultColDef [ngx.components.UIUseVariable-1853100000163]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: false, sortable: true, resizable: true, filter: true}'
+    ↓columnDefs [ngx.components.UIUseVariable-1853100000164]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoBigColumnDefs
+    ↓rowData [ngx.components.UIUseVariable-1853100000165]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoBigRows
+    ↓localeText [ngx.components.UIUseVariable-1853100000166]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'en'
+    ↓valuesFilter [ngx.components.UIUseVariable-1853100000167]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+  ↓ServerCard [ngx.components.UIDynamicElement-1853100000170]: 
+    beanData: '{"ionBean":"Card"}'
+    comment: Values from a provider, rows filtered by the "server"
+    tagName: ion-card
+    ↓CardContent [ngx.components.UIDynamicElement-1853100000171]: 
+      beanData: '{"ionBean":"CardContent"}'
+      tagName: ion-card-content
+      ↓demoServerWhat [ngx.components.UIDynamicElement-1853100000172]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Text [ngx.components.UIText-1853100000173]: 
+          i18n: true
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Demo_What_AgGrid_ValuesFilter_Provider
+      ↓demoServerState [ngx.components.UIDynamicElement-1853100000174]: 
+        beanData: '{"ionBean":"Paragraph"}'
+        tagName: p
+        ↓Id [ngx.components.UIAttribute-1853100000175]: 
+          attrName: id
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:demoServerState
+        ↓Text [ngx.components.UIText-1853100000176]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'script:''Provider calls: '' + (this.local[''demo:providerCalls''] || 0) + '', server filter: '' + (this.local[''demo:serverModel''] || ''{}'')'
+  ↓ServerGrid [ngx.components.UIUseShared-1853100000180]: 
+    sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+    ↓id [ngx.components.UIUseVariable-1853100000181]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'valuesFilterServerGrid'
+    ↓pagination [ngx.components.UIUseVariable-1853100000182]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:false
+    ↓defaultColDef [ngx.components.UIUseVariable-1853100000183]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: 'script:{hide: false, editable: false, sortable: false, resizable: true, filter: true}'
+    ↓columnDefs [ngx.components.UIUseVariable-1853100000184]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoServerColumnDefs
+    ↓rowData [ngx.components.UIUseVariable-1853100000185]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoServerRows
+    ↓localeText [ngx.components.UIUseVariable-1853100000186]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:'en'
+    ↓valuesFilter [ngx.components.UIUseVariable-1853100000187]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:true
+    ↓valuesFilterProvider [ngx.components.UIUseVariable-1853100000188]: 
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: script:this.demoValuesProvider
+    ↓OnGridReady [ngx.components.UIControlEvent-1853100000189]: 
+      attrName: (GridReady)
+      eventName: GridReady
+      ↓ServerFilter [ngx.components.UICustomAction-1853100000190]: 
+        actionValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+            - com.twinsoft.convertigo.beans.common.FormatedContent: 
+              →: |
+                		// the "server" filters the rows from the filter model (the values kept hide no row in the browser)
+                		const api = event?.api ?? event?.data?.api ?? event?.object?.api ?? event?.object?.agGrid?.api;
+                		api?.addEventListener?.("filterChanged", () => page.demoServerFilter(api));
+                		resolve();
+                
+        comment: The rows of the grid follow its filter model, as a server would give them.

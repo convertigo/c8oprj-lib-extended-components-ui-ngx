@@ -54,6 +54,7 @@ tplProjectName: mobilebuilder_tpl_8_4_0_ngx
 ↓testAgGridCrud1 [ngx.components.PageComponent-1755611633713]: 🗏 mobilePages/testAgGridCrud1.yaml
 ↓testAgGrid2 [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/testAgGrid2.yaml
 ↓testAgGrid3 [ngx.components.PageComponent-1808000000099]: 🗏 mobilePages/testAgGrid3.yaml
+↓testAgGrid4 [ngx.components.PageComponent-1853100000099]: 🗏 mobilePages/testAgGrid4.yaml
 ↓cardIO [ngx.components.PageComponent-1595431440350]: 🗏 mobilePages/cardIO.yaml
 ↓ZXing [ngx.components.PageComponent-1595431440486]: 🗏 mobilePages/ZXing.yaml
 ↓testTinyMce [ngx.components.PageComponent-1614265132496]: 🗏 mobilePages/testTinyMce.yaml

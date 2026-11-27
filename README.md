@@ -460,6 +460,8 @@ Rows and columns (off by default): rowId gives the identity of a row (read when 
 
 Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
 
+Filter by values (off by default): valuesFilter gives every column with a filter of AG Grid a filter by values, as in Excel: the distinct values of the column in a list of check boxes with a search box, (Select All) and (Blanks), the condition filter of the column kept in the same popup; the values come from the rows of the grid, or from valuesFilterProvider for a grid whose rows are filtered or paged by a server; valuesFilterTexts gives its texts.
+
 External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
 
 Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
@@ -671,6 +673,33 @@ false
 
 ```
 true
+```
+
+</p></td>
+</tr>
+<tr>
+<td>valuesFilter</td><td><p>boolean: false (default) or true. When true, every column with a filter of AG Grid (filter true, agTextColumnFilter, agNumberColumnFilter or agDateColumnFilter, on the column or from defaultColDef) gets a filter by values, as in Excel: the distinct values of the column in a list of check boxes with a search box, (Select All) and (Blanks), numbers sorted as numbers, dates as dates, texts in natural order. The condition filter of the column stays in the same popup, under Filter by condition; a row is kept when its value is checked and it passes the condition. The values come from the rows of the grid that pass the filters of the other columns, or from valuesFilterProvider. The model of the filter: {filterType: "values", values: [the values kept] or null, condition: the model of the condition filter}. A column keeps its filter with filterParams.valuesFilter false. Other filterParams of a column: valuesFilterType (text, number, date or boolean), valueFormatter (the text of a value in the list), valuesFilterProvider (a function, or false for the values of its rows), debounceMs, buttons (apply, clear, reset, cancel; clear by default).</p><p><b>Example:</b> 
+
+```
+true
+```
+
+</p></td>
+</tr>
+<tr>
+<td>valuesFilterProvider</td><td><p>function: null (default) or a function (column, search) that gives the values of a column whose rows are filtered or paged by the application (a server): an array of values or of {value, label}, or {values, complete} (complete false: only the first values, a search asks the others), or a Promise of them; null for the values of the rows of the grid. column: {colId, field, headerName, type, colDef, column, api}. The values kept of such a column hide no row in the browser: the application filters the rows from the model of the filter (filterChanged). A column takes the values of its rows with filterParams.valuesFilterProvider false.</p><p><b>Example:</b> 
+
+```
+(column, search) => this.readValues(column.field, search)
+```
+
+</p></td>
+</tr>
+<tr>
+<td>valuesFilterTexts</td><td><p>object: null (default) or texts of the filter by values, by key: condition, valuesError, valuesTruncated ({{count}} is the number of values listed), and the texts of AG Grid selectAll, selectAllSearchResults, blanks, searchOoo, noMatches, loadingOoo, clearFilter, applyFilter, resetFilter, cancelFilter, true, false. A text not given is the one of the locale of the grid, else English.</p><p><b>Example:</b> 
+
+```
+{condition: "Filtrer par condition", selectAll: "(Tout sélectionner)"}
 ```
 
 </p></td>

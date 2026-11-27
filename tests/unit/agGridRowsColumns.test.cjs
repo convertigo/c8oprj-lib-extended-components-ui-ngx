@@ -97,7 +97,7 @@ test("columnStyles: off while null, the classes of the look of a column on its c
 	g.columnStyles = { Rate: { align: "left" } };
 	assert.notEqual(g.getAgGridStyledColumnDefs(columns), styled);
 	assert.deepEqual(g.getAgGridColumnStyleClasses("constructor"), [], "only the own fields of the styles");
-	assert.match(code, /return this\.getAgGridStyledColumnDefs\(this\.isAgGridRowCreationEnabled\(\) \? this\.getAgGridRowCreationColumnDefs\(this\.columnDefs\) : this\.columnDefs\);/);
+	assert.match(code, /const columnDefs = this\.getAgGridValuesFilterColumnDefs\(this\.columnDefs\);\n\s+return this\.getAgGridStyledColumnDefs\(this\.isAgGridRowCreationEnabled\(\) \? this\.getAgGridRowCreationColumnDefs\(columnDefs\) : columnDefs\);/);
 });
 
 test("columnStyles: the style aligns the cells, the block of a cell renderer and the header, pads 0 to 60 pixels", () => {

@@ -7,6 +7,8 @@ comment: |
   
   Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
   
+  Filter by values (off by default): valuesFilter gives every column with a filter of AG Grid a filter by values, as in Excel: the distinct values of the column in a list of check boxes with a search box, (Select All) and (Blanks), the condition filter of the column kept in the same popup; the values come from the rows of the grid, or from valuesFilterProvider for a grid whose rows are filtered or paged by a server; valuesFilterTexts gives its texts.
+  
   External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
   
   Row creation (optional, off by default): set enableRowCreation to true to let users add a row without creating an empty record first. Add row opens a draft row pinned at the top of the grid (pagination, sorting and filtering never hide it), its cells are validated and normalized according to rowCreationColumns, Save is blocked while a cell is invalid and creates the row with one single call (rowCreationCallback, or the RowCreate event completed by the agGridCompleteRowCreation action), Cancel drops the draft and nothing is persisted. Grid events of the draft row (CellValueChanged, CellClicked, RowClicked, RowDoubleClicked) are not forwarded; existing rows behave as before.
@@ -17,6 +19,7 @@ scriptContent:
     - com.twinsoft.convertigo.beans.common.FormatedContent: 
       →: |
         '/*Begin_c8o_CompImport*/
+        import { BeanStub as AgGridBeanStub, TextFilter as AgGridTextFilter, NumberFilter as AgGridNumberFilter, DateFilter as AgGridDateFilter } from "ag-grid-community";
         /*End_c8o_CompImport*/
         /*Begin_c8o_CompDeclaration*/
         	public api: any;
@@ -75,6 +78,13 @@ scriptContent:
         			valueParser: () => null
         		}
         	};
+        	// valuesFilter (off by default): the filter component of the columns (one class per grid), the column definitions with it
+        	// (copied again only when the columns or the filter of defaultColDef change), the formats of the language of the values
+        	public agGridValuesFilterClass: any = null;
+        	public agGridValuesFilterColumnDefs: any = null;
+        	public agGridValuesFilterColumnDefsSource: any = null;
+        	public agGridValuesFilterColumnDefsSignature: string = "";
+        	public agGridValuesFilterFormats: any = null;
         	/*End_c8o_CompDeclaration*/
         /*Begin_c8o_CompConstructor*/
         		/*End_c8o_CompConstructor*/
@@ -1009,9 +1019,10 @@ scriptContent:
         			});
         			this.columnDefs = columnDefs;
         		}
-        		// row creation disabled (default): the application column definitions, untouched, as before; columnStyles (off by
-        		// default) gives copies with the look of their columns
-        		return this.getAgGridStyledColumnDefs(this.isAgGridRowCreationEnabled() ? this.getAgGridRowCreationColumnDefs(this.columnDefs) : this.columnDefs);
+        		// valuesFilter (off by default) gives copies with the filter by values; row creation disabled (default): the application
+        		// column definitions, untouched, as before; columnStyles (off by default) gives copies with the look of their columns
+        		const columnDefs = this.getAgGridValuesFilterColumnDefs(this.columnDefs);
+        		return this.getAgGridStyledColumnDefs(this.isAgGridRowCreationEnabled() ? this.getAgGridRowCreationColumnDefs(columnDefs) : columnDefs);
         	}
         
         	// ---------------------------------------------------------------------------------------------------------------
@@ -1853,6 +1864,1469 @@ scriptContent:
         		return String(value);
         	}
         	
+        	// ---------------------------------------------------------------------------------------------------------------
+        	// valuesFilter, off by default (false): every column with a filter of AG Grid (filter true, agTextColumnFilter,
+        	// agNumberColumnFilter, agDateColumnFilter, or agSetColumnFilter / agMultiColumnFilter of AG Grid Enterprise, on the column
+        	// or from defaultColDef) gets a filter by values, as in Excel: the distinct values of the column in a list of check boxes
+        	// with a search box, (Select All) and (Blanks), sorted by their type (numbers as numbers, dates as dates, texts in natural
+        	// order). The condition filter the column had (text, number or date, with its options) stays in the same popup, under
+        	// "Filter by condition"; a row is kept when its value is checked AND it passes the condition. A column keeps the filter it
+        	// has with filterParams.valuesFilter false, with a filter component of its own, or without filter (filter false).
+        	// The model of the filter: {filterType: "values", values: [the values kept] or null for every value, condition: the model
+        	// of the condition filter}. The values come from the rows of the grid that pass the filters of the other columns, or from
+        	// valuesFilterProvider (a server). Everything below is inert while valuesFilter is not true.
+        	// ---------------------------------------------------------------------------------------------------------------
+        	isAgGridValuesFilter(): boolean {
+        		return this.valuesFilter === true || this.valuesFilter === "true";
+        	}
+        
+        	// valuesFilter: the column definitions with the filter by values, copied again only when the columns or the filter of
+        	// defaultColDef change (a new array at each change detection would make the grid set its columns again).
+        	getAgGridValuesFilterColumnDefs(source: any): any {
+        		if (!Array.isArray(source) || !this.isAgGridValuesFilter()) {
+        			return source;
+        		}
+        		const defaults: any = this.defaultColDef != null && typeof this.defaultColDef === "object" ? this.defaultColDef : {};
+        		const defaultParams: any = defaults.filterParams;
+        		const signature = (typeof defaults.filter === "string" || typeof defaults.filter === "boolean" ? String(defaults.filter) : typeof defaults.filter) +
+        			"|" + (defaultParams != null && typeof defaultParams === "object" && defaultParams.valuesFilter === false);
+        		if (this.agGridValuesFilterColumnDefs != null && this.agGridValuesFilterColumnDefsSource === source && this.agGridValuesFilterColumnDefsSignature === signature) {
+        			return this.agGridValuesFilterColumnDefs;
+        		}
+        		const filterClass = this.getAgGridValuesFilterClass();
+        		const wrap = (colDef: any): any => {
+        			if (colDef == null || typeof colDef !== "object") {
+        				return colDef;
+        			}
+        			if (Array.isArray(colDef.children)) {
+        				return {...colDef, children: colDef.children.map(wrap)};
+        			}
+        			const kind = this.getAgGridValuesFilterKind(colDef, defaults);
+        			if (kind == null) {
+        				return colDef;
+        			}
+        			// the condition filter the column had, read by the filter (the filterParams of defaultColDef are merged by AG Grid)
+        			const own = colDef.filterParams;
+        			const marker = {aggridValuesFilterCondition: kind};
+        			const filterParams = typeof own === "function" ? (params: any) => ({...(own(params) || {}), ...marker}) : {...(own != null && typeof own === "object" ? own : {}), ...marker};
+        			return {...colDef, filter: filterClass, filterParams: filterParams};
+        		};
+        		this.agGridValuesFilterColumnDefs = source.map(wrap);
+        		this.agGridValuesFilterColumnDefsSource = source;
+        		this.agGridValuesFilterColumnDefsSignature = signature;
+        		return this.agGridValuesFilterColumnDefs;
+        	}
+        
+        	// valuesFilter: the condition filter a column keeps beside its values: "text", "number", "date", "auto" (filter true: by
+        	// its cellDataType, as AG Grid picks it), "none" (a filter of AG Grid Enterprise: the values only); null for a column left
+        	// as it is (no filter, a filter component of its own, filterParams.valuesFilter false).
+        	getAgGridValuesFilterKind(colDef: any, defaults: any): string {
+        		const filter = colDef.filter !== undefined ? colDef.filter : defaults?.filter;
+        		const params = colDef.filterParams !== undefined ? colDef.filterParams : defaults?.filterParams;
+        		if (params != null && typeof params === "object" && params.valuesFilter === false) {
+        			return null;
+        		}
+        		if (filter === true) {
+        			return "auto";
+        		}
+        		const kinds: any = {agTextColumnFilter: "text", agNumberColumnFilter: "number", agDateColumnFilter: "date", agSetColumnFilter: "none", agMultiColumnFilter: "none"};
+        		return typeof filter === "string" && Object.prototype.hasOwnProperty.call(kinds, filter) ? kinds[filter] : null;
+        	}
+        
+        	// valuesFilter: the filter component of AG Grid, one class per grid (AG Grid keeps the filter of a column while its class
+        	// stays the same). It extends BeanStub: AG Grid gives it its beans, and it creates the condition filter of the column with
+        	// them. Its methods are those of the grid component below, the filter given as first argument.
+        	getAgGridValuesFilterClass(): any {
+        		if (this.agGridValuesFilterClass == null) {
+        			const grid = this;
+        			const Base: any = typeof AgGridBeanStub === "function" ? AgGridBeanStub : class {};
+        			this.agGridValuesFilterClass = class AgGridValuesFilter extends Base {
+        				public params: any = null;
+        				public state: any = null;
+        				init(params: any) {
+        					grid.initAgGridValuesFilter(this, params);
+        				}
+        				getGui() {
+        					return this.state?.gui;
+        				}
+        				isFilterActive() {
+        					return grid.isAgGridValuesFilterActive(this);
+        				}
+        				doesFilterPass(params: any) {
+        					return grid.doesAgGridValuesFilterPass(this, params);
+        				}
+        				getModel() {
+        					return grid.getAgGridValuesFilterModel(this);
+        				}
+        				setModel(model: any) {
+        					return grid.setAgGridValuesFilterModel(this, model);
+        				}
+        				getModelAsString(model: any) {
+        					return grid.getAgGridValuesFilterModelText(this, model);
+        				}
+        				afterGuiAttached(params: any) {
+        					grid.showAgGridValuesFilter(this, params);
+        				}
+        				afterGuiDetached() {
+        					grid.hideAgGridValuesFilter(this);
+        				}
+        				onNewRowsLoaded() {
+        					grid.markAgGridValuesFilterDirty(this);
+        				}
+        				onAnyFilterChanged() {
+        					grid.markAgGridValuesFilterDirty(this);
+        				}
+        				refresh(params: any) {
+        					return grid.refreshAgGridValuesFilter(this, params);
+        				}
+        				destroy() {
+        					grid.destroyAgGridValuesFilter(this);
+        					if (typeof super.destroy === "function") {
+        						super.destroy();
+        					}
+        				}
+        			};
+        		}
+        		return this.agGridValuesFilterClass;
+        	}
+        
+        	initAgGridValuesFilter(f: any, params: any): void {
+        		f.params = params;
+        		f.state = {
+        			conditionKind: this.getAgGridValuesFilterConditionKind(params), condition: null, type: null,
+        			// the values kept by the filter ({values, set}, null: every value) and the values checked in the list (null: every value)
+        			applied: null, selected: null,
+        			// the values listed ({key, value, node, label}), the rows shown ({kind: "all" | "value", item}), the state of (Select All)
+        			items: null, rows: [], allState: "checked", dirty: true, search: "", active: -1,
+        			attached: false, hidePopup: null, root: null, conditionOpen: false, ticket: 0, loading: false, error: false, truncated: false,
+        			providedComplete: false, destroyed: false, timers: {}, listeners: [], gui: null, ui: null
+        		};
+        		f.state.condition = this.createAgGridValuesFilterCondition(f, params);
+        		f.state.gui = this.buildAgGridValuesFilterGui(f);
+        		// the values follow the rows: a new list or a transaction calls onNewRowsLoaded, an edited cell fires cellValueChanged
+        		const api = params?.api;
+        		if (typeof api?.addEventListener === "function") {
+        			const onCellChanged = () => this.markAgGridValuesFilterDirty(f);
+        			api.addEventListener("cellValueChanged", onCellChanged);
+        			f.state.listeners.push(() => {
+        				if (!(typeof api.isDestroyed === "function" && api.isDestroyed())) {
+        					api.removeEventListener?.("cellValueChanged", onCellChanged);
+        				}
+        			});
+        		}
+        	}
+        
+        	// valuesFilter: the condition filter of a column ("text", "number" or "date"), null for none (a boolean column, a filter of
+        	// AG Grid Enterprise). Filter true takes it from the type of the cells, as AG Grid does.
+        	getAgGridValuesFilterConditionKind(params: any): string {
+        		const kind = params?.aggridValuesFilterCondition;
+        		if (kind === "text" || kind === "number" || kind === "date") {
+        			return kind;
+        		}
+        		if (kind !== "auto") {
+        			return null;
+        		}
+        		const type = params?.colDef?.cellDataType;
+        		if (type === "number") {
+        			return "number";
+        		}
+        		if (type === "date" || type === "dateString") {
+        			return "date";
+        		}
+        		return type === "boolean" ? null : "text";
+        	}
+        
+        	// valuesFilter: the condition filter of the column, the very filter of AG Grid (TextFilter, NumberFilter or DateFilter) with
+        	// the filterParams of the column (its options, its comparator, its debounce). null when it cannot be created: the values only.
+        	createAgGridValuesFilterCondition(f: any, params: any): any {
+        		const kind = f.state.conditionKind;
+        		const classes: any = {
+        			text: typeof AgGridTextFilter === "function" ? AgGridTextFilter : null,
+        			number: typeof AgGridNumberFilter === "function" ? AgGridNumberFilter : null,
+        			date: typeof AgGridDateFilter === "function" ? AgGridDateFilter : null
+        		};
+        		const Condition = kind != null ? classes[kind] : null;
+        		if (Condition == null || typeof f.createBean !== "function") {
+        			return null;
+        		}
+        		try {
+        			const condition = f.createBean(new Condition());
+        			condition.init(this.getAgGridValuesFilterConditionParams(f, params));
+        			return condition;
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid valuesFilter: the condition filter of the column could not be created : ", e != null ? (e as any).message : e);
+        			return null;
+        		}
+        	}
+        
+        	// valuesFilter: the parameters of the condition filter. Its changes reach the grid through the filter by values; with an
+        	// apply button it waits for the Apply button of the popup (its own buttons are hidden).
+        	getAgGridValuesFilterConditionParams(f: any, params: any): any {
+        		return {
+        			...params,
+        			buttons: this.isAgGridValuesFilterApplyButton(params) ? ["apply"] : undefined,
+        			closeOnApply: false,
+        			filterChangedCallback: (attributes: any) => this.onAgGridValuesFilterConditionChanged(f, attributes),
+        			filterModifiedCallback: () => f.params?.filterModifiedCallback?.()
+        		};
+        	}
+        
+        	onAgGridValuesFilterConditionChanged(f: any, attributes: any): void {
+        		if (f.state == null || f.state.destroyed) {
+        			return;
+        		}
+        		this.updateAgGridValuesFilterToggle(f);
+        		f.params?.filterChangedCallback?.(attributes);
+        	}
+        
+        	isAgGridValuesFilterApplyButton(params: any): boolean {
+        		return Array.isArray(params?.buttons) && params.buttons.indexOf("apply") >= 0;
+        	}
+        
+        	// valuesFilter: the buttons of the popup, filterParams.buttons of the column ("apply", "clear", "reset", "cancel"), else Clear.
+        	getAgGridValuesFilterButtons(params: any): string[] {
+        		const buttons: any[] = Array.isArray(params?.buttons) ? params.buttons : ["clear"];
+        		return buttons.filter((button: any, index: number) => ["apply", "clear", "reset", "cancel"].indexOf(button) >= 0 && buttons.indexOf(button) === index);
+        	}
+        
+        	// valuesFilter: the values asked to valuesFilterProvider for a column (filterParams.valuesFilterProvider of the column, a
+        	// function, or false to take the values of the rows of the grid); null: the values of the rows of the grid.
+        	getAgGridValuesFilterProvider(f: any): any {
+        		const own = f.params?.valuesFilterProvider;
+        		if (own === false) {
+        			return null;
+        		}
+        		if (typeof own === "function") {
+        			return own;
+        		}
+        		return typeof this.valuesFilterProvider === "function" ? this.valuesFilterProvider : null;
+        	}
+        
+        	// valuesFilter: the column given to valuesFilterProvider.
+        	getAgGridValuesFilterColumnInfo(f: any): any {
+        		const params = f.params || {};
+        		const colDef = params.colDef || {};
+        		const column = params.column;
+        		return {
+        			colId: typeof column?.getColId === "function" ? column.getColId() : (colDef.colId ?? colDef.field),
+        			field: colDef.field, headerName: colDef.headerName, type: this.getAgGridValuesFilterType(f), colDef: colDef, column: column, api: params.api
+        		};
+        	}
+        
+        	// valuesFilter: the type of the values of a column, "text", "number", "date" or "boolean": filterParams.valuesFilterType,
+        	// else its filter (agNumberColumnFilter: numbers, agDateColumnFilter: dates), else its cellDataType, else the values of
+        	// its first rows.
+        	getAgGridValuesFilterType(f: any): string {
+        		const state = f.state;
+        		if (state.type != null) {
+        			return state.type;
+        		}
+        		const params = f.params || {};
+        		const own = params.valuesFilterType;
+        		let type = own === "text" || own === "number" || own === "date" || own === "boolean" ? own : null;
+        		const kind = params.aggridValuesFilterCondition;
+        		if (type == null && (kind === "text" || kind === "number" || kind === "date")) {
+        			type = kind;
+        		}
+        		if (type == null) {
+        			const cell = params.colDef?.cellDataType;
+        			type = cell === "number" ? "number" : (cell === "date" || cell === "dateString" ? "date" : (cell === "boolean" ? "boolean" : (cell === "text" || cell === "object" ? "text" : null)));
+        		}
+        		if (type == null) {
+        			type = this.inferAgGridValuesFilterType(f);
+        			if (type == null) {
+        				// no row yet: decided with the first rows
+        				return "text";
+        			}
+        		}
+        		state.type = type;
+        		return type;
+        	}
+        
+        	// valuesFilter: the type of the first values of the rows (one type for all of them), "text" for mixed values, null without rows.
+        	inferAgGridValuesFilterType(f: any): string {
+        		const params = f.params || {};
+        		const kinds = new Set<string>();
+        		let rows = 0;
+        		let seen = 0;
+        		try {
+        			params.api?.forEachLeafNode?.((node: any) => {
+        				if (seen >= 200 || node?.data == null) {
+        					return;
+        				}
+        				rows++;
+        				const value = params.getValue(node);
+        				for (const item of Array.isArray(value) ? value : [value]) {
+        					if (item == null || (typeof item === "string" && item.trim() === "")) {
+        						continue;
+        					}
+        					seen++;
+        					kinds.add(item instanceof Date ? "date" : typeof item);
+        				}
+        			});
+        		} catch (e) {
+        		}
+        		if (rows == 0) {
+        			return null;
+        		}
+        		const kind = kinds.size === 1 ? Array.from(kinds)[0] : "text";
+        		return kind === "number" || kind === "date" || kind === "boolean" ? kind : "text";
+        	}
+        
+        	// valuesFilter: the value of a cell as a value of the list: a number, a day "YYYY-MM-DD" (local), true or false, a text;
+        	// null for a blank cell (empty, null, NaN). An option or a link ({value}, {label}) is its text.
+        	getAgGridValuesFilterKey(value: any, type: string): any {
+        		if (value == null || (typeof value === "number" && !isFinite(value))) {
+        			return null;
+        		}
+        		if (type === "number") {
+        			if (typeof value === "number") {
+        				return value;
+        			}
+        			const text = typeof value === "object" ? this.getAgGridObjectText(value).trim() : String(value).trim();
+        			if (text === "") {
+        				return null;
+        			}
+        			const number = Number(text);
+        			return isFinite(number) ? number : text;
+        		}
+        		if (type === "date") {
+        			return this.getAgGridValuesFilterDay(value);
+        		}
+        		if (type === "boolean") {
+        			if (value === true || value === false) {
+        				return value;
+        			}
+        			const text = String(value).trim().toLowerCase();
+        			if (text === "") {
+        				return null;
+        			}
+        			return text === "true" || text === "1" ? true : (text === "false" || text === "0" ? false : text);
+        		}
+        		if (value instanceof Date) {
+        			return isNaN(value.getTime()) ? null : this.getAgGridValuesFilterDay(value);
+        		}
+        		const text = typeof value === "object" ? this.getAgGridObjectText(value) : String(value);
+        		return text.trim() === "" ? null : text;
+        	}
+        
+        	// valuesFilter: the values of a cell, each value of a list (multiple options, links) apart; an empty list is a blank cell.
+        	getAgGridValuesFilterKeys(value: any, type: string): any[] {
+        		if (!Array.isArray(value)) {
+        			return [this.getAgGridValuesFilterKey(value, type)];
+        		}
+        		const keys: any[] = [];
+        		for (const item of value) {
+        			const key = this.getAgGridValuesFilterKey(item, type);
+        			if (keys.indexOf(key) < 0) {
+        				keys.push(key);
+        			}
+        		}
+        		return keys.length > 0 ? keys : [null];
+        	}
+        
+        	// valuesFilter: the local day of a date ("YYYY-MM-DD"), of a timestamp or of a date text; a text that is no date is kept.
+        	getAgGridValuesFilterDay(value: any): any {
+        		let date: Date = null;
+        		if (value instanceof Date) {
+        			date = value;
+        		}
+        		else if (typeof value === "number" && isFinite(value)) {
+        			date = new Date(value);
+        		}
+        		else {
+        			const text = (typeof value === "object" ? this.getAgGridObjectText(value) : String(value)).trim();
+        			if (text === "") {
+        				return null;
+        			}
+        			if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+        				return text;
+        			}
+        			if (!/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}/.test(text)) {
+        				return text;
+        			}
+        			date = new Date(text.replace(" ", "T"));
+        			if (isNaN(date.getTime())) {
+        				return text.substring(0, 10);
+        			}
+        		}
+        		if (isNaN(date.getTime())) {
+        			return null;
+        		}
+        		return date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0");
+        	}
+        
+        	isAgGridValuesFilterActive(f: any): boolean {
+        		return f.state?.applied != null || f.state?.condition?.isFilterActive?.() === true;
+        	}
+        
+        	// valuesFilter: a row passes when one of its values is kept and it passes the condition. The values of a column given by
+        	// valuesFilterProvider are filtered by the application (the server), never in the browser.
+        	doesAgGridValuesFilterPass(f: any, params: any): boolean {
+        		const state = f.state;
+        		const applied = state?.applied;
+        		if (applied != null && this.getAgGridValuesFilterProvider(f) == null) {
+        			let value: any;
+        			try {
+        				value = f.params.getValue(params?.node);
+        			} catch (e) {
+        				value = undefined;
+        			}
+        			const keys = this.getAgGridValuesFilterKeys(value, this.getAgGridValuesFilterType(f));
+        			if (!keys.some((key: any) => applied.set.has(key))) {
+        				return false;
+        			}
+        		}
+        		const condition = state?.condition;
+        		return condition == null || condition.isFilterActive?.() !== true || condition.doesFilterPass(params) === true;
+        	}
+        
+        	getAgGridValuesFilterModel(f: any): any {
+        		const values = f.state?.applied?.values ?? null;
+        		const condition = f.state?.condition?.getModel?.() ?? null;
+        		if (values == null && condition == null) {
+        			return null;
+        		}
+        		const model: any = {filterType: "values", values: values};
+        		if (condition != null) {
+        			model.condition = condition;
+        		}
+        		return model;
+        	}
+        
+        	// valuesFilter: a model {filterType: "values", values, condition}, or the model of the condition filter alone (the filter
+        	// the column had before), or null to clear the filter.
+        	setAgGridValuesFilterModel(f: any, model: any): any {
+        		const state = f.state;
+        		const values = model != null && typeof model === "object" && Array.isArray(model.values) ? model.values : null;
+        		const conditionModel = model == null || typeof model !== "object" ? null : (model.filterType === "values" ? (model.condition ?? null) : (typeof model.filterType === "string" ? model : null));
+        		state.applied = values != null ? {values: values.slice(), set: new Set(values)} : null;
+        		state.selected = values != null ? new Set(values) : null;
+        		if (state.attached) {
+        			this.refreshAgGridValuesFilterRows(f);
+        			this.renderAgGridValuesFilterRows(f);
+        		}
+        		const condition = state.condition;
+        		if (condition == null || typeof condition.setModel !== "function") {
+        			return null;
+        		}
+        		const done = condition.setModel(conditionModel);
+        		if (done != null && typeof done.then === "function") {
+        			done.then(() => this.updateAgGridValuesFilterToggle(f));
+        		}
+        		return done;
+        	}
+        
+        	// valuesFilter: the model in a few words (a read only floating filter): the first values kept, then the condition.
+        	getAgGridValuesFilterModelText(f: any, model: any): string {
+        		const parts: string[] = [];
+        		const values = model != null && Array.isArray(model.values) ? model.values : null;
+        		if (values != null) {
+        			const labels = new Map<any, string>();
+        			(f.state?.items || []).forEach((item: any) => labels.set(item.key, item.label));
+        			const shown = values.slice(0, 3).map((value: any) => labels.has(value) ? labels.get(value) : (value === null ? this.getAgGridValuesFilterText("blanks", "(Blanks)") : String(value)));
+        			parts.push(values.length === 0 ? "(0)" : shown.join(", ") + (values.length > 3 ? " (+" + (values.length - 3) + ")" : ""));
+        		}
+        		const condition = f.state?.condition;
+        		if (model?.condition != null && typeof condition?.getModelAsString === "function") {
+        			const text = condition.getModelAsString(model.condition);
+        			if (text != null && text !== "") {
+        				parts.push(text);
+        			}
+        		}
+        		return parts.join("; ");
+        	}
+        
+        	// valuesFilter: a text of the filter: valuesFilterTexts, else the texts of the grid (getLocaleText, the locale of the grid:
+        	// selectAll, blanks, searchOoo... are texts of AG Grid), else English. {{name}} takes args[name].
+        	getAgGridValuesFilterText(key: string, defaultValue: string, args?: any): string {
+        		const texts: any = this.valuesFilterTexts;
+        		const own = texts != null && typeof texts === "object" ? texts[key] : null;
+        		const text = typeof own === "string" && own !== "" ? own : this.getAgGridPagerText(key, defaultValue);
+        		const values = args || {};
+        		return String(text).replace(/\{\{\s*(\w+)\s*\}\}/g, (match: string, name: string) => values[name] != null ? String(values[name]) : "");
+        	}
+        
+        	// valuesFilter: the language of the values (numbers, dates, the order of the texts): localeText when it is a language,
+        	// else the language of the application, else the one of the browser.
+        	getAgGridValuesFilterLocale(): string {
+        		const candidates: any[] = [typeof this.localeText === "string" ? this.localeText : null, this.translate?.currentLang, typeof document !== "undefined" ? document.documentElement?.lang : null];
+        		for (const candidate of candidates) {
+        			if (typeof candidate === "string" && candidate.trim() !== "") {
+        				try {
+        					return Intl.getCanonicalLocales(candidate.trim())[0];
+        				} catch (e) {
+        				}
+        			}
+        		}
+        		return undefined;
+        	}
+        
+        	// valuesFilter: the formats of the language (the collator sorts the texts in natural order: "item 2" before "item 10").
+        	getAgGridValuesFilterFormats(): any {
+        		const locale = this.getAgGridValuesFilterLocale();
+        		const formats = this.agGridValuesFilterFormats;
+        		if (formats != null && formats.locale === locale) {
+        			return formats;
+        		}
+        		const create = (factory: (locale: string) => any): any => {
+        			try {
+        				return factory(locale);
+        			} catch (e) {
+        				return factory(undefined);
+        			}
+        		};
+        		this.agGridValuesFilterFormats = {
+        			locale: locale,
+        			collator: create((language: string) => new Intl.Collator(language, {numeric: true, sensitivity: "base"})),
+        			number: create((language: string) => new Intl.NumberFormat(language, {maximumFractionDigits: 20})),
+        			date: create((language: string) => new Intl.DateTimeFormat(language, {year: "numeric", month: "2-digit", day: "2-digit"}))
+        		};
+        		return this.agGridValuesFilterFormats;
+        	}
+        
+        	// valuesFilter: the text of a value in the list: filterParams.valueFormatter, else the valueFormatter of the column (when it
+        	// filters on the value of its cells), else the value in the language of the grid; (Blanks) for blank cells.
+        	getAgGridValuesFilterLabel(f: any, item: any): string {
+        		if (item.key === null) {
+        			return this.getAgGridValuesFilterText("blanks", "(Blanks)");
+        		}
+        		const params = f.params || {};
+        		const colDef = params.colDef || {};
+        		const key = item.key;
+        		// a boolean is True or False in the language of the grid (its cells are check boxes), unless filterParams.valueFormatter
+        		const formatter = typeof params.valueFormatter === "function" ? params.valueFormatter :
+        			(typeof key !== "boolean" && item.item !== true && item.node != null && colDef.filterValueGetter == null && typeof colDef.valueFormatter === "function" ? colDef.valueFormatter : null);
+        		if (formatter != null) {
+        			try {
+        				const text = formatter({value: item.value, data: item.node?.data, node: item.node, colDef: colDef, column: params.column, api: params.api, context: params.context});
+        				if (text != null && String(text).trim() !== "") {
+        					return String(text);
+        				}
+        			} catch (e) {
+        			}
+        		}
+        		const type = this.getAgGridValuesFilterType(f);
+        		if (type === "number" && typeof key === "number") {
+        			return this.getAgGridValuesFilterFormats().number.format(key);
+        		}
+        		if (type === "date" && typeof key === "string" && /^\d{4}-\d{2}-\d{2}$/.test(key)) {
+        			const parts = key.split("-").map(Number);
+        			return this.getAgGridValuesFilterFormats().date.format(new Date(parts[0], parts[1] - 1, parts[2]));
+        		}
+        		if (typeof key === "boolean") {
+        			return key ? this.getAgGridValuesFilterText("true", "True") : this.getAgGridValuesFilterText("false", "False");
+        		}
+        		return String(key);
+        	}
+        
+        	// valuesFilter: the order of two values: blanks first, then booleans, numbers, texts (natural order, dates "YYYY-MM-DD" too).
+        	compareAgGridValuesFilterKeys(a: any, b: any): number {
+        		if (a === b) {
+        			return 0;
+        		}
+        		if (a === null || b === null) {
+        			return a === null ? -1 : 1;
+        		}
+        		const ranks: any = {boolean: 0, number: 1, string: 2};
+        		const typeA = typeof a;
+        		const typeB = typeof b;
+        		if (typeA !== typeB) {
+        			return (ranks[typeA] ?? 3) - (ranks[typeB] ?? 3);
+        		}
+        		if (typeA === "number") {
+        			return a - b;
+        		}
+        		if (typeA === "boolean") {
+        			return a ? 1 : -1;
+        		}
+        		const textA = String(a);
+        		const textB = String(b);
+        		return this.getAgGridValuesFilterFormats().collator.compare(textA, textB) || (textA < textB ? -1 : (textA > textB ? 1 : 0));
+        	}
+        
+        	// valuesFilter: the values listed with their text, sorted: texts by what the list shows, the others by their value.
+        	finishAgGridValuesFilterItems(f: any, items: any[]): any[] {
+        		for (const item of items) {
+        			if (item.label == null) {
+        				item.label = this.getAgGridValuesFilterLabel(f, item);
+        			}
+        			item.search = null;
+        		}
+        		const type = this.getAgGridValuesFilterType(f);
+        		const collator = this.getAgGridValuesFilterFormats().collator;
+        		items.sort((a: any, b: any) => {
+        			if (a.key === null || b.key === null) {
+        				return a.key === b.key ? 0 : (a.key === null ? -1 : 1);
+        			}
+        			if (type === "text" || typeof a.key !== typeof b.key) {
+        				return collator.compare(a.label, b.label) || this.compareAgGridValuesFilterKeys(a.key, b.key);
+        			}
+        			return this.compareAgGridValuesFilterKeys(a.key, b.key);
+        		});
+        		return items;
+        	}
+        
+        	// valuesFilter: the distinct values of the column in the rows of the grid that pass the filters of the other columns (as
+        	// Excel lists them); the first row of each value gives it to the valueFormatter.
+        	collectAgGridValuesFilterItems(f: any): any[] {
+        		const params = f.params || {};
+        		const type = this.getAgGridValuesFilterType(f);
+        		const byKey = new Map<any, any>();
+        		const visit = (node: any) => {
+        			if (node == null || node.group === true || node.data == null) {
+        				return;
+        			}
+        			if (typeof params.doesRowPassOtherFilter === "function" && !params.doesRowPassOtherFilter(node)) {
+        				return;
+        			}
+        			let value: any;
+        			try {
+        				value = params.getValue(node);
+        			} catch (e) {
+        				value = undefined;
+        			}
+        			const list = Array.isArray(value) ? (value.length > 0 ? value : [null]) : [value];
+        			for (const entry of list) {
+        				const key = this.getAgGridValuesFilterKey(entry, type);
+        				if (!byKey.has(key)) {
+        					byKey.set(key, {key: key, value: entry, node: node, item: Array.isArray(value), label: null});
+        				}
+        			}
+        		};
+        		try {
+        			if (typeof params.api?.forEachLeafNode === "function") {
+        				params.api.forEachLeafNode(visit);
+        			}
+        			else {
+        				params.api?.forEachNode?.(visit);
+        			}
+        		} catch (e) {
+        			this.c8o.log.debug("[MB] agGrid valuesFilter: the values of the rows could not be read : ", e != null ? (e as any).message : e);
+        		}
+        		return this.finishAgGridValuesFilterItems(f, Array.from(byKey.values()));
+        	}
+        
+        	// valuesFilter: the values given by valuesFilterProvider: values, or {value, label} (an option and its text, a link and the
+        	// text of its row); a value given twice is listed once.
+        	getAgGridValuesFilterProvidedItems(f: any, list: any[]): any[] {
+        		const type = this.getAgGridValuesFilterType(f);
+        		const byKey = new Map<any, any>();
+        		for (const entry of Array.isArray(list) ? list : []) {
+        			const labeled = entry != null && typeof entry === "object" && !(entry instanceof Date) && !Array.isArray(entry) && Object.prototype.hasOwnProperty.call(entry, "value");
+        			const value = labeled ? entry.value : entry;
+        			const key = labeled ? (value == null || (typeof value === "string" && value.trim() === "") ? null : (typeof value === "object" ? this.getAgGridValuesFilterKey(value, type) : value)) : this.getAgGridValuesFilterKey(value, type);
+        			if (byKey.has(key)) {
+        				continue;
+        			}
+        			const label = labeled && key !== null && entry.label != null && String(entry.label).trim() !== "" ? String(entry.label) : null;
+        			byKey.set(key, {key: key, value: value, node: null, item: false, label: label});
+        		}
+        		return this.finishAgGridValuesFilterItems(f, Array.from(byKey.values()));
+        	}
+        
+        	// valuesFilter: reads the values when the popup opens, from the rows of the grid (again when they changed), else from
+        	// valuesFilterProvider(column, search): an array, {values, complete} (complete false: only the first values, a search asks
+        	// the others), or null for the values of the rows of the grid. An answer after a newer request is dropped.
+        	loadAgGridValuesFilterItems(f: any): void {
+        		const state = f.state;
+        		const provider = this.getAgGridValuesFilterProvider(f);
+        		if (provider == null) {
+        			if (state.dirty || state.items == null) {
+        				state.items = this.collectAgGridValuesFilterItems(f);
+        				state.dirty = false;
+        			}
+        			state.loading = false;
+        			state.error = false;
+        			state.truncated = false;
+        			this.refreshAgGridValuesFilterRows(f);
+        			this.renderAgGridValuesFilterRows(f);
+        			return;
+        		}
+        		const ticket = ++state.ticket;
+        		const search = state.search || "";
+        		state.loading = true;
+        		state.error = false;
+        		this.refreshAgGridValuesFilterRows(f);
+        		this.renderAgGridValuesFilterRows(f);
+        		let answer: any;
+        		try {
+        			answer = provider(this.getAgGridValuesFilterColumnInfo(f), search);
+        		} catch (e) {
+        			answer = Promise.reject(e);
+        		}
+        		Promise.resolve(answer).then((result: any) => {
+        			if (ticket !== state.ticket || state.destroyed) {
+        				return;
+        			}
+        			state.loading = false;
+        			if (result == null) {
+        				state.items = this.collectAgGridValuesFilterItems(f);
+        				state.truncated = false;
+        				state.providedComplete = true;
+        			}
+        			else {
+        				const complete = Array.isArray(result) || result.complete !== false;
+        				state.items = this.getAgGridValuesFilterProvidedItems(f, Array.isArray(result) ? result : result.values);
+        				state.truncated = !complete;
+        				if (search.trim() === "") {
+        					state.providedComplete = complete;
+        				}
+        			}
+        			state.dirty = false;
+        			this.refreshAgGridValuesFilterRows(f);
+        			this.renderAgGridValuesFilterRows(f);
+        		}, (error: any) => {
+        			if (ticket !== state.ticket || state.destroyed) {
+        				return;
+        			}
+        			state.loading = false;
+        			state.error = true;
+        			this.c8o.log.debug("[MB] agGrid valuesFilter: valuesFilterProvider failed : ", error != null ? error.message : error);
+        			this.refreshAgGridValuesFilterRows(f);
+        			this.renderAgGridValuesFilterRows(f);
+        		});
+        	}
+        
+        	// valuesFilter: the rows or the cells changed: the values are read again (at once while the popup is open).
+        	markAgGridValuesFilterDirty(f: any): void {
+        		const state = f.state;
+        		if (state == null || state.destroyed) {
+        			return;
+        		}
+        		state.dirty = true;
+        		if (!state.attached || this.getAgGridValuesFilterProvider(f) != null) {
+        			return;
+        		}
+        		clearTimeout(state.timers.refresh);
+        		state.timers.refresh = setTimeout(() => {
+        			state.timers.refresh = null;
+        			if (state.attached && !state.destroyed && state.dirty) {
+        				state.items = this.collectAgGridValuesFilterItems(f);
+        				state.dirty = false;
+        				this.refreshAgGridValuesFilterRows(f);
+        				this.renderAgGridValuesFilterRows(f);
+        			}
+        		}, 50);
+        	}
+        
+        	// valuesFilter: the text searched, without case nor accents.
+        	normalizeAgGridValuesFilterSearch(text: any): string {
+        		return String(text ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+        	}
+        
+        	// valuesFilter: the rows of the list, (Select All) then the values matching the search.
+        	refreshAgGridValuesFilterRows(f: any): void {
+        		const state = f.state;
+        		const search = this.normalizeAgGridValuesFilterSearch(state.search);
+        		const rows: any[] = [];
+        		for (const item of state.items || []) {
+        			if (search !== "") {
+        				if (item.search == null) {
+        					item.search = this.normalizeAgGridValuesFilterSearch(item.label);
+        				}
+        				if (item.search.indexOf(search) < 0) {
+        					continue;
+        				}
+        			}
+        			rows.push({kind: "value", item: item});
+        		}
+        		if (rows.length > 0) {
+        			rows.unshift({kind: "all"});
+        		}
+        		state.rows = rows;
+        		if (state.active >= rows.length) {
+        			state.active = rows.length - 1;
+        		}
+        		this.updateAgGridValuesFilterAllState(f);
+        	}
+        
+        	// valuesFilter: (Select All) checked when every value shown is, mixed when some are.
+        	updateAgGridValuesFilterAllState(f: any): void {
+        		const state = f.state;
+        		if (state.selected == null) {
+        			state.allState = "checked";
+        			return;
+        		}
+        		let on = 0;
+        		let total = 0;
+        		for (const row of state.rows) {
+        			if (row.kind === "value") {
+        				total++;
+        				if (state.selected.has(row.item.key)) {
+        					on++;
+        				}
+        			}
+        		}
+        		state.allState = on === 0 ? "unchecked" : (on === total ? "checked" : "indeterminate");
+        	}
+        
+        	isAgGridValuesFilterChecked(f: any, key: any): boolean {
+        		return f.state.selected == null || f.state.selected.has(key);
+        	}
+        
+        	// valuesFilter: a click (or Space) on a row of the list. (Select All) checks or unchecks every value shown (the values found
+        	// by the search only); every value of a complete list checked is no filter by values.
+        	toggleAgGridValuesFilterRow(f: any, index: number): void {
+        		const state = f.state;
+        		const row = state.rows?.[index];
+        		if (row == null || f.params?.readOnly === true) {
+        			return;
+        		}
+        		const searching = this.normalizeAgGridValuesFilterSearch(state.search) !== "";
+        		const everyValue = () => new Set((state.items || []).map((item: any) => item.key));
+        		if (row.kind === "all" && !searching) {
+        			state.selected = state.allState === "checked" ? new Set() : null;
+        		}
+        		else if (row.kind === "all") {
+        			const selected = state.selected != null ? new Set(state.selected) : everyValue();
+        			const on = state.allState !== "checked";
+        			for (const other of state.rows) {
+        				if (other.kind === "value") {
+        					if (on) {
+        						selected.add(other.item.key);
+        					}
+        					else {
+        						selected.delete(other.item.key);
+        					}
+        				}
+        			}
+        			state.selected = selected;
+        		}
+        		else {
+        			const selected = state.selected != null ? new Set(state.selected) : everyValue();
+        			if (selected.has(row.item.key)) {
+        				selected.delete(row.item.key);
+        			}
+        			else {
+        				selected.add(row.item.key);
+        			}
+        			state.selected = selected;
+        		}
+        		this.normalizeAgGridValuesFilterSelection(f);
+        		this.updateAgGridValuesFilterAllState(f);
+        		this.renderAgGridValuesFilterRows(f);
+        		this.onAgGridValuesFilterUiChanged(f);
+        	}
+        
+        	normalizeAgGridValuesFilterSelection(f: any): void {
+        		const state = f.state;
+        		const items = state.items || [];
+        		if (state.selected != null && !state.truncated && items.length > 0 && items.every((item: any) => state.selected.has(item.key))) {
+        			state.selected = null;
+        		}
+        	}
+        
+        	// valuesFilter: the list changed: applied at once, after filterParams.debounceMs, or by the Apply button.
+        	onAgGridValuesFilterUiChanged(f: any): void {
+        		const state = f.state;
+        		f.params?.filterModifiedCallback?.();
+        		if (this.isAgGridValuesFilterApplyButton(f.params)) {
+        			return;
+        		}
+        		clearTimeout(state.timers.apply);
+        		state.timers.apply = null;
+        		const delay = Number(f.params?.debounceMs);
+        		if (Number.isFinite(delay) && delay > 0) {
+        			state.timers.apply = setTimeout(() => this.applyAgGridValuesFilterSelection(f, true), delay);
+        		}
+        		else {
+        			this.applyAgGridValuesFilterSelection(f, true);
+        		}
+        	}
+        
+        	// valuesFilter: the values checked become the values kept; the grid is told when they changed (notify).
+        	applyAgGridValuesFilterSelection(f: any, notify: boolean): boolean {
+        		const state = f.state;
+        		clearTimeout(state.timers.apply);
+        		state.timers.apply = null;
+        		const values = state.selected == null ? null : Array.from(state.selected).sort((a: any, b: any) => this.compareAgGridValuesFilterKeys(a, b));
+        		const changed = JSON.stringify(values) !== JSON.stringify(state.applied?.values ?? null);
+        		state.applied = values == null ? null : {values: values, set: new Set(values)};
+        		if (changed && notify) {
+        			f.params?.filterChangedCallback?.({source: "columnFilter"});
+        		}
+        		return changed;
+        	}
+        
+        	// valuesFilter: the Apply button (or Enter): the values and the condition at once, one change for the grid.
+        	applyAgGridValuesFilterAll(f: any): boolean {
+        		let changed = this.applyAgGridValuesFilterSelection(f, false);
+        		const condition = f.state.condition;
+        		if (condition != null && this.isAgGridValuesFilterApplyButton(f.params) && typeof condition.applyModel === "function") {
+        			changed = condition.applyModel("ui") === true || changed;
+        		}
+        		this.updateAgGridValuesFilterToggle(f);
+        		if (changed) {
+        			f.params?.filterChangedCallback?.({source: "columnFilter"});
+        		}
+        		return changed;
+        	}
+        
+        	// valuesFilter: every value checked and no condition; apply: at once, one change for the grid (else the Apply button).
+        	clearAgGridValuesFilter(f: any, apply: boolean): void {
+        		const state = f.state;
+        		state.selected = null;
+        		state.search = "";
+        		if (state.ui?.search != null) {
+        			state.ui.search.value = "";
+        		}
+        		this.refreshAgGridValuesFilterRows(f);
+        		this.renderAgGridValuesFilterRows(f);
+        		const condition = state.condition;
+        		if (!apply) {
+        			condition?.onBtClear?.();
+        			f.params?.filterModifiedCallback?.();
+        			return;
+        		}
+        		const changed = this.applyAgGridValuesFilterSelection(f, false);
+        		const notify = () => {
+        			this.updateAgGridValuesFilterToggle(f);
+        			f.params?.filterChangedCallback?.({source: "columnFilter"});
+        		};
+        		if (condition != null && (condition.isFilterActive?.() === true || condition.getModel?.() != null)) {
+        			const done = condition.setModel(null);
+        			if (done != null && typeof done.then === "function") {
+        				done.then(notify);
+        			}
+        			else {
+        				notify();
+        			}
+        			return;
+        		}
+        		if (changed) {
+        			notify();
+        		}
+        	}
+        
+        	onAgGridValuesFilterButton(f: any, type: string, event: any): void {
+        		const state = f.state;
+        		const applyButton = this.isAgGridValuesFilterApplyButton(f.params);
+        		if (type === "apply") {
+        			this.applyAgGridValuesFilterAll(f);
+        		}
+        		else if (type === "clear" || type === "reset") {
+        			this.clearAgGridValuesFilter(f, type === "reset" || !applyButton);
+        		}
+        		else if (type === "cancel") {
+        			state.selected = state.applied != null ? new Set(state.applied.values) : null;
+        			this.refreshAgGridValuesFilterRows(f);
+        			this.renderAgGridValuesFilterRows(f);
+        			state.condition?.onBtCancel?.(event);
+        		}
+        		if ((type === "apply" || type === "cancel") && f.params?.closeOnApply === true) {
+        			this.closeAgGridValuesFilter(f, event);
+        		}
+        	}
+        
+        	closeAgGridValuesFilter(f: any, event?: any): void {
+        		const hide = f.state?.hidePopup;
+        		if (typeof hide === "function") {
+        			f.state.hidePopup = null;
+        			hide(event?.key === "Enter" ? {keyboardEvent: event} : undefined);
+        		}
+        	}
+        
+        	// valuesFilter: the popup of the filter: the condition (folded unless it is set), the search box, the list, the buttons.
+        	buildAgGridValuesFilterGui(f: any): any {
+        		const state = f.state;
+        		const id = "aggrid-values-filter-" + Math.random().toString(36).slice(2, 10);
+        		const ui: any = state.ui = {id: id};
+        		const gui = document.createElement("div");
+        		gui.className = "aggrid-values-filter";
+        		if (state.condition != null) {
+        			const toggle = document.createElement("button");
+        			toggle.type = "button";
+        			toggle.className = "aggrid-values-filter-condition-toggle";
+        			toggle.setAttribute("aria-expanded", "false");
+        			toggle.setAttribute("aria-controls", id + "-condition");
+        			const icon = document.createElement("span");
+        			icon.className = "ag-icon ag-icon-tree-closed";
+        			icon.setAttribute("aria-hidden", "true");
+        			const label = document.createElement("span");
+        			label.className = "aggrid-values-filter-condition-label";
+        			label.textContent = this.getAgGridValuesFilterText("condition", "Filter by condition");
+        			const dot = document.createElement("span");
+        			dot.className = "aggrid-values-filter-condition-dot";
+        			dot.setAttribute("aria-hidden", "true");
+        			toggle.append(icon, label, dot);
+        			toggle.addEventListener("click", () => this.setAgGridValuesFilterConditionOpen(f, !state.conditionOpen, true));
+        			const body = document.createElement("div");
+        			body.className = "aggrid-values-filter-condition";
+        			body.id = id + "-condition";
+        			body.hidden = true;
+        			const conditionGui = state.condition.getGui?.();
+        			if (conditionGui != null) {
+        				body.appendChild(conditionGui);
+        			}
+        			gui.append(toggle, body);
+        			Object.assign(ui, {toggle: toggle, toggleIcon: icon, condition: body});
+        		}
+        		const searchBox = document.createElement("div");
+        		searchBox.className = "aggrid-values-filter-search ag-input-field ag-text-field";
+        		const searchWrapper = document.createElement("div");
+        		searchWrapper.className = "ag-wrapper ag-input-wrapper ag-text-field-input-wrapper";
+        		const search = document.createElement("input");
+        		search.type = "text";
+        		search.className = "ag-input-field-input ag-text-field-input";
+        		const placeholder = this.getAgGridValuesFilterText("searchOoo", "Search...");
+        		search.placeholder = placeholder;
+        		search.setAttribute("aria-label", placeholder);
+        		search.setAttribute("aria-controls", id + "-list");
+        		search.autocomplete = "off";
+        		search.spellcheck = false;
+        		search.addEventListener("input", () => this.onAgGridValuesFilterSearch(f));
+        		search.addEventListener("keydown", (event: any) => this.onAgGridValuesFilterSearchKey(f, event));
+        		searchWrapper.appendChild(search);
+        		searchBox.appendChild(searchWrapper);
+        		const list = document.createElement("div");
+        		list.className = "aggrid-values-filter-list";
+        		list.id = id + "-list";
+        		list.tabIndex = 0;
+        		list.setAttribute("role", "listbox");
+        		list.setAttribute("aria-multiselectable", "true");
+        		list.setAttribute("aria-label", String(f.params?.colDef?.headerName || f.params?.colDef?.field || this.getAgGridValuesFilterText("searchOoo", "Search...")));
+        		const spacer = document.createElement("div");
+        		spacer.className = "aggrid-values-filter-spacer";
+        		list.appendChild(spacer);
+        		list.addEventListener("scroll", () => this.renderAgGridValuesFilterRows(f));
+        		list.addEventListener("click", (event: any) => {
+        			const item = event?.target?.closest?.(".aggrid-values-filter-item");
+        			if (item == null) {
+        				return;
+        			}
+        			event.preventDefault();
+        			const index = Number(item.getAttribute("data-index"));
+        			state.active = index;
+        			this.toggleAgGridValuesFilterRow(f, index);
+        		});
+        		list.addEventListener("keydown", (event: any) => this.onAgGridValuesFilterListKey(f, event));
+        		list.addEventListener("focus", () => {
+        			if (state.active < 0 && state.rows.length > 0) {
+        				state.active = 0;
+        				this.renderAgGridValuesFilterRows(f);
+        			}
+        		});
+        		const note = document.createElement("div");
+        		note.className = "aggrid-values-filter-note";
+        		note.setAttribute("aria-live", "polite");
+        		note.hidden = true;
+        		gui.append(searchBox, list, note);
+        		const buttons = f.params?.readOnly === true ? [] : this.getAgGridValuesFilterButtons(f.params);
+        		if (buttons.length > 0) {
+        			const texts: any = {apply: ["applyFilter", "Apply"], clear: ["clearFilter", "Clear"], reset: ["resetFilter", "Reset"], cancel: ["cancelFilter", "Cancel"]};
+        			const panel = document.createElement("div");
+        			panel.className = "ag-filter-apply-panel aggrid-values-filter-buttons";
+        			for (const type of buttons) {
+        				const button = document.createElement("button");
+        				button.type = "button";
+        				button.className = "ag-button ag-standard-button ag-filter-apply-panel-button";
+        				button.setAttribute("data-aggrid-values-filter-button", type);
+        				button.textContent = this.getAgGridValuesFilterText(texts[type][0], texts[type][1]);
+        				button.addEventListener("click", (event: any) => this.onAgGridValuesFilterButton(f, type, event));
+        				panel.appendChild(button);
+        			}
+        			gui.appendChild(panel);
+        		}
+        		Object.assign(ui, {gui: gui, search: search, list: list, spacer: spacer, note: note});
+        		return gui;
+        	}
+        
+        	// valuesFilter: the rows of the list in view (and a few around): the list is virtual, a column of 10,000 values draws 20 rows.
+        	renderAgGridValuesFilterRows(f: any): void {
+        		const state = f.state;
+        		const ui = state.ui;
+        		if (ui?.list == null) {
+        			return;
+        		}
+        		const height = 28;
+        		const rows = state.rows || [];
+        		// the list keeps its height (as the Set Filter of AG Grid): the popup keeps the place AG Grid gave it
+        		const visible = Math.ceil((ui.list.clientHeight || height * 8.5) / height);
+        		ui.spacer.style.height = rows.length * height + "px";
+        		const top = ui.list.scrollTop || 0;
+        		const first = Math.max(0, Math.floor(top / height) - 3);
+        		const last = Math.min(rows.length - 1, Math.ceil(top / height) + visible + 3);
+        		const searching = this.normalizeAgGridValuesFilterSearch(state.search) !== "";
+        		// the rows still in view keep their element (a scroll draws only the rows coming into view)
+        		const kept = new Map<number, any>();
+        		for (const child of Array.from(ui.spacer.children) as any[]) {
+        			const index = Number(child.getAttribute("data-index"));
+        			if (index >= first && index <= last && child.aggridValuesFilterRow === rows[index]) {
+        				kept.set(index, child);
+        			}
+        			else {
+        				child.remove();
+        			}
+        		}
+        		for (let index = first; index <= last; index++) {
+        			const row = rows[index];
+        			let element = kept.get(index);
+        			if (element == null) {
+        				element = document.createElement("div");
+        				element.aggridValuesFilterRow = row;
+        				element.id = ui.id + "-option-" + index;
+        				element.setAttribute("role", "option");
+        				element.setAttribute("data-index", String(index));
+        				element.style.top = index * height + "px";
+        				const box = document.createElement("div");
+        				const input = document.createElement("input");
+        				input.type = "checkbox";
+        				input.className = "ag-input-field-input ag-checkbox-input";
+        				input.tabIndex = -1;
+        				input.setAttribute("aria-hidden", "true");
+        				box.appendChild(input);
+        				const label = document.createElement("span");
+        				label.className = "aggrid-values-filter-label";
+        				element.append(box, label);
+        				ui.spacer.appendChild(element);
+        			}
+        			const checked = row.kind === "all" ? state.allState : (this.isAgGridValuesFilterChecked(f, row.item.key) ? "checked" : "unchecked");
+        			element.className = "aggrid-values-filter-item" + (row.kind === "all" ? " aggrid-values-filter-all" : (row.item.key === null ? " aggrid-values-filter-blank" : "")) +
+        				(index === state.active ? " aggrid-values-filter-active" : "");
+        			element.setAttribute("aria-selected", checked === "checked" ? "true" : "false");
+        			const box = element.firstChild;
+        			box.className = "ag-wrapper ag-input-wrapper ag-checkbox-input-wrapper" + (checked === "checked" ? " ag-checked" : (checked === "indeterminate" ? " ag-indeterminate" : ""));
+        			box.firstChild.checked = checked === "checked";
+        			box.firstChild.indeterminate = checked === "indeterminate";
+        			const text = row.kind === "all" ? (searching ? this.getAgGridValuesFilterText("selectAllSearchResults", "(Select All Search Results)") : this.getAgGridValuesFilterText("selectAll", "(Select All)")) : row.item.label;
+        			if (element.lastChild.textContent !== text) {
+        				element.lastChild.textContent = text;
+        				element.lastChild.title = text;
+        			}
+        		}
+        		if (state.active >= 0 && state.active < rows.length) {
+        			ui.list.setAttribute("aria-activedescendant", ui.id + "-option-" + state.active);
+        		}
+        		else {
+        			ui.list.removeAttribute("aria-activedescendant");
+        		}
+        		let text = "";
+        		if (state.loading) {
+        			text = this.getAgGridValuesFilterText("loadingOoo", "Loading...");
+        		}
+        		else if (state.error) {
+        			text = this.getAgGridValuesFilterText("valuesError", "The values could not be loaded");
+        		}
+        		else if (rows.length === 0) {
+        			text = this.getAgGridValuesFilterText("noMatches", "No matches");
+        		}
+        		else if (state.truncated) {
+        			text = this.getAgGridValuesFilterText("valuesTruncated", "Only the first {{count}} values are listed: search to find the others", {count: (state.items || []).length});
+        		}
+        		ui.note.textContent = text;
+        		ui.note.hidden = text === "";
+        	}
+        
+        	scrollAgGridValuesFilterToActive(f: any): void {
+        		const list = f.state.ui?.list;
+        		if (list == null || f.state.active < 0) {
+        			return;
+        		}
+        		const height = 28;
+        		const top = f.state.active * height;
+        		const shown = list.clientHeight || height * 10;
+        		if (top < list.scrollTop) {
+        			list.scrollTop = top;
+        		}
+        		else if (top + height > list.scrollTop + shown) {
+        			list.scrollTop = top + height - shown;
+        		}
+        	}
+        
+        	// valuesFilter: the keyboard in the list: arrows, Home, End, Page Up and Down move, Space checks, Enter closes the popup.
+        	onAgGridValuesFilterListKey(f: any, event: any): void {
+        		const state = f.state;
+        		const count = state.rows.length;
+        		if (count === 0) {
+        			return;
+        		}
+        		let active = state.active < 0 ? 0 : state.active;
+        		switch (event.key) {
+        			case "ArrowDown":
+        				active = Math.min(count - 1, active + 1);
+        				break;
+        			case "ArrowUp":
+        				active = Math.max(0, active - 1);
+        				break;
+        			case "Home":
+        				active = 0;
+        				break;
+        			case "End":
+        				active = count - 1;
+        				break;
+        			case "PageDown":
+        				active = Math.min(count - 1, active + 10);
+        				break;
+        			case "PageUp":
+        				active = Math.max(0, active - 10);
+        				break;
+        			case " ":
+        				event.preventDefault();
+        				event.stopPropagation();
+        				state.active = active;
+        				this.toggleAgGridValuesFilterRow(f, active);
+        				return;
+        			case "Enter":
+        				event.preventDefault();
+        				event.stopPropagation();
+        				this.applyAgGridValuesFilterAll(f);
+        				this.closeAgGridValuesFilter(f, event);
+        				return;
+        			default:
+        				return;
+        		}
+        		event.preventDefault();
+        		event.stopPropagation();
+        		state.active = active;
+        		this.scrollAgGridValuesFilterToActive(f);
+        		this.renderAgGridValuesFilterRows(f);
+        	}
+        
+        	// valuesFilter: the search box filters the list (the provider is asked again while its list was not complete).
+        	onAgGridValuesFilterSearch(f: any): void {
+        		const state = f.state;
+        		state.search = state.ui?.search?.value || "";
+        		clearTimeout(state.timers.search);
+        		const searchNow = () => {
+        			state.timers.search = null;
+        			state.active = -1;
+        			this.refreshAgGridValuesFilterRows(f);
+        			if (state.ui?.list != null) {
+        				state.ui.list.scrollTop = 0;
+        			}
+        			this.renderAgGridValuesFilterRows(f);
+        		};
+        		if (this.getAgGridValuesFilterProvider(f) != null && state.providedComplete !== true) {
+        			searchNow();
+        			state.timers.search = setTimeout(() => {
+        				state.timers.search = null;
+        				this.loadAgGridValuesFilterItems(f);
+        			}, 300);
+        			return;
+        		}
+        		state.timers.search = setTimeout(searchNow, 100);
+        	}
+        
+        	// valuesFilter: Enter in the search box keeps the values found (as Excel), applies and closes; Arrow Down goes to the list.
+        	onAgGridValuesFilterSearchKey(f: any, event: any): void {
+        		const state = f.state;
+        		if (event.key === "ArrowDown" && state.rows.length > 0) {
+        			event.preventDefault();
+        			state.active = state.rows.length > 1 ? 1 : 0;
+        			state.ui.list.focus();
+        			this.scrollAgGridValuesFilterToActive(f);
+        			this.renderAgGridValuesFilterRows(f);
+        			return;
+        		}
+        		if (event.key !== "Enter") {
+        			return;
+        		}
+        		event.preventDefault();
+        		event.stopPropagation();
+        		clearTimeout(state.timers.search);
+        		state.timers.search = null;
+        		state.search = state.ui?.search?.value || "";
+        		this.refreshAgGridValuesFilterRows(f);
+        		if (this.normalizeAgGridValuesFilterSearch(state.search) !== "" && state.rows.length > 0) {
+        			state.selected = new Set(state.rows.filter((row: any) => row.kind === "value").map((row: any) => row.item.key));
+        			this.normalizeAgGridValuesFilterSelection(f);
+        		}
+        		this.applyAgGridValuesFilterAll(f);
+        		this.closeAgGridValuesFilter(f, event);
+        	}
+        
+        	setAgGridValuesFilterConditionOpen(f: any, open: boolean, focus: boolean): void {
+        		const ui = f.state.ui;
+        		if (ui?.toggle == null) {
+        			return;
+        		}
+        		f.state.conditionOpen = open;
+        		ui.condition.hidden = !open;
+        		ui.toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        		ui.toggleIcon.className = "ag-icon " + (open ? "ag-icon-tree-open" : "ag-icon-tree-closed");
+        		if (open && focus) {
+        			ui.condition.querySelector?.("input:not([type=hidden]), [tabindex]:not([tabindex=\"-1\"])")?.focus?.();
+        		}
+        	}
+        
+        	// valuesFilter: the button of the condition shows a dot while the condition filters.
+        	updateAgGridValuesFilterToggle(f: any): void {
+        		const toggle = f.state?.ui?.toggle;
+        		if (toggle != null) {
+        			toggle.classList.toggle("aggrid-values-filter-condition-set", f.state.condition?.isFilterActive?.() === true);
+        		}
+        	}
+        
+        	// valuesFilter: the popup opens: the list shows the values kept, read again from the rows or from the provider.
+        	showAgGridValuesFilter(f: any, params: any): void {
+        		const state = f.state;
+        		state.attached = true;
+        		state.hidePopup = typeof params?.hidePopup === "function" ? params.hidePopup : null;
+        		state.selected = state.applied != null ? new Set(state.applied.values) : null;
+        		state.search = "";
+        		state.active = -1;
+        		state.providedComplete = false;
+        		if (state.ui?.search != null) {
+        			state.ui.search.value = "";
+        		}
+        		if (state.ui?.list != null) {
+        			state.ui.list.scrollTop = 0;
+        		}
+        		if (state.condition != null) {
+        			try {
+        				state.condition.afterGuiAttached?.({...(params || {}), container: "toolPanel", suppressFocus: true});
+        			} catch (e) {
+        			}
+        			this.setAgGridValuesFilterConditionOpen(f, state.condition.isFilterActive?.() === true, false);
+        			this.updateAgGridValuesFilterToggle(f);
+        		}
+        		// a popup taller than a short grid is not cut by the box of the grid while it is open, and fits in the window
+        		state.root = state.ui?.gui?.closest?.(".ag-root-wrapper") ?? null;
+        		state.root?.classList?.add("aggrid-values-filter-open");
+        		this.applyAgGridValuesFilterColors(f);
+        		this.loadAgGridValuesFilterItems(f);
+        		this.placeAgGridValuesFilterPopup(f);
+        		if (params?.suppressFocus !== true) {
+        			state.ui?.search?.focus?.({preventScroll: true});
+        		}
+        	}
+        
+        	// valuesFilter: AG Grid gives its popup the class of the theme again, which sets the colors of the theme back: a grid with
+        	// colors of its own (themeStyle, a style of the page setting --ag- variables) had a popup in the colors of the theme, a
+        	// white popup on a dark grid. The colors the grid has, when they differ from the ones of the popup, are given to the popup
+        	// (the condition filter in it takes them too).
+        	applyAgGridValuesFilterColors(f: any): void {
+        		const popup = f.state.ui?.gui?.closest?.(".ag-popup");
+        		const root = f.state.root;
+        		if (popup == null || root == null || typeof getComputedStyle !== "function") {
+        			return;
+        		}
+        		const names = ["--ag-background-color", "--ag-foreground-color", "--ag-data-color", "--ag-secondary-foreground-color", "--ag-border-color",
+        			"--ag-secondary-border-color", "--ag-row-border-color", "--ag-row-hover-color", "--ag-header-background-color", "--ag-active-color",
+        			"--ag-input-border-color", "--ag-input-focus-border-color", "--ag-checkbox-background-color", "--ag-checkbox-checked-color",
+        			"--ag-checkbox-unchecked-color", "--ag-menu-background-color", "--ag-control-panel-background-color", "--ag-font-family", "--ag-font-size"];
+        		try {
+        			const grid = getComputedStyle(root);
+        			const own = getComputedStyle(popup);
+        			for (const name of names) {
+        				const value = grid.getPropertyValue(name).trim();
+        				if (value !== "" && value !== own.getPropertyValue(name).trim()) {
+        					popup.style.setProperty(name, value);
+        				}
+        			}
+        		} catch (e) {
+        		}
+        	}
+        
+        	// valuesFilter: AG Grid keeps a popup in the box of the grid (at most its height, scrolled) and moves it up to fit in it: a
+        	// short grid would cut the list or cover the header. While the popup is open the box of the grid lets it out (the style
+        	// ValuesFilterStyle, aggrid-values-filter-open where :has() is not supported), and a popup over the header of its column is
+        	// placed under it.
+        	placeAgGridValuesFilterPopup(f: any): void {
+        		const state = f.state;
+        		const menu = state.ui?.gui?.closest?.(".ag-popup-child");
+        		const root = state.root;
+        		if (menu == null || root == null) {
+        			return;
+        		}
+        		menu.style.maxHeight = "none";
+        		const colId = typeof f.params?.column?.getColId === "function" ? String(f.params.column.getColId()) : null;
+        		let header: any = null;
+        		for (const cell of Array.from(root.querySelectorAll(".ag-header-cell")) as any[]) {
+        			if (colId != null && cell.getAttribute("col-id") === colId) {
+        				header = cell;
+        				break;
+        			}
+        		}
+        		if (header == null) {
+        			return;
+        		}
+        		const under = header.getBoundingClientRect().bottom;
+        		if (menu.getBoundingClientRect().top < under - 1) {
+        			menu.style.top = Math.max(0, Math.round(under - root.getBoundingClientRect().top)) + "px";
+        		}
+        	}
+        
+        	// valuesFilter: the popup closes: a change waiting for its debounce is applied now.
+        	hideAgGridValuesFilter(f: any): void {
+        		const state = f.state;
+        		if (state == null) {
+        			return;
+        		}
+        		state.attached = false;
+        		state.hidePopup = null;
+        		state.root?.classList?.remove("aggrid-values-filter-open");
+        		state.root = null;
+        		if (state.timers.apply != null) {
+        			this.applyAgGridValuesFilterSelection(f, true);
+        		}
+        		clearTimeout(state.timers.search);
+        		clearTimeout(state.timers.refresh);
+        		state.timers.search = null;
+        		state.timers.refresh = null;
+        		try {
+        			state.condition?.afterGuiDetached?.();
+        		} catch (e) {
+        		}
+        	}
+        
+        	// valuesFilter: new column definitions of the same filter: the filter is kept with its model (false: AG Grid creates it
+        	// again, when the condition filter is another one).
+        	refreshAgGridValuesFilter(f: any, params: any): boolean {
+        		const state = f.state;
+        		if (state == null || this.getAgGridValuesFilterConditionKind(params) !== state.conditionKind) {
+        			return false;
+        		}
+        		f.params = params;
+        		state.type = null;
+        		const condition = state.condition;
+        		if (condition != null && typeof condition.refresh === "function") {
+        			try {
+        				if (condition.refresh(this.getAgGridValuesFilterConditionParams(f, params)) === false) {
+        					return false;
+        				}
+        			} catch (e) {
+        				return false;
+        			}
+        		}
+        		this.markAgGridValuesFilterDirty(f);
+        		return true;
+        	}
+        
+        	destroyAgGridValuesFilter(f: any): void {
+        		const state = f.state;
+        		if (state == null || state.destroyed) {
+        			return;
+        		}
+        		state.destroyed = true;
+        		state.ticket++;
+        		state.root?.classList?.remove("aggrid-values-filter-open");
+        		state.root = null;
+        		for (const name of Object.keys(state.timers)) {
+        			clearTimeout(state.timers[name]);
+        		}
+        		for (const off of state.listeners) {
+        			try {
+        				off();
+        			} catch (e) {
+        			}
+        		}
+        		state.listeners = [];
+        		if (state.condition != null) {
+        			try {
+        				if (typeof f.destroyBean === "function") {
+        					f.destroyBean(state.condition);
+        				}
+        				else {
+        					state.condition.destroy?.();
+        				}
+        			} catch (e) {
+        			}
+        			state.condition = null;
+        		}
+        	}
+        	
         	/*End_c8o_CompFunction*/
         '
 ↓pagination [ngx.components.UICompVariable-1710934918902]: 
@@ -2361,6 +3835,136 @@ scriptContent:
               ::ng-deep .ag-grid-draft-invalid { box-shadow: inset 0 0 0 2px var(--ag-grid-draft-invalid-color, #eb445a); background-color: var(--ag-grid-draft-invalid-background, rgba(235, 68, 90, 0.12)); }
               ::ng-deep .ag-grid-draft-multiselect { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px; min-width: 160px; max-height: 240px; overflow: auto; outline: none; background: var(--ag-background-color, #fff); color: var(--ag-foreground-color, inherit); border: 1px solid var(--ag-border-color, #babfc7); border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
               ::ng-deep .ag-grid-draft-multiselect label { display: flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+              '
+    ↓ValuesFilterStyle [ngx.components.UIStyle-1853100000010]: 
+      comment: The popup of the filter by values (valuesFilter) in the theme of the grid. Its classes only exist while valuesFilter is true.
+      styleContent: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+          - com.twinsoft.convertigo.beans.common.FormatedContent: 
+            →: |
+              '// valuesFilter: the popup of the filter by values, with the colors, the fonts and the check boxes of the theme of the grid
+              // (light or dark, from its --ag- variables). While it is open, the box of the grid lets it out: AG Grid keeps a popup in
+              // the box of the grid, a short grid cut the list. The list keeps its height (8 rows and a half, as the Set Filter of AG Grid);
+              // its rows are placed at their height (28 pixels): only the rows in view are drawn.
+              ::ng-deep {
+              	.ag-root-wrapper.aggrid-values-filter-open,
+              	.ag-root-wrapper:has(> .ag-popup .aggrid-values-filter) {
+              		overflow: visible !important;
+              	}
+              	.ag-popup-child:has(.aggrid-values-filter) {
+              		max-height: none !important;
+              	}
+              	.aggrid-values-filter {
+              		display: flex;
+              		flex-direction: column;
+              		width: 280px;
+              		max-width: calc(100vw - 32px);
+              		color: var(--ag-foreground-color);
+              		font-family: var(--ag-font-family);
+              		font-size: var(--ag-font-size);
+              		[hidden] {
+              			display: none !important;
+              		}
+              		.aggrid-values-filter-condition-toggle {
+              			display: flex;
+              			align-items: center;
+              			gap: 6px;
+              			width: 100%;
+              			margin: 0;
+              			padding: 8px 12px;
+              			border: 0;
+              			border-bottom: 1px solid var(--ag-border-color);
+              			background: transparent;
+              			color: inherit;
+              			font: inherit;
+              			text-align: left;
+              			cursor: pointer;
+              		}
+              		.aggrid-values-filter-condition-toggle:hover {
+              			background-color: var(--ag-row-hover-color);
+              		}
+              		.aggrid-values-filter-condition-toggle:focus-visible {
+              			outline: none;
+              			box-shadow: inset 0 0 0 2px var(--ag-input-focus-border-color, var(--ag-active-color, #2196f3));
+              		}
+              		.aggrid-values-filter-condition-label {
+              			flex: 1 1 auto;
+              		}
+              		.aggrid-values-filter-condition-set .aggrid-values-filter-condition-dot {
+              			width: 6px;
+              			height: 6px;
+              			border-radius: 50%;
+              			background: var(--ag-active-color, #2196f3);
+              		}
+              		.aggrid-values-filter-condition {
+              			border-bottom: 1px solid var(--ag-border-color);
+              		}
+              		.aggrid-values-filter-condition .ag-filter-apply-panel {
+              			display: none;
+              		}
+              		.aggrid-values-filter-search {
+              			padding: 8px 12px 4px;
+              		}
+              		.aggrid-values-filter-search .ag-text-field-input {
+              			width: 100%;
+              			box-sizing: border-box;
+              		}
+              		.aggrid-values-filter-list {
+              			position: relative;
+              			height: calc(28px * 8.5);
+              			overflow-x: hidden;
+              			overflow-y: auto;
+              			margin: 4px 0;
+              			outline: none;
+              		}
+              		.aggrid-values-filter-list:focus-visible {
+              			box-shadow: inset 0 0 0 2px var(--ag-input-focus-border-color, var(--ag-active-color, #2196f3));
+              		}
+              		.aggrid-values-filter-spacer {
+              			position: relative;
+              		}
+              		.aggrid-values-filter-item {
+              			position: absolute;
+              			left: 0;
+              			right: 0;
+              			height: 28px;
+              			display: flex;
+              			align-items: center;
+              			gap: 8px;
+              			padding: 0 12px;
+              			box-sizing: border-box;
+              			white-space: nowrap;
+              			cursor: pointer;
+              		}
+              		.aggrid-values-filter-item:hover,
+              		.aggrid-values-filter-item.aggrid-values-filter-active {
+              			background-color: var(--ag-row-hover-color);
+              		}
+              		.aggrid-values-filter-list:focus-visible .aggrid-values-filter-active {
+              			box-shadow: inset 3px 0 0 var(--ag-active-color, #2196f3);
+              		}
+              		.aggrid-values-filter-item .ag-checkbox-input-wrapper {
+              			flex: none;
+              		}
+              		.aggrid-values-filter-label {
+              			min-width: 0;
+              			overflow: hidden;
+              			text-overflow: ellipsis;
+              		}
+              		.aggrid-values-filter-blank .aggrid-values-filter-label {
+              			color: var(--ag-secondary-foreground-color);
+              		}
+              		.aggrid-values-filter-note {
+              			padding: 0 12px 8px;
+              			color: var(--ag-secondary-foreground-color);
+              			font-size: 0.92em;
+              		}
+              		.aggrid-values-filter-buttons {
+              			border-top: 1px solid var(--ag-border-color);
+              		}
+              	}
+              }
               '
     ↓Grid [ngx.components.UIDynamicElement-1714061566717]: 
       beanData: '{"ionBean":"Grid","Height":"plain:100%"}'
@@ -3407,6 +5011,15 @@ scriptContent:
   value: null
 ↓columnStyles [ngx.components.UICompVariable-1852100000003]: 
   comment: '<p>object: null (default) or the look of some columns, by the field of their column definition: <code>align</code> (left, center or right) and <code>paddingLeft</code>, <code>paddingRight</code> (numbers of pixels, 0 to 60). The cells of the column and its header take them; the alignment also places a block a cell renderer gives (a number right-aligned by its renderer is centered by center). A value that is none of these is ignored, a column without style keeps its look.</p><p><b>Example:</b> <code>{Rate: {align: "center", paddingRight: 24}}</code></p>'
+  value: null
+↓valuesFilter [ngx.components.UICompVariable-1853100000001]: 
+  comment: '<p>boolean: false (default) or true. When true, every column with a filter of AG Grid (filter true, agTextColumnFilter, agNumberColumnFilter or agDateColumnFilter, on the column or from defaultColDef) gets a filter by values, as in Excel: the distinct values of the column in a list of check boxes with a search box, (Select All) and (Blanks), numbers sorted as numbers, dates as dates, texts in natural order. The condition filter of the column stays in the same popup, under Filter by condition; a row is kept when its value is checked and it passes the condition. The values come from the rows of the grid that pass the filters of the other columns, or from valuesFilterProvider. The model of the filter: {filterType: "values", values: [the values kept] or null, condition: the model of the condition filter}. A column keeps its filter with filterParams.valuesFilter false. Other filterParams of a column: valuesFilterType (text, number, date or boolean), valueFormatter (the text of a value in the list), valuesFilterProvider (a function, or false for the values of its rows), debounceMs, buttons (apply, clear, reset, cancel; clear by default).</p><p><b>Example:</b> <code>true</code></p>'
+  value: false
+↓valuesFilterProvider [ngx.components.UICompVariable-1853100000002]: 
+  comment: '<p>function: null (default) or a function (column, search) that gives the values of a column whose rows are filtered or paged by the application (a server): an array of values or of {value, label}, or {values, complete} (complete false: only the first values, a search asks the others), or a Promise of them; null for the values of the rows of the grid. column: {colId, field, headerName, type, colDef, column, api}. The values kept of such a column hide no row in the browser: the application filters the rows from the model of the filter (filterChanged). A column takes the values of its rows with filterParams.valuesFilterProvider false.</p><p><b>Example:</b> <code>(column, search) =&gt; this.readValues(column.field, search)</code></p>'
+  value: null
+↓valuesFilterTexts [ngx.components.UICompVariable-1853100000003]: 
+  comment: '<p>object: null (default) or texts of the filter by values, by key: condition, valuesError, valuesTruncated ({{count}} is the number of values listed), and the texts of AG Grid selectAll, selectAllSearchResults, blanks, searchOoo, noMatches, loadingOoo, clearFilter, applyFilter, resetFilter, cancelFilter, true, false. A text not given is the one of the locale of the grid, else English.</p><p><b>Example:</b> <code>{condition: "Filtrer par condition", selectAll: "(Tout sélectionner)"}</code></p>'
   value: null
 ↓PageRequest [ngx.components.UICompEvent-1810000000019]: 
   attrName: PageRequest

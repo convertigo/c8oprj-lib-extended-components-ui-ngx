@@ -655,6 +655,14 @@ Page with a grid having images, checkboxes in columns
 Page with a grid using the transactional row creation (draft row, typed validation, one backend call)
 </p></blockquote></details>
 
+<details><summary><b>testAgGrid4</b> : Page with grids using the filter by values (valuesFilter), Excel like, on the rows of the grid and from a provider</summary><blockquote><p>
+
+
+### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") testAgGrid4
+
+Page with grids using the filter by values (valuesFilter), Excel like, on the rows of the grid and from a provider
+</p></blockquote></details>
+
 <details><summary><b>testAngularxQRCode</b> : Page with an angularx QRCode generator</summary><blockquote><p>
 
 
@@ -1147,6 +1155,8 @@ Display options (off by default): truncateText shows each cell on one line, cut 
 Rows and columns (off by default): rowId gives the identity of a row (read when the grid is created), so that a new list of rows updates the rows of the same identity instead of drawing every row again (each row keeps its place, its height and its selection); columnStyles sets the alignment and the padding of the cells of some columns (align left, center or right, paddingLeft and paddingRight in pixels), their header aligned the same way.
 
 Filters of the columns (off by default): filterModel gives the grid a filter model of its columns (as getFilterModel gives it), applied when the grid is ready and each time it changes, so that a grid built again gets back the filters its columns had; filterOnMenuButton shows a filtered column on the button of its menu (the active color and a dot) instead of a second filter icon in its header.
+
+Filter by values (off by default): valuesFilter gives every column with a filter of AG Grid a filter by values, as in Excel: the distinct values of the column in a list of check boxes with a search box, (Select All) and (Blanks), the condition filter of the column kept in the same popup; the values come from the rows of the grid, or from valuesFilterProvider for a grid whose rows are filtered or paged by a server; valuesFilterTexts gives its texts.
 
 External pagination (off by default): externalPagination shows, under a grid whose rows are paged by the application, a pager with the look and the texts of the pager of AG Grid; it says which rows the grid holds among all of them (externalPaginationPage, externalPaginationPageSize, externalPaginationRowCount) and asks the other pages with the PageRequest event, its buttons disabled while externalPaginationBusy is true.
 
