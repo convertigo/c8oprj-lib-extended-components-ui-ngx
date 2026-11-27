@@ -8,7 +8,7 @@
     
     '
   corsOrigin: =Origin
-  version: 8.4.0.65
+  version: 8.4.0.66
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓sample [connectors.SqlConnector]: 🗏 connectors/sample.yaml
   ↓AGGRIDCRUD_DELETE [sequences.GenericSequence]: 🗏 sequences/AGGRIDCRUD_DELETE.yaml
